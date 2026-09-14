@@ -13,13 +13,13 @@
   ],
   "factor_groups": [
     {
-      "name": "mf_volatility_32",
-      "label": "分钟波动率与跳跃",
+      "name": "intraday_risk_states",
+      "label": "日内风险状态",
       "count": 32
     },
     {
-      "name": "hermite_factor_meta",
-      "label": "Hermite 体制元因子",
+      "name": "distribution_states",
+      "label": "分布形状状态",
       "count": 48
     }
   ],
@@ -27,280 +27,240 @@
     {
       "name": "volume_volatility",
       "family": "波动率 / 跳跃",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟成交量的变异系数"
     },
     {
       "name": "ideal_swing_factor",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "star_volatility",
       "family": "波动率 / 跳跃",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "成交量突变时的收益波动"
     },
     {
       "name": "log_volume_volatility",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "illiquidity",
       "family": "流动性",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "Amihud 风格的分钟非流动性"
     },
     {
       "name": "illiquidity_std",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "price_elasticity",
       "family": "流动性",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "价格振幅相对成交额的弹性"
     },
     {
       "name": "diff_abs_mean_volume",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "diff_abs_mean_amplitude",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "peak_count_1std",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "peak_count_2std",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "vol_amplitude",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "realized_variance",
       "family": "已实现矩",
-      "module": "mf_volatility_32.py",
       "definition": "衡量日内价格变化聚合程度的统计量",
       "meaning": "分钟对数收益平方和"
     },
     {
       "name": "realized_skewness",
       "family": "已实现矩",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟收益的已实现偏度"
     },
     {
       "name": "realized_kurtosis",
       "family": "已实现矩",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟收益的已实现峰度"
     },
     {
       "name": "rv_pos",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "rv_neg",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "ivhat",
       "family": "跳跃分解",
-      "module": "mf_volatility_32.py",
       "definition": "衡量连续波动背景的稳健统计量",
-      "meaning": "对跳跃稳健的 tripower variation 方差估计"
+      "meaning": "描述连续波动背景的稳健统计量"
     },
     {
       "name": "rjv",
       "family": "跳跃分解",
-      "module": "mf_volatility_32.py",
       "definition": "衡量离散跳跃风险贡献的统计量",
-      "meaning": "已实现方差中的跳跃部分"
+      "meaning": "描述离散跳跃对波动的贡献"
     },
     {
       "name": "rjvp",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "rjvn",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "sj",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "srjv",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "gamma_threshold",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "rljv",
       "family": "跳跃分解",
-      "module": "mf_volatility_32.py",
       "definition": "衡量较大离散跳跃风险的统计量",
-      "meaning": "超过阈值的大跳跃方差"
+      "meaning": "描述跳跃风险结构的统计量"
     },
     {
       "name": "rljvp",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "rljvn",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "srljv",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "rsjv",
       "family": "跳跃分解",
-      "module": "mf_volatility_32.py",
       "definition": "衡量较小离散跳跃风险的统计量",
-      "meaning": "小跳跃方差残差"
+      "meaning": "描述跳跃风险结构的统计量"
     },
     {
       "name": "rsjvp",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "rsjvn",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "srsjv",
       "family": "微观结构",
-      "module": "mf_volatility_32.py",
       "definition": "分钟级价格、成交量或跳跃状态的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "分钟 OHLCV 的派生统计量"
     },
     {
       "name": "h_daily_close60_ts_h3_60",
       "family": "Hermite 元因子",
-      "module": "hermite_factor_meta.py",
       "definition": "滚动因子分布形状与稳定性的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "滚动因子分布的非高斯性与稳定性指标"
     },
     {
       "name": "h_daily_close60_ts_h4_60",
       "family": "Hermite 元因子",
-      "module": "hermite_factor_meta.py",
       "definition": "滚动因子分布形状与稳定性的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "滚动因子分布的非高斯性与稳定性指标"
     },
     {
       "name": "h_daily_close60_ts_closeness_60",
       "family": "Hermite 元因子",
-      "module": "hermite_factor_meta.py",
       "definition": "滚动因子分布形状与稳定性的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "滚动因子分布的非高斯性与稳定性指标"
     },
     {
       "name": "h_daily_close60_energy_compression_20_60",
       "family": "Hermite 元因子",
-      "module": "hermite_factor_meta.py",
       "definition": "滚动因子分布形状与稳定性的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "滚动因子分布的非高斯性与稳定性指标"
     },
     {
       "name": "vol_rv_ts_h3_60",
       "family": "Hermite 元因子",
-      "module": "hermite_factor_meta.py",
       "definition": "滚动因子分布形状与稳定性的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "滚动因子分布的非高斯性与稳定性指标"
     },
     {
       "name": "vol_rv_ts_h4_60",
       "family": "Hermite 元因子",
-      "module": "hermite_factor_meta.py",
       "definition": "滚动因子分布形状与稳定性的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "滚动因子分布的非高斯性与稳定性指标"
     },
     {
       "name": "vol_rv_ts_closeness_60",
       "family": "Hermite 元因子",
-      "module": "hermite_factor_meta.py",
       "definition": "滚动因子分布形状与稳定性的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "滚动因子分布的非高斯性与稳定性指标"
     },
     {
       "name": "vol_rv_energy_compression_20_60",
       "family": "Hermite 元因子",
-      "module": "hermite_factor_meta.py",
       "definition": "滚动因子分布形状与稳定性的公开研究描述；精确计算算子不在公开快照中。",
       "meaning": "滚动因子分布的非高斯性与稳定性指标"
     }

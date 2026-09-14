@@ -6,36 +6,241 @@
   "publication_policy": "公开研究定义、数据质量与已脱敏证据；精确算子、窗口、原始字段和逐股票信号不公开。",
   "research_notes": [
     "This catalog is a research map; it does not claim backtest performance.",
-    "Real calculations must use point-in-time financial observations keyed by available or disclosure date.",
-    "TTM must require four complete quarters; do not replace missing quarters with nanmean multiplied by four.",
-    "The standardized operating profit implementation must compare operating_profit_ttm with historical operating_profit_ttm, not quarterly operating_profit.",
-    "The local PIT vintage currently provides operate_profit and available_date; a faithful six-TTM factor still needs an explicit quarterly normalization contract.",
-    "Human-capital and labor-cost entries are research hypotheses only until historical labor-cost coverage and predictive evaluation are published.",
-    "Public pages intentionally report research interpretation and evidence status instead of exact operator recipes."
+    "Published observations are point-in-time snapshots; exact availability mappings are kept private.",
+    "Complete observations are required before a rolling research value is published; missing history remains null.",
+    "Public artifacts expose research definitions and aggregate diagnostics, not exact implementation recipes.",
+    "Human-capital entries are hypotheses until historical labor-cost coverage and predictive evaluation are published."
   ],
   "factors": [
-    {"id":"standardized_operating_profit","name":"标准化营业利润","family":"盈利状态","priority":"core","research_status":"experimental","definition":"观察经营利润相对企业自身历史状态是否出现显著改善或恶化。","meaning":"经营利润状态突破","research_question":"市场是否会延迟定价企业进入新的盈利轨迹？"},
-    {"id":"operating_profit_yoy_zscore","name":"标准化营业利润同比增长","family":"盈利增长","priority":"core","research_status":"experimental","definition":"观察经营利润同比改善是否明显超出企业自身通常波动。","meaning":"盈利增长的异常强度","research_question":"超出历史常态的盈利改善能否提供增量信息？"},
-    {"id":"operating_profit_acceleration","name":"营业利润加速度","family":"盈利增长","priority":"core","research_status":"experimental","definition":"观察盈利增长速度是否进一步加快或放缓。","meaning":"盈利趋势的二阶变化","research_question":"持续改善且进一步加速的公司是否更容易被低估？"},
-    {"id":"operating_earnings_yield_zscore","name":"标准化经营盈利收益率","family":"估值 / 盈利","priority":"core","research_status":"experimental","definition":"观察经营盈利相对市场估值是否处于企业自身历史的异常位置。","meaning":"经营盈利与估值的相对变化","research_question":"盈利改善与估值重新定价是否同步发生？"},
-    {"id":"finance_expense_ratio_improvement","name":"财务费用率改善","family":"财务质量","priority":"core","research_status":"experimental","definition":"观察融资负担相对经营收入是否改善。","meaning":"财务杠杆压力变化","research_question":"融资成本下降是否预示盈利质量改善？"},
-    {"id":"asset_impairment_stability","name":"资产减值稳定性","family":"风险 / 质量","priority":"core","research_status":"experimental","definition":"观察资产减值强度及其稳定性，识别潜在资产质量恶化。","meaning":"减值风险与盈利质量","research_question":"减值波动能否提前识别后续基本面风险？"},
-    {"id":"revenue_zscore","name":"标准化营业收入","family":"盈利增长","priority":"supporting","research_status":"experimental","definition":"观察营业收入是否处于企业自身历史的异常高位或低位。","meaning":"收入景气状态","research_question":"收入状态突破是否先于利润状态变化？"},
-    {"id":"comprehensive_income_yield_zscore","name":"标准化综合收益率","family":"估值 / 盈利","priority":"supporting","research_status":"experimental","definition":"观察综合收益相对市场估值是否偏离企业自身历史。","meaning":"综合盈利的估值位置","research_question":"综合收益变化是否包含传统盈利指标之外的信息？"},
-    {"id":"income_tax_zscore_250","name":"所得税费用异常度（长期）","family":"税负 / 融资","priority":"supporting","research_status":"experimental","definition":"观察所得税负担相对企业自身历史是否异常。","meaning":"税负状态变化","research_question":"税负异常是否能区分主营改善与一次性利润？"},
-    {"id":"income_tax_zscore_120","name":"所得税费用异常度（短期）","family":"税负 / 融资","priority":"supporting","research_status":"experimental","definition":"观察近期税费变化是否偏离企业通常水平。","meaning":"短期税费异常","research_question":"短期税费变化是否具有持续性？"},
-    {"id":"negative_roa_exp_mean_120","name":"资产盈利能力平滑状态","family":"盈利质量","priority":"supporting","research_status":"experimental","definition":"观察近期资产盈利能力的平滑状态与方向。","meaning":"短期资产回报质量","research_question":"资产回报的近期变化是否具有预测性？"},
-    {"id":"negative_earnings_yield_cv_120","name":"盈利收益率稳定性","family":"估值 / 盈利","priority":"supporting","research_status":"experimental","definition":"观察盈利相对估值的波动与稳定程度。","meaning":"盈利收益率噪声","research_question":"稳定的盈利收益率是否比单点估值更可靠？"},
-    {"id":"income_tax_yield_zscore_120","name":"税费负担异常度","family":"税负 / 融资","priority":"supporting","research_status":"experimental","definition":"观察税费负担相对市场估值的历史异常程度。","meaning":"税费与估值的相对变化","research_question":"税费异常是否能揭示估值与盈利错配？"},
-    {"id":"invest_income_yield_zscore","name":"投资收益异常度","family":"非主营收益","priority":"supporting","research_status":"experimental","definition":"观察投资性收益相对企业估值是否出现异常。","meaning":"非主营收益状态","research_question":"非主营收益变化是否会被市场错误地当作持续盈利？"},
-    {"id":"other_gain_yield_zscore","name":"其他收益异常度","family":"非主营收益","priority":"supporting","research_status":"experimental","definition":"观察补贴或其他非核心收益相对估值的异常程度。","meaning":"其他收益依赖度","research_question":"其他收益异常是否能提示盈利可持续性风险？"},
-    {"id":"negative_roa_cv_250","name":"资产盈利波动性","family":"盈利质量","priority":"supporting","research_status":"experimental","definition":"观察资产盈利能力在较长观察期内是否稳定。","meaning":"资产回报不稳定性","research_question":"盈利稳定性是否能改善盈利趋势信号的可信度？"},
-    {"id":"negative_roe_exp_mean_750","name":"长期股东回报状态","family":"盈利质量","priority":"supporting","research_status":"experimental","definition":"观察股东资本回报的长期平滑状态。","meaning":"长期资本回报质量","research_question":"长期回报状态是否能区分短期盈利噪声？"},
-    {"id":"cash_to_market_value_zscore","name":"现金相对估值异常度","family":"资产质量 / 估值","priority":"supporting","research_status":"experimental","definition":"观察现金资产相对市场估值是否处于异常位置。","meaning":"现金安全垫与估值变化","research_question":"现金安全垫变化是否提供估值保护或风险提示？"},
-    {"id":"labor_cost_intensity","name":"劳动成本强度","family":"人力资本 / 劳动","priority":"supporting","research_status":"experimental","definition":"观察企业收入中劳动投入成本所占的相对强度。","meaning":"劳动依赖度与经营杠杆","research_question":"劳动成本越刚性的企业，收入变化是否会放大利润变化？"},
-    {"id":"labor_efficiency","name":"人力资本效率","family":"人力资本 / 劳动","priority":"supporting","research_status":"experimental","definition":"观察企业用劳动投入创造经营收入的效率变化。","meaning":"收入创造与劳动投入的关系","research_question":"收入增长是否持续快于劳动投入增长？"},
-    {"id":"labor_cost_growth","name":"劳动成本变化","family":"人力资本 / 劳动","priority":"supporting","research_status":"experimental","definition":"观察劳动投入成本的增长状态，不将其直接等同于员工工资增长。","meaning":"劳动投入扩张或成本压力","research_question":"劳动成本上升主要来自扩张、涨薪还是员工结构变化？"},
-    {"id":"revenue_minus_labor_cost_growth","name":"收入—劳动成本剪刀差","family":"人力资本 / 劳动","priority":"supporting","research_status":"experimental","definition":"观察收入增长相对劳动成本增长的改善程度。","meaning":"劳动投入效率与经营杠杆变化","research_question":"收入增长快于劳动成本增长是否预示效率改善？"},
-    {"id":"labor_intensity_investment_state","name":"劳动强度与投资状态","family":"人力资本 / 劳动","priority":"supporting","research_status":"experimental","definition":"观察高劳动依赖企业在扩张投资时的经营风险与成长状态。","meaning":"劳动刚性与投资行为的交互","research_question":"劳动成本刚性是否会改变投资信号的收益含义？"}
+    {
+      "id": "standardized_operating_profit",
+      "name": "标准化营业利润",
+      "family": "盈利状态",
+      "priority": "core",
+      "research_status": "experimental",
+      "definition": "观察经营利润相对企业自身历史状态是否出现显著改善或恶化。",
+      "meaning": "经营利润状态突破",
+      "research_question": "市场是否会延迟定价企业进入新的盈利轨迹？"
+    },
+    {
+      "id": "operating_profit_yoy_zscore",
+      "name": "标准化营业利润同比增长",
+      "family": "盈利增长",
+      "priority": "core",
+      "research_status": "experimental",
+      "definition": "观察经营利润同比改善是否明显超出企业自身通常波动。",
+      "meaning": "盈利增长的异常强度",
+      "research_question": "超出历史常态的盈利改善能否提供增量信息？"
+    },
+    {
+      "id": "operating_profit_acceleration",
+      "name": "营业利润加速度",
+      "family": "盈利增长",
+      "priority": "core",
+      "research_status": "experimental",
+      "definition": "观察盈利增长速度是否进一步加快或放缓。",
+      "meaning": "盈利趋势的二阶变化",
+      "research_question": "持续改善且进一步加速的公司是否更容易被低估？"
+    },
+    {
+      "id": "operating_earnings_yield_zscore",
+      "name": "标准化经营盈利收益率",
+      "family": "估值 / 盈利",
+      "priority": "core",
+      "research_status": "experimental",
+      "definition": "观察经营盈利相对市场估值是否处于企业自身历史的异常位置。",
+      "meaning": "经营盈利与估值的相对变化",
+      "research_question": "盈利改善与估值重新定价是否同步发生？"
+    },
+    {
+      "id": "finance_expense_ratio_improvement",
+      "name": "财务费用率改善",
+      "family": "财务质量",
+      "priority": "core",
+      "research_status": "experimental",
+      "definition": "观察融资负担相对经营收入是否改善。",
+      "meaning": "财务杠杆压力变化",
+      "research_question": "融资成本下降是否预示盈利质量改善？"
+    },
+    {
+      "id": "asset_impairment_stability",
+      "name": "资产减值稳定性",
+      "family": "风险 / 质量",
+      "priority": "core",
+      "research_status": "experimental",
+      "definition": "观察资产减值强度及其稳定性，识别潜在资产质量恶化。",
+      "meaning": "减值风险与盈利质量",
+      "research_question": "减值波动能否提前识别后续基本面风险？"
+    },
+    {
+      "id": "revenue_zscore",
+      "name": "标准化营业收入",
+      "family": "盈利增长",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察营业收入是否处于企业自身历史的异常高位或低位。",
+      "meaning": "收入景气状态",
+      "research_question": "收入状态突破是否先于利润状态变化？"
+    },
+    {
+      "id": "comprehensive_income_yield_zscore",
+      "name": "标准化综合收益率",
+      "family": "估值 / 盈利",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察综合收益相对市场估值是否偏离企业自身历史。",
+      "meaning": "综合盈利的估值位置",
+      "research_question": "综合收益变化是否包含传统盈利指标之外的信息？"
+    },
+    {
+      "id": "income_tax_zscore_250",
+      "name": "所得税费用异常度（长期）",
+      "family": "税负 / 融资",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察所得税负担相对企业自身历史是否异常。",
+      "meaning": "税负状态变化",
+      "research_question": "税负异常是否能区分主营改善与一次性利润？"
+    },
+    {
+      "id": "income_tax_zscore_120",
+      "name": "所得税费用异常度（短期）",
+      "family": "税负 / 融资",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察近期税费变化是否偏离企业通常水平。",
+      "meaning": "短期税费异常",
+      "research_question": "短期税费变化是否具有持续性？"
+    },
+    {
+      "id": "negative_roa_exp_mean_120",
+      "name": "资产盈利能力平滑状态",
+      "family": "盈利质量",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察近期资产盈利能力的平滑状态与方向。",
+      "meaning": "短期资产回报质量",
+      "research_question": "资产回报的近期变化是否具有预测性？"
+    },
+    {
+      "id": "negative_earnings_yield_cv_120",
+      "name": "盈利收益率稳定性",
+      "family": "估值 / 盈利",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察盈利相对估值的波动与稳定程度。",
+      "meaning": "盈利收益率噪声",
+      "research_question": "稳定的盈利收益率是否比单点估值更可靠？"
+    },
+    {
+      "id": "income_tax_yield_zscore_120",
+      "name": "税费负担异常度",
+      "family": "税负 / 融资",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察税费负担相对市场估值的历史异常程度。",
+      "meaning": "税费与估值的相对变化",
+      "research_question": "税费异常是否能揭示估值与盈利错配？"
+    },
+    {
+      "id": "invest_income_yield_zscore",
+      "name": "投资收益异常度",
+      "family": "非主营收益",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察投资性收益相对企业估值是否出现异常。",
+      "meaning": "非主营收益状态",
+      "research_question": "非主营收益变化是否会被市场错误地当作持续盈利？"
+    },
+    {
+      "id": "other_gain_yield_zscore",
+      "name": "其他收益异常度",
+      "family": "非主营收益",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察补贴或其他非核心收益相对估值的异常程度。",
+      "meaning": "其他收益依赖度",
+      "research_question": "其他收益异常是否能提示盈利可持续性风险？"
+    },
+    {
+      "id": "negative_roa_cv_250",
+      "name": "资产盈利波动性",
+      "family": "盈利质量",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察资产盈利能力在较长观察期内是否稳定。",
+      "meaning": "资产回报不稳定性",
+      "research_question": "盈利稳定性是否能改善盈利趋势信号的可信度？"
+    },
+    {
+      "id": "negative_roe_exp_mean_750",
+      "name": "长期股东回报状态",
+      "family": "盈利质量",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察股东资本回报的长期平滑状态。",
+      "meaning": "长期资本回报质量",
+      "research_question": "长期回报状态是否能区分短期盈利噪声？"
+    },
+    {
+      "id": "cash_to_market_value_zscore",
+      "name": "现金相对估值异常度",
+      "family": "资产质量 / 估值",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察现金资产相对市场估值是否处于异常位置。",
+      "meaning": "现金安全垫与估值变化",
+      "research_question": "现金安全垫变化是否提供估值保护或风险提示？"
+    },
+    {
+      "id": "labor_cost_intensity",
+      "name": "劳动成本强度",
+      "family": "人力资本 / 劳动",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察企业收入中劳动投入成本所占的相对强度。",
+      "meaning": "劳动依赖度与经营杠杆",
+      "research_question": "劳动成本越刚性的企业，收入变化是否会放大利润变化？"
+    },
+    {
+      "id": "labor_efficiency",
+      "name": "人力资本效率",
+      "family": "人力资本 / 劳动",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察企业用劳动投入创造经营收入的效率变化。",
+      "meaning": "收入创造与劳动投入的关系",
+      "research_question": "收入增长是否持续快于劳动投入增长？"
+    },
+    {
+      "id": "labor_cost_growth",
+      "name": "劳动成本变化",
+      "family": "人力资本 / 劳动",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察劳动投入成本的增长状态，不将其直接等同于员工工资增长。",
+      "meaning": "劳动投入扩张或成本压力",
+      "research_question": "劳动成本上升主要来自扩张、涨薪还是员工结构变化？"
+    },
+    {
+      "id": "revenue_minus_labor_cost_growth",
+      "name": "收入—劳动成本剪刀差",
+      "family": "人力资本 / 劳动",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察收入增长相对劳动成本增长的改善程度。",
+      "meaning": "劳动投入效率与经营杠杆变化",
+      "research_question": "收入增长快于劳动成本增长是否预示效率改善？"
+    },
+    {
+      "id": "labor_intensity_investment_state",
+      "name": "劳动强度与投资状态",
+      "family": "人力资本 / 劳动",
+      "priority": "supporting",
+      "research_status": "experimental",
+      "definition": "观察高劳动依赖企业在扩张投资时的经营风险与成长状态。",
+      "meaning": "劳动刚性与投资行为的交互",
+      "research_question": "劳动成本刚性是否会改变投资信号的收益含义？"
+    }
   ]
 }

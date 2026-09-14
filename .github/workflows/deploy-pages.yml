@@ -19,11 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Build demo snapshot
-        run: python scripts/build_factor_snapshot.py --demo --output site/public/data/factor-snapshot.json
       - uses: actions/setup-node@v4
         with:
           node-version: 20

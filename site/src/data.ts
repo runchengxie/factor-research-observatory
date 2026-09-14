@@ -1,7 +1,7 @@
 import type { FundamentalCatalog, FundamentalSnapshot, Snapshot } from './types'
 
 const required = ['schema_version', 'generated_at', 'source', 'datasets', 'factor_groups', 'factors', 'series', 'cross_section', 'jump_decomposition'] as const
-const fundamentalRequired = ['schema_version', 'source', 'vintage', 'dataset', 'coverage', 'latest_cross_section', 'validation', 'series', 'notes'] as const
+const fundamentalRequired = ['schema_version', 'source', 'vintage', 'coverage', 'latest_cross_section', 'validation', 'series', 'notes'] as const
 
 export async function loadSnapshot(): Promise<Snapshot> {
   const response = await fetch(`${import.meta.env.BASE_URL}data/factor-snapshot.json`)

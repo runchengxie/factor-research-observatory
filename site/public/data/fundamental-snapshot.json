@@ -2,7 +2,6 @@
   "schema_version": 1,
   "source": "local_pit_vintage",
   "vintage": "20260802",
-  "dataset": "PRIVATE_PROVIDER.a_share.fundamentals.pit.v2",
   "coverage": {
     "date_start": "2008-04-09",
     "date_end": "2026-08-04",
@@ -31,12 +30,9 @@
   },
   "validation": {
     "all_market_computed": true,
-    "historical_ttm_window": 6,
-    "complete_quarters_required": 4,
-    "quarterly_rule": "Q1 cumulative; Q2/Q3 current cumulative minus prior quarter; Q4 annual minus Q3",
-    "pit_date_field": "available_date",
-    "report_period_field": "report_period",
-    "universe_filter": "^[0-9]{6}\\.(SZ|SH|BJ)$"
+    "history_observations": 6,
+    "complete_observations_required": 4,
+    "availability_basis": "point-in-time observation date"
   },
   "series": [
     {

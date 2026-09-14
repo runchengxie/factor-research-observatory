@@ -1,5 +1,6 @@
 import json
 import re
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -36,6 +37,17 @@ class PublicResearchContractTests(unittest.TestCase):
     def test_public_pages_do_not_render_formula_fields(self):
         source = "\n".join(path.read_text() for path in PUBLIC_SOURCE.rglob("*.tsx"))
         self.assertNotRegex(source, re.compile(r"factor\.formula|formulaLatex|<code>\{factor\.formula"))
+
+    def test_public_tree_excludes_private_implementation_and_internal_docs(self):
+        tracked = set(subprocess.check_output(['git', 'ls-files'], cwd=ROOT, text=True).splitlines())
+        allowed_roots = {'.gitignore', 'README.md'}
+        allowed_prefixes = ('.github/', 'scripts/', 'site/', 'tests/')
+        self.assertEqual(sorted(path for path in tracked if path not in allowed_roots and not path.startswith(allowed_prefixes)), [])
+
+    def test_public_release_audit_passes(self):
+        from scripts.audit_public_release import audit
+
+        self.assertEqual(audit(), [])
 
 
 if __name__ == "__main__":

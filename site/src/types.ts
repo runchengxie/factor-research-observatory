@@ -1,4 +1,4 @@
-export type Factor = { name: string; family: string; module: string; definition: string; meaning: string }
+export type Factor = { name: string; family: string; definition: string; meaning: string }
 export type Series = { ticker: string; metric: string; dates: string[]; values: Array<number | null> }
 export type JumpRow = { ticker: string; date: string; rv: number | null; ivhat: number | null; rjv: number | null; rljv: number | null; rsjv: number | null }
 export type Snapshot = {
@@ -13,7 +13,7 @@ export type ResearchEvidence = { status: 'not_published' | 'descriptive' | 'expe
 export type FundamentalFactor = { id: string; name: string; family: string; priority: 'core' | 'supporting'; research_status: FactorStatus; definition: string; meaning: string; research_question?: string; evidence?: ResearchEvidence }
 export type FundamentalCatalog = { schema_version: number; title: string; status: string; data_status: string; research_notes: string[]; factors: FundamentalFactor[] }
 export type FundamentalSeries = { ticker: string; metric: string; dates: string[]; values: Array<number | null> }
-export type FundamentalSnapshot = { schema_version: number; source: string; vintage: string; dataset: string; coverage: { date_start: string; date_end: string; tickers: string[]; tickers_count: number; representative_tickers: string[]; observations: number }; latest_cross_section: { metric: string; count: number; missing: number; p01: number | null; p25: number | null; p50: number | null; p75: number | null; p99: number | null }; validation: { all_market_computed: boolean; historical_ttm_window: number; complete_quarters_required: number; quarterly_rule: string; pit_date_field: string; report_period_field: string }; series: FundamentalSeries[]; notes: string[] }
+export type FundamentalSnapshot = { schema_version: number; source: string; vintage: string; coverage: { date_start: string; date_end: string; tickers: string[]; tickers_count: number; representative_tickers: string[]; observations: number }; latest_cross_section: { metric: string; count: number; missing: number; p01: number | null; p25: number | null; p50: number | null; p75: number | null; p99: number | null }; validation: { all_market_computed: boolean; history_observations: number; complete_observations_required: number; availability_basis: string }; series: FundamentalSeries[]; notes: string[] }
 
 export type FactorStatus = 'descriptive' | 'experimental' | 'validated'
 export type FactorCoverage = { count: number; missing?: number; total?: number; ratio?: number }
@@ -36,7 +36,6 @@ export type FactorRecord = {
   transformHint?: string
   failureModes?: string[]
   researchEvidence?: ResearchEvidence
-  sourceModule?: string
   coverage?: FactorCoverage
   statistics?: FactorStatistics
   series?: FactorSeriesPoint[]

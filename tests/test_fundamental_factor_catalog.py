@@ -21,8 +21,8 @@ class FundamentalFactorCatalogTests(unittest.TestCase):
         catalog = json.loads(CATALOG.read_text())
         notes = " ".join(catalog["research_notes"])
         self.assertIn("point-in-time", notes)
-        self.assertIn("operating_profit_ttm", notes)
-        self.assertIn("TTM", notes)
+        self.assertIn("Complete", notes)
+        self.assertIn("Public", notes)
 
     def test_local_pit_snapshot_is_real_and_representative(self):
         snapshot = json.loads((CATALOG.parent / "fundamental-snapshot.json").read_text())
@@ -35,7 +35,7 @@ class FundamentalFactorCatalogTests(unittest.TestCase):
         snapshot = json.loads((CATALOG.parent / "fundamental-snapshot.json").read_text())
         self.assertTrue(snapshot["validation"]["all_market_computed"])
         self.assertGreater(snapshot["coverage"]["tickers_count"], len(snapshot["coverage"]["representative_tickers"]))
-        self.assertEqual(snapshot["validation"]["historical_ttm_window"], 6)
+        self.assertEqual(snapshot["validation"]["history_observations"], 6)
 
     def test_fundamental_snapshot_keeps_pit_dates_and_null_warmup(self):
         snapshot = json.loads((CATALOG.parent / "fundamental-snapshot.json").read_text())

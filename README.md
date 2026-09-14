@@ -1,185 +1,68 @@
 # factor-research-observatory
 
-Alpha 因子计算算子 —— `guan-factor-research-framework` 的特征工程层。
+面向公开研究展示的因子 Observatory：浏览因子定义、数据质量、研究状态和已脱敏的聚合证据。
 
-对 A 股分钟级行情数据（OHLCV），计算波动率、跳跃、流动性及 Hermite 元因子，产出结构化的因子面板供下游 ML 模型消费。
+本仓库不是因子计算引擎，也不包含原始行情、财报数据、逐股票信号、组合权重或私有研究代码。研究计算在私有环境完成后，只向本站导出公开契约允许的静态快照。
 
-## 目录结构
+## 站点入口
 
-```
-.
-├── mf_volatility_32.py              # 基础因子：波动率 / 跳跃 / 流动性，32 个子因子
-├── hermite_factor_meta.py           # 元因子：Hermite 多项式变换，12×4 = 48 个二阶特征
-├── factor_results/                  # 因子输出目录（Parquet）
-│   ├── mf_volatility_32/
-│   └── hermite_factor_meta/
-└── README.md
-```
+- `/`：研究总览与数据上下文
+- `/factors`：统一因子目录
+- `/jumps`：跳跃风险分解展示
+- `/hermite`：分布形状与状态展示
+- `/fundamentals`：基本面与人力资本研究目录
 
-## 因子体系
+## 公开数据边界
 
-### mf_volatility_32 — 基础因子
+公开快照可以包含：
 
-对每只股票、每个交易日，基于当日分钟 K 线计算 **32 个标量因子**，涵盖四个维度：
+- 因子名称、研究族和公开研究定义；
+- 经济直觉、研究状态和数据质量；
+- 已脱敏的横截面摘要、时间序列示例和聚合归因结果；
+- point-in-time 状态、覆盖范围和缺失情况。
 
-| 族 | 因子数 | 代表因子 | 说明 |
-|---|---|---|---|
-| F1105 波动率/跳跃 | 4 | `volume_volatility`, `star_volatility` | 成交量波动、星形波动 |
-| F1107 流动性 | 3 | `illiquidity`, `price_elasticity` | Amihud 非流动性、价格弹性 |
-| 微观结构 | 5 | `diff_abs_mean_volume`, `peak_count_1std` | 量变幅度、峰度计数 |
-| 已实现矩 | 3 | `realized_variance`, `realized_skewness`, `realized_kurtosis` | 已实现方差/偏度/峰度 |
-| 跳跃分解 | 17 | `ivhat`, `rjv`, `rljv`, `rsjv` | 三幂变差跳跃检测与分解 |
+公开快照不包含：
 
-**跳跃检测** 实现了 Barndorff-Nielsen & Shephard 框架：用 tripower variation (`ivhat`) 估计对跳跃稳健的积分方差，将已实现方差分解为连续部分和跳跃部分 (`rjv = RV − IV`)，并进一步将跳跃分解为大跳跃 (`rljv`) 和小跳跃 (`rsjv`)。
+- 精确计算算子、参数窗口和组合规则；
+- 原始数据供应商、原始字段映射和本地文件路径；
+- 每只股票的完整信号值、组合权重和交易执行细节；
+- 私有回测代码、原始数据和凭证。
 
-### hermite_factor_meta — 元因子（算子之算子）
+## 本地运行
 
-对 12 个已计算的基础因子做 **滚动 Hermite 多项式变换**，产出 48 个二阶特征，量化因子分布的非高斯性和稳定性：
-
-| 输出指标 | 窗口 | 含义 |
-|---|---|---|
-| `h3_60` | 60 日 | 滚动偏度幅度（分布不对称程度） |
-| `h4_60` | 60 日 | 滚动峰度幅度（厚尾程度） |
-| `ts_closeness_60` | 60 日 | `−log(1+h3²+h4²)`，接近高斯的程度 |
-| `energy_compression_20_60` | 20/60 日 | `log(1+E60) − log(1+E20)`，非高斯能量压缩/膨胀 |
-
-这 4 个指标 × 12 个源因子 = 48 个输出特征，覆盖以下因子族：
-
-`hermite_information_rg`, `mf_hermite_information_rg`, `mf_price_volume_pressure_24`, `mf_volatility_32`, `mf_distribution_22`, `order_flow_20`, `trade_informed_flow_20`, `daily_alpha_6`
-
-这些特征作为 **体制/稳定性调制器**，当某只股票的因子行为变得非高斯，意味着市场微观结构可能正在切换，下游 ML 模型可利用该信号调整预测。
-
-## 接口约定（框架插件协议）
-
-每个算子模块需暴露三个接口，供父框架 `minute_factor_cal.py` 自动发现和调度：
-
-```python
-# 1. 因子族标识
-GROUP_NAME = "mf_volatility_32"
-
-# 2. 输入列声明
-COLUMNS = ["ticker", "timestamp", "open", "high", "low", "close", "volume"]
-
-# 3. 计算入口（基础因子）
-def compute_factor(df, date: int, history: dict) -> dict:
-    """
-    df:      当日的分钟 K 线 DataFrame
-    date:    交易日 int，如 20250701
-    history: 历史数据缓存（本模块 HISTORY_DAYS=0，不使用）
-    
-    返回: {factor_name: {ticker: float}}
-    """
-    ...
-
-# 3'. 计算入口（元因子）
-def compute_factors(data: dict) -> dict[str, pd.DataFrame]:
-    """
-    data: {"returns": 日收益 DataFrame (date × ticker)}
-    
-    返回: {factor_alias_metric: DataFrame (date × ticker)}
-    """
-    ...
-```
-
-## 使用方式
-
-在父框架 `guan-factor-research-framework` 下运行：
+站点直接消费 `site/public/data/` 中已提交的公开快照：
 
 ```bash
-# 计算 mf_volatility_32 因子，指定日期范围
-python -m frame.minute_factor_cal --group mf_volatility_32 --start 20250101 --end 20250131
-
-# 计算 Hermite 元因子（需先跑完所有基础因子）
-python -m frame.minute_factor_cal --group hermite_factor_meta
-```
-
-## 技术栈
-
-| 层 | 技术 |
-|---|---|
-| 语言 | Python 3.11+ |
-| 计算 | NumPy, Pandas |
-| 存储 | PyArrow / Apache Parquet（列式压缩） |
-| 可选加速 | cuDF/cuPy (GPU), Polars (CPU) |
-
-## 数据流
-
-```
-分钟 OHLCV 数据
-    │
-    ▼
-mf_volatility_32         ──→  factor_results/mf_volatility_32/*.parquet
-    │
-    ▼ (与其他 6 个因子族一起)
-hermite_factor_meta      ──→  factor_results/hermite_factor_meta/*.parquet
-    │
-    ▼
-下游 ML 模型训练 / 回测
-```
-
-## 设计原则
-
-- **插件式协议**：只需暴露 `GROUP_NAME` + `COLUMNS` + `compute_factor/compute_factors`，无需注册即可被框架发现
-- **GPU/CPU 双后端**：运行时检测输入是否为 cuDF，自动适配
-- **刻意紧凑**：Hermite 部分限定 12 个源因子 × 4 个指标，避免候选爆炸
-- **数值稳健**：无穷值裁剪、零方差 guard（`std > 1e-8`）、z-score 限幅 [-8, 8]、float32 存储
-- **零 ML 依赖**：纯特征生成，不耦合任何模型库
-
-## 因子研究站点
-
-本仓库包含一个可部署到 GitHub Pages 的静态研究站点，用于浏览因子元数据和代表性快照。站点不在浏览器中运行分钟级因子计算，完整 Parquet 数据也不提交到 Git。
-
-### 本地运行
-
-```bash
-# 生成可预览的 demo 数据
-python scripts/build_factor_snapshot.py --demo --output site/public/data/factor-snapshot.json
-
-# 启动站点
 cd site
-npm install
+npm ci
 npm run dev
 ```
 
-站点包含以下入口：
-
-- `/`：因子总览与数据流
-- `/factors`：统一因子目录，支持搜索、筛选和排序
-- `/factors/realized_variance`：统一因子详情示例
-- `/jumps`：RV / IVhat / RJV / RLJV / RSJV 跳跃分解
-- `/hermite`：Hermite 非高斯体制时间线
-- `/fundamentals`：基本面因子目录与本地 PIT snapshot 展示
-
-### 公开研究层与私有算子边界
-
-站点采用“私有研究算子 → 脱敏研究产物 → 公开 Observatory”的边界。公开 JSON 和页面只展示因子名称、研究定义、经济直觉、数据质量、研究状态，以及已经明确提供的归因结果；不公开精确算子、参数窗口、原始字段映射、逐股票信号或组合权重。
-
-人力资本 / 劳动研究族已作为实验性目录纳入，包括劳动成本强度、人力资本效率、劳动成本变化、收入—劳动成本剪刀差，以及劳动强度与投资状态。它们目前是研究假设，不代表已经完成 A 股回测；在没有公开评估产物时，页面会明确显示“尚未提供”，不会用目录存在冒充预测能力。
-
-如果研究引擎产生 IC、分层收益或因子归因，应只导出经过脱敏的 `researchEvidence` 结构给站点；精确计算代码、窗口和原始数据留在私有研究环境，不应提交到公开数据目录。
-
-如果已有真实因子结果，可将其根目录传给快照生成器：
+构建：
 
 ```bash
-python scripts/build_factor_snapshot.py \
-  --input-root /path/to/factor_results \
-  --output site/public/data/factor-snapshot.json
+npm run build --prefix site
 ```
 
-因子目录和详情页当前是描述性研究展示：页面不会把快照统计解释为 IC、分层收益或交易策略结论。推送到 `master` 后，GitHub Actions 会构建并发布 Pages。首次启用时，需要在仓库 Settings → Pages → Build and deployment 中选择 GitHub Actions。站点地址通常为 `https://<owner>.github.io/<repository>/`。
-
-### 基本面 PIT snapshot
-
-基本面页面当前使用本地只读数据生成的轻量展示快照，不提交原始财报数据。生成命令示例：
+更新公开快照时，应在私有研究环境中生成脱敏结果，再替换 `site/public/data/` 中的静态文件。提交前运行：
 
 ```bash
-uv run --with pandas --with pyarrow python scripts/build_fundamental_snapshot.py \
-  --all-market \
-  --input-root PRIVATE_PATH \
-  --output site/public/data/fundamental-snapshot.json \
-  --tickers 000001.SZ 600519.SH 300750.SZ
+python scripts/audit_public_release.py
+python -m unittest discover -s tests -v
 ```
 
-该 snapshot 使用 `PRIVATE_PROVIDER.a_share.fundamentals.pit.v2`，明确保留 `available_date` 和 vintage 信息，并只纳入六位数字的 `.SZ/.SH/.BJ` 真实股票代码。`--all-market` 会计算全市场最新截面统计，但页面只保存少量代表股票的时间序列。标准化营业利润只有在四个完整季度及前六个 TTM 都可用时才计算；这份展示数据不代表已完成回测验证。
+## 人力资本 / 劳动研究
 
-标准化营业利润目前是基于本地 PIT vintage 的初步试算：报告值按财年累计值拆分为季度，再重建 TTM。正式回测前仍需进一步核验季度归属、公告日可得性和全市场计算逻辑。
+站点目录包含劳动成本强度、人力资本效率、劳动成本变化、收入—劳动成本剪刀差，以及劳动强度与投资状态等实验性研究入口。这些条目表达研究假设，不代表已经完成 A 股预测性验证；没有公开评估结果时，页面会明确显示尚未提供。
+
+## 研究与公开发布的分层
+
+```text
+私有研究引擎
+    ↓ 运行回测、归因和稳健性检查
+脱敏公开快照
+    ↓ 只保留公开契约允许的字段
+factor-research-observatory
+```
+
+历史提交可能包含已经移除的内部实现。若需要对历史也做不可见处理，应新建干净的 public repository，或在明确备份和授权后执行历史重写；普通删除不会清除 Git 历史、fork 或已有 clone。
