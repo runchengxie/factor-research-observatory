@@ -12,7 +12,7 @@ import type {
   Snapshot,
 } from './types'
 
-type Metadata = Pick<FactorRecord, 'definition' | 'intuition' | 'interpretationHigh' | 'interpretationLow' | 'inputFields' | 'unit' | 'transformHint' | 'failureModes' | 'subfamily'>
+type Metadata = Pick<FactorRecord, 'definition' | 'intuition' | 'interpretationHigh' | 'interpretationLow' | 'unit' | 'transformHint' | 'failureModes' | 'subfamily'> & { inputFields?: string[] }
 
 const statusLabel: Record<FactorStatus, string> = { descriptive: '描述性快照', experimental: '实验性', validated: '已验证' }
 
@@ -72,12 +72,10 @@ function minuteRecord(factor: Factor, snapshot: Snapshot): FactorRecord {
     frequencyIn: 'minute',
     frequencyOut: 'daily',
     status: 'descriptive',
-    formula: factor.formula === '见实现模块' ? undefined : factor.formula,
-    definition: metadata.definition,
+    definition: factor.definition,
     intuition: metadata.intuition,
     interpretationHigh: metadata.interpretationHigh,
     interpretationLow: metadata.interpretationLow,
-    inputFields: metadata.inputFields,
     unit: metadata.unit,
     transformHint: metadata.transformHint,
     failureModes: metadata.failureModes,
@@ -98,9 +96,8 @@ function fundamentalRecord(factor: FundamentalFactor, snapshot: FundamentalSnaps
   const metadata = fundamentalMetadata[factor.id] ?? {
     definition: factor.meaning,
     intuition: '这是一个基本面描述性指标，当前页面不把它解释为已验证的收益预测信号。',
-    interpretationHigh: '指标值相对更高，具体方向取决于公式',
-    interpretationLow: '指标值相对更低，具体方向取决于公式',
-    inputFields: factor.data_requirements,
+    interpretationHigh: '指标值相对更高，具体方向取决于研究定义',
+    interpretationLow: '指标值相对更低，具体方向取决于研究定义',
     unit: 'factor-specific',
     transformHint: '使用 point-in-time 数据并检查缺失、极端值和滞后',
     failureModes: ['财报披露时点、口径变化和一次性项目可能影响解释'],
@@ -118,15 +115,14 @@ function fundamentalRecord(factor: FundamentalFactor, snapshot: FundamentalSnaps
     frequencyIn: 'PIT quarterly reports',
     frequencyOut: 'disclosure-date snapshot',
     status: 'experimental',
-    formula: factor.formula,
-    definition: metadata.definition,
+    definition: factor.definition,
     intuition: metadata.intuition,
     interpretationHigh: metadata.interpretationHigh,
     interpretationLow: metadata.interpretationLow,
-    inputFields: metadata.inputFields,
     unit: metadata.unit,
     transformHint: metadata.transformHint,
     failureModes: metadata.failureModes,
+    researchEvidence: factor.evidence,
     sourceModule: snapshot.dataset,
     coverage: stats ? { count: stats.count, missing: snapshot.latest_cross_section.missing, total } : undefined,
     statistics: stats ? { count: stats.count, p01: stats.p01, p25: stats.p25, p50: stats.p50, p75: stats.p75, p99: stats.p99 } : undefined,
@@ -149,7 +145,7 @@ export function toResearchRecords(snapshot: Snapshot, catalog: FundamentalCatalo
 export function filterResearchRecords(records: FactorRecord[], filters: ExplorerFilters): FactorRecord[] {
   const query = filters.query.trim().toLocaleLowerCase()
   return records.filter((record) => {
-    const searchable = [record.id, record.displayName, record.displayNameCn, record.family, record.subfamily, record.definition, ...(record.inputFields ?? [])].filter(Boolean).join(' ').toLocaleLowerCase()
+    const searchable = [record.id, record.displayName, record.displayNameCn, record.family, record.subfamily, record.definition, record.intuition].filter(Boolean).join(' ').toLocaleLowerCase()
     return (!query || searchable.includes(query)) && (!filters.family || record.family === filters.family) && (!filters.frequency || record.frequencyIn === filters.frequency) && (!filters.status || record.status === filters.status)
   })
 }

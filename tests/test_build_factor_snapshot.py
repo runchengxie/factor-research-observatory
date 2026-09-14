@@ -23,6 +23,15 @@ class SnapshotBuilderTests(unittest.TestCase):
         finally:
             output.unlink(missing_ok=True)
 
+    def test_demo_snapshot_uses_public_definitions_not_formulas(self):
+        output = Path(self.id().replace(".", "_") + ".json")
+        try:
+            result = build_snapshot(None, output, demo=True)
+            self.assertTrue(all("formula" not in factor for factor in result["factors"]))
+            self.assertTrue(all(factor.get("definition") for factor in result["factors"]))
+        finally:
+            output.unlink(missing_ok=True)
+
     def test_demo_snapshot_has_six_digit_tickers_and_finite_values(self):
         output = Path(self.id().replace(".", "_") + ".json")
         try:

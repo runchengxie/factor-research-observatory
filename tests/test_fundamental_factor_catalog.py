@@ -7,9 +7,9 @@ CATALOG = Path(__file__).parents[1] / "site/public/data/fundamental-factor-catal
 
 
 class FundamentalFactorCatalogTests(unittest.TestCase):
-    def test_catalog_has_eighteen_entries(self):
+    def test_catalog_has_twenty_three_entries(self):
         catalog = json.loads(CATALOG.read_text())
-        self.assertEqual(len(catalog["factors"]), 18)
+        self.assertEqual(len(catalog["factors"]), 23)
 
     def test_catalog_marks_six_core_research_factors(self):
         catalog = json.loads(CATALOG.read_text())

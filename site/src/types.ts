@@ -1,4 +1,4 @@
-export type Factor = { name: string; family: string; module: string; formula: string; meaning: string }
+export type Factor = { name: string; family: string; module: string; definition: string; meaning: string }
 export type Series = { ticker: string; metric: string; dates: string[]; values: Array<number | null> }
 export type JumpRow = { ticker: string; date: string; rv: number | null; ivhat: number | null; rjv: number | null; rljv: number | null; rsjv: number | null }
 export type Snapshot = {
@@ -9,7 +9,8 @@ export type Snapshot = {
   cross_section: Array<{ metric: string; date: string; count: number; p01: number | null; p25: number | null; p50: number | null; p75: number | null; p99: number | null }>;
   jump_decomposition: JumpRow[];
 }
-export type FundamentalFactor = { id: string; name: string; family: string; priority: 'core' | 'supporting'; formula: string; meaning: string; data_requirements: string[] }
+export type ResearchEvidence = { status: 'not_published' | 'descriptive' | 'experimental' | 'validated'; summary?: string; metrics?: Array<{ label: string; value: string }>; attribution?: Array<{ label: string; value: string }>; caveats?: string[] }
+export type FundamentalFactor = { id: string; name: string; family: string; priority: 'core' | 'supporting'; research_status: FactorStatus; definition: string; meaning: string; research_question?: string; evidence?: ResearchEvidence }
 export type FundamentalCatalog = { schema_version: number; title: string; status: string; data_status: string; research_notes: string[]; factors: FundamentalFactor[] }
 export type FundamentalSeries = { ticker: string; metric: string; dates: string[]; values: Array<number | null> }
 export type FundamentalSnapshot = { schema_version: number; source: string; vintage: string; dataset: string; coverage: { date_start: string; date_end: string; tickers: string[]; tickers_count: number; representative_tickers: string[]; observations: number }; latest_cross_section: { metric: string; count: number; missing: number; p01: number | null; p25: number | null; p50: number | null; p75: number | null; p99: number | null }; validation: { all_market_computed: boolean; historical_ttm_window: number; complete_quarters_required: number; quarterly_rule: string; pit_date_field: string; report_period_field: string }; series: FundamentalSeries[]; notes: string[] }
@@ -27,16 +28,14 @@ export type FactorRecord = {
   frequencyIn?: string
   frequencyOut?: string
   status: FactorStatus
-  formula?: string
-  formulaLatex?: string
   definition: string
   intuition?: string
   interpretationHigh?: string
   interpretationLow?: string
-  inputFields?: string[]
   unit?: string
   transformHint?: string
   failureModes?: string[]
+  researchEvidence?: ResearchEvidence
   sourceModule?: string
   coverage?: FactorCoverage
   statistics?: FactorStatistics
