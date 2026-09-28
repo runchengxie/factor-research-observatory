@@ -59,3 +59,32 @@ export type Study = {
   columns: string[]; rows: string[][]; findings: string[]; limits: string[];
 }
 export type StudyCatalog = { schema_version: number; updated_at: string; studies: Study[] }
+
+export type Alpha810Metric = { mean: number | null; ir: number | null; positive_rate: number | null }
+export type Alpha810GroupReturn = { group: number; mean_return: number | null; periods: number }
+export type Alpha810FactorEvidence = {
+  name: string
+  family: string
+  coverage: { valid_observations: number; total_observations: number; ratio: number | null }
+  ic: Alpha810Metric
+  rank_ic: Alpha810Metric
+  group_returns: Alpha810GroupReturn[]
+}
+export type Alpha810Snapshot = {
+  kind: 'moneytree_factor_evidence_snapshot'
+  schema_version: '1.0'
+  generated_at: string
+  data_version: string
+  code_revision: string | null
+  dataset: {
+    date_start: string | null
+    date_end: string | null
+    trading_days: number
+    ticker_count: number
+    observation_count: number
+    return_column: string
+  }
+  config: { group_count: number }
+  factors: Alpha810FactorEvidence[]
+  public_limits: string[]
+}

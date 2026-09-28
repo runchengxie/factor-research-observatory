@@ -1,0 +1,44 @@
+{
+  "kind": "moneytree_factor_evidence_snapshot",
+  "schema_version": "1.0",
+  "generated_at": "2026-09-28T00:00:00+00:00",
+  "data_version": "synthetic-alpha810-v1",
+  "code_revision": null,
+  "dataset": {
+    "date_start": "2024-01-02",
+    "date_end": "2024-06-28",
+    "trading_days": 120,
+    "ticker_count": 300,
+    "observation_count": 36000,
+    "return_column": "next_period_return"
+  },
+  "config": {"group_count": 5},
+  "factors": [
+    {
+      "name": "alpha101_001",
+      "family": "alpha101",
+      "coverage": {"valid_observations": 35120, "total_observations": 36000, "ratio": 0.9756},
+      "ic": {"mean": 0.018, "ir": 0.21, "positive_rate": 0.57},
+      "rank_ic": {"mean": 0.024, "ir": 0.29, "positive_rate": 0.61},
+      "group_returns": [
+        {"group": 1, "mean_return": -0.0012, "periods": 120},
+        {"group": 2, "mean_return": 0.0001, "periods": 120},
+        {"group": 3, "mean_return": 0.0007, "periods": 120},
+        {"group": 4, "mean_return": 0.0014, "periods": 120},
+        {"group": 5, "mean_return": 0.0021, "periods": 120}
+      ]
+    },
+    {
+      "name": "alpha158_001",
+      "family": "alpha158",
+      "coverage": {"valid_observations": 36000, "total_observations": 36000, "ratio": 1.0},
+      "ic": {"mean": null, "ir": null, "positive_rate": null},
+      "rank_ic": {"mean": -0.006, "ir": -0.04, "positive_rate": 0.48},
+      "group_returns": []
+    }
+  ],
+  "public_limits": [
+    "Aggregate evidence only; no ticker-level values or portfolio weights.",
+    "Evidence is descriptive research output and is not a return guarantee."
+  ]
+}

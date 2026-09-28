@@ -1,7 +1,8 @@
-import type { FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
+import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
 
 const required = ['schema_version', 'generated_at', 'source', 'datasets', 'factor_groups', 'factors', 'series', 'cross_section', 'jump_decomposition'] as const
 const fundamentalRequired = ['schema_version', 'source', 'vintage', 'coverage', 'latest_cross_section', 'validation', 'series', 'notes'] as const
+const alpha810Required = ['kind', 'schema_version', 'generated_at', 'data_version', 'code_revision', 'dataset', 'config', 'factors', 'public_limits'] as const
 
 export async function loadSnapshot(): Promise<Snapshot> {
   const response = await fetch(`${import.meta.env.BASE_URL}data/factor-snapshot.json`)
@@ -39,4 +40,18 @@ export async function loadStudies(): Promise<StudyCatalog> {
     throw new Error('研究专题数据格式无效')
   }
   return value as StudyCatalog
+}
+
+export async function loadAlpha810Snapshot(): Promise<Alpha810Snapshot> {
+  const response = await fetch(`${import.meta.env.BASE_URL}data/alpha810-snapshot.json`)
+  if (!response.ok) throw new Error(`Alpha 810 研究快照未能加载（HTTP ${response.status}）`)
+  const value: unknown = await response.json()
+  if (!value || typeof value !== 'object') throw new Error('Alpha 810 研究快照格式无效')
+  for (const key of alpha810Required) if (!(key in value)) throw new Error(`Alpha 810 快照缺少字段：${key}`)
+  const candidate = value as { kind?: unknown; schema_version?: unknown; factors?: unknown }
+  if (candidate.kind !== 'moneytree_factor_evidence_snapshot' || candidate.schema_version !== '1.0') {
+    throw new Error('Alpha 810 快照版本不受支持')
+  }
+  if (!Array.isArray(candidate.factors)) throw new Error('Alpha 810 因子证据格式无效')
+  return value as Alpha810Snapshot
 }
