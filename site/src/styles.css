@@ -5,3 +5,33 @@
  .factor-id{color:#788397;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;margin:-12px 0 12px}.detail-tags{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.tag{display:inline-block;border:1px solid #303a4d;border-radius:999px;padding:5px 9px;color:#a8b0bf;font-size:11px}.research-dl{display:grid;gap:10px;margin:24px 0 0}.research-dl div{border-top:1px solid #263043;padding-top:9px}.research-dl dt{color:#788397;font-size:11px;text-transform:uppercase;letter-spacing:.06em}.research-dl dd{margin:5px 0 0;color:#e9edf4;font-size:13px}.panel-note,.chart-caption{color:#788397;font-size:12px}.interpretation-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.interpretation-grid ul{margin:0;padding-left:20px;color:#a8b0bf}.interpretation-grid li{margin:8px 0}.series-select{display:grid;gap:5px;color:#788397;font-size:11px;text-transform:uppercase;letter-spacing:.08em}.series-select select{border:1px solid #303a4d;border-radius:7px;background:#0f151f;color:#e9edf4;padding:8px 10px}.research-boundary{border-left:3px solid #ef8d5e;background:#171d28;color:#a8b0bf;padding:12px 16px;margin-top:18px;font-size:13px}.research-boundary strong{color:#efb36d}@media(max-width:700px){.interpretation-grid{grid-template-columns:1fr}.detail-tags{align-items:flex-start;flex-direction:column}.series-select{width:100%}.series-select select{width:100%}}
  .section-heading-row{display:flex;justify-content:space-between;align-items:end;gap:16px}.section-link{color:#ef8d5e;font-size:13px;text-decoration:none}.section-link:hover{text-decoration:underline}
 .public-definition{font-size:18px;color:#dce3ef!important;line-height:1.7}.panel-note{font-size:12px;color:#788397}.research-evidence{margin-top:14px}.research-evidence small{display:block;color:#788397;line-height:1.6}.evidence-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:18px 0}.evidence-metrics div{padding:14px;background:#0c1018;border:1px solid #202c40;border-radius:7px}.evidence-metrics span,.evidence-metrics strong{display:block}.evidence-metrics span{color:#788397;font-size:12px}.evidence-metrics strong{margin-top:6px;font-size:20px}
+
+/* Public factor study pages */
+.study-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.study-card{display:flex;flex-direction:column;min-height:270px;padding:26px;border:1px solid #d8d0c3;background:#f8f5ef;transition:background .2s ease,transform .2s ease}
+.study-card:hover{background:#ece1d2;transform:translateY(-3px)}
+.study-card small{margin-top:25px;color:#81796e;font-size:12px}
+.study-card h2{margin:9px 0;font:600 25px/1.3 "Noto Serif SC",serif}
+.study-card p{color:#716c63;font-size:14px;line-height:1.75}
+.study-link{margin-top:auto;color:#b64d33;font-size:13px}
+.study-status{display:inline-block;width:max-content;padding:6px 9px;border:1px solid #d8d0c3;color:#514b43;font-size:11px}
+.study-status-historical-reviewed{border-color:#a7c5b4;color:#3c7652;background:#e9f2ea}
+.study-status-preliminary{border-color:#dec291;color:#8a6724;background:#f8f0dc}
+.study-status-hypothesis{border-color:#c5ccd2;color:#637284;background:#edf0f2}
+.study-context{display:grid;grid-template-columns:1fr 2fr;gap:1px;margin-bottom:22px;border:1px solid #d8d0c3;background:#d8d0c3}
+.study-context div{padding:18px;background:#f8f5ef}
+.study-context span{display:block;margin-bottom:8px;color:#81796e;font-size:11px}
+.study-context strong{font-size:14px;line-height:1.6;font-weight:500}
+.study-page .panel{margin-bottom:18px}
+.study-page .factor-table{min-width:620px}
+.study-page .factor-table td:first-child{width:auto}
+.study-columns{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.study-columns ul{padding-left:21px;color:#514b43;line-height:1.8}
+.study-columns li{margin:9px 0}
+.study-source{margin-top:22px;color:#b64d33}
+.study-source a{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:800px){.study-grid{grid-template-columns:1fr 1fr}.study-context,.study-columns{grid-template-columns:1fr}}
+@media(max-width:560px){.study-grid{grid-template-columns:1fr}}
+.study-page .factor-table th{color:#716c63;border-color:#d8d0c3}
+.study-page .factor-table td{color:#514b43;border-color:#d8d0c3}
+.study-page .factor-table tr:hover td{background:#eee6da}
