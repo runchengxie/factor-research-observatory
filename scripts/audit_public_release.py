@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_ROOTS = ("README.md", "docs", "site", ".github")
-ALLOWED_ROOT_FILES = {".gitignore", "README.md"}
+ALLOWED_ROOT_FILES = {".gitignore", "README.md", "AGENTS.md"}
 ALLOWED_PREFIXES = (".github/", "scripts/", "site/", "tests/")
 FORBIDDEN_PATTERNS = {
     r"/(?:home|Users)/": "developer-local path",

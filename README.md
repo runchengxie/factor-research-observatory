@@ -1,4 +1,4 @@
-# factor-research-observatory
+# quant-factor-observatory
 
 面向公开研究展示的因子 Observatory：浏览因子定义、数据质量、研究状态和已脱敏的聚合证据。
 
@@ -11,6 +11,7 @@
 - `/jumps`：跳跃风险分解展示
 - `/hermite`：分布形状与状态展示
 - `/fundamentals`：基本面与人力资本研究目录
+- `/studies`：PB/ROE、研发投入与职工薪酬的研究专题和证据边界
 
 ## 公开数据边界
 
@@ -62,7 +63,7 @@ python -m unittest discover -s tests -v
     ↓ 运行回测、归因和稳健性检查
 脱敏公开快照
     ↓ 只保留公开契约允许的字段
-factor-research-observatory
+quant-factor-observatory
 ```
 
 历史提交可能包含已经移除的内部实现。若需要对历史也做不可见处理，应新建干净的 public repository，或在明确备份和授权后执行历史重写；普通删除不会清除 Git 历史、fork 或已有 clone。

@@ -34,13 +34,24 @@ class PublicResearchContractTests(unittest.TestCase):
         self.assertTrue(all(factor["research_status"] == "experimental" for factor in labor))
         self.assertTrue(all("rank_ic" not in factor for factor in labor))
 
+    def test_study_pages_keep_evidence_status_and_avoid_unreviewed_payroll_metrics(self):
+        catalog = json.loads((PUBLIC_DATA / "research-studies.json").read_text())
+        studies = {study["id"]: study for study in catalog["studies"]}
+        self.assertEqual(set(studies), {"pb-roe", "rd-investment", "employee-compensation"})
+        self.assertEqual(studies["pb-roe"]["status"], "historical-reviewed")
+        self.assertEqual(len(studies["pb-roe"]["rows"]), 5)
+        self.assertEqual(studies["rd-investment"]["status"], "preliminary")
+        self.assertIn("历史重建", studies["rd-investment"]["source_note"])
+        self.assertEqual(studies["employee-compensation"]["status"], "hypothesis")
+        self.assertEqual(studies["employee-compensation"]["rows"], [])
+
     def test_public_pages_do_not_render_formula_fields(self):
         source = "\n".join(path.read_text() for path in PUBLIC_SOURCE.rglob("*.tsx"))
         self.assertNotRegex(source, re.compile(r"factor\.formula|formulaLatex|<code>\{factor\.formula"))
 
     def test_public_tree_excludes_private_implementation_and_internal_docs(self):
         tracked = set(subprocess.check_output(['git', 'ls-files'], cwd=ROOT, text=True).splitlines())
-        allowed_roots = {'.gitignore', 'README.md'}
+        allowed_roots = {'.gitignore', 'README.md', 'AGENTS.md'}
         allowed_prefixes = ('.github/', 'scripts/', 'site/', 'tests/')
         self.assertEqual(sorted(path for path in tracked if path not in allowed_roots and not path.startswith(allowed_prefixes)), [])
 
