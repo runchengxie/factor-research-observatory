@@ -41,6 +41,13 @@ class Alpha810ContractTests(unittest.TestCase):
         self.assertIn("money-trees", readme)
         self.assertIn("聚合", readme)
 
+    def test_pull_request_validation_workflow_covers_public_checks(self):
+        workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text()
+        self.assertIn("pull_request", workflow)
+        self.assertIn("python -m unittest discover", workflow)
+        self.assertIn("audit_public_release.py", workflow)
+        self.assertIn("npm run build --prefix site", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()
