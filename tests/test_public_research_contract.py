@@ -52,8 +52,15 @@ class PublicResearchContractTests(unittest.TestCase):
     def test_public_tree_excludes_private_implementation_and_internal_docs(self):
         tracked = set(subprocess.check_output(['git', 'ls-files'], cwd=ROOT, text=True).splitlines())
         allowed_roots = {'.gitignore', 'README.md', 'AGENTS.md'}
-        allowed_prefixes = ('.github/', 'scripts/', 'site/', 'tests/')
+        allowed_prefixes = ('.github/', 'docs/', 'scripts/', 'site/', 'tests/')
         self.assertEqual(sorted(path for path in tracked if path not in allowed_roots and not path.startswith(allowed_prefixes)), [])
+
+    def test_public_docs_are_part_of_the_release_contract(self):
+        contract = ROOT / "docs" / "alpha810-public-contract.md"
+        self.assertTrue(contract.exists())
+        text = contract.read_text()
+        self.assertIn("schema_version", text)
+        self.assertIn("逐股票", text)
 
     def test_public_release_audit_passes(self):
         from scripts.audit_public_release import audit
