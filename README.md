@@ -7,6 +7,7 @@
 ## 站点入口
 
 - `/`：研究总览与数据上下文
+- `/alpha810`：Alpha 810 聚合因子证据目录与详情
 - `/factors`：统一因子目录
 - `/jumps`：跳跃风险分解展示
 - `/hermite`：分布形状与状态展示
@@ -51,6 +52,10 @@ npm run build --prefix site
 python scripts/audit_public_release.py
 python -m unittest discover -s tests -v
 ```
+
+Alpha 810 快照由 [`money-trees`](https://github.com/runchengxie/money-trees) 生成，本站只消费 `schema_version="1.0"` 的聚合证据。快照包含 IC、RankIC、覆盖率和分组收益，不包含逐股票值、组合权重或原始数据路径；生成方法和发布审计见 provider 的 [MkDocs 文档](https://runchengxie.github.io/money-trees/)。
+
+本站公开契约见 [docs/alpha810-public-contract.md](docs/alpha810-public-contract.md)。
 
 ## 人力资本 / 劳动研究
 
