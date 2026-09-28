@@ -1,1 +1,1 @@
-"""Test package for factor-research-observatory."""
+"""Test package for quant-factor-observatory."""
