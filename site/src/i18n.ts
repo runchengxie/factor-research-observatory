@@ -41,3 +41,7 @@ export function initialLocale(): Locale {
     return 'en-US'
   }
 }
+
+export function localized(locale: Locale, zh: string, en: string) {
+  return locale === 'en-US' ? en : zh
+}

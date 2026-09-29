@@ -3,29 +3,32 @@ import LineChart from '../components/LineChart'
 import MetricCard from '../components/MetricCard'
 import { statusText } from '../research'
 import type { FactorRecord, ResearchContext } from '../types'
+import { useLocale } from '../i18n'
 
 function value(value: number | null | undefined) {
-  return value === null || value === undefined || !Number.isFinite(value) ? '不可用' : value.toFixed(3)
+  return value === null || value === undefined || !Number.isFinite(value) ? 'Unavailable' : value.toFixed(3)
 }
 
 export default function FactorPage({ factor, context }: { factor?: FactorRecord; context: ResearchContext }) {
+  const { locale } = useLocale()
+  const english = locale === 'en-US'
   const [seriesKey, setSeriesKey] = useState('')
   const selectedSeries = useMemo(() => {
     if (!factor?.series?.length) return undefined
     return factor.series.find((item) => `${item.ticker}:${item.metric}` === seriesKey) ?? factor.series[0]
   }, [factor, seriesKey])
 
-  if (!factor) return <main className="empty"><h1>未找到因子</h1><p>这个因子不在当前研究快照中。</p><a href={`${import.meta.env.BASE_URL}factors`}>返回因子目录</a></main>
+  if (!factor) return <main className="empty"><h1>{english ? 'Factor not found' : '未找到因子'}</h1><p>{english ? 'This factor is not in the current research snapshot.' : '这个因子不在当前研究快照中。'}</p><a href={`${import.meta.env.BASE_URL}factors`}>{english ? 'Back to factor catalog' : '返回因子目录'}</a></main>
 
   const stats = factor.statistics
   const metricOptions = factor.series ?? []
   const evidence = factor.researchEvidence
   return <main className="page factor-detail-page">
-    <a className="back" href={`${import.meta.env.BASE_URL}factors`}>← 因子目录</a>
-    <section className="detail-head"><p className="eyebrow">{factor.family}{factor.subfamily ? ` / ${factor.subfamily}` : ''}</p><h1>{factor.displayNameCn ?? factor.displayName}</h1><p className="factor-id">{factor.id}</p><p className="lede">{factor.definition}</p><div className="detail-tags"><span className={`status-pill status-${factor.status}`}>{statusText(factor.status)}</span><span className="tag">{factor.frequencyIn ?? '频率不可用'} → {factor.frequencyOut ?? '频率不可用'}</span><span className="tag">公开研究记录</span></div></section>
+    <a className="back" href={`${import.meta.env.BASE_URL}factors`}>← {english ? 'Factor catalog' : '因子目录'}</a>
+    <section className="detail-head"><p className="eyebrow">{factor.family}{factor.subfamily ? ` / ${factor.subfamily}` : ''}</p><h1>{factor.displayNameCn ?? factor.displayName}</h1><p className="factor-id">{factor.id}</p><p className="lede">{factor.definition}</p><div className="detail-tags"><span className={`status-pill status-${factor.status}`}>{statusText(factor.status)}</span><span className="tag">{factor.frequencyIn ?? (english ? 'Frequency unavailable' : '频率不可用')} → {factor.frequencyOut ?? (english ? 'Frequency unavailable' : '频率不可用')}</span><span className="tag">{english ? 'Public research record' : '公开研究记录'}</span></div></section>
     <div className="detail-grid">
-      <section className="panel"><p className="eyebrow">PUBLIC DEFINITION</p><h2>如何理解</h2><p className="public-definition">{factor.definition}</p><p>{factor.intuition ?? '当前仅提供描述性定义，尚无额外经济解释。'}</p><dl className="research-dl"><div><dt>单位</dt><dd>{factor.unit ?? '不可用'}</dd></div><div><dt>变换提示</dt><dd>{factor.transformHint ?? '不可用'}</dd></div></dl><p className="panel-note">精确算子、窗口和逐股票信号不在公开页面展示。</p></section>
-      <section className="panel"><p className="eyebrow">DATA QUALITY</p><h2>当前快照</h2><div className="mini-metrics"><MetricCard label="有效值" value={factor.coverage?.count?.toLocaleString() ?? '—'} note={factor.coverage?.missing !== undefined ? `缺失 ${factor.coverage.missing.toLocaleString()}` : '未提供全量计数'} /><MetricCard label="P01" value={value(stats?.p01)} /><MetricCard label="中位数" value={value(stats?.p50)} /><MetricCard label="P99" value={value(stats?.p99)} /></div><p className="panel-note">{context.source} · {context.snapshotRange}</p></section>
+      <section className="panel"><p className="eyebrow">PUBLIC DEFINITION</p><h2>{english ? 'How to read it' : '如何理解'}</h2><p className="public-definition">{factor.definition}</p><p>{factor.intuition ?? (english ? 'Only a descriptive definition is available; no additional economic interpretation is published.' : '当前仅提供描述性定义，尚无额外经济解释。')}</p><dl className="research-dl"><div><dt>{english ? 'Unit' : '单位'}</dt><dd>{factor.unit ?? (english ? 'Unavailable' : '不可用')}</dd></div><div><dt>{english ? 'Transform hint' : '变换提示'}</dt><dd>{factor.transformHint ?? (english ? 'Unavailable' : '不可用')}</dd></div></dl><p className="panel-note">{english ? 'Exact operators, windows, and per-security signals are not shown on the public page.' : '精确算子、窗口和逐股票信号不在公开页面展示。'}</p></section>
+      <section className="panel"><p className="eyebrow">DATA QUALITY</p><h2>{english ? 'Current snapshot' : '当前快照'}</h2><div className="mini-metrics"><MetricCard label={english ? 'Valid values' : '有效值'} value={factor.coverage?.count?.toLocaleString() ?? '—'} note={factor.coverage?.missing !== undefined ? `${english ? 'Missing' : '缺失'} ${factor.coverage.missing.toLocaleString()}` : (english ? 'Full count not provided' : '未提供全量计数')} /><MetricCard label="P01" value={value(stats?.p01)} /><MetricCard label={english ? 'Median' : '中位数'} value={value(stats?.p50)} /><MetricCard label="P99" value={value(stats?.p99)} /></div><p className="panel-note">{context.source} · {context.snapshotRange}</p></section>
     </div>
     <section className="panel interpretation-grid"><div><p className="eyebrow">INTERPRETATION</p><h2>研究提示</h2><p><strong>高值：</strong>{factor.interpretationHigh ?? '方向尚未定义。'}</p><p><strong>低值：</strong>{factor.interpretationLow ?? '方向尚未定义。'}</p></div><div><p className="eyebrow">KNOWN LIMITS</p><h2>注意事项</h2>{factor.failureModes?.length ? <ul>{factor.failureModes.map((item) => <li key={item}>{item}</li>)}</ul> : <p>暂无结构化 failure modes。</p>}</div></section>
     <section className="panel research-evidence"><p className="eyebrow">RESEARCH EVIDENCE</p><h2>归因研究结果</h2>{evidence?.summary ? <p>{evidence.summary}</p> : <p>当前没有公开的 IC、分层收益或归因统计；这不会被解释为已验证 alpha。</p>}{evidence?.metrics?.length ? <div className="evidence-metrics">{evidence.metrics.map((item) => <div key={item.label}><span>{item.label}</span><strong>{item.value}</strong></div>)}</div> : null}{evidence?.attribution?.length ? <ul>{evidence.attribution.map((item) => <li key={item.label}>{item.label}：{item.value}</li>)}</ul> : null}{evidence?.caveats?.length ? <small>{evidence.caveats.join(' · ')}</small> : <small>公开层只保留经过脱敏的研究结果；精确算子和逐股票信号不公开。</small>}</section>
