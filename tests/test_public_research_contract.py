@@ -17,6 +17,21 @@ def _factor_rows(value):
 
 
 class PublicResearchContractTests(unittest.TestCase):
+    def test_research_publication_manifest_is_a_redacted_projection_contract(self):
+        manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
+        self.assertEqual(manifest["schema_version"], "observatory.research_publication.v1")
+        self.assertEqual(manifest["source_repository"], "quant-research")
+        self.assertTrue(manifest["projections"])
+        for projection in manifest["projections"]:
+            self.assertRegex(projection["source_ref"], r"^doc:quant-research\.")
+            self.assertEqual(set(projection["locales"]), {"en-US", "zh-CN"})
+            excluded = " ".join(projection["excluded_fields"])
+            self.assertIn("per_security_signals", excluded)
+
+    def test_research_publication_manifest_contains_no_private_paths_or_credentials(self):
+        text = (PUBLIC_DATA / "research-publication-manifest.json").read_text()
+        self.assertNotRegex(text, re.compile(r"/home/|/Users/|private-panel|(?:api|access|secret)[_-]?key", re.I))
+
     def test_public_factor_artifacts_do_not_expose_exact_operators(self):
         for path in sorted(PUBLIC_DATA.glob("*.json")):
             value = json.loads(path.read_text())
