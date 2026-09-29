@@ -8,6 +8,8 @@ const familyLabels: Record<string, string> = {
   '已实现矩': 'Realized moments',
   '跳跃分解': 'Jump decomposition',
   'Hermite 元因子': 'Hermite meta-factors',
+  '日内风险状态': 'Intraday risk states',
+  '分布形状状态': 'Distribution shape states',
   '盈利状态': 'Earnings state',
   '盈利增长': 'Earnings growth',
   '估值 / 盈利': 'Valuation / earnings',
