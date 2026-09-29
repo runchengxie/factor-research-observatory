@@ -63,6 +63,7 @@ class Alpha810ContractTests(unittest.TestCase):
         self.assertIn("pull-requests: write", workflow)
         self.assertIn("gh pr create", workflow)
         self.assertIn("alpha810-snapshot.json", workflow)
+        self.assertIn("Candidate snapshot is unchanged", workflow)
 
 
 if __name__ == "__main__":
