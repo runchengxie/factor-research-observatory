@@ -1,5 +1,7 @@
 # quant-factor-observatory
 
+[中文 README](README.zh-CN.md)
+
 The public research Observatory for browsing factor definitions, data quality, research status, and reviewed aggregate evidence.
 
 This repository is a presentation and publication surface. It is not a factor calculation engine and contains no raw market or financial data, per-security signals, portfolio weights, private research code, or credentials. Private research produces reviewed and redacted static snapshots that satisfy the public publication contract.
