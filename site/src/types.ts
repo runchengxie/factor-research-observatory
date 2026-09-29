@@ -70,6 +70,14 @@ export type Alpha810FactorEvidence = {
   rank_ic: Alpha810Metric
   group_returns: Alpha810GroupReturn[]
 }
+export type Alpha810Quality = {
+  schema_version: '1.0'
+  status: 'pass' | 'warn' | 'fail'
+  checks: Array<{ name: string; status: 'pass' | 'warn' | 'fail'; value: number; threshold: string }>
+  summary: { factor_count: number; coverage_mean: number | null; coverage_min: number | null; rank_ic_mean: number | null; rank_ic_positive_rate_mean: number | null; low_coverage_factor_count: number; missing_rank_ic_factor_count: number }
+  source: { data_version: string; date_start: string | null; date_end: string | null; generated_at: string }
+  public_limits: string[]
+}
 export type Alpha810Snapshot = {
   kind: 'moneytree_factor_evidence_snapshot'
   schema_version: '1.0'
@@ -86,5 +94,6 @@ export type Alpha810Snapshot = {
   }
   config: { group_count: number }
   factors: Alpha810FactorEvidence[]
+  quality: Alpha810Quality
   public_limits: string[]
 }
