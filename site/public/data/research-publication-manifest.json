@@ -12,6 +12,15 @@
       "locales": ["en-US", "zh-CN"],
       "allowed_fields": ["title", "family", "status", "summary", "period", "findings", "limits", "aggregate_rows"],
       "excluded_fields": ["private_data_paths", "credentials", "per_security_signals", "portfolio_weights", "private_code"]
+    },
+    {
+      "public_id": "cashflow-indices",
+      "source_ref": "doc:quant-research.research.cashflow-indices",
+      "source_status": "active",
+      "publication_status": "reviewed_aggregate",
+      "locales": ["en-US", "zh-CN"],
+      "allowed_fields": ["title", "family", "status", "summary", "period", "findings", "limits", "aggregate_rows"],
+      "excluded_fields": ["private_data_paths", "credentials", "per_security_signals", "portfolio_weights", "execution_details", "private_code"]
     }
   ]
 }
