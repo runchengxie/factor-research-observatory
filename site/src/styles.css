@@ -32,6 +32,7 @@
 .study-source a{text-decoration:underline;text-underline-offset:4px}
 @media(max-width:800px){.study-grid{grid-template-columns:1fr 1fr}.study-context,.study-columns{grid-template-columns:1fr}}
 @media(max-width:560px){.study-grid{grid-template-columns:1fr}}
+.locale-toggle{border:1px solid #d8d0c3;border-radius:999px;padding:7px 11px;color:#b64d33;background:transparent;font:11px "DM Mono",monospace;cursor:pointer;white-space:nowrap}.locale-toggle:hover{border-color:#c84b2f;color:#252525}
 .study-page .factor-table th{color:#716c63;border-color:#d8d0c3}
 .study-page .factor-table td{color:#514b43;border-color:#d8d0c3}
 .study-page .factor-table tr:hover td{background:#eee6da}
