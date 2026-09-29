@@ -30,3 +30,8 @@ jobs:
         run: python scripts/audit_public_release.py
       - name: Build Pages site
         run: npm run build --prefix site
+      - name: Install Playwright Chromium
+        working-directory: site
+        run: npx playwright install --with-deps chromium
+      - name: Run browser regression tests
+        run: npm run test:e2e --prefix site
