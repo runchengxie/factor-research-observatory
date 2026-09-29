@@ -39,9 +39,11 @@ class Alpha810ContractTests(unittest.TestCase):
 
     def test_readme_documents_alpha810_public_boundary(self):
         readme = (ROOT / "README.md").read_text()
+        chinese_readme = (ROOT / "README.zh-CN.md").read_text()
         self.assertIn("alpha810", readme)
         self.assertIn("money-trees", readme)
-        self.assertIn("聚合", readme)
+        self.assertIn("aggregate", readme)
+        self.assertIn("聚合", chinese_readme)
 
     def test_pull_request_validation_workflow_covers_public_checks(self):
         workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text()
