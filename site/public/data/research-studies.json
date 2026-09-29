@@ -123,7 +123,7 @@
       "limits": [
         "历史修订链不完整，结果 revision_safe=false。",
         "CSI300 历史成分缺失，CSI500/1000/2000 只有后段可用窗口，尚未覆盖完整协议矩阵。",
-        "正式 purged/CPCV、冻结 final OOS 和 research-owner review 尚未完成。",
+        "组合 purged/CPCV 诊断已完成；冻结 final OOS、完整历史股票池和 research-owner review 尚未完成。",
         "公开投影只保留聚合值，不代表逐股票信号、组合权重或生产结论。"
       ]
     },
