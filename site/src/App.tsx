@@ -25,9 +25,9 @@ function initialTheme(): Theme {
 
 function pathView(snapshot: Snapshot, catalog: FundamentalCatalog, fundamental: FundamentalSnapshot, studies: StudyCatalog, alpha810: Alpha810Snapshot, copy: Copy) {
   const records = toResearchRecords(snapshot, catalog, fundamental)
-  const context = buildResearchContext(snapshot, fundamental)
+  const context = buildResearchContext(snapshot)
   const path = window.location.pathname.replace(import.meta.env.BASE_URL, '').replace(/^\//, '')
-  if (path === '' || path === 'index.html') return <OverviewPage snapshot={snapshot} records={records} context={context} />
+  if (path === '' || path === 'index.html') return <OverviewPage snapshot={snapshot} records={records} context={context} fundamental={fundamental} />
   if (path === 'jumps') return <JumpPage snapshot={snapshot} />
   if (path === 'hermite') return <HermitePage snapshot={snapshot} />
   if (path === 'fundamentals') return <FundamentalsPage catalog={catalog} snapshot={fundamental} />
@@ -36,7 +36,7 @@ function pathView(snapshot: Snapshot, catalog: FundamentalCatalog, fundamental: 
   if (path === 'factors') return <FactorExplorerPage records={records} context={context} />
   if (path.startsWith('factors/')) {
     const factor = records.find((item) => item.id === decodeURIComponent(path.slice(8)))
-    return <FactorPage factor={factor} context={context} />
+    return <FactorPage factor={factor} context={context} fundamental={fundamental} />
   }
   if (path === 'alpha810') return <Alpha810OverviewPage snapshot={alpha810} />
   if (path.startsWith('alpha810/factors/')) return <Alpha810FactorPage factor={alpha810.factors.find((item) => item.name === decodeURIComponent(path.slice(17)))} snapshot={alpha810} />

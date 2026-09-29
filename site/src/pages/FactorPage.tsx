@@ -2,14 +2,14 @@ import { useMemo, useState } from 'react'
 import LineChart from '../components/LineChart'
 import MetricCard from '../components/MetricCard'
 import { localizeFactorRecord, localizedStatus } from '../researchLocale'
-import type { FactorRecord, ResearchContext } from '../types'
+import type { FactorRecord, FundamentalSnapshot, ResearchContext } from '../types'
 import { useLocale } from '../i18n'
 
 function value(value: number | null | undefined) {
   return value === null || value === undefined || !Number.isFinite(value) ? 'Unavailable' : value.toFixed(3)
 }
 
-export default function FactorPage({ factor, context }: { factor?: FactorRecord; context: ResearchContext }) {
+export default function FactorPage({ factor, context, fundamental }: { factor?: FactorRecord; context: ResearchContext; fundamental: FundamentalSnapshot }) {
   const { locale } = useLocale()
   const english = locale === 'en-US'
   const [seriesKey, setSeriesKey] = useState('')
@@ -24,12 +24,14 @@ export default function FactorPage({ factor, context }: { factor?: FactorRecord;
   const stats = view.statistics
   const metricOptions = view.series ?? []
   const evidence = view.researchEvidence
+  const isFundamental = factor.frequencyIn === 'PIT quarterly reports'
+  const sourceNote = isFundamental ? `${english ? 'Fundamental PIT vintage' : '基本面 PIT 版本'} ${fundamental.vintage} · ${fundamental.coverage.date_start} → ${fundamental.coverage.date_end}` : `${context.source} · ${context.snapshotRange}`
   return <main className="page factor-detail-page">
     <a className="back" href={`${import.meta.env.BASE_URL}factors`}>← {english ? 'Factor catalog' : '因子目录'}</a>
     <section className="detail-head"><p className="eyebrow">{view.family}{view.subfamily ? ` / ${view.subfamily}` : ''}</p><h1>{english ? view.displayName : view.displayNameCn ?? view.displayName}</h1><p className="factor-id">{view.id}</p><p className="lede">{view.definition}</p><div className="detail-tags"><span className={`status-pill status-${view.status}`}>{localizedStatus(view.status, locale)}</span><span className="tag">{view.frequencyIn ?? (english ? 'Frequency unavailable' : '频率不可用')} → {view.frequencyOut ?? (english ? 'Frequency unavailable' : '频率不可用')}</span><span className="tag">{english ? 'Public research record' : '公开研究记录'}</span></div></section>
     <div className="detail-grid">
       <section className="panel"><p className="eyebrow">PUBLIC DEFINITION</p><h2>{english ? 'How to read it' : '如何理解'}</h2><p className="public-definition">{view.definition}</p><p>{view.intuition ?? (english ? 'Only a descriptive definition is available; no additional economic interpretation is published.' : '当前仅提供描述性定义，尚无额外经济解释。')}</p><dl className="research-dl"><div><dt>{english ? 'Unit' : '单位'}</dt><dd>{view.unit ?? (english ? 'Unavailable' : '不可用')}</dd></div><div><dt>{english ? 'Transform hint' : '变换提示'}</dt><dd>{view.transformHint ?? (english ? 'Unavailable' : '不可用')}</dd></div></dl><p className="panel-note">{english ? 'Exact operators, windows, and per-security signals are not shown on the public page.' : '精确算子、窗口和逐股票信号不在公开页面展示。'}</p></section>
-      <section className="panel"><p className="eyebrow">DATA QUALITY</p><h2>{english ? 'Current snapshot' : '当前快照'}</h2><div className="mini-metrics"><MetricCard label={english ? 'Valid values' : '有效值'} value={view.coverage?.count?.toLocaleString() ?? '—'} note={view.coverage?.missing !== undefined ? `${english ? 'Missing' : '缺失'} ${view.coverage.missing.toLocaleString()}` : (english ? 'Full count not provided' : '未提供全量计数')} /><MetricCard label="P01" value={value(stats?.p01)} /><MetricCard label={english ? 'Median' : '中位数'} value={value(stats?.p50)} /><MetricCard label="P99" value={value(stats?.p99)} /></div><p className="panel-note">{context.source} · {context.snapshotRange}</p></section>
+      <section className="panel"><p className="eyebrow">DATA QUALITY</p><h2>{english ? 'Current snapshot' : '当前快照'}</h2><div className="mini-metrics"><MetricCard label={english ? 'Valid values' : '有效值'} value={view.coverage?.count?.toLocaleString() ?? '—'} note={view.coverage?.missing !== undefined ? `${english ? 'Missing' : '缺失'} ${view.coverage.missing.toLocaleString()}` : (english ? 'Full count not provided' : '未提供全量计数')} /><MetricCard label="P01" value={value(stats?.p01)} /><MetricCard label={english ? 'Median' : '中位数'} value={value(stats?.p50)} /><MetricCard label="P99" value={value(stats?.p99)} /></div><p className="panel-note">{sourceNote}</p></section>
     </div>
     <section className="panel interpretation-grid"><div><p className="eyebrow">INTERPRETATION</p><h2>{english ? 'Research interpretation' : '研究提示'}</h2><p><strong>{english ? 'Higher: ' : '高值：'}</strong>{view.interpretationHigh ?? (english ? 'Direction is not defined.' : '方向尚未定义。')}</p><p><strong>{english ? 'Lower: ' : '低值：'}</strong>{view.interpretationLow ?? (english ? 'Direction is not defined.' : '方向尚未定义。')}</p></div><div><p className="eyebrow">KNOWN LIMITS</p><h2>{english ? 'Known limits' : '注意事项'}</h2>{view.failureModes?.length ? <ul>{view.failureModes.map((item) => <li key={item}>{item}</li>)}</ul> : <p>{english ? 'No structured failure modes are published.' : '暂无结构化 failure modes。'}</p>}</div></section>
     <section className="panel research-evidence"><p className="eyebrow">RESEARCH EVIDENCE</p><h2>{english ? 'Attribution research' : '归因研究结果'}</h2>{evidence?.summary ? <p>{evidence.summary}</p> : <p>{english ? 'No public IC, grouped-return, or attribution statistics are available; this is not interpreted as validated alpha.' : '当前没有公开的 IC、分层收益或归因统计；这不会被解释为已验证 alpha。'}</p>}{evidence?.metrics?.length ? <div className="evidence-metrics">{evidence.metrics.map((item) => <div key={item.label}><span>{item.label}</span><strong>{item.value}</strong></div>)}</div> : null}{evidence?.attribution?.length ? <ul>{evidence.attribution.map((item) => <li key={item.label}>{item.label}{english ? `: ${item.value}` : `：${item.value}`}</li>)}</ul> : null}{evidence?.caveats?.length ? <small>{evidence.caveats.join(' · ')}</small> : <small>{english ? 'The public layer keeps sanitized research results only; exact operators and per-security signals are not published.' : '公开层只保留经过脱敏的研究结果；精确算子和逐股票信号不公开。'}</small>}</section>

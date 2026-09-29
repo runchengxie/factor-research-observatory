@@ -17,6 +17,10 @@ def _factor_rows(value):
 
 
 class PublicResearchContractTests(unittest.TestCase):
+    def test_demo_factor_group_counts_match_published_rows(self):
+        snapshot = json.loads((PUBLIC_DATA / "factor-snapshot.json").read_text())
+        self.assertEqual(sum(group["count"] for group in snapshot["factor_groups"]), len(snapshot["factors"]))
+
     def test_research_publication_manifest_is_a_redacted_projection_contract(self):
         manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
         self.assertEqual(manifest["schema_version"], "observatory.research_publication.v1")

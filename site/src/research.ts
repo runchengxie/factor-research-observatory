@@ -131,24 +131,20 @@ export function sortResearchRecords(records: FactorRecord[], sort: ExplorerSort)
   })
 }
 
-export function buildResearchContext(snapshot: Snapshot, fundamental: FundamentalSnapshot): ResearchContext {
+export function buildResearchContext(snapshot: Snapshot): ResearchContext {
   const dataset = snapshot.datasets[0]
-  const pitReady = fundamental.validation.all_market_computed
   return {
     source: snapshot.source === 'demo' ? 'demo snapshot' : 'published snapshot',
-    snapshotRange: dataset ? `${dataset.date_start} → ${dataset.date_end}` : `${fundamental.coverage.date_start} → ${fundamental.coverage.date_end}`,
-    universe: dataset ? `${dataset.tickers} tickers` : `${fundamental.coverage.tickers_count} A-share tickers`,
-    frequency: 'market observations → research snapshot',
-    pitStatus: pitReady ? `point-in-time basis: ${fundamental.validation.availability_basis}` : 'point-in-time validation incomplete',
-    status: pitReady ? 'experimental' : 'descriptive',
-    notes: [
-      `Published vintage: ${fundamental.vintage}`,
-      `Historical observations used: ${fundamental.validation.history_observations}; complete observations required: ${fundamental.validation.complete_observations_required}`,
-      'Snapshot is for research display and is not a validated backtest result.',
-    ],
+    snapshotRange: dataset ? `${dataset.date_start} → ${dataset.date_end}` : '—',
+    universe: dataset ? `${dataset.tickers} tickers` : '—',
+    frequency: snapshot.source === 'demo' ? 'illustrative daily sample' : 'published market observations',
+    pitStatus: snapshot.source === 'demo' ? 'not verified for market demo' : 'verify against source data',
+    status: 'descriptive',
+    notes: ['Market snapshot is illustrative and is not a validated backtest result.'],
   }
 }
 
-export function statusText(status: FactorStatus): string {
+export function statusText(status: FactorStatus, english = false): string {
+  if (english) return { descriptive: 'Descriptive', experimental: 'Experimental', validated: 'Validated' }[status]
   return statusLabel[status]
 }

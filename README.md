@@ -36,6 +36,8 @@ They must not contain:
 
 The site consumes reviewed public snapshots committed under `site/public/data/`:
 
+`factor-snapshot.json` 是 3 只股票、42 个连续日历日期的演示数据（包含非交易日）；其历史字段 `trading_days` 在本站展示为“示例日期”。基本面 PIT 数据来自独立的 `fundamental-snapshot.json`，两者的日期区间、股票池和可用性口径不能混用。
+
 ```bash
 cd site
 npm ci
