@@ -10,7 +10,8 @@ export type Snapshot = {
   jump_decomposition: JumpRow[];
 }
 export type ResearchEvidence = { status: 'not_published' | 'descriptive' | 'experimental' | 'validated'; summary?: string; metrics?: Array<{ label: string; value: string }>; attribution?: Array<{ label: string; value: string }>; caveats?: string[] }
-export type FundamentalFactor = { id: string; name: string; family: string; priority: 'core' | 'supporting'; research_status: FactorStatus; definition: string; meaning: string; research_question?: string; evidence?: ResearchEvidence }
+export type FundamentalCopy = { name: string; family: string; definition: string; meaning: string; research_question: string }
+export type FundamentalFactor = { id: string; name: string; family: string; priority: 'core' | 'supporting'; research_status: FactorStatus; definition: string; meaning: string; research_question?: string; evidence?: ResearchEvidence; translations?: Partial<Record<'en-US' | 'zh-CN', FundamentalCopy>> }
 export type FundamentalCatalog = { schema_version: number; title: string; status: string; data_status: string; research_notes: string[]; factors: FundamentalFactor[] }
 export type FundamentalSeries = { ticker: string; metric: string; dates: string[]; values: Array<number | null> }
 export type FundamentalSnapshot = { schema_version: number; source: string; vintage: string; coverage: { date_start: string; date_end: string; tickers: string[]; tickers_count: number; representative_tickers: string[]; observations: number }; latest_cross_section: { metric: string; count: number; missing: number; p01: number | null; p25: number | null; p50: number | null; p75: number | null; p99: number | null }; validation: { all_market_computed: boolean; history_observations: number; complete_observations_required: number; availability_basis: string }; series: FundamentalSeries[]; notes: string[] }
@@ -39,6 +40,7 @@ export type FactorRecord = {
   coverage?: FactorCoverage
   statistics?: FactorStatistics
   series?: FactorSeriesPoint[]
+  fundamentalTranslation?: FundamentalCopy
 }
 export type ResearchContext = {
   source: string

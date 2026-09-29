@@ -1,4 +1,5 @@
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -23,6 +24,16 @@ class FundamentalFactorCatalogTests(unittest.TestCase):
         self.assertIn("point-in-time", notes)
         self.assertIn("Complete", notes)
         self.assertIn("Public", notes)
+
+    def test_catalog_has_complete_english_translations(self):
+        catalog = json.loads(CATALOG.read_text())
+        required = {"name", "family", "definition", "meaning", "research_question"}
+        for factor in catalog["factors"]:
+            self.assertIn("translations", factor)
+            self.assertIn("en-US", factor["translations"])
+            copy = factor["translations"]["en-US"]
+            self.assertEqual(set(copy), required, factor["id"])
+            self.assertFalse(any(re.search(r"[\u4e00-\u9fff]", value) for value in copy.values()), factor["id"])
 
     def test_local_pit_snapshot_is_real_and_representative(self):
         snapshot = json.loads((CATALOG.parent / "fundamental-snapshot.json").read_text())
