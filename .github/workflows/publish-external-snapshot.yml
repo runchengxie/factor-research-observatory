@@ -52,6 +52,10 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git switch -c "$BRANCH"
           git add site/public/data/alpha810-snapshot.json
+          if git diff --cached --quiet -- site/public/data/alpha810-snapshot.json; then
+            echo "Candidate snapshot is unchanged; no PR is required."
+            exit 0
+          fi
           git commit -m "chore: refresh Alpha 810 public snapshot"
           git push --set-upstream origin "$BRANCH"
           gh pr create --base main --head "$BRANCH" \
