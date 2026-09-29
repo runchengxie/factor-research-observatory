@@ -36,3 +36,50 @@
 .study-page .factor-table th{color:#716c63;border-color:#d8d0c3}
 .study-page .factor-table td{color:#514b43;border-color:#d8d0c3}
 .study-page .factor-table tr:hover td{background:#eee6da}
+
+/* Explicit theme overrides keep the public snapshot readable when a visitor switches modes. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  background: #0d1118;
+  color: #e9edf4;
+}
+:root[data-theme="dark"] body { background: #0d1118; color: #e9edf4; }
+:root[data-theme="dark"] .site-header { border-color: #263043; background: rgba(13,17,24,.96); }
+:root[data-theme="dark"] .site-nav a, :root[data-theme="dark"] .site-meta,
+:root[data-theme="dark"] .metric-card span, :root[data-theme="dark"] .metric-card small,
+:root[data-theme="dark"] .lede, :root[data-theme="dark"] .group-card p,
+:root[data-theme="dark"] .annotation, :root[data-theme="dark"] .legend-note,
+:root[data-theme="dark"] .site-footer { color: #a8b0bf; }
+:root[data-theme="dark"] .site-meta strong, :root[data-theme="dark"] .site-nav a:hover,
+:root[data-theme="dark"] .site-nav a.active, :root[data-theme="dark"] .empty h1,
+:root[data-theme="dark"] .factor-table a strong { color: #e9edf4; }
+:root[data-theme="dark"] .panel, :root[data-theme="dark"] .metric-card,
+:root[data-theme="dark"] .group-card, :root[data-theme="dark"] .flow-row span,
+:root[data-theme="dark"] .factor-tile, :root[data-theme="dark"] .catalog-group,
+:root[data-theme="dark"] .explorer-toolbar, :root[data-theme="dark"] .study-card,
+:root[data-theme="dark"] .study-context div { border-color: #263043; background: #131a27; }
+:root[data-theme="dark"] .study-card:hover { background: #1b2432; }
+:root[data-theme="dark"] .study-card small, :root[data-theme="dark"] .study-context span,
+:root[data-theme="dark"] .study-columns ul, :root[data-theme="dark"] .study-page .factor-table th,
+:root[data-theme="dark"] .factor-table th, :root[data-theme="dark"] .factor-table td,
+:root[data-theme="dark"] .factor-tile code, :root[data-theme="dark"] .factor-tile small,
+:root[data-theme="dark"] .catalog-row code, :root[data-theme="dark"] .catalog-row small { color: #a8b0bf; }
+:root[data-theme="dark"] .study-page .factor-table td { color: #d0d7e2; border-color: #263043; }
+:root[data-theme="dark"] .study-page .factor-table tr:hover td { background: #1b2432; }
+:root[data-theme="dark"] .study-context, :root[data-theme="dark"] .metrics,
+:root[data-theme="dark"] .group-grid, :root[data-theme="dark"] .context-strip,
+:root[data-theme="dark"] .site-footer { border-color: #263043; }
+:root[data-theme="dark"] .context-strip span, :root[data-theme="dark"] .factor-table th,
+:root[data-theme="dark"] .factor-table td, :root[data-theme="dark"] .catalog-row { border-color: #263043; }
+:root[data-theme="dark"] .empty button, :root[data-theme="dark"] button,
+:root[data-theme="dark"] select, :root[data-theme="dark"] .explorer-toolbar input,
+:root[data-theme="dark"] .explorer-toolbar select, :root[data-theme="dark"] .quiet-button,
+:root[data-theme="dark"] .locale-toggle, :root[data-theme="dark"] .theme-toggle { border-color: #303a4d; color: #e9edf4; background: #111722; }
+:root[data-theme="dark"] .theme-toggle:hover, :root[data-theme="dark"] .locale-toggle:hover,
+:root[data-theme="dark"] .quiet-button:hover { border-color: #ef8d5e; color: #ef8d5e; }
+:root[data-theme="dark"] .warning-panel, :root[data-theme="dark"] .research-boundary { background: #171d28; }
+:root[data-theme="dark"] .study-status-historical-reviewed { background: #183029; border-color: #3c7652; color: #72d2b6; }
+:root[data-theme="dark"] .study-status-preliminary { background: #2b241b; border-color: #8a6724; color: #efb36d; }
+:root[data-theme="dark"] .study-status-hypothesis { background: #1a2634; border-color: #527184; color: #8fb7d8; }
+.theme-toggle { border: 1px solid #d8d0c3; border-radius: 999px; padding: 7px 11px; color: #b64d33; background: transparent; font: 11px "DM Mono",monospace; cursor: pointer; white-space: nowrap; }
+.theme-toggle:hover { border-color: #c84b2f; color: #252525; }
