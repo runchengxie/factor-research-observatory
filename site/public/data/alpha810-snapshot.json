@@ -37281,7 +37281,7 @@
       }
     }
   ],
-  "generated_at": "2026-09-29T15:05:25.715519+00:00",
+  "generated_at": "2026-09-29T15:20:40.328292+00:00",
   "kind": "moneytree_factor_evidence_snapshot",
   "public_limits": [
     "Aggregate evidence only; no ticker-level values or portfolio weights.",
