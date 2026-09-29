@@ -50,6 +50,12 @@ class Alpha810ContractTests(unittest.TestCase):
         self.assertIn("audit_public_release.py", workflow)
         self.assertIn("npm run build --prefix site", workflow)
 
+    def test_external_snapshot_workflow_is_manual_and_audited(self):
+        workflow = (ROOT / ".github" / "workflows" / "validate-external-snapshot.yml").read_text()
+        self.assertIn("workflow_dispatch", workflow)
+        self.assertIn("validate_external_snapshot.py", workflow)
+        self.assertIn("upload-artifact@v4", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()
