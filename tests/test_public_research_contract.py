@@ -52,13 +52,29 @@ class PublicResearchContractTests(unittest.TestCase):
     def test_study_pages_keep_evidence_status_and_avoid_unreviewed_payroll_metrics(self):
         catalog = json.loads((PUBLIC_DATA / "research-studies.json").read_text())
         studies = {study["id"]: study for study in catalog["studies"]}
-        self.assertEqual(set(studies), {"pb-roe", "rd-investment", "employee-compensation"})
+        self.assertEqual(
+            set(studies), {"pb-roe", "rd-investment", "employee-compensation", "cashflow-indices"}
+        )
         self.assertEqual(studies["pb-roe"]["status"], "historical-reviewed")
         self.assertEqual(len(studies["pb-roe"]["rows"]), 5)
         self.assertEqual(studies["rd-investment"]["status"], "preliminary")
         self.assertIn("历史重建", studies["rd-investment"]["source_note"])
         self.assertEqual(studies["employee-compensation"]["status"], "hypothesis")
         self.assertEqual(studies["employee-compensation"]["rows"], [])
+        self.assertEqual(studies["cashflow-indices"]["status"], "preliminary")
+        self.assertEqual(len(studies["cashflow-indices"]["rows"]), 2)
+
+    def test_cashflow_study_is_backed_by_a_stable_source_projection(self):
+        manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
+        projection = next(
+            item for item in manifest["projections"] if item["public_id"] == "cashflow-indices"
+        )
+        self.assertEqual(
+            projection["source_ref"], "doc:quant-research.research.cashflow-indices"
+        )
+        self.assertIn("aggregate_rows", projection["allowed_fields"])
+        self.assertIn("per_security_signals", projection["excluded_fields"])
+        self.assertIn("portfolio_weights", projection["excluded_fields"])
 
     def test_public_pages_do_not_render_formula_fields(self):
         source = "\n".join(path.read_text() for path in PUBLIC_SOURCE.rglob("*.tsx"))
