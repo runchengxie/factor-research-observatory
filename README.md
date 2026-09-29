@@ -57,6 +57,8 @@ Alpha 810 快照由 [`money-trees`](https://github.com/runchengxie/money-trees) 
 
 本站公开契约见 [docs/alpha810-public-contract.md](docs/alpha810-public-contract.md)。
 
+研究专题发布边界见[英文契约](docs/research-publication-contract.md)和[中文说明](docs/research-publication-contract.zh-CN.md)。公开研究摘要通过 `site/public/data/research-publication-manifest.json` 记录来源、语言和脱敏字段边界。
+
 ## 人力资本 / 劳动研究
 
 站点目录包含劳动成本强度、人力资本效率、劳动成本变化、收入—劳动成本剪刀差，以及劳动强度与投资状态等实验性研究入口。这些条目表达研究假设，不代表已经完成 A 股预测性验证；没有公开评估结果时，页面会明确显示尚未提供。

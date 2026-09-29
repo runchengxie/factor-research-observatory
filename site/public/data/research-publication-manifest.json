@@ -1,0 +1,17 @@
+{
+  "schema_version": "observatory.research_publication.v1",
+  "generated_at": "2026-09-29",
+  "source_repository": "quant-research",
+  "source_manifest": "docs/research/knowledge-pilot.yml",
+  "projections": [
+    {
+      "public_id": "rd-investment",
+      "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+      "source_status": "pilot",
+      "publication_status": "reviewed_aggregate",
+      "locales": ["en-US", "zh-CN"],
+      "allowed_fields": ["title", "family", "status", "summary", "period", "findings", "limits", "aggregate_rows"],
+      "excluded_fields": ["private_data_paths", "credentials", "per_security_signals", "portfolio_weights", "private_code"]
+    }
+  ]
+}
