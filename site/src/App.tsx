@@ -11,6 +11,7 @@ import FactorExplorerPage from './pages/FactorExplorerPage'
 import { StudiesPage, StudyDetailPage } from './pages/StudiesPage'
 import Alpha810OverviewPage from './pages/Alpha810OverviewPage'
 import Alpha810FactorPage from './pages/Alpha810FactorPage'
+import { initialLocale, LocaleContext, useLocale, type Locale } from './i18n'
 
 function pathView(snapshot: Snapshot, catalog: FundamentalCatalog, fundamental: FundamentalSnapshot, studies: StudyCatalog, alpha810: Alpha810Snapshot) {
   const records = toResearchRecords(snapshot, catalog, fundamental)
@@ -33,6 +34,11 @@ function pathView(snapshot: Snapshot, catalog: FundamentalCatalog, fundamental: 
 }
 
 export default function App() {
+  const [locale, setLocale] = useState<Locale>(initialLocale)
+  return <LocaleContext.Provider value={{ locale, setLocale }}><AppContent /></LocaleContext.Provider>
+}
+
+function AppContent() {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const [fundamental, setFundamental] = useState<{ catalog: FundamentalCatalog; snapshot: FundamentalSnapshot } | null>(null)
   const [studies, setStudies] = useState<StudyCatalog | null>(null)
@@ -43,5 +49,11 @@ export default function App() {
   if (!snapshot || !fundamental || !studies || !alpha810) return <main className="empty"><p>正在加载研究快照…</p></main>
   const pathname = window.location.pathname
   const active = (segment: string) => pathname.includes(segment) ? 'active' : undefined
-  return <><header className="site-header"><div className="site-masthead"><a className="brand" href={import.meta.env.BASE_URL}><span className="brand-kicker">QUANT FACTOR</span><strong>OBSERVATORY</strong></a><div className="site-meta"><strong>Public Research Layer</strong><span>Sanitized evidence archive</span></div></div><nav className="site-nav"><a className={pathname.endsWith('/') || pathname.endsWith('index.html') ? 'active' : undefined} href={import.meta.env.BASE_URL}>总览</a><a className={active('alpha810')} href={`${import.meta.env.BASE_URL}alpha810`}>Alpha 810</a><a className={active('factors')} href={`${import.meta.env.BASE_URL}factors`}>因子目录</a><a className={active('studies')} href={`${import.meta.env.BASE_URL}studies`}>研究专题</a><a className={active('fundamentals')} href={`${import.meta.env.BASE_URL}fundamentals`}>基本面研究</a><a className={active('jumps')} href={`${import.meta.env.BASE_URL}jumps`}>跳跃分解</a><a className={active('hermite')} href={`${import.meta.env.BASE_URL}hermite`}>Hermite 体制</a></nav></header>{pathView(snapshot, fundamental.catalog, fundamental.snapshot, studies, alpha810)}<footer className="site-footer"><span>quant-factor-observatory · {pathname.startsWith('/studies') ? 'Research studies' : snapshot.source === 'demo' ? 'Demo snapshot' : 'Public research snapshot'}</span><span>研究展示，不构成交易建议</span></footer></>
+  const { copy, locale, setLocale } = useLocale()
+  const switchLocale = () => {
+    const next = locale === 'en-US' ? 'zh-CN' : 'en-US'
+    try { window.localStorage.setItem('quant-factor-locale', next) } catch { /* storage is optional */ }
+    setLocale(next)
+  }
+  return <><header className="site-header"><div className="site-masthead"><a className="brand" href={import.meta.env.BASE_URL}><span className="brand-kicker">QUANT FACTOR</span><strong>OBSERVATORY</strong></a><div className="site-meta"><strong>{copy.brandMeta}</strong><span>{copy.brandMetaSub}</span></div></div><nav className="site-nav"><a className={pathname.endsWith('/') || pathname.endsWith('index.html') ? 'active' : undefined} href={import.meta.env.BASE_URL}>{copy.nav.overview}</a><a className={active('alpha810')} href={`${import.meta.env.BASE_URL}alpha810`}>{copy.nav.alpha810}</a><a className={active('factors')} href={`${import.meta.env.BASE_URL}factors`}>{copy.nav.factors}</a><a className={active('studies')} href={`${import.meta.env.BASE_URL}studies`}>{copy.nav.studies}</a><a className={active('fundamentals')} href={`${import.meta.env.BASE_URL}fundamentals`}>{copy.nav.fundamentals}</a><a className={active('jumps')} href={`${import.meta.env.BASE_URL}jumps`}>{copy.nav.jumps}</a><a className={active('hermite')} href={`${import.meta.env.BASE_URL}hermite`}>{copy.nav.hermite}</a><button type="button" className="locale-toggle" onClick={switchLocale} aria-label={`Switch to ${copy.switchTo}`}>{copy.switchTo}</button></nav></header>{pathView(snapshot, fundamental.catalog, fundamental.snapshot, studies, alpha810)}<footer className="site-footer"><span>quant-factor-observatory · {pathname.startsWith('/studies') ? copy.nav.studies : snapshot.source === 'demo' ? 'Demo snapshot' : 'Public research snapshot'}</span><span>{copy.footerNote}</span></footer></>
 }
