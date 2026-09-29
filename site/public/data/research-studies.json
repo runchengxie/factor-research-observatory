@@ -123,7 +123,7 @@
       "limits": [
         "历史修订链不完整，结果 revision_safe=false。",
         "CSI300/500/1000 已使用历史权重快照完成可用因子区间对照，并做了前一快照敏感性分析；权重文件未提供独立生效/公告时间，CSI2000 已覆盖本地资产可用的 2023-08 起始窗口。",
-        "组合 purged/CPCV 诊断已完成；冻结 final OOS、成分生效时点审计和 research-owner review 尚未完成。",
+        "组合 purged/CPCV 诊断已完成；2026-04 至 2026-07 的四个月 post-exploration fwd20 holdout 中七个变体的 Top-10% 毛收益均为负，冻结 final OOS、成分生效时点审计和 research-owner review 尚未完成。",
         "公开投影只保留聚合值，不代表逐股票信号、组合权重或生产结论。"
       ]
     },
