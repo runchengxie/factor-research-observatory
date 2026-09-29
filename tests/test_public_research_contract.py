@@ -64,6 +64,16 @@ class PublicResearchContractTests(unittest.TestCase):
         self.assertEqual(studies["cashflow-indices"]["status"], "preliminary")
         self.assertEqual(len(studies["cashflow-indices"]["rows"]), 2)
 
+    def test_study_pages_publish_complete_english_copy(self):
+        catalog = json.loads((PUBLIC_DATA / "research-studies.json").read_text())
+        required = {"title", "family", "status_label", "summary", "period", "source_note", "columns", "rows", "findings", "limits"}
+        for study in catalog["studies"]:
+            self.assertIn("translations", study)
+            self.assertIn("en-US", study["translations"])
+            self.assertEqual(set(study["translations"]["en-US"]), required, study["id"])
+            english = study["translations"]["en-US"]
+            self.assertTrue(all(len(row) == len(english["columns"]) for row in english["rows"]), study["id"])
+
     def test_cashflow_study_is_backed_by_a_stable_source_projection(self):
         manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
         projection = next(

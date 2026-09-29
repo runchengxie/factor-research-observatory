@@ -52,11 +52,16 @@ export type ResearchContext = {
 export type ExplorerFilters = { query: string; family: string; frequency: string; status: '' | FactorStatus }
 export type ExplorerSort = 'name' | 'coverage' | 'status'
 
-export type Study = {
-  id: string; title: string; family: string;
-  status: 'historical-reviewed' | 'preliminary' | 'hypothesis'; status_label: string;
-  summary: string; period: string; source_note: string; source_url?: string;
+export type StudyCopy = {
+  title: string; family: string; status_label: string;
+  summary: string; period: string; source_note: string;
   columns: string[]; rows: string[][]; findings: string[]; limits: string[];
+}
+export type Study = StudyCopy & {
+  id: string;
+  status: 'historical-reviewed' | 'preliminary' | 'hypothesis';
+  source_url?: string;
+  translations?: Partial<Record<'en-US' | 'zh-CN', StudyCopy>>;
 }
 export type StudyCatalog = { schema_version: number; updated_at: string; studies: Study[] }
 
