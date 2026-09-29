@@ -38,7 +38,7 @@ const minuteNames: Record<string, string> = {
   ideal_swing_factor: 'Ideal swing factor',
 }
 
-const fundamentalCopy: Record<string, { name: string; definition: string; meaning: string }> = {
+const fundamentalCopy: Record<string, { name: string; family?: string; definition: string; meaning: string; research_question?: string }> = {
   standardized_operating_profit: { name: 'Standardized operating profit', definition: 'Measures whether operating profit has materially improved or deteriorated relative to the company’s own history.', meaning: 'Operating-profit state breakout' },
   operating_profit_yoy_zscore: { name: 'Standardized operating-profit growth', definition: 'Measures whether year-over-year operating-profit improvement is unusually large relative to the company’s normal variation.', meaning: 'Abnormal intensity of earnings growth' },
   operating_profit_acceleration: { name: 'Operating-profit acceleration', definition: 'Measures whether the pace of earnings growth is accelerating or slowing further.', meaning: 'Second-order change in the earnings trend' },
@@ -72,15 +72,16 @@ export function localizedFamily(value: string, locale: Locale) {
 
 export function localizeFactorRecord(record: FactorRecord, locale: Locale): FactorRecord {
   if (locale === 'zh-CN') return record
-  const copy = fundamentalCopy[record.id]
+  const copy = record.fundamentalTranslation ?? fundamentalCopy[record.id]
   if (copy) return { ...record, displayName: copy.name, family: localizedFamily(record.family, locale), definition: copy.definition, intuition: copy.meaning, interpretationHigh: 'Higher values indicate a stronger reading of this research definition.', interpretationLow: 'Lower values indicate a weaker reading of this research definition.', transformHint: 'The public page shows the research definition and aggregate diagnostics only.', failureModes: ['Disclosure timing, definition changes, and one-off items can affect interpretation.'] }
+  if (record.frequencyIn === 'PIT quarterly reports') return { ...record, displayName: record.id.split('_').join(' '), family: localizedFamily(record.family, locale), definition: 'Public research definition is not yet available for this factor.', intuition: 'Research interpretation is not yet published.', interpretationHigh: 'Higher values indicate a stronger reading of the research definition.', interpretationLow: 'Lower values indicate a weaker reading of the research definition.', transformHint: 'The public page shows the research definition and aggregate diagnostics only.', failureModes: ['Disclosure timing, definition changes, and one-off items can affect interpretation.'] }
   return { ...record, displayName: minuteNames[record.id] ?? record.displayName, family: localizedFamily(record.family, locale), definition: genericMinuteDefinition, intuition: 'Use this descriptive statistic to inspect market state; it does not establish a return prediction by itself.', interpretationHigh: 'The statistic is relatively higher.', interpretationLow: 'The statistic is relatively lower.', failureModes: ['Missing observations, low liquidity, and extreme values can affect interpretation.'] }
 }
 
 export function localizeFundamentalFactor(factor: FundamentalFactor, locale: Locale): FundamentalFactor {
   if (locale === 'zh-CN') return factor
-  const copy = fundamentalCopy[factor.id]
-  return copy ? { ...factor, name: copy.name, family: localizedFamily(factor.family, locale), definition: copy.definition, meaning: copy.meaning, research_question: 'Can this public research definition provide incremental information in a properly point-in-time evaluation?' } : factor
+  const copy = factor.translations?.['en-US'] ?? fundamentalCopy[factor.id]
+  return copy ? { ...factor, name: copy.name, family: localizedFamily(copy.family ?? factor.family, locale), definition: copy.definition, meaning: copy.meaning, research_question: copy.research_question ?? 'Can this public research definition provide incremental information in a properly point-in-time evaluation?' } : { ...factor, name: factor.id.split('_').join(' '), family: localizedFamily(factor.family, locale), definition: 'Public research definition is not yet available for this factor.', meaning: 'Research interpretation is not yet published.', research_question: 'What incremental information could this research definition provide in a properly point-in-time evaluation?' }
 }
 
 export function localizedStatus(status: FactorRecord['status'], locale: Locale) {

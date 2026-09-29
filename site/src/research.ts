@@ -97,6 +97,7 @@ function fundamentalRecord(factor: FundamentalFactor, snapshot: FundamentalSnaps
     transformHint: '公开页面只展示研究定义与聚合诊断',
     failureModes: ['披露时点、口径变化和一次性项目可能影响解释'],
     researchEvidence: factor.evidence,
+    fundamentalTranslation: factor.translations?.['en-US'],
     coverage: stats ? { count: stats.count, missing: snapshot.latest_cross_section.missing, total } : undefined,
     statistics: stats ? { count: stats.count, p01: stats.p01, p25: stats.p25, p50: stats.p50, p75: stats.p75, p99: stats.p99 } : undefined,
     series: snapshot.series.filter((item) => item.metric === factor.id),

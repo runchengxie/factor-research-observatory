@@ -20,7 +20,16 @@
       "research_status": "experimental",
       "definition": "观察经营利润相对企业自身历史状态是否出现显著改善或恶化。",
       "meaning": "经营利润状态突破",
-      "research_question": "市场是否会延迟定价企业进入新的盈利轨迹？"
+      "research_question": "市场是否会延迟定价企业进入新的盈利轨迹？",
+      "translations": {
+        "en-US": {
+          "name": "Standardized operating profit",
+          "family": "Earnings state",
+          "definition": "Measures whether operating profit has materially improved or deteriorated relative to the company’s own history.",
+          "meaning": "Operating-profit state breakout",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "operating_profit_yoy_zscore",
@@ -30,7 +39,16 @@
       "research_status": "experimental",
       "definition": "观察经营利润同比改善是否明显超出企业自身通常波动。",
       "meaning": "盈利增长的异常强度",
-      "research_question": "超出历史常态的盈利改善能否提供增量信息？"
+      "research_question": "超出历史常态的盈利改善能否提供增量信息？",
+      "translations": {
+        "en-US": {
+          "name": "Standardized operating-profit growth",
+          "family": "Earnings growth",
+          "definition": "Measures whether year-over-year operating-profit improvement is unusually large relative to the company’s normal variation.",
+          "meaning": "Abnormal intensity of earnings growth",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "operating_profit_acceleration",
@@ -40,7 +58,16 @@
       "research_status": "experimental",
       "definition": "观察盈利增长速度是否进一步加快或放缓。",
       "meaning": "盈利趋势的二阶变化",
-      "research_question": "持续改善且进一步加速的公司是否更容易被低估？"
+      "research_question": "持续改善且进一步加速的公司是否更容易被低估？",
+      "translations": {
+        "en-US": {
+          "name": "Operating-profit acceleration",
+          "family": "Earnings growth",
+          "definition": "Measures whether the pace of earnings growth is accelerating or slowing further.",
+          "meaning": "Second-order change in the earnings trend",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "operating_earnings_yield_zscore",
@@ -50,7 +77,16 @@
       "research_status": "experimental",
       "definition": "观察经营盈利相对市场估值是否处于企业自身历史的异常位置。",
       "meaning": "经营盈利与估值的相对变化",
-      "research_question": "盈利改善与估值重新定价是否同步发生？"
+      "research_question": "盈利改善与估值重新定价是否同步发生？",
+      "translations": {
+        "en-US": {
+          "name": "Standardized operating earnings yield",
+          "family": "Valuation / earnings",
+          "definition": "Measures whether operating earnings relative to market valuation are unusual in the company’s own history.",
+          "meaning": "Relative change in operating earnings and valuation",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "finance_expense_ratio_improvement",
@@ -60,7 +96,16 @@
       "research_status": "experimental",
       "definition": "观察融资负担相对经营收入是否改善。",
       "meaning": "财务杠杆压力变化",
-      "research_question": "融资成本下降是否预示盈利质量改善？"
+      "research_question": "融资成本下降是否预示盈利质量改善？",
+      "translations": {
+        "en-US": {
+          "name": "Finance expense ratio improvement",
+          "family": "Financial quality",
+          "definition": "Measures whether financing burden relative to operating revenue is improving.",
+          "meaning": "Change in financial leverage pressure",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "asset_impairment_stability",
@@ -70,7 +115,16 @@
       "research_status": "experimental",
       "definition": "观察资产减值强度及其稳定性，识别潜在资产质量恶化。",
       "meaning": "减值风险与盈利质量",
-      "research_question": "减值波动能否提前识别后续基本面风险？"
+      "research_question": "减值波动能否提前识别后续基本面风险？",
+      "translations": {
+        "en-US": {
+          "name": "Asset impairment stability",
+          "family": "Risk / quality",
+          "definition": "Measures the level and stability of asset impairments to identify possible deterioration in asset quality.",
+          "meaning": "Impairment risk and earnings quality",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "revenue_zscore",
@@ -80,7 +134,16 @@
       "research_status": "experimental",
       "definition": "观察营业收入是否处于企业自身历史的异常高位或低位。",
       "meaning": "收入景气状态",
-      "research_question": "收入状态突破是否先于利润状态变化？"
+      "research_question": "收入状态突破是否先于利润状态变化？",
+      "translations": {
+        "en-US": {
+          "name": "Standardized revenue",
+          "family": "Earnings growth",
+          "definition": "Measures whether revenue is unusually high or low relative to the company’s own history.",
+          "meaning": "Revenue activity state",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "comprehensive_income_yield_zscore",
@@ -90,7 +153,16 @@
       "research_status": "experimental",
       "definition": "观察综合收益相对市场估值是否偏离企业自身历史。",
       "meaning": "综合盈利的估值位置",
-      "research_question": "综合收益变化是否包含传统盈利指标之外的信息？"
+      "research_question": "综合收益变化是否包含传统盈利指标之外的信息？",
+      "translations": {
+        "en-US": {
+          "name": "Standardized comprehensive income yield",
+          "family": "Valuation / earnings",
+          "definition": "Measures whether comprehensive income relative to market valuation departs from the company’s own history.",
+          "meaning": "Valuation position of comprehensive earnings",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "income_tax_zscore_250",
@@ -100,7 +172,16 @@
       "research_status": "experimental",
       "definition": "观察所得税负担相对企业自身历史是否异常。",
       "meaning": "税负状态变化",
-      "research_question": "税负异常是否能区分主营改善与一次性利润？"
+      "research_question": "税负异常是否能区分主营改善与一次性利润？",
+      "translations": {
+        "en-US": {
+          "name": "Long-term income-tax expense abnormality",
+          "family": "Tax / financing",
+          "definition": "Measures whether the income-tax burden is unusual relative to the company’s own history.",
+          "meaning": "Change in tax burden state",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "income_tax_zscore_120",
@@ -110,7 +191,16 @@
       "research_status": "experimental",
       "definition": "观察近期税费变化是否偏离企业通常水平。",
       "meaning": "短期税费异常",
-      "research_question": "短期税费变化是否具有持续性？"
+      "research_question": "短期税费变化是否具有持续性？",
+      "translations": {
+        "en-US": {
+          "name": "Short-term income-tax expense abnormality",
+          "family": "Tax / financing",
+          "definition": "Measures whether recent tax expense changes depart from the company’s usual level.",
+          "meaning": "Short-term tax expense abnormality",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "negative_roa_exp_mean_120",
@@ -120,7 +210,16 @@
       "research_status": "experimental",
       "definition": "观察近期资产盈利能力的平滑状态与方向。",
       "meaning": "短期资产回报质量",
-      "research_question": "资产回报的近期变化是否具有预测性？"
+      "research_question": "资产回报的近期变化是否具有预测性？",
+      "translations": {
+        "en-US": {
+          "name": "Smoothed asset profitability state",
+          "family": "Earnings quality",
+          "definition": "Measures the recent level and direction of smoothed asset profitability.",
+          "meaning": "Short-term asset-return quality",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "negative_earnings_yield_cv_120",
@@ -130,7 +229,16 @@
       "research_status": "experimental",
       "definition": "观察盈利相对估值的波动与稳定程度。",
       "meaning": "盈利收益率噪声",
-      "research_question": "稳定的盈利收益率是否比单点估值更可靠？"
+      "research_question": "稳定的盈利收益率是否比单点估值更可靠？",
+      "translations": {
+        "en-US": {
+          "name": "Earnings-yield stability",
+          "family": "Valuation / earnings",
+          "definition": "Measures the variation and stability of earnings relative to valuation.",
+          "meaning": "Earnings-yield noise",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "income_tax_yield_zscore_120",
@@ -140,7 +248,16 @@
       "research_status": "experimental",
       "definition": "观察税费负担相对市场估值的历史异常程度。",
       "meaning": "税费与估值的相对变化",
-      "research_question": "税费异常是否能揭示估值与盈利错配？"
+      "research_question": "税费异常是否能揭示估值与盈利错配？",
+      "translations": {
+        "en-US": {
+          "name": "Tax burden abnormality",
+          "family": "Tax / financing",
+          "definition": "Measures the historical abnormality of tax burden relative to market valuation.",
+          "meaning": "Relative change in tax expense and valuation",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "invest_income_yield_zscore",
@@ -150,7 +267,16 @@
       "research_status": "experimental",
       "definition": "观察投资性收益相对企业估值是否出现异常。",
       "meaning": "非主营收益状态",
-      "research_question": "非主营收益变化是否会被市场错误地当作持续盈利？"
+      "research_question": "非主营收益变化是否会被市场错误地当作持续盈利？",
+      "translations": {
+        "en-US": {
+          "name": "Investment-income abnormality",
+          "family": "Non-core income",
+          "definition": "Measures whether investment income relative to valuation is unusual.",
+          "meaning": "Non-core income state",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "other_gain_yield_zscore",
@@ -160,7 +286,16 @@
       "research_status": "experimental",
       "definition": "观察补贴或其他非核心收益相对估值的异常程度。",
       "meaning": "其他收益依赖度",
-      "research_question": "其他收益异常是否能提示盈利可持续性风险？"
+      "research_question": "其他收益异常是否能提示盈利可持续性风险？",
+      "translations": {
+        "en-US": {
+          "name": "Other-gain abnormality",
+          "family": "Non-core income",
+          "definition": "Measures whether subsidies or other non-core income are unusually large relative to valuation.",
+          "meaning": "Dependence on other income",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "negative_roa_cv_250",
@@ -170,7 +305,16 @@
       "research_status": "experimental",
       "definition": "观察资产盈利能力在较长观察期内是否稳定。",
       "meaning": "资产回报不稳定性",
-      "research_question": "盈利稳定性是否能改善盈利趋势信号的可信度？"
+      "research_question": "盈利稳定性是否能改善盈利趋势信号的可信度？",
+      "translations": {
+        "en-US": {
+          "name": "Asset profitability volatility",
+          "family": "Earnings quality",
+          "definition": "Measures whether asset profitability is stable over a longer observation period.",
+          "meaning": "Instability of asset returns",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "negative_roe_exp_mean_750",
@@ -180,7 +324,16 @@
       "research_status": "experimental",
       "definition": "观察股东资本回报的长期平滑状态。",
       "meaning": "长期资本回报质量",
-      "research_question": "长期回报状态是否能区分短期盈利噪声？"
+      "research_question": "长期回报状态是否能区分短期盈利噪声？",
+      "translations": {
+        "en-US": {
+          "name": "Long-term shareholder return state",
+          "family": "Earnings quality",
+          "definition": "Measures the long-term smoothed state of return on shareholder capital.",
+          "meaning": "Long-term capital-return quality",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "cash_to_market_value_zscore",
@@ -190,7 +343,16 @@
       "research_status": "experimental",
       "definition": "观察现金资产相对市场估值是否处于异常位置。",
       "meaning": "现金安全垫与估值变化",
-      "research_question": "现金安全垫变化是否提供估值保护或风险提示？"
+      "research_question": "现金安全垫变化是否提供估值保护或风险提示？",
+      "translations": {
+        "en-US": {
+          "name": "Cash relative to valuation abnormality",
+          "family": "Asset quality / valuation",
+          "definition": "Measures whether cash assets relative to market valuation are at an unusual level.",
+          "meaning": "Cash cushion and valuation change",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "labor_cost_intensity",
@@ -200,7 +362,16 @@
       "research_status": "experimental",
       "definition": "观察企业收入中劳动投入成本所占的相对强度。",
       "meaning": "劳动依赖度与经营杠杆",
-      "research_question": "劳动成本越刚性的企业，收入变化是否会放大利润变化？"
+      "research_question": "劳动成本越刚性的企业，收入变化是否会放大利润变化？",
+      "translations": {
+        "en-US": {
+          "name": "Labor cost intensity",
+          "family": "Human capital / labor",
+          "definition": "Measures the relative share of labor input cost in company revenue.",
+          "meaning": "Labor dependence and operating leverage",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "labor_efficiency",
@@ -210,7 +381,16 @@
       "research_status": "experimental",
       "definition": "观察企业用劳动投入创造经营收入的效率变化。",
       "meaning": "收入创造与劳动投入的关系",
-      "research_question": "收入增长是否持续快于劳动投入增长？"
+      "research_question": "收入增长是否持续快于劳动投入增长？",
+      "translations": {
+        "en-US": {
+          "name": "Human-capital efficiency",
+          "family": "Human capital / labor",
+          "definition": "Measures how efficiently the company turns labor input into operating revenue.",
+          "meaning": "Relationship between revenue creation and labor input",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "labor_cost_growth",
@@ -220,7 +400,16 @@
       "research_status": "experimental",
       "definition": "观察劳动投入成本的增长状态，不将其直接等同于员工工资增长。",
       "meaning": "劳动投入扩张或成本压力",
-      "research_question": "劳动成本上升主要来自扩张、涨薪还是员工结构变化？"
+      "research_question": "劳动成本上升主要来自扩张、涨薪还是员工结构变化？",
+      "translations": {
+        "en-US": {
+          "name": "Labor cost change",
+          "family": "Human capital / labor",
+          "definition": "Measures the growth state of labor input cost without equating it directly with employee wage growth.",
+          "meaning": "Labor expansion or cost pressure",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "revenue_minus_labor_cost_growth",
@@ -230,7 +419,16 @@
       "research_status": "experimental",
       "definition": "观察收入增长相对劳动成本增长的改善程度。",
       "meaning": "劳动投入效率与经营杠杆变化",
-      "research_question": "收入增长快于劳动成本增长是否预示效率改善？"
+      "research_question": "收入增长快于劳动成本增长是否预示效率改善？",
+      "translations": {
+        "en-US": {
+          "name": "Revenue minus labor-cost growth spread",
+          "family": "Human capital / labor",
+          "definition": "Measures improvement in revenue growth relative to labor-cost growth.",
+          "meaning": "Change in labor efficiency and operating leverage",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     },
     {
       "id": "labor_intensity_investment_state",
@@ -240,7 +438,16 @@
       "research_status": "experimental",
       "definition": "观察高劳动依赖企业在扩张投资时的经营风险与成长状态。",
       "meaning": "劳动刚性与投资行为的交互",
-      "research_question": "劳动成本刚性是否会改变投资信号的收益含义？"
+      "research_question": "劳动成本刚性是否会改变投资信号的收益含义？",
+      "translations": {
+        "en-US": {
+          "name": "Labor intensity and investment state",
+          "family": "Human capital / labor",
+          "definition": "Measures operating risk and growth state when labor-dependent companies expand investment.",
+          "meaning": "Interaction between labor rigidity and investment behavior",
+          "research_question": "Can this public research definition provide incremental information in a properly point-in-time evaluation?"
+        }
+      }
     }
   ]
 }
