@@ -56,6 +56,14 @@ class Alpha810ContractTests(unittest.TestCase):
         self.assertIn("validate_external_snapshot.py", workflow)
         self.assertIn("upload-artifact@v4", workflow)
 
+    def test_external_snapshot_publish_workflow_opens_review_pr(self):
+        workflow = (ROOT / ".github" / "workflows" / "publish-external-snapshot.yml").read_text()
+        self.assertIn("workflow_dispatch", workflow)
+        self.assertIn("contents: write", workflow)
+        self.assertIn("pull-requests: write", workflow)
+        self.assertIn("gh pr create", workflow)
+        self.assertIn("alpha810-snapshot.json", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()
