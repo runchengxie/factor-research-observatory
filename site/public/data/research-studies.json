@@ -65,7 +65,71 @@
         "历史财报修订和公告可见时间尚未逐份独立核验。",
         "整个历史区间参与过探索，不能重新标作严格样本外。",
         "执行采用日线近似，缺少完整市场冲击和真实成交回放。"
-      ]
+      ],
+      "translations": {
+        "en-US": {
+          "title": "PB and ROE: A Paired Test of Valuation and Profitability",
+          "family": "Valuation and earnings quality",
+          "status_label": "Historical result reviewed",
+          "summary": "Across five historical rankings on the same candidate pool, adding static ROE produced lower returns and information ratios than the PB-only comparison. This does not establish that ROE is generally ineffective.",
+          "period": "2010-01-29 to 2026-08-31",
+          "source_note": "Values come from a public market research study reviewed item by item; original filing versions and the complete trade replay have not been independently rechecked.",
+          "columns": [
+            "Ranking",
+            "Annualized return",
+            "Annualized excess return",
+            "Maximum drawdown",
+            "Information ratio"
+          ],
+          "rows": [
+            [
+              "PB only",
+              "12.05%",
+              "7.25%",
+              "46.74%",
+              "0.66"
+            ],
+            [
+              "PB + static ROE",
+              "9.06%",
+              "4.27%",
+              "45.40%",
+              "0.42"
+            ],
+            [
+              "PB + change in ROE",
+              "11.59%",
+              "6.80%",
+              "46.98%",
+              "0.65"
+            ],
+            [
+              "Quality adjusted PB",
+              "12.01%",
+              "7.21%",
+              "47.26%",
+              "0.67"
+            ],
+            [
+              "Quality adjusted PB + change in ROE",
+              "11.66%",
+              "6.87%",
+              "47.02%",
+              "0.65"
+            ]
+          ],
+          "findings": [
+            "The PB-only comparison still requires ROE to be computable, so it should not be treated as a pure PB portfolio that is independent of ROE data.",
+            "Relaxing the non-null ROE requirement added 46,803 eligible stock-month records, about 7.11% of the expanded sample.",
+            "Quality conditions affect the result, but several conditions changed at the same time, so the effect cannot be attributed to a single filter."
+          ],
+          "limits": [
+            "Historical filing revisions and announcement availability have not been independently checked record by record.",
+            "The full historical interval participated in exploration and cannot be relabeled as a strict out-of-sample period.",
+            "Execution uses a daily approximation and lacks a complete market impact and trade execution replay."
+          ]
+        }
+      }
     },
     {
       "id": "rd-investment",
@@ -123,9 +187,69 @@
       "limits": [
         "历史修订链不完整，结果 revision_safe=false。",
         "CSI300/500/1000 已使用历史权重快照完成可用因子区间对照，并做了前一快照敏感性分析；权重文件未提供独立生效/公告时间，CSI2000 已覆盖本地资产可用的 2023-08 起始窗口。",
-        "组合 purged/CPCV 诊断已完成；2026-04 至 2026-07 的四个月 post-exploration fwd20 holdout 中七个变体的 Top-10% 毛收益均为负，冻结 final OOS、成分生效时点审计和 research-owner review 尚未完成。",
+        "组合 purged/CPCV 诊断已完成；owner 已接受前一快照股票池口径用于研究探索但拒绝生产晋升；2026-04 至 2026-07 的四个月 post-exploration fwd20 holdout 中七个变体的 Top-10% 毛收益均为负，冻结 final OOS 和成分生效时点审计尚未完成。",
         "公开投影只保留聚合值，不代表逐股票信号、组合权重或生产结论。"
-      ]
+      ],
+      "translations": {
+        "en-US": {
+          "title": "R&D Investment Relative to Valuation: Signal or Size Exposure?",
+          "family": "R&D and intangible assets",
+          "status_label": "Preliminary screen",
+          "summary": "Backtests of seven pre-registered variants using sealed announcement-event PIT data show exploratory positive associations for R&D/market cap, R&D/EV, and capitalized R&D at 20-day and 220-day horizons. R&D growth is weaker, and the signal declines after neutralizing for size, valuation, momentum, leverage, and industry. The result remains preliminary.",
+          "period": "2018-01 to 2026-03; 77 valid monthly cross-sections and 67 platform probe rebalances",
+          "source_note": "Aggregate diagnostics from a private research environment using the sealed announcement-event PIT historical reconstruction vintage=20260926. Announcement availability dates are retained, but the complete historical revision chain cannot be reconstructed.",
+          "columns": [
+            "Signal",
+            "20-day mean Rank IC",
+            "220-day mean Rank IC",
+            "quant-platform 25 bp fixed Top-200 probe Sharpe"
+          ],
+          "rows": [
+            [
+              "R&D relative to market cap",
+              "5.21%",
+              "12.54%",
+              "0.96"
+            ],
+            [
+              "Residual after neutralizing size/value/momentum/leverage/industry",
+              "2.62%",
+              "6.43%",
+              "0.73"
+            ],
+            [
+              "R&D relative to revenue",
+              "1.38%",
+              "3.35%",
+              "0.42"
+            ],
+            [
+              "R&D growth rate",
+              "-0.53%",
+              "-2.39%",
+              "0.61"
+            ],
+            [
+              "Five-year decayed capitalized R&D",
+              "5.38%",
+              "12.46%",
+              "1.00"
+            ]
+          ],
+          "findings": [
+            "The raw R&D/market cap result cannot be interpreted as an independent R&D return; the fully neutralized result remains positive but weaker as exploratory evidence.",
+            "R&D/EV and capitalized R&D have stronger long-horizon labels; R&D growth has no stable cross-sectional evidence.",
+            "The fixed Top-200 probe with 25 bp cost checks the portfolio interface only; it does not replace the pre-registered decile portfolio validation.",
+            "Keep this as a research candidate; do not use it as a strategy or in production."
+          ],
+          "limits": [
+            "The historical revision chain is incomplete; revision_safe=false.",
+            "CSI300/500/1000 use historical weight snapshots and a prior-snapshot sensitivity check. The weight files have no independent effective or announcement timestamp, while CSI2000 is covered from the available 2023-08 inception window.",
+            "The purged/CPCV portfolio diagnostic is complete; the owner accepted the prior-snapshot universe policy for research exploration but rejected production promotion. All seven variants had negative Top-10% gross returns in the four-month post-exploration fwd20 holdout from 2026-04 to 2026-07; a frozen final OOS and constituent effective-time audit remain incomplete.",
+            "The public projection keeps aggregate values only and does not represent per-security signals, portfolio weights, or production conclusions."
+          ]
+        }
+      }
     },
     {
       "id": "employee-compensation",
@@ -145,7 +269,27 @@
       "limits": [
         "尚未完成数据口径、历史版本和公告时点核验。",
         "没有 Rank IC、分组收益或交易回测结果。"
-      ]
+      ],
+      "translations": {
+        "en-US": {
+          "title": "Employee Compensation and Human Capital: A Fundamental Clue to Test",
+          "family": "Human capital and labor",
+          "status_label": "Research hypothesis",
+          "summary": "Early fundamental scripts used employee compensation fields from financial statements, but there is no auditable predictive backtest yet. The labor cost factor cannot be considered effective on this basis.",
+          "period": "No publishable historical evaluation period yet",
+          "source_note": "This research entry is based only on retained historical fields and factor scripts; no public return statistics are available.",
+          "columns": [],
+          "rows": [],
+          "findings": [
+            "Employee benefits payable is an end-of-period liability balance and cannot be used directly as current-period wages or R&D staff investment.",
+            "Future work must separately verify labor cost flows, workforce size, and financial statement disclosure coverage."
+          ],
+          "limits": [
+            "Data definitions, historical versions, and announcement timing have not been verified.",
+            "There are no Rank IC, grouped return, or trading backtest results."
+          ]
+        }
+      }
     },
     {
       "id": "cashflow-indices",
@@ -180,7 +324,41 @@
         "可用成分快照不覆盖完整十年官方历史成分和规则变更。",
         "公开投影只保留聚合结果，不代表逐股票信号、组合权重或可成交回放。",
         "尚未据此进入生产策略或形成完整样本外结论。"
-      ]
+      ],
+      "translations": {
+        "en-US": {
+          "title": "Cash Flow Indices: Rule Reproduction and Strategy Boundaries",
+          "family": "Cash flow and dividends",
+          "status_label": "Preliminary study",
+          "summary": "Cash flow, dividend, and related self-built portfolios have partial rule reproduction and aggregate replay evidence, but this is not yet a complete reproduction of official constituents or a production strategy validation.",
+          "period": "Period covered by available constituent snapshots; the complete ten-year official constituent replay is not complete",
+          "source_note": "Data comes from the public research entry in the quantitative research repository. The official index, the rule-reconstructed shadow index, and the self-built portfolio are separate evidence types.",
+          "columns": [
+            "Object",
+            "Correlation in available replay"
+          ],
+          "rows": [
+            [
+              "Dividend benchmark",
+              "0.997"
+            ],
+            [
+              "Broad-market free-cash-flow benchmark",
+              "0.992"
+            ]
+          ],
+          "findings": [
+            "Daily return correlations on available constituent snapshots support rule research and local calibration, but do not establish a complete reproduction of official constituents.",
+            "980092, 932365, and 000922 must be distinguished as the current research object, a broad benchmark, and a dividend benchmark.",
+            "Further work must check historical rule changes, point-in-time filing coverage, size/industry/valuation/quality attribution, and a unified transaction cost assumption."
+          ],
+          "limits": [
+            "Available constituent snapshots do not cover the complete ten-year history of official constituents and rule changes.",
+            "The public projection keeps aggregate results only and does not represent per-security signals, portfolio weights, or executable replay.",
+            "This has not entered a production strategy or produced a complete out-of-sample conclusion."
+          ]
+        }
+      }
     }
   ]
 }

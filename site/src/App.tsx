@@ -13,6 +13,16 @@ import Alpha810OverviewPage from './pages/Alpha810OverviewPage'
 import Alpha810FactorPage from './pages/Alpha810FactorPage'
 import { initialLocale, LocaleContext, useLocale, type Copy, type Locale } from './i18n'
 
+type Theme = 'light' | 'dark'
+
+function initialTheme(): Theme {
+  try {
+    const stored = window.localStorage.getItem('quant-factor-theme')
+    if (stored === 'dark' || stored === 'light') return stored
+  } catch { /* storage is optional */ }
+  return typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+
 function pathView(snapshot: Snapshot, catalog: FundamentalCatalog, fundamental: FundamentalSnapshot, studies: StudyCatalog, alpha810: Alpha810Snapshot, copy: Copy) {
   const records = toResearchRecords(snapshot, catalog, fundamental)
   const context = buildResearchContext(snapshot)
@@ -35,10 +45,16 @@ function pathView(snapshot: Snapshot, catalog: FundamentalCatalog, fundamental: 
 
 export default function App() {
   const [locale, setLocale] = useState<Locale>(initialLocale)
-  return <LocaleContext.Provider value={{ locale, setLocale }}><AppContent /></LocaleContext.Provider>
+  const [theme, setTheme] = useState<Theme>(initialTheme)
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
+    try { window.localStorage.setItem('quant-factor-theme', theme) } catch { /* storage is optional */ }
+  }, [theme])
+  return <LocaleContext.Provider value={{ locale, setLocale }}><AppContent theme={theme} setTheme={setTheme} /></LocaleContext.Provider>
 }
 
-function AppContent() {
+function AppContent({ theme, setTheme }: { theme: Theme; setTheme: (theme: Theme) => void }) {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const [fundamental, setFundamental] = useState<{ catalog: FundamentalCatalog; snapshot: FundamentalSnapshot } | null>(null)
   const [studies, setStudies] = useState<StudyCatalog | null>(null)
@@ -55,5 +71,6 @@ function AppContent() {
     try { window.localStorage.setItem('quant-factor-locale', next) } catch { /* storage is optional */ }
     setLocale(next)
   }
-  return <><header className="site-header"><div className="site-masthead"><a className="brand" href={import.meta.env.BASE_URL}><span className="brand-kicker">QUANT FACTOR</span><strong>OBSERVATORY</strong></a><div className="site-meta"><strong>{copy.brandMeta}</strong><span>{copy.brandMetaSub}</span></div></div><nav className="site-nav"><a className={pathname.endsWith('/') || pathname.endsWith('index.html') ? 'active' : undefined} href={import.meta.env.BASE_URL}>{copy.nav.overview}</a><a className={active('alpha810')} href={`${import.meta.env.BASE_URL}alpha810`}>{copy.nav.alpha810}</a><a className={active('factors')} href={`${import.meta.env.BASE_URL}factors`}>{copy.nav.factors}</a><a className={active('studies')} href={`${import.meta.env.BASE_URL}studies`}>{copy.nav.studies}</a><a className={active('fundamentals')} href={`${import.meta.env.BASE_URL}fundamentals`}>{copy.nav.fundamentals}</a><a className={active('jumps')} href={`${import.meta.env.BASE_URL}jumps`}>{copy.nav.jumps}</a><a className={active('hermite')} href={`${import.meta.env.BASE_URL}hermite`}>{copy.nav.hermite}</a><button type="button" className="locale-toggle" onClick={switchLocale} aria-label={`Switch to ${copy.switchTo}`}>{copy.switchTo}</button></nav></header>{pathView(snapshot, fundamental.catalog, fundamental.snapshot, studies, alpha810, copy)}<footer className="site-footer"><span>quant-factor-observatory · {pathname.startsWith('/studies') ? copy.nav.studies : snapshot.source === 'demo' ? 'Demo snapshot' : 'Public research snapshot'}</span><span>{copy.footerNote}</span></footer></>
+  const switchTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
+  return <><header className="site-header"><div className="site-masthead"><a className="brand" href={import.meta.env.BASE_URL}><span className="brand-kicker">QUANT FACTOR</span><strong>OBSERVATORY</strong></a><div className="site-meta"><strong>{copy.brandMeta}</strong><span>{copy.brandMetaSub}</span></div></div><nav className="site-nav"><a className={pathname.endsWith('/') || pathname.endsWith('index.html') ? 'active' : undefined} href={import.meta.env.BASE_URL}>{copy.nav.overview}</a><a className={active('alpha810')} href={`${import.meta.env.BASE_URL}alpha810`}>{copy.nav.alpha810}</a><a className={active('factors')} href={`${import.meta.env.BASE_URL}factors`}>{copy.nav.factors}</a><a className={active('studies')} href={`${import.meta.env.BASE_URL}studies`}>{copy.nav.studies}</a><a className={active('fundamentals')} href={`${import.meta.env.BASE_URL}fundamentals`}>{copy.nav.fundamentals}</a><a className={active('jumps')} href={`${import.meta.env.BASE_URL}jumps`}>{copy.nav.jumps}</a><a className={active('hermite')} href={`${import.meta.env.BASE_URL}hermite`}>{copy.nav.hermite}</a><button type="button" className="locale-toggle" onClick={switchLocale} aria-label={`Switch to ${copy.switchTo}`}>{copy.switchTo}</button><button type="button" className="theme-toggle" onClick={switchTheme} aria-pressed={theme === 'dark'}>{theme === 'dark' ? '☼' : '☾'} <span>{theme === 'dark' ? (locale === 'en-US' ? 'Light mode' : '浅色模式') : copy.themeToggle}</span></button></nav></header>{pathView(snapshot, fundamental.catalog, fundamental.snapshot, studies, alpha810, copy)}<footer className="site-footer"><span>quant-factor-observatory · {pathname.startsWith('/studies') ? copy.nav.studies : snapshot.source === 'demo' ? 'Demo snapshot' : 'Public research snapshot'}</span><span>{copy.footerNote}</span></footer></>
 }
