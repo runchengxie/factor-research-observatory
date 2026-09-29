@@ -1,0 +1,35 @@
+name: Validate external Alpha 810 snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      snapshot_url:
+        description: HTTPS URL for a candidate money-trees public snapshot
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate candidate snapshot
+        run: python scripts/validate_external_snapshot.py '${{ inputs.snapshot_url }}' --report snapshot-validation.json
+      - name: Install frontend dependencies
+        working-directory: site
+        run: npm ci
+      - name: Audit and build current public site
+        run: |
+          python scripts/audit_public_release.py
+          python -m unittest discover -s tests -v
+          npm run build --prefix site
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alpha810-snapshot-validation
+          path: snapshot-validation.json
