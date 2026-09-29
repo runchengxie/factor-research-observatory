@@ -2,7 +2,7 @@ import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapsho
 
 const required = ['schema_version', 'generated_at', 'source', 'datasets', 'factor_groups', 'factors', 'series', 'cross_section', 'jump_decomposition'] as const
 const fundamentalRequired = ['schema_version', 'source', 'vintage', 'coverage', 'latest_cross_section', 'validation', 'series', 'notes'] as const
-const alpha810Required = ['kind', 'schema_version', 'generated_at', 'data_version', 'code_revision', 'dataset', 'config', 'factors', 'public_limits'] as const
+const alpha810Required = ['kind', 'schema_version', 'generated_at', 'data_version', 'code_revision', 'dataset', 'config', 'factors', 'quality', 'public_limits'] as const
 
 export async function loadSnapshot(): Promise<Snapshot> {
   const response = await fetch(`${import.meta.env.BASE_URL}data/factor-snapshot.json`)

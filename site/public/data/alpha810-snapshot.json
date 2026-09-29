@@ -37277,6 +37277,34 @@
   ],
   "generated_at": "2026-09-28T23:14:36.544520+00:00",
   "kind": "moneytree_factor_evidence_snapshot",
+  "quality": {
+    "checks": [
+      {"name": "factor_count", "status": "pass", "threshold": ">= 1", "value": 810},
+      {"name": "coverage", "status": "warn", "threshold": "factors below 80% coverage = 0", "value": 4},
+      {"name": "rank_ic_availability", "status": "warn", "threshold": "missing RankIC means = 0", "value": 4}
+    ],
+    "public_limits": [
+      "Aggregate diagnostics only; no ticker-level values or portfolio weights.",
+      "Quality status is a research-data gate, not a performance or trading guarantee."
+    ],
+    "schema_version": "1.0",
+    "source": {
+      "data_version": "cn-factor-store-2023-2025-hard-drive",
+      "date_end": "2025-12-30",
+      "date_start": "2023-01-03",
+      "generated_at": "2026-09-28T23:14:36.544520+00:00"
+    },
+    "status": "warn",
+    "summary": {
+      "coverage_mean": 0.9937822858005025,
+      "coverage_min": 0.0,
+      "factor_count": 810,
+      "low_coverage_factor_count": 4,
+      "missing_rank_ic_factor_count": 4,
+      "rank_ic_mean": 0.02008473503009997,
+      "rank_ic_positive_rate_mean": 0.5623491855163409
+    }
+  },
   "public_limits": [
     "Aggregate evidence only; no ticker-level values or portfolio weights.",
     "Evidence is descriptive research output and is not a return guarantee."

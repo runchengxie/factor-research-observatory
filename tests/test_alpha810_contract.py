@@ -16,6 +16,8 @@ class Alpha810ContractTests(unittest.TestCase):
         self.assertGreaterEqual(len(value["factors"]), 2)
         self.assertIn("dataset", value)
         self.assertIn("data_version", value)
+        self.assertIn("quality", value)
+        self.assertIn(value["quality"]["status"], {"pass", "warn", "fail"})
         for factor in value["factors"]:
             self.assertNotIn("ticker", factor)
             self.assertNotIn("weights", factor)
