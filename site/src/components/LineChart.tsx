@@ -1,4 +1,4 @@
-import ReactECharts from 'echarts-for-react/lib/core'
+import ReactECharts from 'echarts-for-react/esm/core'
 import echarts from '../echarts'
 
 export default function LineChart({ dates, series }: { dates: string[]; series: Array<{ name: string; values: Array<number | null>; color: string }> }) {
