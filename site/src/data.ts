@@ -1,4 +1,4 @@
-import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
+import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyAnnualSeries, StudyCatalog } from './types'
 
 const required = ['schema_version', 'generated_at', 'source', 'datasets', 'factor_groups', 'factors', 'series', 'cross_section', 'jump_decomposition'] as const
 const fundamentalRequired = ['schema_version', 'source', 'vintage', 'coverage', 'latest_cross_section', 'validation', 'series', 'notes'] as const
@@ -34,20 +34,21 @@ export async function loadFundamentalData(): Promise<{ catalog: FundamentalCatal
 
 export async function loadStudies(): Promise<StudyCatalog> {
   const base = import.meta.env.BASE_URL
-  const [response, annualResponse] = await Promise.all([
-    fetch(`${base}data/research-studies.json`),
-    fetch(`${base}data/rd-investment-annual.json`),
-  ])
-  if (!response.ok || !annualResponse.ok) throw new Error(`无法加载研究专题（HTTP ${response.status}/${annualResponse.status}）`)
+  const response = await fetch(`${base}data/research-studies.json`)
+  if (!response.ok) throw new Error(`无法加载研究专题（HTTP ${response.status}）`)
   const value: unknown = await response.json()
-  const annualValue: unknown = await annualResponse.json()
   if (!value || typeof value !== 'object' || !Array.isArray((value as { studies?: unknown }).studies)) {
     throw new Error('研究专题数据格式无效')
   }
-  if (!annualValue || typeof annualValue !== 'object' || !Array.isArray((annualValue as { series?: unknown }).series)) throw new Error('年度研究证据格式无效')
-  const catalog = value as StudyCatalog
-  const annual = annualValue as { series: StudyCatalog['studies'][number]['annual_evidence'] }
-  return { ...catalog, studies: catalog.studies.map((study) => study.id === 'rd-investment' ? { ...study, annual_evidence: annual.series } : study) }
+  return value as StudyCatalog
+}
+
+export async function loadStudyAnnualEvidence(): Promise<StudyAnnualSeries[]> {
+  const response = await fetch(`${import.meta.env.BASE_URL}data/rd-investment-annual.json`)
+  if (!response.ok) throw new Error(`无法加载年度研究证据（HTTP ${response.status}）`)
+  const value: unknown = await response.json()
+  if (!value || typeof value !== 'object' || !Array.isArray((value as { series?: unknown }).series)) throw new Error('年度研究证据格式无效')
+  return (value as { series: StudyAnnualSeries[] }).series
 }
 
 export async function loadAlpha810Snapshot(): Promise<Alpha810Snapshot> {

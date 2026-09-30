@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { loadAlpha810Snapshot, loadFundamentalData, loadSnapshot, loadStudies } from './data'
+import { loadAlpha810Snapshot, loadFundamentalData, loadSnapshot, loadStudies, loadStudyAnnualEvidence } from './data'
 import { buildResearchContext, toResearchRecords } from './research'
 import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
 import { initialLocale, LocaleContext, useLocale, type Copy, type Locale } from './i18n'
@@ -16,6 +16,65 @@ const Alpha810OverviewPage = lazy(() => import('./pages/Alpha810OverviewPage'))
 const Alpha810FactorPage = lazy(() => import('./pages/Alpha810FactorPage'))
 
 type Theme = 'light' | 'dark'
+type FundamentalData = { catalog: FundamentalCatalog; snapshot: FundamentalSnapshot }
+type RouteData =
+  | { kind: 'overview'; snapshot: Snapshot; fundamental: FundamentalData }
+  | { kind: 'market'; snapshot: Snapshot }
+  | { kind: 'fundamentals'; fundamental: FundamentalData }
+  | { kind: 'studies'; studies: StudyCatalog }
+  | { kind: 'research'; snapshot: Snapshot; fundamental: FundamentalData }
+  | { kind: 'alpha810'; snapshot: Alpha810Snapshot }
+  | { kind: 'not-found' }
+
+function currentPath() {
+  return window.location.pathname.replace(import.meta.env.BASE_URL, '').replace(/^\//, '').replace(/\/$/, '')
+}
+
+async function loadRouteData(path: string): Promise<RouteData> {
+  if (path === '' || path === 'index.html') {
+    const [snapshot, fundamental] = await Promise.all([loadSnapshot(), loadFundamentalData()])
+    return { kind: 'overview', snapshot, fundamental }
+  }
+  if (path === 'jumps' || path === 'hermite') return { kind: 'market', snapshot: await loadSnapshot() }
+  if (path === 'fundamentals') return { kind: 'fundamentals', fundamental: await loadFundamentalData() }
+  if (path === 'studies' || path.startsWith('studies/')) {
+    const studies = await loadStudies()
+    if (path === 'studies/rd-investment') {
+      const annualEvidence = await loadStudyAnnualEvidence()
+      return { kind: 'studies', studies: { ...studies, studies: studies.studies.map((study) => study.id === 'rd-investment' ? { ...study, annual_evidence: annualEvidence } : study) } }
+    }
+    return { kind: 'studies', studies }
+  }
+  if (path === 'factors' || path.startsWith('factors/')) {
+    const [snapshot, fundamental] = await Promise.all([loadSnapshot(), loadFundamentalData()])
+    return { kind: 'research', snapshot, fundamental }
+  }
+  if (path === 'alpha810' || path.startsWith('alpha810/factors/')) return { kind: 'alpha810', snapshot: await loadAlpha810Snapshot() }
+  return { kind: 'not-found' }
+}
+
+function pathView(path: string, data: RouteData, copy: Copy) {
+  if (data.kind === 'not-found') return <main className="empty"><h1>{copy.notFound}</h1><a href={import.meta.env.BASE_URL}>{copy.backHome}</a></main>
+  if (data.kind === 'overview') {
+    const records = toResearchRecords(data.snapshot, data.fundamental.catalog, data.fundamental.snapshot)
+    return <OverviewPage snapshot={data.snapshot} records={records} context={buildResearchContext(data.snapshot)} fundamental={data.fundamental.snapshot} />
+  }
+  if (data.kind === 'market') return path === 'jumps' ? <JumpPage snapshot={data.snapshot} /> : <HermitePage snapshot={data.snapshot} />
+  if (data.kind === 'fundamentals') return <FundamentalsPage catalog={data.fundamental.catalog} snapshot={data.fundamental.snapshot} />
+  if (data.kind === 'studies') {
+    if (path === 'studies') return <StudiesPage catalog={data.studies} />
+    return <StudyDetailPage study={data.studies.studies.find((item) => item.id === path.slice(8))} />
+  }
+  if (data.kind === 'research') {
+    const records = toResearchRecords(data.snapshot, data.fundamental.catalog, data.fundamental.snapshot)
+    const context = buildResearchContext(data.snapshot)
+    if (path === 'factors') return <FactorExplorerPage records={records} context={context} />
+    const factor = records.find((item) => item.id === decodeURIComponent(path.slice(8)))
+    return <FactorPage factor={factor} context={context} fundamental={data.fundamental.snapshot} />
+  }
+  if (path === 'alpha810') return <Alpha810OverviewPage snapshot={data.snapshot} />
+  return <Alpha810FactorPage factor={data.snapshot.factors.find((item) => item.name === decodeURIComponent(path.slice(17)))} snapshot={data.snapshot} />
+}
 
 function initialTheme(): Theme {
   try {
@@ -23,26 +82,6 @@ function initialTheme(): Theme {
     if (stored === 'dark' || stored === 'light') return stored
   } catch { /* storage is optional */ }
   return typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-}
-
-function pathView(snapshot: Snapshot, catalog: FundamentalCatalog, fundamental: FundamentalSnapshot, studies: StudyCatalog, alpha810: Alpha810Snapshot, copy: Copy) {
-  const records = toResearchRecords(snapshot, catalog, fundamental)
-  const context = buildResearchContext(snapshot)
-  const path = window.location.pathname.replace(import.meta.env.BASE_URL, '').replace(/^\//, '')
-  if (path === '' || path === 'index.html') return <OverviewPage snapshot={snapshot} records={records} context={context} fundamental={fundamental} />
-  if (path === 'jumps') return <JumpPage snapshot={snapshot} />
-  if (path === 'hermite') return <HermitePage snapshot={snapshot} />
-  if (path === 'fundamentals') return <FundamentalsPage catalog={catalog} snapshot={fundamental} />
-  if (path === 'studies') return <StudiesPage catalog={studies} />
-  if (path.startsWith('studies/')) return <StudyDetailPage study={studies.studies.find((item) => item.id === path.slice(8))} />
-  if (path === 'factors') return <FactorExplorerPage records={records} context={context} />
-  if (path.startsWith('factors/')) {
-    const factor = records.find((item) => item.id === decodeURIComponent(path.slice(8)))
-    return <FactorPage factor={factor} context={context} fundamental={fundamental} />
-  }
-  if (path === 'alpha810') return <Alpha810OverviewPage snapshot={alpha810} />
-  if (path.startsWith('alpha810/factors/')) return <Alpha810FactorPage factor={alpha810.factors.find((item) => item.name === decodeURIComponent(path.slice(17)))} snapshot={alpha810} />
-  return <main className="empty"><h1>{copy.notFound}</h1><a href={import.meta.env.BASE_URL}>{copy.backHome}</a></main>
 }
 
 export default function App() {
@@ -57,15 +96,20 @@ export default function App() {
 }
 
 function AppContent({ theme, setTheme }: { theme: Theme; setTheme: (theme: Theme) => void }) {
-  const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
-  const [fundamental, setFundamental] = useState<{ catalog: FundamentalCatalog; snapshot: FundamentalSnapshot } | null>(null)
-  const [studies, setStudies] = useState<StudyCatalog | null>(null)
-  const [alpha810, setAlpha810] = useState<Alpha810Snapshot | null>(null)
+  const path = currentPath()
+  const [data, setData] = useState<RouteData | null>(null)
   const [error, setError] = useState<string | null>(null)
   const { copy, locale, setLocale } = useLocale()
-  useEffect(() => { Promise.all([loadSnapshot(), loadFundamentalData(), loadStudies(), loadAlpha810Snapshot()]).then(([main, fundamentals, studyCatalog, alphaEvidence]) => { setSnapshot(main); setFundamental(fundamentals); setStudies(studyCatalog); setAlpha810(alphaEvidence) }).catch((reason: unknown) => setError(reason instanceof Error ? reason.message : copy.loadError)) }, [copy.loadError])
-  if (error) return <main className="empty"><h1>{copy.loadError}</h1><p>{error}</p><button onClick={() => window.location.reload()}>{copy.retry}</button></main>
-  if (!snapshot || !fundamental || !studies || !alpha810) return <main className="empty"><p>{copy.loading}</p></main>
+  useEffect(() => {
+    let active = true
+    setData(null)
+    setError(null)
+    loadRouteData(path).then((result) => { if (active) setData(result) }).catch((reason: unknown) => {
+      if (active) setError(reason instanceof Error ? reason.message : copy.loadError)
+    })
+    return () => { active = false }
+  }, [path])
+
   const pathname = window.location.pathname
   const active = (segment: string) => pathname.includes(segment) ? 'active' : undefined
   const switchLocale = () => {
@@ -74,5 +118,8 @@ function AppContent({ theme, setTheme }: { theme: Theme; setTheme: (theme: Theme
     setLocale(next)
   }
   const switchTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
-  return <><header className="site-header"><div className="site-masthead"><a className="brand" href={import.meta.env.BASE_URL}><span className="brand-kicker">QUANT FACTOR</span><strong>OBSERVATORY</strong></a><div className="site-meta"><strong>{copy.brandMeta}</strong><span>{copy.brandMetaSub}</span></div></div><nav className="site-nav"><a className={pathname.endsWith('/') || pathname.endsWith('index.html') ? 'active' : undefined} href={import.meta.env.BASE_URL}>{copy.nav.overview}</a><a className={active('alpha810')} href={`${import.meta.env.BASE_URL}alpha810`}>{copy.nav.alpha810}</a><a className={active('factors')} href={`${import.meta.env.BASE_URL}factors`}>{copy.nav.factors}</a><a className={active('studies')} href={`${import.meta.env.BASE_URL}studies`}>{copy.nav.studies}</a><a className={active('fundamentals')} href={`${import.meta.env.BASE_URL}fundamentals`}>{copy.nav.fundamentals}</a><a className={active('jumps')} href={`${import.meta.env.BASE_URL}jumps`}>{copy.nav.jumps}</a><a className={active('hermite')} href={`${import.meta.env.BASE_URL}hermite`}>{copy.nav.hermite}</a><button type="button" className="locale-toggle" onClick={switchLocale} aria-label={`Switch to ${copy.switchTo}`}>{copy.switchTo}</button><button type="button" className="theme-toggle" onClick={switchTheme} aria-pressed={theme === 'dark'}>{theme === 'dark' ? '☼' : '☾'} <span>{theme === 'dark' ? (locale === 'en-US' ? 'Light mode' : '浅色模式') : copy.themeToggle}</span></button></nav></header><Suspense fallback={<main className="empty"><p>{copy.loading}</p></main>}>{pathView(snapshot, fundamental.catalog, fundamental.snapshot, studies, alpha810, copy)}</Suspense><footer className="site-footer"><span>quant-factor-observatory · {pathname.startsWith('/studies') ? copy.nav.studies : snapshot.source === 'demo' ? 'Demo snapshot' : 'Public research snapshot'}</span><span>{copy.footerNote}</span></footer></>
+  const sourceLabel = data?.kind === 'studies' || path.startsWith('studies/') ? copy.nav.studies : data && data.kind !== 'alpha810' && data.kind !== 'fundamentals' && data.kind !== 'not-found' && data.snapshot.source === 'demo' ? 'Demo snapshot' : 'Public research snapshot'
+  return <><header className="site-header"><div className="site-masthead"><a className="brand" href={import.meta.env.BASE_URL}><span className="brand-kicker">QUANT FACTOR</span><strong>OBSERVATORY</strong></a><div className="site-meta"><strong>{copy.brandMeta}</strong><span>{copy.brandMetaSub}</span></div></div><nav className="site-nav"><a className={pathname.endsWith('/') || pathname.endsWith('index.html') ? 'active' : undefined} href={import.meta.env.BASE_URL}>{copy.nav.overview}</a><a className={active('alpha810')} href={`${import.meta.env.BASE_URL}alpha810`}>{copy.nav.alpha810}</a><a className={active('factors')} href={`${import.meta.env.BASE_URL}factors`}>{copy.nav.factors}</a><a className={active('studies')} href={`${import.meta.env.BASE_URL}studies`}>{copy.nav.studies}</a><a className={active('fundamentals')} href={`${import.meta.env.BASE_URL}fundamentals`}>{copy.nav.fundamentals}</a><a className={active('jumps')} href={`${import.meta.env.BASE_URL}jumps`}>{copy.nav.jumps}</a><a className={active('hermite')} href={`${import.meta.env.BASE_URL}hermite`}>{copy.nav.hermite}</a><button type="button" className="locale-toggle" onClick={switchLocale} aria-label={`Switch to ${copy.switchTo}`}>{copy.switchTo}</button><button type="button" className="theme-toggle" onClick={switchTheme} aria-pressed={theme === 'dark'}>{theme === 'dark' ? '☼' : '☾'} <span>{theme === 'dark' ? (locale === 'en-US' ? 'Light mode' : '浅色模式') : copy.themeToggle}</span></button></nav></header>
+    {error ? <main className="empty"><h1>{copy.loadError}</h1><p>{error}</p><button onClick={() => window.location.reload()}>{copy.retry}</button></main> : !data ? <main className="empty"><p>{copy.loading}</p></main> : <Suspense fallback={<main className="empty"><p>{copy.loading}</p></main>}>{pathView(path, data, copy)}</Suspense>}
+    <footer className="site-footer"><span>quant-factor-observatory · {sourceLabel}</span><span>{copy.footerNote}</span></footer></>
 }
