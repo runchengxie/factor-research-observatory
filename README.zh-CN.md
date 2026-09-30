@@ -2,6 +2,8 @@
 
 [English README](README.md)
 
+[打开线上 Observatory](https://runchengxie.github.io/quant-factor-observatory/)
+
 面向公开研究展示的因子 Observatory：浏览因子定义、数据质量、研究状态和已脱敏的聚合证据。
 
 本仓库不是因子计算引擎，也不包含原始行情、财报数据、逐股票信号、组合权重或私有研究代码。研究计算在私有环境完成后，只向本站导出公开契约允许的静态快照。
@@ -41,5 +43,3 @@ python -m unittest discover -s tests -v
 ```
 
 Alpha 810 快照由 [`money-trees`](https://github.com/runchengxie/money-trees) 生成，本站只消费 `schema_version="1.0"` 的聚合证据。公开契约见 [Alpha 810 公开契约](docs/alpha810-public-contract.md)；研究专题发布边界见[英文契约](docs/research-publication-contract.md)和[中文说明](docs/research-publication-contract.zh-CN.md)。
-
-[English README](README.md)
