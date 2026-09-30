@@ -120,6 +120,15 @@ class PublicResearchContractTests(unittest.TestCase):
         self.assertIn("schema_version", text)
         self.assertIn("逐股票", text)
 
+    def test_pages_deployment_builds_and_checks_a_deep_link_fallback(self):
+        workflow = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text()
+        self.assertIn("cp site/dist/index.html site/dist/404.html", workflow)
+        self.assertIn("cmp site/dist/index.html site/dist/404.html", workflow)
+        self.assertIn('for route in hermite jumps fundamentals', workflow)
+        self.assertIn('mkdir -p "site/dist/$route"', workflow)
+        self.assertIn('cp site/dist/index.html "site/dist/$route/index.html"', workflow)
+        self.assertIn('cmp site/dist/index.html "site/dist/$route/index.html"', workflow)
+
     def test_public_release_audit_passes(self):
         from scripts.audit_public_release import audit
 

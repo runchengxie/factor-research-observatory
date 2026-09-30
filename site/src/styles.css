@@ -104,6 +104,29 @@
 .factor-table a strong { color: var(--ink); }
 .factor-table a:hover strong, .section-link { color: var(--accent); }
 .factor-table tr:hover td { background: #f0e9df; }
+.exploration-panel { margin-top: 10px; }
+.exploration-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 14px; margin: 16px 0 20px; }
+.exploration-controls label { display: grid; gap: 6px; min-width: min(280px, 100%); color: var(--muted); font-size: 12px; }
+.exploration-controls select { min-height: 40px; padding: 8px 10px; }
+.jump-chart-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 10px 0 20px; }
+.jump-chart-grid h3 { margin: 4px 0; font: 600 16px/1.4 "Noto Serif SC", serif; }
+.jump-table { min-width: 640px !important; }
+.decomposition-status { display: inline-block; margin: 0 0 18px; padding: 7px 10px; border: 1px solid var(--rule); font-size: 12px; }
+.decomposition-status.is-valid { border-color: #a7c5b4; background: #e9f2ea; color: #3c7652; }
+.decomposition-status.is-invalid { border-color: #dba58f; background: var(--accent-soft); color: var(--accent); }
+.quantile-panel { margin-top: 18px; }
+.quantile-values { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.quantile-values div { display: grid; gap: 6px; padding: 11px 12px; border: 1px solid var(--rule); background: var(--surface); }
+.quantile-values span { color: var(--muted); font: 11px "DM Mono", monospace; }
+.quantile-values strong { font: 600 15px "DM Mono", monospace; color: var(--ink); }
+.exploration-panel .chart-caption { margin-top: 8px; }
+.jump-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.4fr); align-items: stretch; gap: 10px; margin: 24px 0; }
+.jump-flow div { display: flex; flex-direction: column; justify-content: center; gap: 7px; min-width: 0; padding: 14px; }
+.jump-flow b { font-size: 14px; }
+.jump-flow span { font-size: 12px; line-height: 1.5; }
+.jump-flow > i { align-self: center; color: var(--accent); font-style: normal; }
+@media(max-width:700px){.jump-chart-grid{grid-template-columns:1fr}.quantile-values{grid-template-columns:repeat(2,minmax(0,1fr))}.exploration-controls{align-items:stretch}.exploration-controls label{width:100%}}
+@media(max-width:700px){.jump-flow{grid-template-columns:minmax(0,1fr);gap:7px}.jump-flow>i{justify-self:center;transform:rotate(90deg);line-height:1}}
 .status-pill, .tag { border-radius: 3px; }
 .status-descriptive { background: #e7edf0; color: #527184; }
 .status-experimental { background: #f8ebe5; color: var(--accent); }
@@ -207,6 +230,9 @@
 :root[data-theme="dark"] .context-strip dd, :root[data-theme="dark"] .context-note,
 :root[data-theme="dark"] .section-description, :root[data-theme="dark"] .provenance-panel p { color: #a8b0bf; }
 :root[data-theme="dark"] .availability-panel { border-color: #ef8d5e; }
+:root[data-theme="dark"] .decomposition-status.is-valid { border-color: #3c7652; background: #183029; color: #72d2b6; }
+:root[data-theme="dark"] .decomposition-status.is-invalid { border-color: #704436; background: #2a211f; color: #ef8d5e; }
+:root[data-theme="dark"] .quantile-values div { border-color: #263043; background: #131a27; }
 :root[data-theme="dark"] .availability-bar { border-color: #303a4d; background: #303a4d; }
 :root[data-theme="dark"] .availability-bar span { background: #5cc8b0; }
 :root[data-theme="dark"] .quality-summary span { border-color: #76513f; background: #2b241b; color: #efb36d; }
