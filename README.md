@@ -2,6 +2,8 @@
 
 [中文 README](README.zh-CN.md)
 
+[Open the live Observatory](https://runchengxie.github.io/quant-factor-observatory/)
+
 The public research Observatory for browsing factor definitions, data quality, research status, and reviewed aggregate evidence.
 
 This repository is a presentation and publication surface. It is not a factor calculation engine and contains no raw market or financial data, per-security signals, portfolio weights, private research code, or credentials. Private research produces reviewed and redacted static snapshots that satisfy the public publication contract.
@@ -36,7 +38,7 @@ They must not contain:
 
 The site consumes reviewed public snapshots committed under `site/public/data/`:
 
-`factor-snapshot.json` 是 3 只股票、42 个连续日历日期的演示数据（包含非交易日）；其历史字段 `trading_days` 在本站展示为“示例日期”。基本面 PIT 数据来自独立的 `fundamental-snapshot.json`，两者的日期区间、股票池和可用性口径不能混用。
+`factor-snapshot.json` is a demonstration dataset with 3 tickers and 42 consecutive calendar dates, including non-trading days. Its legacy `trading_days` field is displayed as “sample dates.” Fundamental PIT data comes from the separate `fundamental-snapshot.json`; their date ranges, universes, and availability definitions should not be combined.
 
 ```bash
 cd site
@@ -78,5 +80,3 @@ quant-factor-observatory
 ```
 
 Historical commits may contain removed internal implementations. If historical visibility must change, create a clean public repository or perform an explicitly authorized history rewrite after preserving backups; an ordinary deletion does not remove Git history, forks, or existing clones.
-
-[Chinese structured summary](README.zh-CN.md)
