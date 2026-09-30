@@ -75,6 +75,68 @@ test('chart routes render without React runtime errors', async ({ page }) => {
   }
 })
 
+test('Hermite explorer separates indicator scales and explains the demo window', async ({ page }) => {
+  await page.goto('hermite')
+  await expect(page.getByLabel('Hermite indicator')).toBeVisible()
+  await expect(page.getByLabel('Ticker')).toBeVisible()
+  await expect(page.getByText('42 daily observations')).toBeVisible()
+  await page.getByLabel('Hermite indicator').selectOption('h_daily_close60_ts_h3_60')
+  await expect(page.getByRole('heading', { name: /Third-order shape component/ })).toBeVisible()
+  await expect(page.getByText(/Do not interpret its sign as a standardized skewness value/i)).toBeVisible()
+})
+
+test('jump page lets readers compare additive components as shares', async ({ page }) => {
+  await page.goto('jumps')
+  await expect(page.getByLabel('Example observation')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Share of realized variance' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Composition of jump variance' })).toBeVisible()
+  await expect(page.getByRole('columnheader', { name: 'Share of RJV' })).toBeVisible()
+  await expect(page.getByText('RV = IVhat + RJV', { exact: false })).toBeVisible()
+  await expect(page.getByText('RJV = RLJV + RSJV', { exact: false })).toBeVisible()
+  await expect(page.getByText('Decomposition check passed')).toBeVisible()
+})
+
+test('jump decomposition flow stacks legibly on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('jumps')
+  await expect(page.locator('.jump-flow')).toHaveCSS('display', 'grid')
+  const columns = await page.locator('.jump-flow').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)
+  expect(columns).toBe(1)
+})
+
+test('fundamentals explorer selects published series and shows cross-sectional quantiles', async ({ page }) => {
+  await page.goto('fundamentals')
+  await expect(page.getByLabel('Series metric')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Latest operating-profit cross-section', exact: true })).toBeVisible()
+  await expect(page.getByText('p01', { exact: true })).toBeVisible()
+  await expect(page.getByText(/public time-series examples are available for only three representative tickers/)).toBeVisible()
+  await page.getByLabel('Series metric').selectOption('roe')
+  await expect(page.getByRole('heading', { name: 'Return on equity (ROE)' })).toBeVisible()
+})
+
+test('exploration pages localize new controls and evidence notes into Chinese', async ({ page }) => {
+  await page.goto('hermite')
+  await page.getByRole('button', { name: 'Switch to 中文' }).click()
+  await expect(page.getByRole('heading', { name: '寻找分布形状的变化。' })).toBeVisible()
+  await expect(page.getByLabel('Hermite 指标')).toBeVisible()
+
+  await page.goto('jumps')
+  await page.getByRole('button', { name: 'Switch to 中文' }).click()
+  await expect(page.getByRole('heading', { name: '波动并不只有一个数字。' })).toBeVisible()
+  await expect(page.getByText('分解恒等式核对通过')).toBeVisible()
+
+  await page.goto('fundamentals')
+  await page.getByRole('button', { name: 'Switch to 中文' }).click()
+  await expect(page.getByLabel('序列指标')).toBeVisible()
+  await expect(page.getByRole('heading', { name: '最新营业利润横截面' })).toBeVisible()
+
+  await page.goto('studies/rd-investment')
+  await page.getByRole('button', { name: 'Switch to 中文' }).click()
+  await expect(page.getByText(/口径修正后的回放未重跑交易成本与组合验证/)).toBeVisible()
+  await expect(page.getByText(/探索后.*fwd20.*Top-10%.*七个变体的毛收益均为负/)).toBeVisible()
+  await expect(page.getByText(/最终样本外检验与成分股生效时点审计仍未完成/)).toBeVisible()
+})
+
 test('deferred charts do not blank the page on a mobile viewport', async ({ page }) => {
   const runtimeErrors: string[] = []
   page.on('pageerror', (error) => runtimeErrors.push(error.message))

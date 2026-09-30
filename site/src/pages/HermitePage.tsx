@@ -1,16 +1,58 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import LineChart from '../components/LineChart'
-import { findSeries } from '../data'
+import ContextStrip from '../components/ContextStrip'
 import type { Snapshot } from '../types'
 import { useLocale } from '../i18n'
+import { explorationCopy } from '../explorationCopy'
+
+const metricIds = ['vol_rv_ts_closeness_60', 'h_daily_close60_ts_h3_60', 'h_daily_close60_ts_h4_60']
+const colors: Record<string, string> = {
+  vol_rv_ts_closeness_60: '#b64d33',
+  h_daily_close60_ts_h3_60: '#477a76',
+  h_daily_close60_ts_h4_60: '#6d6b9a',
+}
 
 export default function HermitePage({ snapshot }: { snapshot: Snapshot }) {
   const { locale } = useLocale()
-  const english = locale === 'en-US'
-  const [ticker, setTicker] = useState(snapshot.series[0]?.ticker ?? '')
-  const closeness = findSeries(snapshot, ticker, 'vol_rv_ts_closeness_60')
-  const h3 = findSeries(snapshot, ticker, 'h_daily_close60_ts_h3_60')
-  const h4 = findSeries(snapshot, ticker, 'h_daily_close60_ts_h4_60')
-  const dates = closeness?.dates ?? h3?.dates ?? []
-  return <main className="page"><a className="back" href={import.meta.env.BASE_URL}>← {english ? 'Factor overview' : '因子总览'}</a><section className="detail-head"><p className="eyebrow">HERMITE REGIME / 03</p><h1>{english ? 'Find the cracks in the distribution.' : '寻找分布的裂缝。'}</h1><p className="lede">{english ? 'h3 / h4 track non-Gaussianity; ts closeness compresses it into a monitorable regime-stability signal.' : 'h3 / h4 追踪非高斯性，ts closeness 将它压缩成一个可监控的体制稳定性信号。'}</p></section><section className="panel chart-panel"><div className="panel-head"><div><p className="eyebrow">ROLLING STATE</p><h2>{english ? 'Ticker: ' : '股票：'}{ticker}</h2></div><select value={ticker} onChange={(event) => setTicker(event.target.value)}>{[...new Set(snapshot.series.map((item) => item.ticker))].map((item) => <option key={item}>{item}</option>)}</select></div><LineChart dates={dates} series={[{ name: 'ts closeness', values: closeness?.values ?? [], color: '#ef8d5e' }, { name: 'h3', values: h3?.values ?? [], color: '#5cc8b0' }, { name: 'h4', values: h4?.values ?? [], color: '#bc7bea' }]} /><div className="legend-note"><b>{english ? 'Interpretation: ' : '解释：'}</b>{english ? 'Closer to 0 is more Gaussian; more negative means stronger deviation. This is a research signal, not investment advice.' : '越接近 0 越接近高斯；越负表示偏离越明显。该指标是研究信号，不是交易建议。'}</div></section></main>
+  const copy = explorationCopy[locale].hermite
+  const [metric, setMetric] = useState(metricIds[0])
+  const seriesForMetric = useMemo(() => snapshot.series.filter((item) => item.metric === metric), [snapshot.series, metric])
+  const tickers = [...new Set(seriesForMetric.map((item) => item.ticker))]
+  const [ticker, setTicker] = useState(tickers[0] ?? '')
+  const activeTicker = tickers.includes(ticker) ? ticker : tickers[0] ?? ''
+  const selected = seriesForMetric.find((item) => item.ticker === activeTicker)
+  const values = selected?.values ?? []
+  const validCount = values.filter((value) => value !== null).length
+  const metricCopy = copy.metrics[metric]
+  const dataset = snapshot.datasets[0]
+  const dates = selected?.dates ?? []
+
+  return <main className="page">
+    <a className="back" href={import.meta.env.BASE_URL}>{copy.back}</a>
+    <section className="detail-head">
+      <p className="eyebrow">{copy.eyebrow}</p><h1>{copy.title}</h1><p className="lede">{copy.lede}</p>
+      <span className="badge">{snapshot.source === 'demo' ? copy.demo : `${snapshot.source} · ${dataset?.name ?? ''}`}</span>
+    </section>
+    <ContextStrip items={[
+      { label: copy.coverage, value: `${dataset?.date_start ?? '—'} → ${dataset?.date_end ?? '—'}` },
+      { label: copy.ticker, value: `${dataset?.tickers ?? tickers.length} · ${tickers.join(', ') || '—'}` },
+      { label: copy.observations, value: `${dataset?.trading_days ?? dates.length}` },
+    ]} />
+    <section className="panel chart-panel exploration-panel">
+      <div className="exploration-controls">
+        <label>{copy.metric}<select aria-label={copy.metric} value={metric} onChange={(event) => setMetric(event.target.value)}>
+          {metricIds.filter((id) => snapshot.series.some((item) => item.metric === id)).map((id) => <option key={id} value={id}>{copy.metrics[id].label}</option>)}
+        </select></label>
+        <label>{copy.ticker}<select aria-label={copy.ticker} value={activeTicker} onChange={(event) => setTicker(event.target.value)}>
+          {tickers.map((item) => <option key={item} value={item}>{item}</option>)}
+        </select></label>
+      </div>
+      {selected && metricCopy ? <>
+        <div className="section-heading"><p className="eyebrow">{copy.series} · {metric}</p><h2>{metricCopy.title}</h2><p className="panel-note">{metricCopy.description}</p></div>
+        <LineChart dates={dates} showLegend={false} series={[{ name: metricCopy.label, values, color: colors[metric] ?? '#b64d33' }]} />
+        <p className="chart-caption">{dates[0] ?? '—'} → {dates[dates.length - 1] ?? '—'} · {validCount} {copy.observations}</p>
+      </> : <div className="chart-empty">{copy.noSeries}</div>}
+    </section>
+    <section className="research-boundary"><strong>{copy.demo}</strong> {copy.boundary}</section>
+  </main>
 }

@@ -33,7 +33,14 @@ jobs:
           BASE_PATH: /${{ github.event.repository.name }}/
         run: npm run build
       - name: Support direct route loads on Pages
-        run: cp site/dist/index.html site/dist/404.html
+        run: |
+          cp site/dist/index.html site/dist/404.html
+          cmp site/dist/index.html site/dist/404.html
+          for route in hermite jumps fundamentals; do
+            mkdir -p "site/dist/$route"
+            cp site/dist/index.html "site/dist/$route/index.html"
+            cmp site/dist/index.html "site/dist/$route/index.html"
+          done
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site/dist
