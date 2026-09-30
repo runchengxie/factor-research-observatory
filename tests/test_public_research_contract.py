@@ -78,6 +78,19 @@ class PublicResearchContractTests(unittest.TestCase):
             english = study["translations"]["en-US"]
             self.assertTrue(all(len(row) == len(english["columns"]) for row in english["rows"]), study["id"])
 
+    def test_rd_study_translations_and_public_method_note_are_consistent(self):
+        catalog = json.loads((PUBLIC_DATA / "research-studies.json").read_text())
+        study = next(item for item in catalog["studies"] if item["id"] == "rd-investment")
+        english = study["translations"]["en-US"]
+        self.assertEqual(len(english["findings"]), len(set(english["findings"])))
+        self.assertTrue(any("R&D growth" in item and "revenue" in item for item in english["findings"]))
+        self.assertIn("reserved-window", " ".join(english["limits"]))
+        self.assertEqual(study["source_url"], "research/rd-investment-method.html")
+        note = (ROOT / "site" / "public" / study["source_url"]).read_text()
+        for required_claim in ("revision_safe=false", "2020-01-23", "retrospective reserved-window diagnostic", "2015"):
+            self.assertIn(required_claim, note)
+        self.assertNotIn("/home/", note)
+
     def test_cashflow_study_is_backed_by_a_stable_source_projection(self):
         manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
         projection = next(

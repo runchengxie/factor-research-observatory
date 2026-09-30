@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <title>R&amp;D Investment Study — Public Method Note</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#f4f0e8;--panel:#f8f5ef;--ink:#252525;--muted:#716c63;--line:#d8d0c3;--accent:#a9432d}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 system-ui,-apple-system,"Segoe UI",sans-serif}.page{width:min(920px,calc(100% - 36px));margin:48px auto 80px}.panel{margin:18px 0;padding:24px;border:1px solid var(--line);background:var(--panel)}h1,h2{line-height:1.25}h1{font-size:clamp(30px,6vw,48px)}h2{margin-top:0;font-size:24px}h3{margin-bottom:4px}p,li{color:var(--muted)}a{color:var(--accent)}code{overflow-wrap:anywhere}.stamp{font-size:13px;color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}th{font-size:13px;color:var(--muted)}.warning{border-left:4px solid var(--accent);padding-left:16px}@media(max-width:600px){.page{width:calc(100% - 24px);margin-top:24px}.panel{padding:17px}table{font-size:14px}}
+    @media(prefers-color-scheme:dark){:root{--bg:#0b0e14;--panel:#131a27;--ink:#e9edf4;--muted:#a8b0bf;--line:#263043;--accent:#ef8d5e}}
+  </style>
+</head>
+<body><main class="page">
+  <p><a href="../studies/rd-investment">← Back to the R&amp;D investment study / 返回研发投入研究页</a></p>
+  <h1>R&amp;D investment relative to valuation</h1>
+  <p class="stamp">Public method note · aggregate evidence only · updated 2026-09-30<br>公开方法说明 · 仅聚合证据 · 更新于 2026-09-30</p>
+  <section class="panel"><h2>Scope and question / 研究范围与问题</h2>
+    <p>This exploratory screen asks whether R&amp;D investment scaled by valuation contains cross-sectional information about future returns, and whether the association remains after controlling for common exposures. It does not establish a deployable strategy.</p>
+    <p>本探索性筛查考察研发投入相对估值是否包含未来收益的横截面信息，以及控制常见风格暴露后这种关系是否仍存在。它不构成可部署策略结论。</p>
+    <p>The public page publishes aggregate monthly statistics only. It excludes security-level signals, holdings, weights, private data paths, and credentials.</p>
+    <p>公开页面仅发布月度聚合统计，不包含逐证券信号、持仓、权重、私有数据路径或凭证。</p>
+  </section>
+  <section class="panel"><h2>Factor definitions / 因子定义</h2>
+    <table><thead><tr><th>Variant / 变体</th><th>Public definition / 公开定义</th></tr></thead><tbody>
+      <tr><td>R&amp;D / market cap<br>研发 / 市值</td><td>TTM R&amp;D expense ÷ equity market capitalization. The denominator means this also embeds valuation and price effects.<br>TTM 研发费用 ÷ 股权市值。市值分母也会带入估值和价格效应。</td></tr>
+      <tr><td>R&amp;D / EV<br>研发 / EV</td><td>TTM R&amp;D divided by a covered-fields EV proxy: market cap plus selected debt items less cash. It is not a complete enterprise-value reconstruction.<br>TTM 研发费用除以基于可覆盖字段构造的 EV 代理：市值加部分债务项目减现金，并非完整企业价值重建。</td></tr>
+      <tr><td>Capitalized R&amp;D<br>资本化研发</td><td>Reconstructed quarterly R&amp;D flows accumulated with a five-year decay schedule (20% annual decay), divided by market cap.<br>将研发累计值还原为季度流量，以五年衰减方案（年衰减率 20%）累计后除以市值。</td></tr>
+      <tr><td>Neutralized residual<br>中性化残差</td><td>Residual from a monthly cross-sectional regression of the percentile rank of R&amp;D / market cap on size, value, leverage, 12–1 momentum, and industry controls.<br>以月度横截面回归，将研发 / 市值百分位秩对规模、价值、杠杆、12–1 动量及行业控制变量回归后取残差。</td></tr>
+      <tr><td>R&amp;D / revenue; R&amp;D / assets<br>研发 / 收入；研发 / 资产</td><td>TTM R&amp;D scaled by TTM revenue or total assets, respectively.<br>TTM 研发费用分别除以 TTM 收入或总资产。</td></tr>
+      <tr><td>R&amp;D growth<br>研发增长</td><td>Change in TTM R&amp;D relative to the comparable TTM period one year earlier.<br>TTM 研发费用相对一年前可比 TTM 期间的变化。</td></tr>
+    </tbody></table>
+  </section>
+  <section class="panel"><h2>Point-in-time and label rules / PIT 与收益标签规则</h2>
+    <ul>
+      <li>YTD income-statement items are converted to TTM as current YTD + prior full-year − prior-year same-period YTD; annual reports use the full-year amount.<br>利润表年初至今累计值按“本年累计 + 上一完整年度 − 上年同期累计”还原为 TTM；年报使用全年值。</li>
+      <li>A filing is treated as available on the next calendar day after its disclosure date; the latest filing is carried forward only while its age is no more than 540 days.<br>公告次日视为可用；最近财报仅在财报年龄不超过 540 天时沿用。</li>
+      <li>Signals are formed at month-end. Forward labels begin at the next trading-day close and use subsequent trading-session prices for 20- or 220-day horizons.<br>月末形成信号；前瞻标签从下一交易日收盘开始，按后续交易日价格计算 20 或 220 日收益。</li>
+      <li>The labels are gross price-return diagnostics. Transaction costs, market impact, executable fills, and a production portfolio are not established by these statistics.<br>收益标签是未扣成本的价格收益诊断。该统计不验证交易成本、市场冲击、实际成交或生产组合。</li>
+    </ul>
+  </section>
+  <section class="panel"><h2>Coverage and limitations / 覆盖区间与限制</h2>
+    <ul>
+      <li>20-day labels: 77 valid monthly cross-sections from 2020-01-23 through 2026-05-29. 220-day labels: 66 cross-sections through 2025-06-30; some variants have fewer valid observations.<br>20 日标签：2020-01-23 至 2026-05-29，共 77 个有效月度截面。220 日标签：至 2025-06-30 共 66 个截面，部分变体有效观测更少。</li>
+      <li>The PIT signal history starts in 2020; there is no factor signal evidence for 2015–2019. Those chart years are blank, not zero-return observations.<br>PIT 因子信号历史从 2020 年开始；2015–2019 没有因子信号证据。图中这些年份留空，不是收益为零的观测。</li>
+      <li>Annual values are arithmetic means of monthly cross-sectional statistics, not calendar-year compounded portfolio returns. Monthly labels overlap, especially at 220 days; observations are not independent. No confidence intervals are currently reported.<br>年度值为月度横截面统计的算术均值，不是自然年复利组合收益。月度标签彼此重叠，220 日期限尤其如此，观测并非独立。目前未报告置信区间。</li>
+      <li>Financial fields use a sealed historical reconstruction vintage. Announcement availability is retained, but the full historical revision chain is unavailable (revision_safe=false).<br>财务字段来自 sealed 历史重建版本，保留公告可用日，但完整历史修订链不可得（revision_safe=false）。</li>
+      <li>Historical constituent snapshots lack independent effective-time metadata; the CSI 2000 universe starts in its available 2023-08 window. Historical universe results therefore remain exploratory.<br>历史成分权重快照缺乏独立生效时点元数据；中证 2000 股票池从可用的 2023-08 窗口开始，历史股票池结果仍属探索性。</li>
+      <li>A four-month 2026-04 to 2026-07 Top-10% gross-return diagnostic was recorded on 2026-09-29, after the logged 2026-09-29 preregistration event. The available record does not independently establish that this window was sealed before exploration. It is therefore described as a retrospective reserved-window diagnostic, not a prospective or final out-of-sample test; all seven variants were negative in that window.<br>2026-04 至 2026-07 的四个月 Top-10% 毛收益诊断记录于 2026-09-29，时间晚于同日记载的预注册事件。现有记录不能独立证明该窗口在探索前已封存。因此将其描述为回顾性保留窗口诊断，而非前瞻或最终样本外检验；七个变体在该窗口均为负。</li>
+      <li>The corrected replay did not rerun cost/portfolio validation or final OOS. The result remains preliminary and is not approved for strategy or production use.<br>口径修正后的回放未重跑成本/组合验证或最终 OOS。结果仍属初步研究，未获准用于策略或生产。</li>
+    </ul>
+    <p class="warning"><strong>Interpretation / 解读边界：</strong>Positive Rank IC is an exploratory association, not proof of causal R&amp;D alpha. R&amp;D / market cap can rise because R&amp;D is high or because market cap is low.<br>正 Rank IC 是探索性相关，不是研发 Alpha 的因果证明。研发 / 市值既可能因研发高而上升，也可能因市值低而上升。</p>
+  </section>
+</main></body></html>

@@ -186,14 +186,14 @@
         "校正后的独立期限样本中，研发/市值、研发/EV 与资本化研发呈探索性正向 Rank IC；220 日标签相互重叠，不能按独立样本解读。",
         "对规模、价值、动量、杠杆和行业中性化后，Rank IC 从原始水平回落但仍为正；这不证明独立、可交易的研发 Alpha。",
         "研发增长率在 20 日近零、220 日为负；研发/收入和研发/资产较弱。",
-        "旧版 25bp 固定 Top-200 平台探针不属于本次因子定义口径修正后的回放，不与新版 Rank IC 并列表述；成本、组合验证与最终 OOS 尚未重跑。",
+        "旧版 25bp 固定 Top-200 平台探针不属于本次因子定义口径修正后的回放；成本、组合验证与最终 OOS 尚未重跑。",
         "继续作为研究候选，不进入策略或生产。"
       ],
       "limits": [
         "历史修订链不完整，revision_safe=false；信号最早仅覆盖 2020-01-23，不能据此宣称 2015 起的因子表现。行情可用到 2026-09-29，不代表因子标签也更新到该日。",
-        "图表逐年值是各月 Rank IC / 分组收益差的算术均值，不是自然年复利组合收益；220 日前瞻标签重叠，年度点不是独立检验。",
+        "图表逐年值是各月 Rank IC / 分组收益差的算术均值，不是自然年复利组合收益；220 日前瞻标签重叠，年度点不是独立检验，当前未报告置信区间。",
         "CSI300/500/1000 使用历史权重快照与前一快照敏感性检查，但缺乏独立生效/公告时间；CSI2000 从本地 2023-08 可用窗口开始。",
-        "The definition-corrected replay did not rerun cost/portfolio validation. A previously recorded four-month post-exploration fwd20 holdout (2026-04 to 2026-07) showed negative Top-10% gross returns for all seven variants; this short window is not a frozen final OOS test. The final OOS and constituent effective-time audit remain incomplete.",
+        "2026-04 至 2026-07 的四个月 Top-10% 毛收益诊断记录于 2026-09-29，晚于同日记录的预注册事件。现有记录不能独立证明该窗口在探索前已封存；因此它是回顾性保留窗口诊断而非前瞻或最终样本外检验。七个变体在该窗口均为负；口径修正后的回放未重跑成本/组合验证，最终 OOS 与成分生效时点审计未完成。",
         "公开展示只含聚合值，不含逐证券信号、权重、私有数据路径或生产结论。"
       ],
       "translations": {
@@ -249,15 +249,15 @@
           "findings": [
             "Using each horizon’s own valid observations, R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC; 220-day labels overlap and are not independent observations.",
             "Neutralizing size, value, momentum, leverage, and industry lowers Rank IC, which remains positive; this does not establish independent or tradable R&D alpha.",
-            "The older 25 bp fixed Top-200 platform probe is not part of this replay after factor definition corrections and is omitted from the comparison; cost, portfolio validation, and final OOS have not been rerun.",
-            "The older 25 bp fixed Top-200 platform probe is not part of this definition-corrected replay and is omitted from the comparison; cost, portfolio validation, and final OOS have not been rerun.",
+            "R&D growth is near zero at 20 days and negative at 220 days; R&D/revenue and R&D/assets are weak.",
+            "The older 25 bp fixed Top-200 platform probe is not part of this definition-corrected replay; cost, portfolio validation, and final OOS have not been rerun.",
             "Keep this as a research candidate; do not use it as a strategy or in production."
           ],
           "limits": [
             "The historical revision chain is incomplete (revision_safe=false). Signals begin only on 2020-01-23, so this does not establish factor performance from 2015. Market data through 2026-09-29 does not mean factor labels are current through that date.",
-            "Annual chart values are arithmetic means of monthly Rank IC / group return spreads, not compounded calendar-year portfolio returns; 220-day forward labels overlap, so annual points are not independent tests.",
+            "Annual chart values are arithmetic means of monthly Rank IC / group return spreads, not compounded calendar-year portfolio returns; 220-day forward labels overlap, so annual points are not independent tests. No confidence intervals are currently reported.",
             "CSI300/500/1000 use historical weight snapshots and a prior-snapshot sensitivity check, but lack independent effective/announcement timestamps; CSI2000 starts in the available 2023-08 window.",
-            "The definition-corrected replay did not rerun cost/portfolio validation. A previously recorded four-month post-exploration fwd20 holdout (2026-04 to 2026-07) showed negative Top-10% gross returns for all seven variants; this short window is not a frozen final OOS test. The final OOS and constituent effective-time audit remain incomplete.",
+            "A four-month Top-10% gross-return diagnostic for 2026-04 to 2026-07 was recorded on 2026-09-29, after the preregistration event logged on that date. The available record does not independently establish that this window was sealed before exploration. It is therefore a retrospective reserved-window diagnostic, not a prospective or final OOS test; all seven variants were negative. The definition-corrected replay did not rerun cost/portfolio validation, and the final OOS and constituent effective-time audit remain incomplete.",
             "The public view contains aggregates only, not per-security signals, weights, private data paths, or production conclusions."
           ]
         }
@@ -279,10 +279,10 @@
         },
         {
           "date": "2026-09-29",
-          "stage": "记录探索后短期观察",
-          "stage_en": "Post-exploration short-horizon observation recorded",
-          "note": "2026-04 至 2026-07 的四个月 fwd20 Top-10% 毛收益在七个变体均为负；窗口短，不构成冻结的最终样本外检验。",
-          "note_en": "Top-10% gross fwd20 returns were negative for all seven variants from 2026-04 to 2026-07; the window is short and is not a frozen final out-of-sample test."
+          "stage": "记录回顾性保留窗口诊断",
+          "stage_en": "Retrospective reserved-window diagnostic recorded",
+          "note": "记录 2026-04 至 2026-07 的四个月 fwd20 Top-10% 毛收益观察，七个变体均为负。该记录晚于同日预注册日志；现有证据不能独立证明窗口事先封存，故不称为前瞻或最终样本外检验。",
+          "note_en": "Recorded the four-month fwd20 Top-10% gross-return observation for 2026-04 to 2026-07; all seven variants were negative. The record postdates the preregistration log on the same day, and available evidence does not independently establish prior sealing, so this is not called prospective or final out-of-sample evidence."
         },
         {
           "date": "2026-09-30",
@@ -292,7 +292,7 @@
           "note_en": "Recomputed monthly Rank IC and grouped aggregates after correcting PIT factor definitions. The older platform Top-200 probe, transaction costs, CPCV, and final OOS were not rerun with this replay, so the work remains preliminary."
         }
       ],
-      "source_url": "https://github.com/runchengxie/quant-research/blob/main/docs/research/experiments/rd_to_market_cap/README.md"
+      "source_url": "research/rd-investment-method.html"
     },
     {
       "id": "employee-compensation",

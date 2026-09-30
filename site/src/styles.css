@@ -43,6 +43,7 @@
 .study-columns li{margin:9px 0}
 .study-source{margin-top:22px;color:#b64d33}
 .study-source a{text-decoration:underline;text-underline-offset:4px}
+.rd-method-panel{margin-top:18px}.rd-method-panel .factor-table{min-width:860px}.rd-method-panel .factor-table td:first-child{width:24%;font-weight:600}.method-notes{padding-left:22px;color:#514b43;line-height:1.8}.method-notes li{margin:8px 0}.method-notes a{color:#b64d33;text-decoration:underline;text-underline-offset:3px}.annual-latest-callout{display:grid;gap:7px;margin:8px 0 18px;border:1px solid #dba58f;background:#ede5d9;padding:15px 17px;color:#514b43;line-height:1.7}.annual-latest-callout strong{color:#a9432d}.annual-table-wrap{margin:18px 0 8px}.annual-table{min-width:620px!important}.annual-table caption{text-align:left;padding:0 12px 10px;color:#81796e;font-size:12px}.annual-table td:first-child{font-weight:600}.annual-table td small{display:block;margin-top:4px;color:#a9432d}
 @media(max-width:800px){.study-grid{grid-template-columns:1fr 1fr}.study-context,.study-columns{grid-template-columns:1fr}}
 @media(max-width:560px){.study-grid{grid-template-columns:1fr}}
 .locale-toggle{border:1px solid #d8d0c3;border-radius:999px;padding:7px 11px;color:#b64d33;background:transparent;font:11px "DM Mono",monospace;cursor:pointer;white-space:nowrap}.locale-toggle:hover{border-color:#c84b2f;color:#252525}
@@ -181,6 +182,7 @@
 :root[data-theme="dark"] .factor-tile code, :root[data-theme="dark"] .factor-tile small,
 :root[data-theme="dark"] .catalog-row code, :root[data-theme="dark"] .catalog-row small { color: #a8b0bf; }
 :root[data-theme="dark"] .study-page .factor-table td { color: #d0d7e2; border-color: #263043; }
+:root[data-theme="dark"] .method-notes{color:#d0d7e2}:root[data-theme="dark"] .annual-latest-callout{border-color:#704436;background:#2a211f;color:#d0d7e2}:root[data-theme="dark"] .annual-latest-callout strong,:root[data-theme="dark"] .annual-table td small{color:#ef8d5e}
 :root[data-theme="dark"] .study-page .factor-table tr:hover td { background: #1b2432; }
 :root[data-theme="dark"] .study-context, :root[data-theme="dark"] .metrics,
 :root[data-theme="dark"] .group-grid, :root[data-theme="dark"] .context-strip,

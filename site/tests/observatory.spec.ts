@@ -37,6 +37,20 @@ test('language switch changes the rendered study catalog', async ({ page }) => {
   await expect(page.getByText('R&D Investment Relative to Valuation: Signal or Size Exposure?')).toBeVisible()
 })
 
+test('R&D study shows annual sample counts and an accessible public method note', async ({ page }) => {
+  await page.goto('studies/rd-investment')
+  await expect(page.getByRole('heading', { name: 'What was measured' })).toBeVisible()
+  await expect(page.getByText('TTM R&D expense divided by equity market capitalization', { exact: false })).toBeVisible()
+  await page.locator('.study-page > div[style*="min-height"]').scrollIntoViewIfNeeded()
+  await expect(page.getByRole('heading', { name: 'How the signal changed over time' })).toBeVisible({ timeout: 15000 })
+  await expect(page.getByRole('columnheader', { name: 'Monthly cross-sections' })).toBeVisible()
+  await expect(page.locator('.annual-table tbody tr').last()).toContainText('2026')
+  await expect(page.locator('.annual-table tbody tr').last()).toContainText('5')
+  await page.getByRole('link', { name: 'Public methodology note' }).click()
+  await expect(page.getByRole('heading', { name: 'R&D investment relative to valuation' })).toBeVisible()
+  await expect(page.getByText(/revision_safe=false/)).toBeVisible()
+})
+
 test('theme switch persists across reloads', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: /Dark mode/ }).click()
