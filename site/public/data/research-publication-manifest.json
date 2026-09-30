@@ -1,6 +1,6 @@
 {
   "schema_version": "observatory.research_publication.v1",
-  "generated_at": "2026-09-29",
+  "generated_at": "2026-09-30",
   "source_repository": "quant-research",
   "source_manifest": "docs/research/knowledge-pilot.yml",
   "projections": [
@@ -21,7 +21,9 @@
         "period",
         "findings",
         "limits",
-        "aggregate_rows"
+        "aggregate_rows",
+        "annual_aggregate_series",
+        "research_log"
       ],
       "excluded_fields": [
         "private_data_paths",

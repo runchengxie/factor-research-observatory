@@ -33,13 +33,21 @@ export async function loadFundamentalData(): Promise<{ catalog: FundamentalCatal
 }
 
 export async function loadStudies(): Promise<StudyCatalog> {
-  const response = await fetch(`${import.meta.env.BASE_URL}data/research-studies.json`)
-  if (!response.ok) throw new Error(`无法加载研究专题（HTTP ${response.status}）`)
+  const base = import.meta.env.BASE_URL
+  const [response, annualResponse] = await Promise.all([
+    fetch(`${base}data/research-studies.json`),
+    fetch(`${base}data/rd-investment-annual.json`),
+  ])
+  if (!response.ok || !annualResponse.ok) throw new Error(`无法加载研究专题（HTTP ${response.status}/${annualResponse.status}）`)
   const value: unknown = await response.json()
+  const annualValue: unknown = await annualResponse.json()
   if (!value || typeof value !== 'object' || !Array.isArray((value as { studies?: unknown }).studies)) {
     throw new Error('研究专题数据格式无效')
   }
-  return value as StudyCatalog
+  if (!annualValue || typeof annualValue !== 'object' || !Array.isArray((annualValue as { series?: unknown }).series)) throw new Error('年度研究证据格式无效')
+  const catalog = value as StudyCatalog
+  const annual = annualValue as { series: StudyCatalog['studies'][number]['annual_evidence'] }
+  return { ...catalog, studies: catalog.studies.map((study) => study.id === 'rd-investment' ? { ...study, annual_evidence: annual.series } : study) }
 }
 
 export async function loadAlpha810Snapshot(): Promise<Alpha810Snapshot> {
