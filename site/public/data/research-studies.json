@@ -139,7 +139,7 @@
       "status_label": "初步筛选",
       "summary": "校正后的 sealed 公告事件 PIT 月度回放覆盖七个预注册变体；研发 / 市值、研发 / EV 和资本化研发呈探索性正向 Rank IC，中性化后减弱。信号回放从 2020 年开始，不能推断 2015 年以来的因子表现。",
       "period": "20 日标签：2020-01-23 至 2026-05-29，77 个有效月度截面；220 日标签：2020-01-23 至 2025-06-30，66 个截面（研发增长样本略少）",
-      "source_note": "校正后聚合回放：sealed announcement-event PIT vintage=20260926。公告可用日保留，但完整历史修订链不可还原；仅发布月度横截面聚合统计。",
+      "source_note": "校正后聚合回放：sealed announcement-event PIT vintage=20260926。财务字段来自历史重建版本，保留公告可用日但无法还原完整历史修订链；仅发布月度横截面聚合统计。",
       "columns": [
         "预注册变体",
         "20 日平均 Rank IC",
@@ -186,14 +186,14 @@
         "校正后的独立期限样本中，研发/市值、研发/EV 与资本化研发呈探索性正向 Rank IC；220 日标签相互重叠，不能按独立样本解读。",
         "对规模、价值、动量、杠杆和行业中性化后，Rank IC 从原始水平回落但仍为正；这不证明独立、可交易的研发 Alpha。",
         "研发增长率在 20 日近零、220 日为负；研发/收入和研发/资产较弱。",
-        "旧版 25bp 固定 Top-200 平台探针不属于本次公式校正后的回放，不与新版 Rank IC 并列表述；成本、组合验证与最终 OOS 尚未重跑。",
+        "旧版 25bp 固定 Top-200 平台探针不属于本次因子定义口径修正后的回放，不与新版 Rank IC 并列表述；成本、组合验证与最终 OOS 尚未重跑。",
         "继续作为研究候选，不进入策略或生产。"
       ],
       "limits": [
         "历史修订链不完整，revision_safe=false；信号最早仅覆盖 2020-01-23，不能据此宣称 2015 起的因子表现。行情可用到 2026-09-29，不代表因子标签也更新到该日。",
         "图表逐年值是各月 Rank IC / 分组收益差的算术均值，不是自然年复利组合收益；220 日前瞻标签重叠，年度点不是独立检验。",
         "CSI300/500/1000 使用历史权重快照与前一快照敏感性检查，但缺乏独立生效/公告时间；CSI2000 从本地 2023-08 可用窗口开始。",
-        "The formula-corrected replay did not rerun cost/portfolio validation. A previously recorded four-month post-exploration fwd20 holdout (2026-04 to 2026-07) showed negative Top-10% gross returns for all seven variants; this short window is not a frozen final OOS test. The final OOS and constituent effective-time audit remain incomplete.",
+        "The definition-corrected replay did not rerun cost/portfolio validation. A previously recorded four-month post-exploration fwd20 holdout (2026-04 to 2026-07) showed negative Top-10% gross returns for all seven variants; this short window is not a frozen final OOS test. The final OOS and constituent effective-time audit remain incomplete.",
         "公开展示只含聚合值，不含逐证券信号、权重、私有数据路径或生产结论。"
       ],
       "translations": {
@@ -203,7 +203,7 @@
           "status_label": "Preliminary screen",
           "summary": "A corrected sealed announcement-event PIT replay covers seven preregistered variants. R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC, weaker after neutralization. The replay starts in 2020 and does not establish factor performance from 2015.",
           "period": "20-day labels: 2020-01-23 to 2026-05-29, 77 valid monthly cross-sections; 220-day labels: 2020-01-23 to 2025-06-30, 66 cross-sections (slightly fewer for R&D growth)",
-          "source_note": "Corrected aggregate replay using sealed announcement-event PIT vintage=20260926. Announcement availability is retained, but the complete historical revision chain cannot be reconstructed; only monthly cross-sectional aggregates are published.",
+          "source_note": "Corrected aggregate replay using sealed announcement-event PIT vintage=20260926. Financial fields come from a historically reconstructed vintage; announcement availability is retained, but the complete historical revision chain cannot be reconstructed. Only monthly cross-sectional aggregates are published.",
           "columns": [
             "Preregistered variant",
             "20-day mean Rank IC",
@@ -249,15 +249,15 @@
           "findings": [
             "Using each horizon’s own valid observations, R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC; 220-day labels overlap and are not independent observations.",
             "Neutralizing size, value, momentum, leverage, and industry lowers Rank IC, which remains positive; this does not establish independent or tradable R&D alpha.",
-            "R&D growth is near zero at 20 days and negative at 220 days; R&D/revenue and R&D/assets are weaker.",
-            "The older 25 bp fixed Top-200 platform probe is not part of this formula-corrected replay and is omitted from the comparison; cost, portfolio validation, and final OOS have not been rerun.",
+            "The older 25 bp fixed Top-200 platform probe is not part of this replay after factor definition corrections and is omitted from the comparison; cost, portfolio validation, and final OOS have not been rerun.",
+            "The older 25 bp fixed Top-200 platform probe is not part of this definition-corrected replay and is omitted from the comparison; cost, portfolio validation, and final OOS have not been rerun.",
             "Keep this as a research candidate; do not use it as a strategy or in production."
           ],
           "limits": [
             "The historical revision chain is incomplete (revision_safe=false). Signals begin only on 2020-01-23, so this does not establish factor performance from 2015. Market data through 2026-09-29 does not mean factor labels are current through that date.",
             "Annual chart values are arithmetic means of monthly Rank IC / group return spreads, not compounded calendar-year portfolio returns; 220-day forward labels overlap, so annual points are not independent tests.",
             "CSI300/500/1000 use historical weight snapshots and a prior-snapshot sensitivity check, but lack independent effective/announcement timestamps; CSI2000 starts in the available 2023-08 window.",
-            "The formula-corrected replay did not rerun cost/portfolio validation. A previously recorded four-month post-exploration fwd20 holdout (2026-04 to 2026-07) showed negative Top-10% gross returns for all seven variants; this short window is not a frozen final OOS test. The final OOS and constituent effective-time audit remain incomplete.",
+            "The definition-corrected replay did not rerun cost/portfolio validation. A previously recorded four-month post-exploration fwd20 holdout (2026-04 to 2026-07) showed negative Top-10% gross returns for all seven variants; this short window is not a frozen final OOS test. The final OOS and constituent effective-time audit remain incomplete.",
             "The public view contains aggregates only, not per-security signals, weights, private data paths, or production conclusions."
           ]
         }
@@ -286,10 +286,10 @@
         },
         {
           "date": "2026-09-30",
-          "stage": "修正公式口径并重放",
-          "stage_en": "Formula definitions corrected and replayed",
-          "note": "校正 PIT 因子公式后重算月度 Rank IC 与分组聚合。旧版平台 Top-200 探针、交易成本、CPCV 和最终 OOS 未随本次重放更新，因此仍为初步研究。",
-          "note_en": "Recomputed monthly Rank IC and grouped aggregates after correcting PIT factor formulas. The older platform Top-200 probe, transaction costs, CPCV, and final OOS were not rerun with this replay, so the work remains preliminary."
+          "stage": "修正因子定义口径并重放",
+          "stage_en": "Factor definitions corrected and replayed",
+          "note": "修正 PIT 因子定义口径后重算月度 Rank IC 与分组聚合。旧版平台 Top-200 探针、交易成本、CPCV 和最终 OOS 未随本次重放更新，因此仍为初步研究。",
+          "note_en": "Recomputed monthly Rank IC and grouped aggregates after correcting PIT factor definitions. The older platform Top-200 probe, transaction costs, CPCV, and final OOS were not rerun with this replay, so the work remains preliminary."
         }
       ],
       "source_url": "https://github.com/runchengxie/quant-research/blob/main/docs/research/experiments/rd_to_market_cap/README.md"
