@@ -1,4 +1,4 @@
-import ReactECharts from 'echarts-for-react/lib/core'
+import ReactECharts from 'echarts-for-react/esm/core'
 import echarts from '../echarts'
 import type { Alpha810FactorEvidence } from '../types'
 

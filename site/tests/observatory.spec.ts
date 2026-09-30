@@ -46,6 +46,33 @@ test('theme switch persists across reloads', async ({ page }) => {
   await expect(page.getByRole('button', { name: /Light mode/ })).toBeVisible()
 })
 
+test('chart routes render without React runtime errors', async ({ page }) => {
+  const runtimeErrors: string[] = []
+  page.on('pageerror', (error) => runtimeErrors.push(error.message))
+  const cases = [
+    { route: 'jumps', heading: 'Volatility is not one number.', chart: '.chart-panel .echarts-for-react, .chart-panel .chart-empty' },
+    { route: 'hermite', heading: 'Find the cracks in the distribution.', chart: '.chart-panel .echarts-for-react' },
+  ]
+  for (const { route, heading, chart } of cases) {
+    await page.goto(route)
+    await expect(page.getByRole('heading', { name: heading })).toBeVisible()
+    await expect(page.locator(chart).first()).toBeVisible()
+    expect(runtimeErrors, route).toEqual([])
+  }
+})
+
+test('deferred charts do not blank the page on a mobile viewport', async ({ page }) => {
+  const runtimeErrors: string[] = []
+  page.on('pageerror', (error) => runtimeErrors.push(error.message))
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/')
+  await expect(page.getByRole('heading', { name: 'Turn market data into readable structure.' })).toBeVisible()
+  await page.getByRole('heading', { name: 'Factor map' }).scrollIntoViewIfNeeded()
+  await expect(page.locator('.research-chart .echarts-for-react')).toBeVisible()
+  expect(runtimeErrors).toEqual([])
+  await expect(page.locator('main')).toBeVisible()
+})
+
 test('routes request only the public data snapshots they need', async ({ page }) => {
   const dataResponses: Array<{ name: string; body: Promise<Buffer> }> = []
   let echartsRequested = false

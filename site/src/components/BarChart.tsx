@@ -1,4 +1,4 @@
-import ReactECharts from 'echarts-for-react/lib/core'
+import ReactECharts from 'echarts-for-react/esm/core'
 import echarts from '../echarts'
 
 export default function BarChart({ labels, values, colors, percent = false }: { labels: string[]; values: Array<number | null>; colors: string[]; percent?: boolean }) {
