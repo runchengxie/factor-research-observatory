@@ -10,9 +10,12 @@ test.beforeEach(async ({ page }) => {
 
 test('English public pages do not render Chinese catalog content', async ({ page }) => {
   for (const route of ['/', '/studies', '/factors', '/fundamentals', '/jumps', '/hermite', '/alpha810']) {
-    await page.goto(route)
-    await expect(page.locator('main'), route).toBeVisible({ timeout: 15000 })
-    expect(await page.locator('main').innerText(), route).not.toMatch(chinese)
+    const routePage = await page.context().newPage()
+    routePage.on('pageerror', (error) => console.error(`Browser error on ${route}: ${error.message}`))
+    await routePage.goto(route)
+    await expect(routePage.locator('main'), route).toBeVisible({ timeout: 15000 })
+    expect(await routePage.locator('main').innerText(), route).not.toMatch(chinese)
+    await routePage.close()
   }
 })
 
