@@ -129,6 +129,12 @@ test('exploration pages localize new controls and evidence notes into Chinese', 
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
   await expect(page.getByLabel('序列指标')).toBeVisible()
   await expect(page.getByRole('heading', { name: '最新营业利润横截面' })).toBeVisible()
+
+  await page.goto('studies/rd-investment')
+  await page.getByRole('button', { name: 'Switch to 中文' }).click()
+  await expect(page.getByText(/口径修正后的回放未重跑交易成本与组合验证/)).toBeVisible()
+  await expect(page.getByText(/探索后.*fwd20.*Top-10%.*七个变体的毛收益均为负/)).toBeVisible()
+  await expect(page.getByText(/最终样本外检验与成分股生效时点审计仍未完成/)).toBeVisible()
 })
 
 test('deferred charts do not blank the page on a mobile viewport', async ({ page }) => {
