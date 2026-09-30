@@ -25,6 +25,19 @@
 .study-page .panel{margin-bottom:18px}
 .study-page .factor-table{min-width:620px}
 .study-page .factor-table td:first-child{width:auto}
+.study-chart-controls{display:flex;flex-wrap:wrap;gap:16px;margin:18px 0 10px}
+.study-chart-controls label{display:flex;align-items:center;gap:9px;color:#716c63;font-size:12px}
+.annual-evidence-panel{margin-top:18px}
+.annual-chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.annual-chart-grid h3{margin:8px 0 0;font:600 15px "Noto Serif SC",serif}
+.panel-note{color:#81796e;font-size:12px;line-height:1.7}
+.research-log ol{list-style:none;margin:22px 0 0;padding:0}
+.research-log li{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:18px 0;border-top:1px solid #e2dbd0}
+.research-log time{color:#b64d33;font:12px "DM Mono",monospace}
+.research-log li strong{font-size:14px}
+.research-log li p{margin:7px 0 0;font-size:13px}
+@media(max-width:800px){.annual-chart-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.study-chart-controls label{width:100%;justify-content:space-between}.research-log li{grid-template-columns:1fr;gap:8px}}
 .study-columns{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
 .study-columns ul{padding-left:21px;color:#514b43;line-height:1.8}
 .study-columns li{margin:9px 0}

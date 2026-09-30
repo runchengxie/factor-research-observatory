@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29",
+  "updated_at": "2026-09-30",
   "studies": [
     {
       "id": "pb-roe",
@@ -137,119 +137,162 @@
       "family": "研发与无形资产",
       "status": "preliminary",
       "status_label": "初步筛选",
-      "summary": "基于 sealed 公告事件 PIT 的 7 个预注册变体回测显示，R&D/市值、R&D/EV 和资本化研发在 20 日与 220 日标签上有探索性正相关；R&D 增长较弱，规模、估值、动量、杠杆和行业中性化后信号减弱。结果仍是 preliminary。",
-      "period": "2018-01 至 2026-03；77 个有效月度横截面，平台探针 67 次调仓",
-      "source_note": "来自私有研究环境的聚合诊断；使用 vintage=20260926 的 sealed 公告事件 PIT 历史重建版本，保留公告可用日，但无法还原完整历史修订链。",
+      "summary": "校正后的 sealed 公告事件 PIT 月度回放覆盖七个预注册变体；研发 / 市值、研发 / EV 和资本化研发呈探索性正向 Rank IC，中性化后减弱。信号回放从 2020 年开始，不能推断 2015 年以来的因子表现。",
+      "period": "20 日标签：2020-01-23 至 2026-05-29，77 个有效月度截面；220 日标签：2020-01-23 至 2025-06-30，66 个截面（研发增长样本略少）",
+      "source_note": "校正后聚合回放：sealed announcement-event PIT vintage=20260926。财务字段来自历史重建版本，保留公告可用日但无法还原完整历史修订链；仅发布月度横截面聚合统计。",
       "columns": [
-        "信号",
+        "预注册变体",
         "20 日平均 Rank IC",
-        "220 日平均 Rank IC",
-        "quant-platform 25bp 固定 Top-200 探针 Sharpe"
+        "220 日平均 Rank IC"
       ],
       "rows": [
         [
-          "研发投入相对市值",
-          "5.21%",
-          "12.54%",
-          "0.96"
+          "研发 / 市值",
+          "4.85%",
+          "12.81%"
         ],
         [
-          "规模/价值/动量/杠杆/行业中性化残差",
-          "2.62%",
-          "6.43%",
-          "0.73"
-        ],
-        [
-          "研发相对收入",
-          "1.38%",
-          "3.35%",
-          "0.42"
-        ],
-        [
-          "研发增长率",
-          "-0.53%",
-          "-2.39%",
-          "0.61"
+          "研发 / 企业价值（EV）",
+          "4.71%",
+          "12.62%"
         ],
         [
           "五年衰减资本化研发",
-          "5.38%",
-          "12.46%",
-          "1.00"
+          "5.00%",
+          "13.08%"
+        ],
+        [
+          "规模/价值/动量/杠杆/行业中性化残差",
+          "2.00%",
+          "5.99%"
+        ],
+        [
+          "研发 / 收入",
+          "0.24%",
+          "0.56%"
+        ],
+        [
+          "研发 / 资产",
+          "0.55%",
+          "1.89%"
+        ],
+        [
+          "研发增长率",
+          "-0.07%",
+          "-2.57%"
         ]
       ],
       "findings": [
-        "原始 R&D/市值结果不能直接解释为独立研发收益，完整中性化后仍有正向但较弱的探索性结果。",
-        "R&D/EV 与资本化研发的长期标签结果较强；R&D 增长率没有稳定的横截面证据。",
-        "固定 Top-200、25bp 成本的 quant-platform 探针只用于检查组合层接口，不替代预注册十分位组合验证。",
-        "当前仅保留为研究候选，不进入策略或生产。"
+        "校正后的独立期限样本中，研发/市值、研发/EV 与资本化研发呈探索性正向 Rank IC；220 日标签相互重叠，不能按独立样本解读。",
+        "对规模、价值、动量、杠杆和行业中性化后，Rank IC 从原始水平回落但仍为正；这不证明独立、可交易的研发 Alpha。",
+        "研发增长率在 20 日近零、220 日为负；研发/收入和研发/资产较弱。",
+        "旧版 25bp 固定 Top-200 平台探针不属于本次因子定义口径修正后的回放，不与新版 Rank IC 并列表述；成本、组合验证与最终 OOS 尚未重跑。",
+        "继续作为研究候选，不进入策略或生产。"
       ],
       "limits": [
-        "历史修订链不完整，结果 revision_safe=false。",
-        "CSI300/500/1000 已使用历史权重快照完成可用因子区间对照，并做了前一快照敏感性分析；权重文件未提供独立生效/公告时间，CSI2000 已覆盖本地资产可用的 2023-08 起始窗口。",
-        "组合 purged/CPCV 诊断已完成；owner 已接受前一快照股票池口径用于研究探索但拒绝生产晋升；2026-04 至 2026-07 的四个月 post-exploration fwd20 holdout 中七个变体的 Top-10% 毛收益均为负，冻结 final OOS 和成分生效时点审计尚未完成。",
-        "公开投影只保留聚合值，不代表逐股票信号、组合权重或生产结论。"
+        "历史修订链不完整，revision_safe=false；信号最早仅覆盖 2020-01-23，不能据此宣称 2015 起的因子表现。行情可用到 2026-09-29，不代表因子标签也更新到该日。",
+        "图表逐年值是各月 Rank IC / 分组收益差的算术均值，不是自然年复利组合收益；220 日前瞻标签重叠，年度点不是独立检验。",
+        "CSI300/500/1000 使用历史权重快照与前一快照敏感性检查，但缺乏独立生效/公告时间；CSI2000 从本地 2023-08 可用窗口开始。",
+        "The definition-corrected replay did not rerun cost/portfolio validation. A previously recorded four-month post-exploration fwd20 holdout (2026-04 to 2026-07) showed negative Top-10% gross returns for all seven variants; this short window is not a frozen final OOS test. The final OOS and constituent effective-time audit remain incomplete.",
+        "公开展示只含聚合值，不含逐证券信号、权重、私有数据路径或生产结论。"
       ],
       "translations": {
         "en-US": {
           "title": "R&D Investment Relative to Valuation: Signal or Size Exposure?",
           "family": "R&D and intangible assets",
           "status_label": "Preliminary screen",
-          "summary": "Backtests of seven pre-registered variants using sealed announcement-event PIT data show exploratory positive associations for R&D/market cap, R&D/EV, and capitalized R&D at 20-day and 220-day horizons. R&D growth is weaker, and the signal declines after neutralizing for size, valuation, momentum, leverage, and industry. The result remains preliminary.",
-          "period": "2018-01 to 2026-03; 77 valid monthly cross-sections and 67 platform probe rebalances",
-          "source_note": "Aggregate diagnostics from a private research environment using the sealed announcement-event PIT historical reconstruction vintage=20260926. Announcement availability dates are retained, but the complete historical revision chain cannot be reconstructed.",
+          "summary": "A corrected sealed announcement-event PIT replay covers seven preregistered variants. R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC, weaker after neutralization. The replay starts in 2020 and does not establish factor performance from 2015.",
+          "period": "20-day labels: 2020-01-23 to 2026-05-29, 77 valid monthly cross-sections; 220-day labels: 2020-01-23 to 2025-06-30, 66 cross-sections (slightly fewer for R&D growth)",
+          "source_note": "Corrected aggregate replay using sealed announcement-event PIT vintage=20260926. Financial fields come from a historically reconstructed vintage; announcement availability is retained, but the complete historical revision chain cannot be reconstructed. Only monthly cross-sectional aggregates are published.",
           "columns": [
-            "Signal",
+            "Preregistered variant",
             "20-day mean Rank IC",
-            "220-day mean Rank IC",
-            "quant-platform 25 bp fixed Top-200 probe Sharpe"
+            "220-day mean Rank IC"
           ],
           "rows": [
             [
-              "R&D relative to market cap",
-              "5.21%",
-              "12.54%",
-              "0.96"
+              "R&D / market cap",
+              "4.85%",
+              "12.81%"
             ],
             [
-              "Residual after neutralizing size/value/momentum/leverage/industry",
-              "2.62%",
-              "6.43%",
-              "0.73"
-            ],
-            [
-              "R&D relative to revenue",
-              "1.38%",
-              "3.35%",
-              "0.42"
-            ],
-            [
-              "R&D growth rate",
-              "-0.53%",
-              "-2.39%",
-              "0.61"
+              "R&D / enterprise value (EV)",
+              "4.71%",
+              "12.62%"
             ],
             [
               "Five-year decayed capitalized R&D",
-              "5.38%",
-              "12.46%",
-              "1.00"
+              "5.00%",
+              "13.08%"
+            ],
+            [
+              "Residual after neutralizing size/value/momentum/leverage/industry",
+              "2.00%",
+              "5.99%"
+            ],
+            [
+              "R&D / revenue",
+              "0.24%",
+              "0.56%"
+            ],
+            [
+              "R&D / assets",
+              "0.55%",
+              "1.89%"
+            ],
+            [
+              "R&D growth rate",
+              "-0.07%",
+              "-2.57%"
             ]
           ],
           "findings": [
-            "The raw R&D/market cap result cannot be interpreted as an independent R&D return; the fully neutralized result remains positive but weaker as exploratory evidence.",
-            "R&D/EV and capitalized R&D have stronger long-horizon labels; R&D growth has no stable cross-sectional evidence.",
-            "The fixed Top-200 probe with 25 bp cost checks the portfolio interface only; it does not replace the pre-registered decile portfolio validation.",
+            "Using each horizon’s own valid observations, R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC; 220-day labels overlap and are not independent observations.",
+            "Neutralizing size, value, momentum, leverage, and industry lowers Rank IC, which remains positive; this does not establish independent or tradable R&D alpha.",
+            "The older 25 bp fixed Top-200 platform probe is not part of this replay after factor definition corrections and is omitted from the comparison; cost, portfolio validation, and final OOS have not been rerun.",
+            "The older 25 bp fixed Top-200 platform probe is not part of this definition-corrected replay and is omitted from the comparison; cost, portfolio validation, and final OOS have not been rerun.",
             "Keep this as a research candidate; do not use it as a strategy or in production."
           ],
           "limits": [
-            "The historical revision chain is incomplete; revision_safe=false.",
-            "CSI300/500/1000 use historical weight snapshots and a prior-snapshot sensitivity check. The weight files have no independent effective or announcement timestamp, while CSI2000 is covered from the available 2023-08 inception window.",
-            "The purged/CPCV portfolio diagnostic is complete; the owner accepted the prior-snapshot universe policy for research exploration but rejected production promotion. All seven variants had negative Top-10% gross returns in the four-month post-exploration fwd20 holdout from 2026-04 to 2026-07; a frozen final OOS and constituent effective-time audit remain incomplete.",
-            "The public projection keeps aggregate values only and does not represent per-security signals, portfolio weights, or production conclusions."
+            "The historical revision chain is incomplete (revision_safe=false). Signals begin only on 2020-01-23, so this does not establish factor performance from 2015. Market data through 2026-09-29 does not mean factor labels are current through that date.",
+            "Annual chart values are arithmetic means of monthly Rank IC / group return spreads, not compounded calendar-year portfolio returns; 220-day forward labels overlap, so annual points are not independent tests.",
+            "CSI300/500/1000 use historical weight snapshots and a prior-snapshot sensitivity check, but lack independent effective/announcement timestamps; CSI2000 starts in the available 2023-08 window.",
+            "The definition-corrected replay did not rerun cost/portfolio validation. A previously recorded four-month post-exploration fwd20 holdout (2026-04 to 2026-07) showed negative Top-10% gross returns for all seven variants; this short window is not a frozen final OOS test. The final OOS and constituent effective-time audit remain incomplete.",
+            "The public view contains aggregates only, not per-security signals, weights, private data paths, or production conclusions."
           ]
         }
-      }
+      },
+      "research_log": [
+        {
+          "date": "2026-09-28",
+          "stage": "初筛与问题定义",
+          "stage_en": "Initial screen and question framing",
+          "note": "从研发 / 市值线索出发，明确区分研发投入信息与市值分母带来的规模、估值暴露。",
+          "note_en": "Started from the R&D/market-cap observation and separated the R&D signal question from size and valuation effects embedded in the denominator."
+        },
+        {
+          "date": "2026-09-29",
+          "stage": "预注册七个变体并进行 sealed PIT 回放",
+          "stage_en": "Seven variants preregistered and replayed on sealed PIT data",
+          "note": "固定七种研发定义、公告事件可用日、月度截面和 20/220 交易日前瞻标签；保留聚合诊断。",
+          "note_en": "Fixed seven R&D definitions, announcement-event availability, monthly cross-sections, and 20/220-trading-day forward labels; retained aggregate diagnostics."
+        },
+        {
+          "date": "2026-09-29",
+          "stage": "记录探索后短期观察",
+          "stage_en": "Post-exploration short-horizon observation recorded",
+          "note": "2026-04 至 2026-07 的四个月 fwd20 Top-10% 毛收益在七个变体均为负；窗口短，不构成冻结的最终样本外检验。",
+          "note_en": "Top-10% gross fwd20 returns were negative for all seven variants from 2026-04 to 2026-07; the window is short and is not a frozen final out-of-sample test."
+        },
+        {
+          "date": "2026-09-30",
+          "stage": "修正因子定义口径并重放",
+          "stage_en": "Factor definitions corrected and replayed",
+          "note": "修正 PIT 因子定义口径后重算月度 Rank IC 与分组聚合。旧版平台 Top-200 探针、交易成本、CPCV 和最终 OOS 未随本次重放更新，因此仍为初步研究。",
+          "note_en": "Recomputed monthly Rank IC and grouped aggregates after correcting PIT factor definitions. The older platform Top-200 probe, transaction costs, CPCV, and final OOS were not rerun with this replay, so the work remains preliminary."
+        }
+      ],
+      "source_url": "https://github.com/runchengxie/quant-research/blob/main/docs/research/experiments/rd_to_market_cap/README.md"
     },
     {
       "id": "employee-compensation",

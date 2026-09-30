@@ -1,0 +1,1295 @@
+{
+  "schema_version": 1,
+  "source_vintage": "20260926",
+  "source_type": "sealed announcement-event PIT aggregate replay",
+  "series": [
+    {
+      "factor": "rd_mv",
+      "horizon": "fwd20",
+      "signal_start": "2020-01-23",
+      "signal_end": "2026-05-29",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": 0.01295461,
+          "top_minus_bottom": -0.00014414,
+          "coverage_mean": 0.99673
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.0835234,
+          "top_minus_bottom": 0.02402501,
+          "coverage_mean": 0.997801
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.03057157,
+          "top_minus_bottom": 0.00929804,
+          "coverage_mean": 0.997958
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": 0.06876003,
+          "top_minus_bottom": 0.01734597,
+          "coverage_mean": 0.998516
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.06646095,
+          "top_minus_bottom": 0.02300317,
+          "coverage_mean": 0.9986
+        },
+        {
+          "year": 2025,
+          "cross_sections": 12,
+          "rank_ic": 0.04755265,
+          "top_minus_bottom": 0.01272483,
+          "coverage_mean": 0.997243
+        },
+        {
+          "year": 2026,
+          "cross_sections": 5,
+          "rank_ic": 0.00335831,
+          "top_minus_bottom": -0.01069874,
+          "coverage_mean": 0.997066
+        }
+      ]
+    },
+    {
+      "factor": "rd_mv",
+      "horizon": "fwd220",
+      "signal_start": "2020-01-23",
+      "signal_end": "2025-06-30",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": 0.07278322,
+          "top_minus_bottom": 0.06157134,
+          "coverage_mean": 0.996562
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.12043292,
+          "top_minus_bottom": 0.08466806,
+          "coverage_mean": 0.99791
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.17697303,
+          "top_minus_bottom": 0.16492535,
+          "coverage_mean": 0.996943
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": 0.12031205,
+          "top_minus_bottom": 0.09517456,
+          "coverage_mean": 0.99539
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.15367409,
+          "top_minus_bottom": 0.20262444,
+          "coverage_mean": 0.995122
+        },
+        {
+          "year": 2025,
+          "cross_sections": 6,
+          "rank_ic": 0.12081915,
+          "top_minus_bottom": 0.14363088,
+          "coverage_mean": 0.996769
+        },
+        {
+          "year": 2026,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        }
+      ]
+    },
+    {
+      "factor": "rd_ev",
+      "horizon": "fwd20",
+      "signal_start": "2020-01-23",
+      "signal_end": "2026-05-29",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": 0.01086165,
+          "top_minus_bottom": 0.00164787,
+          "coverage_mean": 0.856752
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.0771245,
+          "top_minus_bottom": 0.02187746,
+          "coverage_mean": 0.865736
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.02583418,
+          "top_minus_bottom": 0.00807184,
+          "coverage_mean": 0.930993
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": 0.07091028,
+          "top_minus_bottom": 0.02092471,
+          "coverage_mean": 0.955563
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.07071575,
+          "top_minus_bottom": 0.02727696,
+          "coverage_mean": 0.961031
+        },
+        {
+          "year": 2025,
+          "cross_sections": 12,
+          "rank_ic": 0.04764779,
+          "top_minus_bottom": 0.0098781,
+          "coverage_mean": 0.966557
+        },
+        {
+          "year": 2026,
+          "cross_sections": 5,
+          "rank_ic": -0.00269966,
+          "top_minus_bottom": -0.01113604,
+          "coverage_mean": 0.967445
+        }
+      ]
+    },
+    {
+      "factor": "rd_ev",
+      "horizon": "fwd220",
+      "signal_start": "2020-01-23",
+      "signal_end": "2025-06-30",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": 0.05963302,
+          "top_minus_bottom": 0.054033,
+          "coverage_mean": 0.856559
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.09340779,
+          "top_minus_bottom": 0.06653123,
+          "coverage_mean": 0.865801
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.19234651,
+          "top_minus_bottom": 0.18473417,
+          "coverage_mean": 0.930102
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": 0.12722968,
+          "top_minus_bottom": 0.11241678,
+          "coverage_mean": 0.952418
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.16534365,
+          "top_minus_bottom": 0.21431568,
+          "coverage_mean": 0.95757
+        },
+        {
+          "year": 2025,
+          "cross_sections": 6,
+          "rank_ic": 0.11174697,
+          "top_minus_bottom": 0.10017502,
+          "coverage_mean": 0.964743
+        },
+        {
+          "year": 2026,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        }
+      ]
+    },
+    {
+      "factor": "rd_capitalized",
+      "horizon": "fwd20",
+      "signal_start": "2020-01-23",
+      "signal_end": "2026-05-29",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": 0.01265118,
+          "top_minus_bottom": 0.00208789,
+          "coverage_mean": 0.99673
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.08435383,
+          "top_minus_bottom": 0.02519507,
+          "coverage_mean": 0.997801
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.03771392,
+          "top_minus_bottom": 0.01229437,
+          "coverage_mean": 0.997958
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": 0.08090868,
+          "top_minus_bottom": 0.01576795,
+          "coverage_mean": 0.998516
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.06444247,
+          "top_minus_bottom": 0.02471703,
+          "coverage_mean": 0.9986
+        },
+        {
+          "year": 2025,
+          "cross_sections": 12,
+          "rank_ic": 0.04282797,
+          "top_minus_bottom": 0.01081417,
+          "coverage_mean": 0.997243
+        },
+        {
+          "year": 2026,
+          "cross_sections": 5,
+          "rank_ic": -0.00470644,
+          "top_minus_bottom": -0.01627403,
+          "coverage_mean": 0.997066
+        }
+      ]
+    },
+    {
+      "factor": "rd_capitalized",
+      "horizon": "fwd220",
+      "signal_start": "2020-01-23",
+      "signal_end": "2025-06-30",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": 0.07515962,
+          "top_minus_bottom": 0.09806053,
+          "coverage_mean": 0.996562
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.12777757,
+          "top_minus_bottom": 0.09310132,
+          "coverage_mean": 0.99791
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.19852341,
+          "top_minus_bottom": 0.18320812,
+          "coverage_mean": 0.996943
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": 0.11787105,
+          "top_minus_bottom": 0.08644511,
+          "coverage_mean": 0.99539
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.14568214,
+          "top_minus_bottom": 0.18134234,
+          "coverage_mean": 0.995122
+        },
+        {
+          "year": 2025,
+          "cross_sections": 6,
+          "rank_ic": 0.1091472,
+          "top_minus_bottom": 0.10765245,
+          "coverage_mean": 0.996769
+        },
+        {
+          "year": 2026,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        }
+      ]
+    },
+    {
+      "factor": "rd_mv_resid",
+      "horizon": "fwd20",
+      "signal_start": "2020-01-23",
+      "signal_end": "2026-05-29",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": 0.02280027,
+          "top_minus_bottom": 0.01100806,
+          "coverage_mean": 0.93714
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.03018652,
+          "top_minus_bottom": 0.00906822,
+          "coverage_mean": 0.912101
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.01122608,
+          "top_minus_bottom": 0.00565104,
+          "coverage_mean": 0.921983
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": 0.0217116,
+          "top_minus_bottom": 0.00668957,
+          "coverage_mean": 0.938913
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.02948948,
+          "top_minus_bottom": 0.0023154,
+          "coverage_mean": 0.963201
+        },
+        {
+          "year": 2025,
+          "cross_sections": 12,
+          "rank_ic": 0.01710967,
+          "top_minus_bottom": 0.00262935,
+          "coverage_mean": 0.979797
+        },
+        {
+          "year": 2026,
+          "cross_sections": 5,
+          "rank_ic": -0.00988998,
+          "top_minus_bottom": -0.00454646,
+          "coverage_mean": 0.979929
+        }
+      ]
+    },
+    {
+      "factor": "rd_mv_resid",
+      "horizon": "fwd220",
+      "signal_start": "2020-01-23",
+      "signal_end": "2025-06-30",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": 0.06454892,
+          "top_minus_bottom": 0.11554937,
+          "coverage_mean": 0.937278
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.042262,
+          "top_minus_bottom": 0.01187508,
+          "coverage_mean": 0.912237
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.07483604,
+          "top_minus_bottom": 0.05559048,
+          "coverage_mean": 0.921265
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": 0.05920322,
+          "top_minus_bottom": 0.01755335,
+          "coverage_mean": 0.935898
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.07201391,
+          "top_minus_bottom": 0.07602112,
+          "coverage_mean": 0.960017
+        },
+        {
+          "year": 2025,
+          "cross_sections": 6,
+          "rank_ic": 0.03349725,
+          "top_minus_bottom": -0.01680837,
+          "coverage_mean": 0.980998
+        },
+        {
+          "year": 2026,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        }
+      ]
+    },
+    {
+      "factor": "rd_sales",
+      "horizon": "fwd20",
+      "signal_start": "2020-01-23",
+      "signal_end": "2026-05-29",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": -0.03392799,
+          "top_minus_bottom": -0.00889682,
+          "coverage_mean": 0.996378
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": 0.00093035,
+          "top_minus_bottom": 0.00114535,
+          "coverage_mean": 0.99744
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": -0.00503745,
+          "top_minus_bottom": 0.00134476,
+          "coverage_mean": 0.997262
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": -0.00502966,
+          "top_minus_bottom": -0.00225347,
+          "coverage_mean": 0.997691
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.04217796,
+          "top_minus_bottom": 0.0263933,
+          "coverage_mean": 0.998028
+        },
+        {
+          "year": 2025,
+          "cross_sections": 12,
+          "rank_ic": 0.00175073,
+          "top_minus_bottom": 0.00821275,
+          "coverage_mean": 0.996901
+        },
+        {
+          "year": 2026,
+          "cross_sections": 5,
+          "rank_ic": 0.0342092,
+          "top_minus_bottom": 0.0310158,
+          "coverage_mean": 0.996535
+        }
+      ]
+    },
+    {
+      "factor": "rd_sales",
+      "horizon": "fwd220",
+      "signal_start": "2020-01-23",
+      "signal_end": "2025-06-30",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": -0.08235145,
+          "top_minus_bottom": -0.08677821,
+          "coverage_mean": 0.99621
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": -0.09216972,
+          "top_minus_bottom": -0.11951001,
+          "coverage_mean": 0.99755
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.08749917,
+          "top_minus_bottom": 0.1225719,
+          "coverage_mean": 0.996247
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": -0.08419158,
+          "top_minus_bottom": -0.08381414,
+          "coverage_mean": 0.994565
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.170111,
+          "top_minus_bottom": 0.25000166,
+          "coverage_mean": 0.99455
+        },
+        {
+          "year": 2025,
+          "cross_sections": 6,
+          "rank_ic": 0.06340004,
+          "top_minus_bottom": 0.14978547,
+          "coverage_mean": 0.996357
+        },
+        {
+          "year": 2026,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        }
+      ]
+    },
+    {
+      "factor": "rd_assets",
+      "horizon": "fwd20",
+      "signal_start": "2020-01-23",
+      "signal_end": "2026-05-29",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": -0.0152078,
+          "top_minus_bottom": -0.00162406,
+          "coverage_mean": 0.99673
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": -0.00418827,
+          "top_minus_bottom": 0.00037521,
+          "coverage_mean": 0.997801
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": -0.00809203,
+          "top_minus_bottom": 0.00081052,
+          "coverage_mean": 0.997958
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": -0.00382573,
+          "top_minus_bottom": -0.00125759,
+          "coverage_mean": 0.998516
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.05898332,
+          "top_minus_bottom": 0.03350422,
+          "coverage_mean": 0.9986
+        },
+        {
+          "year": 2025,
+          "cross_sections": 12,
+          "rank_ic": -0.00201166,
+          "top_minus_bottom": 0.00735677,
+          "coverage_mean": 0.997243
+        },
+        {
+          "year": 2026,
+          "cross_sections": 5,
+          "rank_ic": 0.02318878,
+          "top_minus_bottom": 0.03253302,
+          "coverage_mean": 0.997066
+        }
+      ]
+    },
+    {
+      "factor": "rd_assets",
+      "horizon": "fwd220",
+      "signal_start": "2020-01-23",
+      "signal_end": "2025-06-30",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 12,
+          "rank_ic": -0.05889159,
+          "top_minus_bottom": -0.05818996,
+          "coverage_mean": 0.996562
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": -0.08921706,
+          "top_minus_bottom": -0.1140616,
+          "coverage_mean": 0.99791
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": 0.08002479,
+          "top_minus_bottom": 0.12790973,
+          "coverage_mean": 0.996943
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": -0.01348811,
+          "top_minus_bottom": -0.04328817,
+          "coverage_mean": 0.99539
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.16993764,
+          "top_minus_bottom": 0.27074102,
+          "coverage_mean": 0.995122
+        },
+        {
+          "year": 2025,
+          "cross_sections": 6,
+          "rank_ic": 0.03104446,
+          "top_minus_bottom": 0.09487024,
+          "coverage_mean": 0.996769
+        },
+        {
+          "year": 2026,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        }
+      ]
+    },
+    {
+      "factor": "rd_growth",
+      "horizon": "fwd20",
+      "signal_start": "2020-03-31",
+      "signal_end": "2026-05-29",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 10,
+          "rank_ic": 0.04443311,
+          "top_minus_bottom": 0.01019572,
+          "coverage_mean": 0.314563
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": -0.01940742,
+          "top_minus_bottom": -0.0044731,
+          "coverage_mean": 0.897994
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": -0.014133,
+          "top_minus_bottom": -0.00647104,
+          "coverage_mean": 0.920255
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": -0.04297152,
+          "top_minus_bottom": -0.00973089,
+          "coverage_mean": 0.935213
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": 0.00350837,
+          "top_minus_bottom": -0.00678795,
+          "coverage_mean": 0.918355
+        },
+        {
+          "year": 2025,
+          "cross_sections": 12,
+          "rank_ic": 0.01139191,
+          "top_minus_bottom": 0.00571983,
+          "coverage_mean": 0.947228
+        },
+        {
+          "year": 2026,
+          "cross_sections": 5,
+          "rank_ic": 0.0479831,
+          "top_minus_bottom": 0.03302154,
+          "coverage_mean": 0.9632
+        }
+      ]
+    },
+    {
+      "factor": "rd_growth",
+      "horizon": "fwd220",
+      "signal_start": "2020-03-31",
+      "signal_end": "2025-06-30",
+      "years": [
+        {
+          "year": 2015,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2016,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2017,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2018,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2019,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        },
+        {
+          "year": 2020,
+          "cross_sections": 10,
+          "rank_ic": 0.08335507,
+          "top_minus_bottom": 0.25356038,
+          "coverage_mean": 0.31431
+        },
+        {
+          "year": 2021,
+          "cross_sections": 12,
+          "rank_ic": -0.05311842,
+          "top_minus_bottom": -0.02343969,
+          "coverage_mean": 0.898072
+        },
+        {
+          "year": 2022,
+          "cross_sections": 12,
+          "rank_ic": -0.10030235,
+          "top_minus_bottom": -0.09635499,
+          "coverage_mean": 0.919538
+        },
+        {
+          "year": 2023,
+          "cross_sections": 12,
+          "rank_ic": -0.0485286,
+          "top_minus_bottom": -0.02457699,
+          "coverage_mean": 0.932217
+        },
+        {
+          "year": 2024,
+          "cross_sections": 12,
+          "rank_ic": -0.02307901,
+          "top_minus_bottom": -0.04034313,
+          "coverage_mean": 0.915015
+        },
+        {
+          "year": 2025,
+          "cross_sections": 6,
+          "rank_ic": 0.03662041,
+          "top_minus_bottom": 0.15152809,
+          "coverage_mean": 0.930415
+        },
+        {
+          "year": 2026,
+          "cross_sections": 0,
+          "rank_ic": null,
+          "top_minus_bottom": null,
+          "coverage_mean": null
+        }
+      ]
+    }
+  ]
+}
