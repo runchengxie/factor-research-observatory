@@ -22,6 +22,11 @@ const familyLabels: Record<string, string> = {
   '人力资本 / 劳动': 'Human capital / labor',
 }
 
+const factorGroupLabels: Record<string, string> = {
+  intraday_risk_states: 'Intraday risk states',
+  distribution_states: 'Distribution shape states',
+}
+
 const minuteNames: Record<string, string> = {
   volume_volatility: 'Volume volatility', star_volatility: 'Star volatility', log_volume_volatility: 'Log-volume volatility',
   illiquidity: 'Illiquidity', illiquidity_std: 'Illiquidity dispersion', price_elasticity: 'Price elasticity',
@@ -70,6 +75,11 @@ const genericMinuteDefinition = 'Public research description of minute-level pri
 
 export function localizedFamily(value: string, locale: Locale) {
   return locale === 'en-US' ? familyLabels[value] ?? value : value
+}
+
+export function localizedFactorGroup(name: string, label: string, locale: Locale) {
+  if (locale === 'zh-CN') return label
+  return factorGroupLabels[name] ?? familyLabels[label] ?? label
 }
 
 export function localizeFactorRecord(record: FactorRecord, locale: Locale): FactorRecord {

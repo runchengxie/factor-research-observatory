@@ -16,6 +16,13 @@ test('English public pages do not render Chinese catalog content', async ({ page
   }
 })
 
+test('English overview translates every factor group label', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.getByRole('heading', { name: 'Intraday risk states' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Distribution shape states' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Fundamental research' })).toBeVisible()
+})
+
 test('language switch changes the rendered study catalog', async ({ page }) => {
   await page.goto('studies')
   await expect(page.getByRole('heading', { name: 'Research studies' })).toBeVisible()
