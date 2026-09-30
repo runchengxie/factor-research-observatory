@@ -1,4 +1,5 @@
-import ReactECharts from 'echarts-for-react'
+import ReactECharts from 'echarts-for-react/lib/core'
+import echarts from '../echarts'
 import type { Alpha810FactorEvidence } from '../types'
 
 type Props = {
@@ -44,5 +45,5 @@ export default function ResearchCharts({ kind, counts = [], factors = [], englis
     option = { ...common, tooltip: { ...common.tooltip, trigger: 'item', formatter: (item: { data: { name: string; value: number[] } }) => `${item.data.name}<br/>${english ? 'Coverage' : '覆盖率'}: ${(item.data.value[0] * 100).toFixed(1)}%<br/>RankIC: ${item.data.value[1].toFixed(3)}` }, xAxis: { type: 'value', min: 0, max: 1, name: english ? 'Coverage' : '覆盖率', nameLocation: 'middle', nameGap: 30, axisLabel: { color: muted, formatter: (value: number) => `${Math.round(value * 100)}%` }, splitLine: { lineStyle: { color: grid } } }, yAxis: { type: 'value', name: 'RankIC', axisLabel: { color: muted }, splitLine: { lineStyle: { color: grid } } }, series: [{ type: 'scatter', data: points, symbolSize: 5, itemStyle: { color: accent, opacity: .5 } }] }
     description = `${points.length} ${english ? 'factors with coverage and RankIC' : '个同时具有覆盖率与 RankIC 的因子'}`
   }
-  return <div className="research-chart" role="img" aria-label={description}><ReactECharts option={option} style={{ height: kind === 'family' ? 230 : 300, width: '100%' }} /></div>
+  return <div className="research-chart" role="img" aria-label={description}><ReactECharts echarts={echarts} option={option} style={{ height: kind === 'family' ? 230 : 300, width: '100%' }} /></div>
 }

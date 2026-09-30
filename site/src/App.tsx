@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { loadAlpha810Snapshot, loadFundamentalData, loadSnapshot, loadStudies } from './data'
 import { buildResearchContext, toResearchRecords } from './research'
 import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
-import OverviewPage from './pages/OverviewPage'
-import FactorPage from './pages/FactorPage'
-import JumpPage from './pages/JumpPage'
-import HermitePage from './pages/HermitePage'
-import FundamentalsPage from './pages/FundamentalsPage'
-import FactorExplorerPage from './pages/FactorExplorerPage'
-import { StudiesPage, StudyDetailPage } from './pages/StudiesPage'
-import Alpha810OverviewPage from './pages/Alpha810OverviewPage'
-import Alpha810FactorPage from './pages/Alpha810FactorPage'
 import { initialLocale, LocaleContext, useLocale, type Copy, type Locale } from './i18n'
+
+const OverviewPage = lazy(() => import('./pages/OverviewPage'))
+const FactorPage = lazy(() => import('./pages/FactorPage'))
+const JumpPage = lazy(() => import('./pages/JumpPage'))
+const HermitePage = lazy(() => import('./pages/HermitePage'))
+const FundamentalsPage = lazy(() => import('./pages/FundamentalsPage'))
+const FactorExplorerPage = lazy(() => import('./pages/FactorExplorerPage'))
+const StudiesPage = lazy(() => import('./pages/StudiesPage').then((module) => ({ default: module.StudiesPage })))
+const StudyDetailPage = lazy(() => import('./pages/StudiesPage').then((module) => ({ default: module.StudyDetailPage })))
+const Alpha810OverviewPage = lazy(() => import('./pages/Alpha810OverviewPage'))
+const Alpha810FactorPage = lazy(() => import('./pages/Alpha810FactorPage'))
 
 type Theme = 'light' | 'dark'
 
@@ -72,5 +74,5 @@ function AppContent({ theme, setTheme }: { theme: Theme; setTheme: (theme: Theme
     setLocale(next)
   }
   const switchTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
-  return <><header className="site-header"><div className="site-masthead"><a className="brand" href={import.meta.env.BASE_URL}><span className="brand-kicker">QUANT FACTOR</span><strong>OBSERVATORY</strong></a><div className="site-meta"><strong>{copy.brandMeta}</strong><span>{copy.brandMetaSub}</span></div></div><nav className="site-nav"><a className={pathname.endsWith('/') || pathname.endsWith('index.html') ? 'active' : undefined} href={import.meta.env.BASE_URL}>{copy.nav.overview}</a><a className={active('alpha810')} href={`${import.meta.env.BASE_URL}alpha810`}>{copy.nav.alpha810}</a><a className={active('factors')} href={`${import.meta.env.BASE_URL}factors`}>{copy.nav.factors}</a><a className={active('studies')} href={`${import.meta.env.BASE_URL}studies`}>{copy.nav.studies}</a><a className={active('fundamentals')} href={`${import.meta.env.BASE_URL}fundamentals`}>{copy.nav.fundamentals}</a><a className={active('jumps')} href={`${import.meta.env.BASE_URL}jumps`}>{copy.nav.jumps}</a><a className={active('hermite')} href={`${import.meta.env.BASE_URL}hermite`}>{copy.nav.hermite}</a><button type="button" className="locale-toggle" onClick={switchLocale} aria-label={`Switch to ${copy.switchTo}`}>{copy.switchTo}</button><button type="button" className="theme-toggle" onClick={switchTheme} aria-pressed={theme === 'dark'}>{theme === 'dark' ? '☼' : '☾'} <span>{theme === 'dark' ? (locale === 'en-US' ? 'Light mode' : '浅色模式') : copy.themeToggle}</span></button></nav></header>{pathView(snapshot, fundamental.catalog, fundamental.snapshot, studies, alpha810, copy)}<footer className="site-footer"><span>quant-factor-observatory · {pathname.startsWith('/studies') ? copy.nav.studies : snapshot.source === 'demo' ? 'Demo snapshot' : 'Public research snapshot'}</span><span>{copy.footerNote}</span></footer></>
+  return <><header className="site-header"><div className="site-masthead"><a className="brand" href={import.meta.env.BASE_URL}><span className="brand-kicker">QUANT FACTOR</span><strong>OBSERVATORY</strong></a><div className="site-meta"><strong>{copy.brandMeta}</strong><span>{copy.brandMetaSub}</span></div></div><nav className="site-nav"><a className={pathname.endsWith('/') || pathname.endsWith('index.html') ? 'active' : undefined} href={import.meta.env.BASE_URL}>{copy.nav.overview}</a><a className={active('alpha810')} href={`${import.meta.env.BASE_URL}alpha810`}>{copy.nav.alpha810}</a><a className={active('factors')} href={`${import.meta.env.BASE_URL}factors`}>{copy.nav.factors}</a><a className={active('studies')} href={`${import.meta.env.BASE_URL}studies`}>{copy.nav.studies}</a><a className={active('fundamentals')} href={`${import.meta.env.BASE_URL}fundamentals`}>{copy.nav.fundamentals}</a><a className={active('jumps')} href={`${import.meta.env.BASE_URL}jumps`}>{copy.nav.jumps}</a><a className={active('hermite')} href={`${import.meta.env.BASE_URL}hermite`}>{copy.nav.hermite}</a><button type="button" className="locale-toggle" onClick={switchLocale} aria-label={`Switch to ${copy.switchTo}`}>{copy.switchTo}</button><button type="button" className="theme-toggle" onClick={switchTheme} aria-pressed={theme === 'dark'}>{theme === 'dark' ? '☼' : '☾'} <span>{theme === 'dark' ? (locale === 'en-US' ? 'Light mode' : '浅色模式') : copy.themeToggle}</span></button></nav></header><Suspense fallback={<main className="empty"><p>{copy.loading}</p></main>}>{pathView(snapshot, fundamental.catalog, fundamental.snapshot, studies, alpha810, copy)}</Suspense><footer className="site-footer"><span>quant-factor-observatory · {pathname.startsWith('/studies') ? copy.nav.studies : snapshot.source === 'demo' ? 'Demo snapshot' : 'Public research snapshot'}</span><span>{copy.footerNote}</span></footer></>
 }
