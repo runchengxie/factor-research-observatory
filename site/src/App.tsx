@@ -18,7 +18,7 @@ const Alpha810FactorPage = lazy(() => import('./pages/Alpha810FactorPage'))
 type Theme = 'light' | 'dark'
 type FundamentalData = { catalog: FundamentalCatalog; snapshot: FundamentalSnapshot }
 type RouteData =
-  | { kind: 'overview'; snapshot: Snapshot; fundamental: FundamentalData }
+  | { kind: 'overview'; snapshot: Snapshot; fundamental: FundamentalData; studies: StudyCatalog }
   | { kind: 'market'; snapshot: Snapshot }
   | { kind: 'fundamentals'; fundamental: FundamentalData }
   | { kind: 'studies'; studies: StudyCatalog }
@@ -32,8 +32,8 @@ function currentPath() {
 
 async function loadRouteData(path: string): Promise<RouteData> {
   if (path === '' || path === 'index.html') {
-    const [snapshot, fundamental] = await Promise.all([loadSnapshot(), loadFundamentalData()])
-    return { kind: 'overview', snapshot, fundamental }
+    const [snapshot, fundamental, studies] = await Promise.all([loadSnapshot(), loadFundamentalData(), loadStudies()])
+    return { kind: 'overview', snapshot, fundamental, studies }
   }
   if (path === 'jumps' || path === 'hermite') return { kind: 'market', snapshot: await loadSnapshot() }
   if (path === 'fundamentals') return { kind: 'fundamentals', fundamental: await loadFundamentalData() }
@@ -57,13 +57,13 @@ function pathView(path: string, data: RouteData, copy: Copy) {
   if (data.kind === 'not-found') return <main className="empty"><h1>{copy.notFound}</h1><a href={import.meta.env.BASE_URL}>{copy.backHome}</a></main>
   if (data.kind === 'overview') {
     const records = toResearchRecords(data.snapshot, data.fundamental.catalog, data.fundamental.snapshot)
-    return <OverviewPage snapshot={data.snapshot} records={records} context={buildResearchContext(data.snapshot)} fundamental={data.fundamental.snapshot} />
+    return <OverviewPage snapshot={data.snapshot} records={records} context={buildResearchContext(data.snapshot)} fundamental={data.fundamental.snapshot} studies={data.studies} />
   }
   if (data.kind === 'market') return path === 'jumps' ? <JumpPage snapshot={data.snapshot} /> : <HermitePage snapshot={data.snapshot} />
   if (data.kind === 'fundamentals') return <FundamentalsPage catalog={data.fundamental.catalog} snapshot={data.fundamental.snapshot} />
   if (data.kind === 'studies') {
     if (path === 'studies') return <StudiesPage catalog={data.studies} />
-    return <StudyDetailPage study={data.studies.studies.find((item) => item.id === path.slice(8))} />
+    return <StudyDetailPage study={data.studies.studies.find((item) => item.id === path.slice(8))} updatedAt={data.studies.updated_at} />
   }
   if (data.kind === 'research') {
     const records = toResearchRecords(data.snapshot, data.fundamental.catalog, data.fundamental.snapshot)

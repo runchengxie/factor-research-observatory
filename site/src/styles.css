@@ -236,3 +236,44 @@
 :root[data-theme="dark"] .availability-bar { border-color: #303a4d; background: #303a4d; }
 :root[data-theme="dark"] .availability-bar span { background: #5cc8b0; }
 :root[data-theme="dark"] .quality-summary span { border-color: #76513f; background: #2b241b; color: #efb36d; }
+.home-finding-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
+.home-finding-card { display: flex; min-width: 0; flex-direction: column; gap: 11px; padding: 20px; background: var(--surface); }
+.home-finding-card:hover { background: #f0e9df; }
+.home-finding-card > small { color: var(--muted); font-size: 11px; }
+.home-finding-card h3 { margin: 0; font: 600 20px/1.3 "Noto Serif SC", serif; }
+.home-finding-card p { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.75; }
+.home-finding-limit { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--rule-soft); color: var(--muted); font-size: 11px; line-height: 1.7; }
+.home-finding-limit strong { display: block; margin-bottom: 3px; color: var(--accent); }
+.study-brief { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 1px; margin: 20px 0; border: 1px solid var(--rule); background: var(--rule); }
+.study-brief article { min-width: 0; padding: 20px; background: var(--surface); }
+.study-brief h2 { margin: 9px 0 0; font: 600 21px/1.4 "Noto Serif SC", serif; }
+.study-brief article > p:not(.eyebrow) { margin: 5px 0 12px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
+.study-brief small { color: var(--muted); font-size: 11px; line-height: 1.6; }
+.factor-evidence-card { margin: 18px 0; }
+.factor-evidence-grid { display: grid; grid-template-columns: 1.3fr 1fr 1.3fr .7fr; gap: 18px; }
+.factor-evidence-grid > div, .evidence-card-row article { display: flex; min-width: 0; flex-direction: column; gap: 7px; }
+.factor-evidence-grid span, .evidence-card-row article > span, .stability-summary span { color: var(--muted); font-size: 11px; }
+.factor-evidence-grid p, .factor-evidence-grid small, .evidence-card-row small { margin: 0; color: var(--ink-soft); font-size: 12px; line-height: 1.65; }
+.factor-evidence-grid strong, .evidence-card-row strong { font: 600 17px/1.4 "DM Mono", monospace; overflow-wrap: anywhere; }
+.evidence-card-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin: 18px 0; border: 1px solid var(--rule); background: var(--rule); }
+.evidence-card-row article { padding: 18px; background: var(--surface); }
+.stability-summary { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-top: 1px solid var(--rule-soft); padding-top: 14px; }
+.stability-summary strong { font: 700 24px "DM Mono", monospace; color: var(--accent); }
+:root[data-theme="dark"] .home-finding-card, :root[data-theme="dark"] .study-brief article,
+:root[data-theme="dark"] .evidence-card-row article { background: #131a27; }
+:root[data-theme="dark"] .home-finding-card:hover { background: #1b2432; }
+:root[data-theme="dark"] .home-finding-grid, :root[data-theme="dark"] .study-brief,
+:root[data-theme="dark"] .evidence-card-row { border-color: #263043; background: #263043; }
+:root[data-theme="dark"] .home-finding-card p, :root[data-theme="dark"] .study-brief article > p:not(.eyebrow),
+:root[data-theme="dark"] .factor-evidence-grid p, :root[data-theme="dark"] .factor-evidence-grid small,
+:root[data-theme="dark"] .evidence-card-row small, :root[data-theme="dark"] .home-finding-card > small,
+:root[data-theme="dark"] .home-finding-limit, :root[data-theme="dark"] .factor-evidence-grid span,
+:root[data-theme="dark"] .evidence-card-row article > span, :root[data-theme="dark"] .stability-summary span,
+:root[data-theme="dark"] .study-brief small { color: #a8b0bf; }
+@media (max-width: 850px) {
+  .home-finding-grid { grid-template-columns: 1fr; }
+  .study-brief, .factor-evidence-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .study-brief, .factor-evidence-grid, .evidence-card-row { grid-template-columns: 1fr; }
+}
