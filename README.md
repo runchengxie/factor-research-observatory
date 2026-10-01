@@ -65,6 +65,10 @@ See the [public Alpha 810 contract](docs/alpha810-public-contract.md).
 
 The study publication boundary is defined by the [English contract](docs/research-publication-contract.md) and its [Chinese structured explanation](docs/research-publication-contract.zh-CN.md). The public research manifest records provenance, language, and redaction boundaries.
 
+## Relationship to full public studies
+
+This site owns factor catalog organization, standardized factor studies, publication status, and reviewed projections under the publication contract. Independent market research projects and their project-specific methods remain in [`quant-market-research`](https://github.com/runchengxie/quant-market-research). A factor study may be presented here when it meets this repository's source identity and review requirements. Link to the authoritative method and evidence rather than copying complete source material. Private strategy evidence remains in its owner repository; only an explicitly reviewed and redacted projection may appear here.
+
 ## Human-capital and labor studies
 
 The catalog includes experimental entries for labor-cost intensity, human-capital efficiency, labor-cost changes, income-versus-labor-cost divergence, and labor intensity versus investment state. These entries express research hypotheses and do not imply completed A-share predictive validation. Pages show when public evaluation is unavailable.
