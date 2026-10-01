@@ -84,6 +84,8 @@ export type StudyCatalog = { schema_version: number; updated_at: string; studies
 
 export type Alpha810Metric = { mean: number | null; ir: number | null; positive_rate: number | null }
 export type Alpha810GroupReturn = { group: number; mean_return: number | null; periods: number }
+export type Alpha810Slice = { label: string; valid_dates: number; rank_ic_mean: number | null; rank_ic_positive_rate: number | null; group_returns: Alpha810GroupReturn[] }
+export type Alpha810Uncertainty = { status: string; method?: string; holding_period_days?: number; estimate?: number | null; standard_error?: number | null; confidence_interval?: [number, number] | null; p_value?: number | null; multiple_testing?: { q_value_by?: number | null; q_value_bh?: number | null } }
 export type Alpha810FactorEvidence = {
   name: string
   family: string
@@ -91,9 +93,12 @@ export type Alpha810FactorEvidence = {
   ic: Alpha810Metric
   rank_ic: Alpha810Metric
   group_returns: Alpha810GroupReturn[]
+  annual_slices?: Alpha810Slice[]
+  regime_slices?: Alpha810Slice[]
+  uncertainty?: Alpha810Uncertainty
 }
 export type Alpha810Quality = {
-  schema_version: '1.0'
+  schema_version: '1.0' | '1.1'
   status: 'pass' | 'warn' | 'fail'
   checks: Array<{ name: string; status: 'pass' | 'warn' | 'fail'; value: number; threshold: string }>
   summary: { factor_count: number; coverage_mean: number | null; coverage_min: number | null; rank_ic_mean: number | null; rank_ic_positive_rate_mean: number | null; low_coverage_factor_count: number; missing_rank_ic_factor_count: number }
@@ -102,7 +107,7 @@ export type Alpha810Quality = {
 }
 export type Alpha810Snapshot = {
   kind: 'moneytree_factor_evidence_snapshot'
-  schema_version: '1.0'
+  schema_version: '1.0' | '1.1'
   generated_at: string
   data_version: string
   code_revision: string | null
@@ -118,4 +123,7 @@ export type Alpha810Snapshot = {
   factors: Alpha810FactorEvidence[]
   quality: Alpha810Quality
   public_limits: string[]
+  uncertainty?: { status: string; method?: string; holding_period_days?: number; tested_factor_count?: number; factor_count?: number }
+  temporal_validation?: { status: string; annual_status?: string; market_regime?: { status: string; reason?: string; benchmark?: string; window?: number } }
+  multiple_testing?: { status: string; method?: string; sensitivity_method?: string; family_size?: number; tested_count?: number; factors?: Record<string, { q_value_by?: number | null; q_value_bh?: number | null }> }
 }
