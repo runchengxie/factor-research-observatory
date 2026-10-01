@@ -26,6 +26,52 @@ test('English overview translates every factor group label', async ({ page }) =>
   await expect(page.getByRole('heading', { name: 'Fundamental research' })).toBeVisible()
 })
 
+test('Alpha 810 schema 1.1 shows annual and uncertainty evidence', async ({ page }) => {
+  await page.route('**/data/alpha810-snapshot.json', async (route) => {
+    const response = await route.fetch()
+    const snapshot = await response.json()
+    snapshot.schema_version = '1.1'
+    snapshot.factors[0].annual_slices = [{ label: '2025', valid_dates: 200, rank_ic_mean: 0.03, rank_ic_positive_rate: 0.6, group_returns: [{ group: 1, mean_return: 0, periods: 200 }, { group: 5, mean_return: 0.02, periods: 200 }] }]
+    snapshot.factors[0].regime_slices = [{ label: 'bear', valid_dates: 80, rank_ic_mean: 0.01, rank_ic_positive_rate: 0.55, group_returns: [{ group: 1, mean_return: 0, periods: 80 }, { group: 5, mean_return: 0.01, periods: 80 }] }]
+    snapshot.factors[0].uncertainty = { status: 'complete', method: 'newey_west_hac', holding_period_days: 1, estimate: 0.03, standard_error: 0.01, confidence_interval: [0.01, 0.05], p_value: 0.003, multiple_testing: { q_value_by: 0.04, q_value_bh: 0.02 } }
+    snapshot.temporal_validation = { status: 'complete', annual_status: 'complete', market_regime: { status: 'complete' } }
+    snapshot.uncertainty = { status: 'partial', method: 'newey_west_hac', holding_period_days: 1, tested_factor_count: 1, factor_count: 810 }
+    snapshot.multiple_testing = { status: 'complete', method: 'benjamini_yekutieli', family_size: 810, tested_count: 810, factors: Object.fromEntries(snapshot.factors.map((factor, index) => [factor.name, { q_value_by: index === 0 ? 0.04 : null, q_value_bh: index === 0 ? 0.02 : null }])) }
+    await route.fulfill({ response, json: snapshot })
+  })
+  await page.goto('alpha810/factors/alpha101_001')
+  await expect(page.getByRole('heading', { name: 'How did the factor behave over time?' })).toBeVisible()
+  await expect(page.locator('.annual-table tbody tr').nth(0)).toContainText('2025')
+  await expect(page.locator('.annual-table tbody tr').nth(1)).toContainText('Regime: bear')
+  await expect(page.getByText('BY adjusted q-value')).toBeVisible()
+  await expect(page.getByText('0.0400')).toBeVisible()
+  await expect(page.getByText('Raw p-value')).toBeVisible()
+  await expect(page.getByText('0.0030')).toBeVisible()
+  await page.getByRole('button', { name: 'Switch to 中文' }).click()
+  await expect(page.getByRole('heading', { name: '因子随时间的表现如何？' })).toBeVisible()
+  await expect(page.getByRole('columnheader', { name: 'RankIC 均值' })).toBeVisible()
+  await page.getByRole('button', { name: 'Switch to English' }).click()
+  await page.setViewportSize({ width: 360, height: 780 })
+  await page.reload()
+  await expect(page.locator('main')).toBeVisible()
+  const overflow = await page.evaluate(() => Array.from(document.querySelectorAll('*'))
+    .filter((element) => element.scrollWidth > element.clientWidth + 1)
+    .map((element) => ({ tag: element.tagName, className: (element as HTMLElement).className, client: element.clientWidth, scroll: element.scrollWidth, overflowX: getComputedStyle(element).overflowX }))
+    .slice(0, 12))
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), JSON.stringify(overflow)).toBe(true)
+  await page.setViewportSize({ width: 1280, height: 900 })
+  await page.goto('alpha810')
+  await expect(page.getByRole('heading', { name: 'How many factors have BY q ≤ 0.05?' })).toBeVisible()
+  await expect(page.getByText('1 / 810', { exact: true })).toBeVisible()
+  await expect(page.getByText('Available', { exact: true })).toBeVisible()
+})
+
+test('Legacy Alpha 810 snapshots disclose unavailable corrected evidence', async ({ page }) => {
+  await page.goto('alpha810')
+  await expect(page.getByRole('heading', { name: 'How many factors have BY q ≤ 0.05?' })).toBeVisible()
+  await expect(page.getByText('Corrected p-value diagnostics are not provided in this snapshot.')).toBeVisible()
+})
+
 test('language switch changes the rendered study catalog', async ({ page }) => {
   await page.goto('studies')
   await expect(page.getByRole('heading', { name: 'Research studies' })).toBeVisible()
