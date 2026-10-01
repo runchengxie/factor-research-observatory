@@ -6,10 +6,17 @@ repository and may be published here only as a reviewed aggregate projection.
 
 ## Input and identity
 
-The source note must have a stable `knowledge/v1` identity and an
+The source note must have a stable `knowledge/v1` or `knowledge/v2` identity and an
 `authority_ref`. The publication manifest records that reference, the source
 status, the public identifier, and the reviewed publication status. A public
 identifier must not be substituted for the source document identity.
+
+Each public study projection records its `doc:quant-research...` source
+identity in both the manifest and study catalog. A series projection may point
+to a bilingual provider overview; individual studies point to the authoritative
+note for their own evidence. The catalog can attach optional language-neutral
+series, market, method, frequency, and evidence-stage values. Missing taxonomy
+on older rows must continue to render safely.
 
 ## Allowed projection
 
@@ -20,8 +27,11 @@ keys remain English or language-neutral. Public presentation may provide both
 
 The projection must exclude private data paths, credentials, private code,
 per-security signals, portfolio weights, execution details, and exact private
-factor operators. Missing evidence must be represented as a hypothesis or
-unpublished state, never filled with invented metrics.
+factor operators. Hypotheses, preliminary diagnostics, reviewed aggregates,
+and historical archives must remain distinct. In particular, Hong Kong
+historical findings must not imply A-share transferability. Missing evidence
+must be represented as a hypothesis or unpublished state, never filled with
+invented metrics.
 
 ## Review boundary
 

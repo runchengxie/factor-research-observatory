@@ -129,7 +129,22 @@
             "Execution uses a daily approximation and lacks a complete market impact and trade execution replay."
           ]
         }
-      }
+      },
+      "series": "fundamental",
+      "market": "a_share",
+      "method": [
+        "direct_factor_test",
+        "cross_sectional_ranking",
+        "portfolio_replay",
+        "attribution",
+        "robustness"
+      ],
+      "frequency": [
+        "monthly"
+      ],
+      "evidence_stage": "retrospective_diagnostic",
+      "publication_id": "pb-roe",
+      "source_ref": "doc:quant-research.strategy.pb-roe-value-quality"
     },
     {
       "id": "rd-investment",
@@ -137,132 +152,192 @@
       "family": "研发与无形资产",
       "status": "preliminary",
       "status_label": "初步筛选",
-      "summary": "将公告事件 PIT 历史重建向前延伸后，2019 年 3–12 月新增 10 个合格月度截面；研发 / 市值、研发 / EV 和资本化研发在 20/220 日呈探索性正 Rank IC，中性化后减弱。2015–2018 年无法形成符合最低样本要求的年度证据，且历史修订链不完整。",
-      "period": "20 日标签：2019-03-29 至 2026-08-31，90 个有效月度截面；220 日标签：2019-03-29 至 2025-10-31，80 个截面（研发增长样本更少）",
-      "source_note": "扩展后的聚合回放使用 sealed announcement-event PIT vintage=20260926，行情截至 2026-09-30。2019 是回溯历史重建敏感性分析；历史财务修订链不完整（revision_safe=false）。仅发布月度横截面聚合统计。",
+      "summary": "The corrected sealed announcement-event PIT run reports 4.85% / 12.81% Rank IC for 20 / 220 trading-day labels across 77 / 66 horizon-specific monthly cross-sections. The result is exploratory and does not establish executable returns; the full revision chain remains incomplete.",
+      "period": "Corrected PIT replay: 2020-01 through 2026-06; 77 valid 20-day and 66 valid 220-day cross-sections",
+      "source_note": "来源：修正后的公告事件 PIT 回放，vintage=20260926。当前来源报告分期限 Rank IC 和独立的 Top-200 成本探针；历史财报修订链和冻结最终 OOS 就绪门槛仍未解决。更早的 2019 年扩展年度快照作为独立遗留产物保留，不属于此处当前汇总。",
       "columns": [
-        "预注册变体",
-        "20 日平均 Rank IC",
-        "220 日平均 Rank IC"
+        "Factor variant",
+        "20-day Rank IC",
+        "220-day Rank IC"
       ],
       "rows": [
         [
-          "研发 / 市值",
-          "4.89%",
-          "12.18%"
+          "R&D / market cap",
+          "4.85%",
+          "12.81%"
         ],
         [
-          "研发 / 企业价值（EV）",
-          "4.93%",
-          "12.28%"
+          "R&D / EV proxy",
+          "4.71%",
+          "12.62%"
         ],
         [
-          "五年衰减资本化研发",
-          "5.01%",
-          "12.17%"
+          "Five-year decayed R&D stock / market cap",
+          "5.00%",
+          "13.08%"
         ],
         [
-          "规模/价值/动量/杠杆/行业中性化残差",
-          "2.24%",
-          "6.13%"
+          "Full style residual",
+          "2.00%",
+          "5.99%"
         ],
         [
-          "研发 / 收入",
-          "0.75%",
-          "2.96%"
+          "R&D / revenue",
+          "0.24%",
+          "0.56%"
         ],
         [
-          "研发 / 资产",
-          "1.25%",
-          "4.27%"
+          "R&D / assets",
+          "0.55%",
+          "1.89%"
         ],
         [
-          "研发增长率",
-          "-0.21%",
-          "-2.05%"
+          "R&D growth",
+          "-0.07%",
+          "-2.57%"
         ]
       ],
       "findings": [
-        "2019 年 3–12 月可形成十个合格月度截面，但属于回溯重建敏感性；2015 年缺少 2014 年 TTM 回看数据，2016–2018 年每月横截面最大仅 1、1、2 只，不满足 200 只下限。",
-        "扩展样本中研发 / 市值、研发 / EV 和资本化研发呈探索性正向 Rank IC；220 日标签高度重叠，不能按独立样本解读。",
-        "对规模、价值、动量、杠杆和行业中性化后 Rank IC 下降但仍为正；不能据此认定独立、可交易的研发 Alpha。研发增长、研发 / 收入和研发 / 资产表现较弱。",
-        "年度图汇总的是月度横截面统计算术均值，不是自然年组合回报；2019 单独标为回溯敏感性点。",
-        "修正口径后已重跑固定 Top-200 成本探针：25bp 单边成本下研发 / 市值年化 12.70%、Sharpe 0.57、最大回撤 -25.75%；成本敏感性随成本上升而走弱。该探针不是预注册十分组验证；前瞻最终 OOS 尚未成熟，继续作为研究候选，不进入策略或生产。",
-        "分母拆解中，2020+ 样本的倒数市值 Rank IC（20/220 日：5.92%/15.74%）强于 log 研发费用分子（-0.18%/-2.14%）；规模/价值/动量/杠杆/行业中性化残差仍为正（1.99%/5.62%）。这提示原始收益不能归因于研发投入本身。",
-        "Newey–West HAC 区间与 14 项 Rank IC 检验的 BH 校正、CPCV 选择偏差诊断已补充；这些推断依赖月度重叠标签且仍属探索，不能解决历史修订链缺失。"
+        "The corrected PIT sample contains 77 valid 20-day and 66 valid 220-day monthly cross-sections; median cross-sectional sizes are about 4,454 and 4,230 stocks.",
+        "R&D / market cap and five-year decayed R&D stock show positive exploratory Rank IC. The 220-day labels overlap and are not independent observations.",
+        "The full style residual is weaker than raw R&D / market cap. This does not establish an independent, causal, or tradable R&D premium.",
+        "R&D / revenue, R&D / assets, and R&D growth do not show stable ranking evidence in the corrected sample.",
+        "A separate fixed Top-200 platform probe at 25 bp one-way modeled cost reports 12.70% annualized return, 0.57 Sharpe, and -25.75% max drawdown over 89 holding periods. It is a research diagnostic, not a registered decile validation or production portfolio.",
+        "The 2026-10 to 2027-09 prospective final-OOS protocol is frozen but blocked from performance reading; no frozen holdout metrics have been produced."
       ],
       "limits": [
-        "行情覆盖从 2015-01-05 开始，但行情起始不等于因子起始。当前 sealed PIT 输入缺少构造 2015 年首个交易日 TTM 所需的 2014 年回看数据。另一份本地旧版原始 vintage 中，2014 年有正研发费用记录的公司仅 1 家，远低于 200 只下限，未混入主回放。2016–2018 年可用横截面分别最多只有 1、1、2 只；2019-03 起的十个月来自回溯历史重建，不是修订安全回测；revision_safe=false。",
-        "图表逐年值是各月 Rank IC / 分组收益差的算术均值，不是自然年复利组合收益；220 日前瞻标签重叠，年度点不是独立检验，现已补充 HAC 置信区间及多重检验校正，但月度重叠标签仍限制推断。",
-        "CSI300/500/1000 使用历史权重快照与前一快照敏感性检查，但缺乏独立生效/公告时间；CSI2000 从本地 2023-08 可用窗口开始。",
-        "口径修正后的回放现已重跑固定 Top-200 成本探针与描述性 CPCV，但不能替代预注册十分组验证。此前记录的四个月探索后 fwd20 Top-10% 毛收益保留窗口（2026-04 至 2026-07）中，七个变体的毛收益均为负。该观察记录于 2026-09-29，晚于同日预注册日志；现有记录不能独立证明窗口在探索前已封存，因此这一短窗口并非预先封存的最终样本外检验。已封存 2026-10 至 2027-09 月末形成信号的前瞻最终样本外协议；须待 220 日标签成熟后才能计算。成分股生效时点审计仍未完成。",
-        "公开展示只含聚合值，不含逐证券信号、权重、私有数据路径或生产结论。"
+        "The historical financial statement revision chain is incomplete. The corrected historical reconstruction is not revision-safe, and historical index/industry effective times are not fully point-in-time verified.",
+        "The 220-day labels overlap. Cross-sectional Rank IC and the Top-200 price-return probe do not establish executable fills, market impact, or a deployable portfolio.",
+        "The Top-200 cost probe is separate from registered decile validation; the full frozen-holdout readiness audit still blocks performance reading.",
+        "The older 2019 extended annual snapshot uses a separate retrospective reconstruction and is not included in the corrected current-run metrics above."
       ],
       "translations": {
         "en-US": {
           "title": "R&D Investment Relative to Valuation: Signal or Size Exposure?",
           "family": "R&D and intangible assets",
           "status_label": "Preliminary screen",
-          "summary": "An extended sealed announcement-event PIT reconstruction adds ten eligible monthly cross-sections from March–December 2019. R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC at 20- and 220-day horizons, weaker after neutralization. 2015–2018 cannot support the minimum cross-sectional sample, and historical revisions are incomplete.",
-          "period": "20-day labels: 2019-03-29 to 2026-08-31, 90 valid monthly cross-sections; 220-day labels: 2019-03-29 to 2025-10-31, 80 cross-sections (fewer for R&D growth)",
-          "source_note": "Extended aggregate replay using sealed announcement-event PIT vintage=20260926 and market data through 2026-09-30. 2019 is a retrospective historical-reconstruction sensitivity, not revision-safe evidence (revision_safe=false). Only monthly cross-sectional aggregates are published.",
+          "summary": "The corrected sealed announcement-event PIT run reports 4.85% / 12.81% Rank IC for 20 / 220 trading-day labels across 77 / 66 horizon-specific monthly cross-sections. The result is exploratory and does not establish executable returns; the full revision chain remains incomplete.",
+          "period": "Corrected PIT replay: 2020-01 through 2026-06; 77 valid 20-day and 66 valid 220-day cross-sections",
+          "source_note": "Source: corrected announcement-event PIT replay, vintage=20260926. The current provider note reports horizon-specific Rank IC and a separate Top-200 cost probe; historical statement revisions and frozen final-OOS readiness remain unresolved. The older 2019 extended annual snapshot is retained as a separately marked legacy artifact and is not part of this current summary.",
           "columns": [
-            "Preregistered variant",
-            "20-day mean Rank IC",
-            "220-day mean Rank IC"
+            "Factor variant",
+            "20-day Rank IC",
+            "220-day Rank IC"
           ],
           "rows": [
             [
               "R&D / market cap",
-              "4.89%",
-              "12.18%"
+              "4.85%",
+              "12.81%"
             ],
             [
-              "R&D / enterprise value (EV)",
-              "4.93%",
-              "12.28%"
+              "R&D / EV proxy",
+              "4.71%",
+              "12.62%"
             ],
             [
-              "Five-year decayed capitalized R&D",
-              "5.01%",
-              "12.17%"
+              "Five-year decayed R&D stock / market cap",
+              "5.00%",
+              "13.08%"
             ],
             [
-              "Residual after neutralizing size/value/momentum/leverage/industry",
-              "2.24%",
-              "6.13%"
+              "Full style residual",
+              "2.00%",
+              "5.99%"
             ],
             [
               "R&D / revenue",
-              "0.75%",
-              "2.96%"
+              "0.24%",
+              "0.56%"
             ],
             [
               "R&D / assets",
-              "1.25%",
-              "4.27%"
+              "0.55%",
+              "1.89%"
             ],
             [
-              "R&D growth rate",
-              "-0.21%",
-              "-2.05%"
+              "R&D growth",
+              "-0.07%",
+              "-2.57%"
             ]
           ],
           "findings": [
-            "Ten eligible monthly cross-sections are available for March–December 2019, but only as a retrospective reconstruction sensitivity. The 2015 snapshot lacks 2014 TTM lookback; 2016–2018 monthly cross-sections contain at most 1, 1, and 2 eligible names, below the 200-name minimum.",
-            "In the extended sample, R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC; 220-day labels overlap and are not independent observations.",
-            "Neutralizing size, value, momentum, leverage, and industry lowers Rank IC, which remains positive; this does not establish independent or tradable R&D alpha. R&D growth, R&D/revenue, and R&D/assets are weaker.",
-            "Annual chart values are arithmetic means of monthly cross-sectional statistics, not calendar-year portfolio returns; the 2019 point is separately marked as retrospective sensitivity.",
-            "A fixed Top-200 cost probe was rerun after correcting definitions: R&D/market cap annualizes to 12.70% with 0.57 Sharpe and -25.75% max drawdown at 25bp one-way cost; results weaken as costs rise. This is not the preregistered decile validation, and prospective final OOS has not matured. Keep this as a research candidate; do not use it as a strategy or in production.",
-            "In the 2020+ numerator/denominator check, inverse market cap has stronger univariate Rank IC than log R&D expense (20/220-day: 5.92%/15.74% vs -0.18%/-2.14%). The size/value/momentum/leverage/industry-neutralized residual remains positive (1.99%/5.62%), so the raw result cannot be attributed to R&D investment alone.",
-            "Newey–West HAC intervals, BH adjustment across 14 Rank IC tests, and a CPCV selection-bias diagnostic are now reported. Overlapping monthly labels and incomplete historical revisions still limit inference."
+            "The corrected PIT sample contains 77 valid 20-day and 66 valid 220-day monthly cross-sections; median cross-sectional sizes are about 4,454 and 4,230 stocks.",
+            "R&D / market cap and five-year decayed R&D stock show positive exploratory Rank IC. The 220-day labels overlap and are not independent observations.",
+            "The full style residual is weaker than raw R&D / market cap. This does not establish an independent, causal, or tradable R&D premium.",
+            "R&D / revenue, R&D / assets, and R&D growth do not show stable ranking evidence in the corrected sample.",
+            "A separate fixed Top-200 platform probe at 25 bp one-way modeled cost reports 12.70% annualized return, 0.57 Sharpe, and -25.75% max drawdown over 89 holding periods. It is a research diagnostic, not a registered decile validation or production portfolio.",
+            "The 2026-10 to 2027-09 prospective final-OOS protocol is frozen but blocked from performance reading; no frozen holdout metrics have been produced."
           ],
           "limits": [
-            "Market data begins on 2015-01-05, but that is not the factor start. The sealed PIT input lacks the 2014 lookback needed to form TTM on the first 2015 session. A separate legacy raw vintage has positive 2014 R&D expense for only one issuer, far below the 200-name minimum, and is not mixed into the primary replay. 2016–2018 have at most 1, 1, and 2 eligible names per monthly cross-section; the ten observations from 2019-03 onward are retrospective reconstruction sensitivity, not revision-safe evidence (revision_safe=false).",
-            "Annual chart values are arithmetic means of monthly Rank IC / group return spreads, not compounded calendar-year portfolio returns; 220-day forward labels overlap, so annual points are not independent tests. HAC intervals and multiple-testing adjustments are now reported, but overlapping monthly labels still limit inference.",
-            "CSI300/500/1000 use historical weight snapshots and a prior-snapshot sensitivity check, but lack independent effective/announcement timestamps; CSI2000 starts in the available 2023-08 window.",
-            "A four-month Top-10% gross-return diagnostic for 2026-04 to 2026-07 was recorded on 2026-09-29, after the preregistration event logged on that date. The available record does not independently establish that this window was sealed before exploration. It is therefore a retrospective reserved-window diagnostic, not a prospective or final OOS test; all seven variants were negative. The corrected replay now includes a fixed Top-200 cost probe and descriptive CPCV, but this does not replace preregistered decile validation. A prospective final OOS is frozen for 2026-10 through 2027-09 formations and cannot be evaluated until its 220-day labels mature. The constituent effective-time audit remains incomplete.",
-            "The public view contains aggregates only, not per-security signals, weights, private data paths, or production conclusions."
+            "The historical financial statement revision chain is incomplete. The corrected historical reconstruction is not revision-safe, and historical index/industry effective times are not fully point-in-time verified.",
+            "The 220-day labels overlap. Cross-sectional Rank IC and the Top-200 price-return probe do not establish executable fills, market impact, or a deployable portfolio.",
+            "The Top-200 cost probe is separate from registered decile validation; the full frozen-holdout readiness audit still blocks performance reading.",
+            "The older 2019 extended annual snapshot uses a separate retrospective reconstruction and is not included in the corrected current-run metrics above."
+          ]
+        },
+        "zh-CN": {
+          "title": "研发投入相对估值：信号还是规模暴露？",
+          "family": "研发与无形资产",
+          "status_label": "初步筛选",
+          "summary": "修正后的 sealed announcement-event PIT 回放显示，20 / 220 交易日标签的 Rank IC 分别为 4.85% / 12.81%，对应 77 / 66 个按期限分别计算的月度截面。结果仍属探索性，也不能证明收益可执行；完整历史修订链尚不具备。",
+          "period": "修正 PIT 回放：2020-01 至 2026-06；20 日有效截面 77 个，220 日有效截面 66 个",
+          "source_note": "来源：修正后的公告事件 PIT 回放，vintage=20260926。当前来源报告分期限 Rank IC 和独立的 Top-200 成本探针；历史财报修订链和冻结最终 OOS 就绪门槛仍未解决。更早的 2019 年扩展年度快照作为独立遗留产物保留，不属于此处当前汇总。",
+          "columns": [
+            "因子变体",
+            "20 日 Rank IC",
+            "220 日 Rank IC"
+          ],
+          "rows": [
+            [
+              "研发 / 市值",
+              "4.85%",
+              "12.81%"
+            ],
+            [
+              "研发 / EV 代理",
+              "4.71%",
+              "12.62%"
+            ],
+            [
+              "五年衰减研发资本 / 市值",
+              "5.00%",
+              "13.08%"
+            ],
+            [
+              "完整风格中性残差",
+              "2.00%",
+              "5.99%"
+            ],
+            [
+              "研发 / 收入",
+              "0.24%",
+              "0.56%"
+            ],
+            [
+              "研发 / 资产",
+              "0.55%",
+              "1.89%"
+            ],
+            [
+              "研发增长",
+              "-0.07%",
+              "-2.57%"
+            ]
+          ],
+          "findings": [
+            "修正后的 PIT 样本有 77 个有效 20 日月度截面和 66 个有效 220 日月度截面；股票数中位数分别约为 4,454 和 4,230。",
+            "研发 / 市值与五年衰减研发资本具有正向探索性 Rank IC；220 日标签存在重叠，不能视为独立观测。",
+            "完整风格中性残差弱于原始研发 / 市值。这不能证明存在独立、因果或可交易的研发溢价。",
+            "修正样本中的研发 / 收入、研发 / 资产和研发增长没有显示稳定的排序证据。",
+            "单独的固定 Top-200 平台探针在单边模型成本 25 bp 下，89 个持有区间年化收益为 12.70%、Sharpe 为 0.57、最大回撤为 -25.75%。这是研究诊断，不是预注册十分组验证或生产组合。",
+            "2026-10 至 2027-09 的前瞻最终 OOS 协议已封存，但性能读取仍被门槛阻止；目前没有生成冻结留出指标。"
+          ],
+          "limits": [
+            "历史财报修订链不完整。修正后的历史重建并非修订安全，历史指数与行业生效时点也没有完全按点时核实。",
+            "220 日标签重叠。截面 Rank IC 和 Top-200 价格收益探针不能证明实际成交、市场冲击或可部署组合。",
+            "Top-200 成本探针与预注册十分组验证相互独立；冻结留出就绪审计仍阻止读取绩效。",
+            "较早的 2019 年扩展年度快照来自另一份回溯重建，不属于上方修正后当前运行结果。"
           ]
         }
       },
@@ -311,449 +386,139 @@
         }
       ],
       "source_url": "research/rd-investment-method.html",
-      "supplemental_evidence": {
-        "top200_cost_probe": {
-          "cost_tiers_bps": [
-            0,
-            10,
-            25,
-            50,
-            100
-          ],
-          "factors": [
-            {
-              "factor": "rd_mv",
-              "annualized_returns": [
-                0.14112048364773844,
-                0.13544121023093925,
-                0.12696775691460283,
-                0.1129657957065906,
-                0.08540853293611428
-              ],
-              "sharpes": [
-                0.6200360334181082,
-                0.6012931326921984,
-                0.5731794610822809,
-                0.5263348279570708,
-                0.4327534713509605
-              ],
-              "max_drawdowns": [
-                -0.25499771012333616,
-                -0.25599380215326306,
-                -0.25748607206456764,
-                -0.2599682124180086,
-                -0.2649138697617718
-              ],
-              "eligible_rebalances": 90,
-              "result_periods": 89
-            },
-            {
-              "factor": "rd_ev",
-              "annualized_returns": [
-                0.1598048019944014,
-                0.1537185621513708,
-                0.14464099247624285,
-                0.12964889792839518,
-                0.10017301799346168
-              ],
-              "sharpes": [
-                0.6646764725691954,
-                0.6456768764379058,
-                0.6171712825801962,
-                0.5696544606254822,
-                0.47465343067707483
-              ],
-              "max_drawdowns": [
-                -0.2552129319931884,
-                -0.2561841296991545,
-                -0.25763916720276037,
-                -0.26005954387501806,
-                -0.2648827589347942
-              ],
-              "eligible_rebalances": 90,
-              "result_periods": 89
-            },
-            {
-              "factor": "rd_capitalized",
-              "annualized_returns": [
-                0.13268830740727533,
-                0.12718028027240358,
-                0.1189611800168826,
-                0.10537649185455367,
-                0.07862925360294426
-              ],
-              "sharpes": [
-                0.5963513192702626,
-                0.5778173781515872,
-                0.5500225314311935,
-                0.5037236717385242,
-                0.41128795678504576
-              ],
-              "max_drawdowns": [
-                -0.24518627469658627,
-                -0.24625237488705243,
-                -0.2478494379197279,
-                -0.25050565001049707,
-                -0.25579726859112295
-              ],
-              "eligible_rebalances": 90,
-              "result_periods": 89
-            },
-            {
-              "factor": "rd_mv_resid",
-              "annualized_returns": [
-                0.11755667416099858,
-                0.11143560443937006,
-                0.10230904178649647,
-                0.08724384622934411,
-                0.05765305859854131
-              ],
-              "sharpes": [
-                0.5396476549610443,
-                0.5193753383471289,
-                0.4889592373176084,
-                0.4382544051772518,
-                0.33686291661746653
-              ],
-              "max_drawdowns": [
-                -0.28094440374126695,
-                -0.2888861658872074,
-                -0.30064013605001005,
-                -0.31981419299680225,
-                -0.3566503407940784
-              ],
-              "eligible_rebalances": 90,
-              "result_periods": 89
-            },
-            {
-              "factor": "rd_sales",
-              "annualized_returns": [
-                0.04097564811651311,
-                0.037069903399475246,
-                0.03123357187498499,
-                0.02156552354564112,
-                0.0024495906996124805
-              ],
-              "sharpes": [
-                0.27957038233673015,
-                0.26867145606562837,
-                0.2523105085686724,
-                0.22501225564178967,
-                0.17032685425701474
-              ],
-              "max_drawdowns": [
-                -0.451504595908654,
-                -0.4569800123940667,
-                -0.4650933097851957,
-                -0.47835346203642803,
-                -0.5039189035643621
-              ],
-              "eligible_rebalances": 90,
-              "result_periods": 89
-            },
-            {
-              "factor": "rd_assets",
-              "annualized_returns": [
-                0.09320158900475373,
-                0.08896636915312284,
-                0.08263837758383974,
-                0.07215766442218374,
-                0.05144152589053608
-              ],
-              "sharpes": [
-                0.4217909207024545,
-                0.41033881055615873,
-                0.3931455794407048,
-                0.3644542186169457,
-                0.30696508665312566
-              ],
-              "max_drawdowns": [
-                -0.3756380299488842,
-                -0.3776984228250513,
-                -0.38077716221701063,
-                -0.38587694434139597,
-                -0.41332203291406844
-              ],
-              "eligible_rebalances": 90,
-              "result_periods": 89
-            },
-            {
-              "factor": "rd_growth",
-              "annualized_returns": [
-                0.06354304842950143,
-                0.057957921988689876,
-                0.04962705410528079,
-                0.035866339954443216,
-                0.008804852201267588
-              ],
-              "sharpes": [
-                0.36856527146342266,
-                0.34723520663368224,
-                0.31516360436025953,
-                0.2615235967697199,
-                0.15365616913700075
-              ],
-              "max_drawdowns": [
-                -0.41593496089633886,
-                -0.4229344081983908,
-                -0.43328509891661726,
-                -0.45014733946766194,
-                -0.48245971367688223
-              ],
-              "eligible_rebalances": 78,
-              "result_periods": 77
-            }
-          ],
-          "method": "Monthly month-end, equal-weight top 200, next eligible session execution, platform period cost vector scaled from the 25bp BpsCostModel run; all-market eligible names."
-        },
-        "components": [
-          {
-            "component": "inverse_market_cap",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0592167995905673,
-            "ci95_low": 0.0200896341993459,
-            "ci95_high": 0.0983439649817887,
-            "q_value": 0.00401807756092
-          },
-          {
-            "component": "inverse_market_cap",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.1573914921655545,
-            "ci95_low": 0.0749008422434998,
-            "ci95_high": 0.2398821420876093,
-            "q_value": 0.00024568839968
-          },
-          {
-            "component": "log_rd_numerator",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": -0.0017946710003821,
-            "ci95_low": -0.0286500822893983,
-            "ci95_high": 0.0250607402886339,
-            "q_value": 0.895790145218
-          },
-          {
-            "component": "log_rd_numerator",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": -0.0214121327545965,
-            "ci95_low": -0.0683554957370569,
-            "ci95_high": 0.0255312302278638,
-            "q_value": 0.371317176066
-          },
-          {
-            "component": "neutralized_residual",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0198513785785693,
-            "ci95_low": 0.0109028032370482,
-            "ci95_high": 0.0287999539200905,
-            "q_value": 2.74727721442e-05
-          },
-          {
-            "component": "neutralized_residual",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.0562242320898193,
-            "ci95_low": 0.0434660012095066,
-            "ci95_high": 0.0689824629701319,
-            "q_value": 2.29782383988e-17
-          },
-          {
-            "component": "rd_mv",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0492634291885546,
-            "ci95_low": 0.0288328389454864,
-            "ci95_high": 0.0696940194316228,
-            "q_value": 9.15644369216e-06
-          },
-          {
-            "component": "rd_mv",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.1237702493244926,
-            "ci95_low": 0.0947154394202353,
-            "ci95_high": 0.1528250592287498,
-            "q_value": 1.37242853518e-16
-          }
-        ],
-        "cpcv": {
-          "groups": 5,
-          "test_groups": 2,
-          "combinations_per_horizon": 10,
-          "pbo_fwd20": 0.0,
-          "pbo_fwd220": 0.2,
-          "status": "descriptive_pending_review"
-        },
-        "rank_ic_inference": [
-          {
-            "factor": "rd_assets",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0032293285114373,
-            "ci95_low": -0.0339954516923673,
-            "ci95_high": 0.0404541087152419,
-            "q_value": 0.979452588108
-          },
-          {
-            "factor": "rd_assets",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.014953521634755,
-            "ci95_low": -0.0451295966388165,
-            "ci95_high": 0.0750366399083266,
-            "q_value": 0.875962218168
-          },
-          {
-            "factor": "rd_capitalized",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0509554027195254,
-            "ci95_low": 0.0311785252260782,
-            "ci95_high": 0.0707322802129725,
-            "q_value": 1.23727842362e-06
-          },
-          {
-            "factor": "rd_capitalized",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.1253943329092847,
-            "ci95_low": 0.0930242669917599,
-            "ci95_high": 0.1577643988268096,
-            "q_value": 1.46325462282e-13
-          },
-          {
-            "factor": "rd_ev",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0479723263979469,
-            "ci95_low": 0.0261507766113164,
-            "ci95_high": 0.0697938761845775,
-            "q_value": 2.87186320347e-05
-          },
-          {
-            "factor": "rd_ev",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.1212639767982599,
-            "ci95_low": 0.0841628531932348,
-            "ci95_high": 0.158365100403285,
-            "q_value": 5.22153035862e-10
-          },
-          {
-            "factor": "rd_growth",
-            "horizon": "fwd20",
-            "n": 78,
-            "mean": -0.002129616683281,
-            "ci95_low": -0.0179562599576026,
-            "ci95_high": 0.0136970265910405,
-            "q_value": 0.979452588108
-          },
-          {
-            "factor": "rd_growth",
-            "horizon": "fwd220",
-            "n": 68,
-            "mean": -0.0205006703140338,
-            "ci95_low": -0.0666469612425845,
-            "ci95_high": 0.0256456206145169,
-            "q_value": 0.597173741815
-          },
-          {
-            "factor": "rd_mv",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0492634291885546,
-            "ci95_low": 0.0288328389454864,
-            "ci95_high": 0.0696940194316228,
-            "q_value": 5.34125882043e-06
-          },
-          {
-            "factor": "rd_mv",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.1237702493244925,
-            "ci95_low": 0.0947154394202353,
-            "ci95_high": 0.1528250592287498,
-            "q_value": 4.80349987314e-16
-          },
-          {
-            "factor": "rd_mv_resid",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0197934034381942,
-            "ci95_low": 0.0108486182805769,
-            "ci95_high": 0.0287381885958115,
-            "q_value": 2.87186320347e-05
-          },
-          {
-            "factor": "rd_mv_resid",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.0561390431723357,
-            "ci95_low": 0.0433344233655178,
-            "ci95_high": 0.0689436629791537,
-            "q_value": 1.18422995896e-16
-          },
-          {
-            "factor": "rd_sales",
-            "horizon": "fwd20",
-            "n": 80,
-            "mean": 0.0005131156065171,
-            "ci95_low": -0.0385355519001161,
-            "ci95_high": 0.0395617831131504,
-            "q_value": 0.979452588108
-          },
-          {
-            "factor": "rd_sales",
-            "horizon": "fwd220",
-            "n": 70,
-            "mean": 0.0034613540979198,
-            "ci95_low": -0.0646591649424195,
-            "ci95_high": 0.0715818731382591,
-            "q_value": 0.979452588108
-          }
-        ]
-      }
+      "series": "fundamental",
+      "market": "a_share",
+      "method": [
+        "direct_factor_test",
+        "cross_sectional_ranking",
+        "portfolio_replay",
+        "attribution",
+        "robustness"
+      ],
+      "frequency": [
+        "monthly"
+      ],
+      "evidence_stage": "exploratory",
+      "publication_id": "rd-investment",
+      "source_ref": "doc:quant-research.research.rd-investment-relative-valuation"
     },
     {
-      "id": "employee-compensation",
-      "title": "职工薪酬与人力资本：待检验的基本面线索",
-      "family": "人力资本与劳动",
-      "status": "hypothesis",
-      "status_label": "研究假设",
-      "summary": "早期基本面脚本使用过职工薪酬相关报表字段，但尚无可核对的预测性回测，不能据此认定劳动成本因子有效。",
-      "period": "尚无可发布的历史评估区间",
-      "source_note": "仅依据已保留的历史字段与因子脚本建立研究入口；没有公开收益统计。",
-      "columns": [],
-      "rows": [],
-      "findings": [
-        "应付职工薪酬是期末负债余额，不能直接当作当期工资或研发人员投入。",
-        "后续需分别核对劳动成本流量、人员规模和报表披露覆盖。"
+      "id": "fundamental-state-forecasting",
+      "series": "fundamental",
+      "market": "a_share",
+      "method": [
+        "fundamental_state_forecast",
+        "cross_sectional_ranking",
+        "composite_score",
+        "portfolio_replay",
+        "robustness"
       ],
-      "limits": [
-        "尚未完成数据口径、历史版本和公告时点核验。",
-        "没有 Rank IC、分组收益或交易回测结果。"
+      "frequency": [
+        "quarterly",
+        "annual"
       ],
+      "evidence_stage": "retrospective_diagnostic",
+      "publication_id": "fundamental-state-forecasting",
+      "source_ref": "doc:quant-research.research.long-term-fundamental-v2",
+      "status": "preliminary",
       "translations": {
-        "en-US": {
-          "title": "Employee Compensation and Human Capital: A Fundamental Clue to Test",
-          "family": "Human capital and labor",
-          "status_label": "Research hypothesis",
-          "summary": "Early fundamental scripts used employee compensation fields from financial statements, but there is no auditable predictive backtest yet. The labor cost factor cannot be considered effective on this basis.",
-          "period": "No publishable historical evaluation period yet",
-          "source_note": "This research entry is based only on retained historical fields and factor scripts; no public return statistics are available.",
+        "zh-CN": {
+          "title": "基本面状态预测：从财务预测到截面选股",
+          "family": "基本面预测与经营质量",
+          "status_label": "回溯诊断",
+          "summary": "研究预测未来 ROA、毛利率、营收增速、净利润增速及现金转化，再检验预测能否改善截面排序和组合。盈利状态有较强持续性，但复杂模型没有稳定超过 persistence；一次净利润增速的正向比较没有在后续同折复核中稳定复现。",
+          "period": "2026-09-02 至 2026-09-04；一年与 1–4 季度预测目标",
+          "source_note": "来源：基本面状态预测与长期基本面 v2 研究记录。预测准确度不等同于股票收益证据。",
           "columns": [],
           "rows": [],
           "findings": [
-            "Employee benefits payable is an end-of-period liability balance and cannot be used directly as current-period wages or R&D staff investment.",
-            "Future work must separately verify labor cost flows, workforce size, and financial statement disclosure coverage."
+            "ROA 和毛利率水平具有较强持续性，XGBoost 未稳定超过 persistence。",
+            "营收增速预测能力随期限衰减；净利润增速结果依样本面板变化。",
+            "预测转组合的历史桥接表现不稳定，尚未建立稳定投资增量。"
           ],
           "limits": [
-            "Data definitions, historical versions, and announcement timing have not been verified.",
-            "There are no Rank IC, grouped return, or trading backtest results."
+            "公告时点重建不等于供应商完整修订历史；长周期标签重叠且组合样本偏短。",
+            "当前来源没有单独验证未来营收或净利润绝对值预测作为截面选股因子的研究；该方向仍需找到原始实验记录。",
+            "结果属于回溯诊断，不是成熟前瞻样本外或生产审批。"
+          ]
+        },
+        "en-US": {
+          "title": "Fundamental-state forecasting: from financial predictions to cross-sectional selection",
+          "family": "Fundamental forecasting and operating quality",
+          "status_label": "Retrospective diagnostic",
+          "summary": "The study forecasts future ROA, gross margin, revenue growth, net-profit growth, and cash conversion, then tests whether forecasts improve cross-sectional ranking and portfolios. Profitability states are persistent, but complex models did not consistently beat persistence. A positive net-profit-growth comparison did not remain stable in the later common-fold review.",
+          "period": "September 2–4, 2026; annual and one-to-four-quarter forecast targets",
+          "source_note": "Source: the fundamental-state forecasting and long-term fundamental v2 research records. Forecast accuracy is not treated as stock-return evidence.",
+          "columns": [],
+          "rows": [],
+          "findings": [
+            "ROA and gross-margin levels are persistent; XGBoost did not consistently beat persistence.",
+            "Revenue-growth prediction weakens with horizon; net-profit-growth results vary by panel.",
+            "Historical forecast-to-portfolio bridges are unstable and do not establish a durable investment increment."
+          ],
+          "limits": [
+            "Announcement-time reconstruction is not a complete vendor revision history; long-horizon labels overlap and portfolio samples are short.",
+            "The current source set does not document a separately validated factor that selects stocks using predicted absolute revenue or net-profit levels; that direction needs its original experiment note.",
+            "These are retrospective diagnostics, not mature prospective evidence or production approval."
+          ]
+        }
+      }
+    },
+    {
+      "id": "fundamental-family-shadow",
+      "series": "fundamental",
+      "market": "a_share",
+      "method": [
+        "direct_factor_test",
+        "cross_sectional_ranking",
+        "composite_score",
+        "portfolio_replay",
+        "robustness"
+      ],
+      "frequency": [
+        "monthly",
+        "quarterly",
+        "annual"
+      ],
+      "evidence_stage": "retrospective_diagnostic",
+      "publication_id": "fundamental-family-shadow",
+      "source_ref": "doc:quant-research.research.fundamental-family-shadow",
+      "status": "preliminary",
+      "translations": {
+        "zh-CN": {
+          "title": "V/Q/G 基本面因子族：共同基线消融",
+          "family": "价值、质量与成长",
+          "status_label": "研究协议已定；家族结论待复核",
+          "summary": "该实验把价值、质量和成长拆成可比较的因子族，并固定候选、日期、期限与组合臂，研究各家族及组合的增量。当前入口记录了设计和研究生命周期，但没有给出经过复核的家族级绩效结论。",
+          "period": "回溯运行截至 2026-08-30",
+          "source_note": "来源：A 股基本面特征族 Shadow 研究入口。公开摘要不复制未审定的逐次运行数字。",
+          "columns": [],
+          "rows": [],
+          "findings": [
+            "共同基线设计有助于区分单个家族与组合信号的作用。",
+            "本专题目前适合作为实验地图和消融协议，不作为 V/Q/G 组合有效性的证明。"
+          ],
+          "limits": [
+            "历史回放已参与研究选择，不是前瞻 OOS。",
+            "来源 README 尚未形成经过复核的家族级结论，仍需补全证据复核。"
+          ]
+        },
+        "en-US": {
+          "title": "V/Q/G fundamental families: common-baseline ablation",
+          "family": "Value, quality, and growth",
+          "status_label": "Protocol established; family verdict pending review",
+          "summary": "This study separates value, quality, and growth into comparable factor families and fixes candidates, dates, horizons, and portfolio arms to evaluate incremental contributions. The current entry documents the design and lifecycle, but has no reviewed family-level performance verdict.",
+          "period": "Retrospective runs through August 30, 2026",
+          "source_note": "Source: the A-share fundamental-family Shadow study. This public summary omits unreviewed run-level performance figures.",
+          "columns": [],
+          "rows": [],
+          "findings": [
+            "The common-baseline design helps separate individual family contributions from the combined score.",
+            "This page is a research map and ablation protocol, not evidence that a V/Q/G portfolio is effective."
+          ],
+          "limits": [
+            "Historical runs participated in research selection and are not prospective OOS.",
+            "The source README has no reviewed family-level verdict yet; evidence review remains open."
           ]
         }
       }
@@ -767,7 +532,6 @@
       "summary": "现金流、红利和相关自建组合已有部分规则复现与聚合回放证据，但尚不能视为完整的官方成分复现或生产策略验证。",
       "period": "可用成分快照覆盖期；完整十年官方成分回放尚未完成",
       "source_note": "数据取自量化研究仓库的公开研究入口；官方指数、规则重建影子指数和自建组合分属不同证据类型。",
-      "source_url": "https://github.com/runchengxie/quant-research/blob/main/docs/research/experiments/cashflow_indices/README.md",
       "columns": [
         "对象",
         "可用回放相关性"
@@ -824,6 +588,165 @@
             "The public projection keeps aggregate results only and does not represent per-security signals, portfolio weights, or executable replay.",
             "This has not entered a production strategy or produced a complete out-of-sample conclusion."
           ]
+        }
+      },
+      "series": "fundamental",
+      "market": "a_share",
+      "method": [
+        "cross_sectional_ranking",
+        "portfolio_replay",
+        "attribution",
+        "robustness"
+      ],
+      "frequency": [
+        "monthly",
+        "annual"
+      ],
+      "evidence_stage": "retrospective_diagnostic",
+      "publication_id": "cashflow-indices",
+      "source_ref": "doc:quant-research.research.cashflow-indices-map"
+    },
+    {
+      "id": "hk-fundamental-archive",
+      "series": "fundamental",
+      "market": "hong_kong",
+      "method": [
+        "fundamental_state_forecast",
+        "cross_sectional_ranking",
+        "portfolio_replay",
+        "attribution",
+        "robustness"
+      ],
+      "frequency": [
+        "monthly",
+        "quarterly"
+      ],
+      "evidence_stage": "historical_archive",
+      "publication_id": "hk-fundamental-archive",
+      "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928",
+      "status": "historical-reviewed",
+      "translations": {
+        "zh-CN": {
+          "title": "港股基本面 PIT 研究：月频与季频历史归档",
+          "family": "港股基本面预测、截面排序与组合诊断",
+          "status_label": "历史归档",
+          "summary": "归档覆盖纯基本面基线、目标变换、去除收益特征的变体、估值与现金流叠加、基准归因、股票池和市场阶段诊断。季频纯基本面三条模型线的完整测试段均为负，六个滚动前推窗口没有正收益；最近 Final OOS 的亮点不足以覆盖这些记录。",
+          "period": "版本化笔记：2026-03-24 至 2026-04-20；月频与季频",
+          "source_note": "来源：港股历史实验恢复索引和 26 篇分类笔记；冻结运行资产保存在仓库外。",
+          "columns": [],
+          "rows": [],
+          "findings": [
+            "月频与季频记录了多种基本面目标、PIT 特征、市场阶段和组合构造问题。",
+            "季频纯基本面完整测试段与滚动前推验证均较弱；近期窗口只能作为历史阶段观察。",
+            "月频 no-return 变体在部分 IC 窗口改善，仍是归档候选。"
+          ],
+          "limits": [
+            "冻结资产可以校验完整性，但当前仓库不足以端到端复现全部数据与运行。",
+            "港股结论只描述港股历史研究，不证明能够迁移到 A 股。"
+          ]
+        },
+        "en-US": {
+          "title": "Hong Kong PIT fundamentals: archived monthly and quarterly studies",
+          "family": "Hong Kong fundamental forecasts, ranking, and portfolio diagnostics",
+          "status_label": "Historical archive",
+          "summary": "The archive covers pure-fundamental baselines, target transforms, variants without return features, valuation and cash-flow overlays, benchmark attribution, universe checks, and regime diagnostics. All three quarterly pure-fundamental model arms had negative full-test returns, with no positive return across six walk-forward windows. A brighter recent final-OOS segment does not override that record.",
+          "period": "Versioned notes: March 24–April 20, 2026; monthly and quarterly",
+          "source_note": "Source: the Hong Kong experiment recovery index and its 26 classified notes. Frozen run assets remain outside this repository.",
+          "columns": [],
+          "rows": [],
+          "findings": [
+            "Monthly and quarterly notes examine fundamental targets, PIT features, market regimes, and portfolio construction.",
+            "The quarterly pure-fundamental full-test and walk-forward results were weak; recent-window results are historical regime observations.",
+            "Monthly no-return variants improved selected IC windows but remain archived candidates."
+          ],
+          "limits": [
+            "The frozen assets can be integrity-checked, but the repository alone does not provide end-to-end reproduction of every data and run.",
+            "Hong Kong findings describe historical Hong Kong research and do not establish transferability to A-shares."
+          ]
+        }
+      }
+    },
+    {
+      "id": "employee-compensation",
+      "title": "职工薪酬与人力资本：待检验的基本面线索",
+      "family": "人力资本与劳动",
+      "status": "hypothesis",
+      "status_label": "研究假设",
+      "summary": "早期基本面脚本使用过职工薪酬相关报表字段，但尚无可核对的预测性回测，不能据此认定劳动成本因子有效。",
+      "period": "尚无可发布的历史评估区间",
+      "source_note": "仅依据已保留的历史字段与因子脚本建立研究入口；没有公开收益统计。",
+      "columns": [],
+      "rows": [],
+      "findings": [
+        "应付职工薪酬是期末负债余额，不能直接当作当期工资或研发人员投入。",
+        "后续需分别核对劳动成本流量、人员规模和报表披露覆盖。"
+      ],
+      "limits": [
+        "尚未完成数据口径、历史版本和公告时点核验。",
+        "没有 Rank IC、分组收益或交易回测结果。"
+      ],
+      "translations": {
+        "en-US": {
+          "title": "Employee Compensation and Human Capital: A Fundamental Clue to Test",
+          "family": "Human capital and labor",
+          "status_label": "Research hypothesis",
+          "summary": "Early fundamental scripts used employee compensation fields from financial statements, but there is no auditable predictive backtest yet. The labor cost factor cannot be considered effective on this basis.",
+          "period": "No publishable historical evaluation period yet",
+          "source_note": "This research entry is based only on retained historical fields and factor scripts; no public return statistics are available.",
+          "columns": [],
+          "rows": [],
+          "findings": [
+            "Employee benefits payable is an end-of-period liability balance and cannot be used directly as current-period wages or R&D staff investment.",
+            "Future work must separately verify labor cost flows, workforce size, and financial statement disclosure coverage."
+          ],
+          "limits": [
+            "Data definitions, historical versions, and announcement timing have not been verified.",
+            "There are no Rank IC, grouped return, or trading backtest results."
+          ]
+        }
+      },
+      "series": "fundamental",
+      "market": "a_share",
+      "method": [
+        "direct_factor_test"
+      ],
+      "frequency": [
+        "not_applicable"
+      ],
+      "evidence_stage": "hypothesis",
+      "publication_id": "employee-compensation",
+      "source_ref": "doc:quant-research.research.fundamental-research-series"
+    }
+  ],
+  "series": [
+    {
+      "id": "fundamental",
+      "source_ref": "doc:quant-research.research.fundamental-research-series",
+      "publication_id": "fundamental-series",
+      "publication_status": "reviewed_aggregate",
+      "candidate_count": 23,
+      "candidate_href": "fundamentals",
+      "study_ids": [
+        "pb-roe",
+        "rd-investment",
+        "fundamental-state-forecasting",
+        "fundamental-family-shadow",
+        "cashflow-indices",
+        "hk-fundamental-archive",
+        "employee-compensation"
+      ],
+      "translations": {
+        "en-US": {
+          "title": "Fundamental research across factors and markets",
+          "summary": "A source-linked map of R&D investment, value and quality, cash flow, operating-state forecasts, and historical Hong Kong experiments.",
+          "scope": "The public factor catalog lists 23 fundamental and human-capital candidates. Catalog inclusion describes a research question; it does not mean the factor has passed validation.",
+          "evidence_boundary": "Forecast accuracy, cross-sectional ranking, and executable portfolio returns are separate evidence stages. Historical Hong Kong findings remain market-specific and do not establish A-share transferability."
+        },
+        "zh-CN": {
+          "title": "跨因子与市场的基本面研究",
+          "summary": "按来源串联研发投入、价值与质量、现金流、经营状态预测和港股历史实验。",
+          "scope": "公开因子目录列出 23 个基本面与人力资本候选。进入目录表示有研究问题，不代表因子已通过验证。",
+          "evidence_boundary": "预测准确度、截面排序能力和可执行组合收益属于不同证据阶段。港股历史发现只适用于对应市场，不能据此认定可迁移到 A 股。"
         }
       }
     }

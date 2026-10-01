@@ -1,4 +1,4 @@
-import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyAnnualEvidence, StudyCatalog } from './types'
+import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
 
 const required = ['schema_version', 'generated_at', 'source', 'datasets', 'factor_groups', 'factors', 'series', 'cross_section', 'jump_decomposition'] as const
 const fundamentalRequired = ['schema_version', 'source', 'vintage', 'coverage', 'latest_cross_section', 'validation', 'series', 'notes'] as const
@@ -41,16 +41,6 @@ export async function loadStudies(): Promise<StudyCatalog> {
     throw new Error('研究专题数据格式无效')
   }
   return value as StudyCatalog
-}
-
-export async function loadStudyAnnualEvidence(): Promise<StudyAnnualEvidence> {
-  const response = await fetch(`${import.meta.env.BASE_URL}data/rd-investment-annual.json`)
-  if (!response.ok) throw new Error(`无法加载年度研究证据（HTTP ${response.status}）`)
-  const value: unknown = await response.json()
-  if (!value || typeof value !== 'object' || !Array.isArray((value as { series?: unknown }).series)) throw new Error('年度研究证据格式无效')
-  const candidate = value as Partial<StudyAnnualEvidence>
-  if (typeof candidate.market_data_as_of !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(candidate.market_data_as_of)) throw new Error('年度研究证据缺少有效的行情快照日期')
-  return value as StudyAnnualEvidence
 }
 
 export async function loadAlpha810Snapshot(): Promise<Alpha810Snapshot> {

@@ -32,6 +32,72 @@ class PublicResearchContractTests(unittest.TestCase):
             excluded = " ".join(projection["excluded_fields"])
             self.assertIn("per_security_signals", excluded)
 
+    def test_fundamental_series_projections_use_stable_quant_research_documents(self):
+        manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
+        projections = {item["public_id"]: item for item in manifest["projections"]}
+        expected = {
+            "fundamental-series": "doc:quant-research.research.fundamental-research-series",
+            "rd-investment": "doc:quant-research.research.rd-investment-relative-valuation",
+            "fundamental-state-forecasting": "doc:quant-research.research.long-term-fundamental-v2",
+            "fundamental-family-shadow": "doc:quant-research.research.fundamental-family-shadow",
+            "cashflow-indices": "doc:quant-research.research.cashflow-indices-map",
+            "pb-roe": "doc:quant-research.strategy.pb-roe-value-quality",
+            "hk-fundamental-archive": "doc:quant-research.archive.hk-experiment-recovery-20260928",
+            "employee-compensation": "doc:quant-research.research.fundamental-research-series",
+        }
+        self.assertTrue(expected.keys() <= projections.keys())
+        for public_id, source_ref in expected.items():
+            projection = projections[public_id]
+            self.assertEqual(projection["source_ref"], source_ref)
+            self.assertIn(
+                projection["publication_status"],
+                {"reviewed_aggregate", "preliminary_aggregate", "historical_archive", "hypothesis_only"},
+            )
+            self.assertEqual(set(projection["locales"]), {"en-US", "zh-CN"})
+
+    def test_fundamental_series_and_study_taxonomy_are_bilingual_and_source_backed(self):
+        catalog = json.loads((PUBLIC_DATA / "research-studies.json").read_text())
+        manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
+        projections = {item["public_id"]: item for item in manifest["projections"]}
+        self.assertEqual(catalog["series"][0]["id"], "fundamental")
+        self.assertEqual(
+            set(catalog["series"][0]["translations"]), {"en-US", "zh-CN"}
+        )
+        self.assertEqual(
+            set(catalog["series"][0]["study_ids"]),
+            {study["id"] for study in catalog["studies"]},
+        )
+        allowed_markets = {"a_share", "hong_kong"}
+        allowed_stages = {
+            "hypothesis",
+            "exploratory",
+            "retrospective_diagnostic",
+            "prospective_holdout_pending",
+            "reviewed_research",
+            "historical_archive",
+        }
+        for study in catalog["studies"]:
+            self.assertEqual(study["series"], "fundamental", study["id"])
+            self.assertIn(study["market"], allowed_markets, study["id"])
+            self.assertTrue(study["method"], study["id"])
+            self.assertTrue(study["frequency"], study["id"])
+            self.assertIn(study["evidence_stage"], allowed_stages, study["id"])
+            self.assertIn(study["publication_id"], projections, study["id"])
+            self.assertEqual(
+                study["source_ref"], projections[study["publication_id"]]["source_ref"]
+            )
+            self.assertEqual(study["series"], catalog["series"][0]["id"])
+
+    def test_hong_kong_fundamental_study_stays_in_historical_archive_lane(self):
+        catalog = json.loads((PUBLIC_DATA / "research-studies.json").read_text())
+        study = next(item for item in catalog["studies"] if item["id"] == "hk-fundamental-archive")
+        self.assertEqual(study["market"], "hong_kong")
+        self.assertEqual(study["evidence_stage"], "historical_archive")
+        self.assertEqual(study["status"], "historical-reviewed")
+        text = json.dumps(study, ensure_ascii=False).lower()
+        self.assertIn("a-share", text)
+        self.assertTrue(any(token in text for token in ("transfer", "外推", "迁移")))
+
     def test_research_publication_manifest_contains_no_private_paths_or_credentials(self):
         text = (PUBLIC_DATA / "research-publication-manifest.json").read_text()
         self.assertNotRegex(text, re.compile(r"/home/|/Users/|private-panel|(?:api|access|secret)[_-]?key", re.I))
@@ -57,12 +123,15 @@ class PublicResearchContractTests(unittest.TestCase):
         catalog = json.loads((PUBLIC_DATA / "research-studies.json").read_text())
         studies = {study["id"]: study for study in catalog["studies"]}
         self.assertEqual(
-            set(studies), {"pb-roe", "rd-investment", "employee-compensation", "cashflow-indices"}
+            set(studies), {
+                "pb-roe", "rd-investment", "employee-compensation", "cashflow-indices",
+                "fundamental-state-forecasting", "fundamental-family-shadow", "hk-fundamental-archive",
+            }
         )
         self.assertEqual(studies["pb-roe"]["status"], "historical-reviewed")
         self.assertEqual(len(studies["pb-roe"]["rows"]), 5)
         self.assertEqual(studies["rd-investment"]["status"], "preliminary")
-        self.assertIn("历史重建", studies["rd-investment"]["source_note"])
+        self.assertIn("遗留", studies["rd-investment"]["source_note"])
         self.assertEqual(studies["employee-compensation"]["status"], "hypothesis")
         self.assertEqual(studies["employee-compensation"]["rows"], [])
         self.assertEqual(studies["cashflow-indices"]["status"], "preliminary")
@@ -84,33 +153,21 @@ class PublicResearchContractTests(unittest.TestCase):
         english = study["translations"]["en-US"]
         self.assertEqual(len(english["findings"]), len(set(english["findings"])))
         self.assertTrue(any("R&D growth" in item and "revenue" in item for item in english["findings"]))
-        self.assertIn("reserved-window", " ".join(english["limits"]))
+        self.assertIn("frozen-holdout", " ".join(english["limits"]))
         self.assertEqual(study["source_url"], "research/rd-investment-method.html")
         note = (ROOT / "site" / "public" / study["source_url"]).read_text()
-        for required_claim in ("revision_safe=false", "2019-03-29", "retrospective reserved-window diagnostic", "2015"):
+        for required_claim in ("77 valid monthly cross-sections", "66", "No frozen holdout metrics", "12.70%"):
             self.assertIn(required_claim, note)
         self.assertNotIn("/home/", note)
 
-    def test_rd_annual_evidence_publishes_market_date_and_mature_label_windows(self):
+    def test_rd_legacy_annual_evidence_is_explicitly_not_current(self):
         annual = json.loads((PUBLIC_DATA / "rd-investment-annual.json").read_text())
-        self.assertEqual(annual["market_data_as_of"], "2026-09-30")
-        self.assertFalse(annual["revision_safe"])
-        series = {(item["factor"], item["horizon"]): item for item in annual["series"]}
-        raw_20 = series[("rd_mv", "fwd20")]
-        raw_220 = series[("rd_mv", "fwd220")]
-        self.assertEqual((raw_20["signal_start"], raw_20["signal_end"], raw_20["label_mature_through"]), ("2019-03-29", "2026-08-31", "2026-09-30"))
-        self.assertEqual((raw_220["signal_start"], raw_220["signal_end"], raw_220["label_mature_through"]), ("2019-03-29", "2025-10-31", "2026-09-24"))
-        years = {item["year"]: item for item in raw_20["years"]}
-        self.assertEqual(list(years), list(range(2015, 2027)))
-        self.assertEqual(years[2019]["cross_sections"], 10)
-        self.assertEqual(years[2019]["evidence_status"], "reconstructed_backfill")
-        self.assertEqual(years[2019]["median_universe_n"], 2871)
-        self.assertEqual(years[2015]["evidence_status"], "missing_lookback")
-        for year in range(2016, 2019):
-            self.assertEqual(years[year]["cross_sections"], 0)
-            self.assertIsNone(years[year]["rank_ic"])
-            self.assertLessEqual(years[year]["max_universe_n"], 2)
-            self.assertEqual(years[year]["evidence_status"], "below_minimum_cross_section")
+        self.assertEqual(annual["publication_status"], "legacy_unaligned_diagnostic")
+        self.assertIn("not part of the corrected current PIT run", annual["public_notice"])
+        catalog = json.loads((PUBLIC_DATA / "research-studies.json").read_text())
+        study = next(item for item in catalog["studies"] if item["id"] == "rd-investment")
+        self.assertNotIn("annual_evidence", study)
+        self.assertNotIn("supplemental_evidence", study)
 
     def test_cashflow_study_is_backed_by_a_stable_source_projection(self):
         manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
@@ -118,7 +175,7 @@ class PublicResearchContractTests(unittest.TestCase):
             item for item in manifest["projections"] if item["public_id"] == "cashflow-indices"
         )
         self.assertEqual(
-            projection["source_ref"], "doc:quant-research.research.cashflow-indices"
+            projection["source_ref"], "doc:quant-research.research.cashflow-indices-map"
         )
         self.assertIn("aggregate_rows", projection["allowed_fields"])
         self.assertIn("per_security_signals", projection["excluded_fields"])
