@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { loadAlpha810Snapshot, loadFundamentalData, loadSnapshot, loadStudies, loadStudyAnnualEvidence } from './data'
+import { loadAlpha810Snapshot, loadFundamentalData, loadSnapshot, loadStudies } from './data'
 import { buildResearchContext, toResearchRecords } from './research'
 import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
 import { initialLocale, LocaleContext, useLocale, type Copy, type Locale } from './i18n'
@@ -39,10 +39,6 @@ async function loadRouteData(path: string): Promise<RouteData> {
   if (path === 'fundamentals') return { kind: 'fundamentals', fundamental: await loadFundamentalData() }
   if (path === 'studies' || path.startsWith('studies/')) {
     const studies = await loadStudies()
-    if (path === 'studies/rd-investment') {
-      const annualEvidence = await loadStudyAnnualEvidence()
-      return { kind: 'studies', studies: { ...studies, studies: studies.studies.map((study) => study.id === 'rd-investment' ? { ...study, annual_evidence: annualEvidence } : study) } }
-    }
     return { kind: 'studies', studies }
   }
   if (path === 'factors' || path.startsWith('factors/')) {

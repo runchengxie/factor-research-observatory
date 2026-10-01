@@ -62,25 +62,36 @@ export type StudyCopy = {
   columns: string[]; rows: string[][]; findings: string[]; limits: string[];
 }
 export type StudyLogEntry = { date: string; stage: string; note: string; stage_en: string; note_en: string }
-export type StudyAnnualPoint = { year: number; cross_sections: number; rank_ic: number | null; top_minus_bottom: number | null; coverage_mean: number | null; median_universe_n: number | null; max_universe_n: number; evidence_status: string }
-export type StudyAnnualSeries = { factor: string; horizon: 'fwd20' | 'fwd220'; signal_start: string; signal_end: string; label_mature_through: string; years: StudyAnnualPoint[] }
-export type StudyAnnualEvidence = { schema_version: number; source_vintage: string; source_type: string; revision_safe: boolean; market_data_as_of: string; requested_start: string; series: StudyAnnualSeries[] }
-export type StudySupplementalEvidence = {
-  top200_cost_probe: { cost_tiers_bps: number[]; factors: Array<{ factor: string; annualized_returns: number[]; sharpes: number[]; max_drawdowns: number[]; eligible_rebalances: number; result_periods: number }>; method: string }
-  rank_ic_inference: Array<{ factor: string; horizon: 'fwd20' | 'fwd220'; n: number; mean: number; ci95_low: number; ci95_high: number; q_value: number }>
-  components: Array<{ component: string; horizon: 'fwd20' | 'fwd220'; n: number; mean: number; ci95_low: number; ci95_high: number; q_value: number }>
-  cpcv: { groups: number; test_groups: number; combinations_per_horizon: number; pbo_fwd20: number; pbo_fwd220: number; status: string }
+export type StudyMarket = 'a_share' | 'hong_kong'
+export type StudyMethod = 'direct_factor_test' | 'fundamental_state_forecast' | 'cross_sectional_ranking' | 'composite_score' | 'portfolio_replay' | 'attribution' | 'robustness'
+export type StudyFrequency = 'daily' | 'weekly' | 'monthly' | 'quarterly' | 'annual' | 'event_driven' | 'mixed' | 'not_applicable'
+export type StudyEvidenceStage = 'hypothesis' | 'exploratory' | 'retrospective_diagnostic' | 'prospective_holdout_pending' | 'reviewed_research' | 'historical_archive'
+export type StudySeriesCopy = { title: string; summary: string; scope: string; evidence_boundary: string }
+export type StudySeries = {
+  id: string
+  source_ref: string
+  publication_id: string
+  publication_status: string
+  candidate_count: number
+  candidate_href: string
+  study_ids: string[]
+  translations: Partial<Record<'en-US' | 'zh-CN', StudySeriesCopy>>
 }
 export type Study = StudyCopy & {
   id: string;
   status: 'historical-reviewed' | 'preliminary' | 'hypothesis';
+  series?: string;
+  market?: StudyMarket;
+  method?: StudyMethod[];
+  frequency?: StudyFrequency[];
+  evidence_stage?: StudyEvidenceStage;
+  publication_id?: string;
+  source_ref?: string;
   source_url?: string;
   research_log?: StudyLogEntry[];
-  annual_evidence?: StudyAnnualEvidence;
-  supplemental_evidence?: StudySupplementalEvidence;
   translations?: Partial<Record<'en-US' | 'zh-CN', StudyCopy>>;
 }
-export type StudyCatalog = { schema_version: number; updated_at: string; studies: Study[] }
+export type StudyCatalog = { schema_version: number; updated_at: string; series?: StudySeries[]; studies: Study[] }
 
 export type Alpha810Metric = { mean: number | null; ir: number | null; positive_rate: number | null }
 export type Alpha810GroupReturn = { group: number; mean_return: number | null; periods: number }

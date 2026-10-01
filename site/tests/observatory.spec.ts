@@ -21,7 +21,7 @@ test('English public pages do not render Chinese catalog content', async ({ page
 
 test('English overview translates every factor group label', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('heading', { name: 'Intraday risk states' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Turn market data into readable structure.' })).toBeVisible({ timeout: 15000 })
   await expect(page.getByRole('heading', { name: 'Distribution shape states' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Fundamental research' })).toBeVisible()
 })
@@ -86,58 +86,70 @@ test('language switch changes the rendered study catalog', async ({ page }) => {
   await expect(page.getByText('R&D Investment Relative to Valuation: Signal or Size Exposure?')).toBeVisible()
 })
 
-test('R&D study shows annual sample counts and an accessible public method note', async ({ page }) => {
+test('fundamental research series shows source-backed A-share and historical Hong Kong studies in both locales', async ({ page }) => {
+  await page.goto('studies')
+  await expect(page.getByRole('heading', { name: 'Fundamental research across factors and markets' })).toBeVisible()
+  await expect(page.getByText(/23 fundamental and human-capital candidates/)).toBeVisible()
+  await expect(page.getByRole('link', { name: /Browse factor definitions/ })).toHaveAttribute('href', /fundamentals$/)
+  await expect(page.getByRole('heading', { name: 'Fundamental-state forecasting: from financial predictions to cross-sectional selection' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Hong Kong PIT fundamentals: archived monthly and quarterly studies' })).toBeVisible()
+  await expect(page.getByText('Historical archive').first()).toBeVisible()
+  await page.getByRole('button', { name: 'Switch to 中文' }).click()
+  await expect(page.getByRole('heading', { name: '跨因子与市场的基本面研究' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '港股基本面 PIT 研究：月频与季频历史归档' })).toBeVisible()
+  await expect(page.getByText('港股', { exact: true }).first()).toBeVisible()
+})
+
+test('older study catalogs without series or taxonomy metadata still render', async ({ page }) => {
+  await page.route('**/data/research-studies.json', async (route) => {
+    const response = await route.fetch()
+    const catalog = await response.json()
+    delete catalog.series
+    for (const study of catalog.studies) {
+      delete study.series
+      delete study.market
+      delete study.method
+      delete study.frequency
+      delete study.evidence_stage
+      delete study.publication_id
+      delete study.source_ref
+    }
+    await route.fulfill({ response, json: catalog })
+  })
+  await page.goto('studies')
+  await expect(page.getByRole('heading', { name: 'Research studies' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'PB and ROE: A Paired Test of Valuation and Profitability' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Fundamental research across factors and markets' })).toHaveCount(0)
+})
+
+test('R&D study shows corrected PIT evidence and an accessible public method note', async ({ page }) => {
   await page.goto('studies/rd-investment')
   await expect(page.getByRole('heading', { name: 'What was measured' })).toBeVisible()
   await expect(page.getByText('TTM R&D expense divided by equity market capitalization', { exact: false })).toBeVisible()
-  await page.locator('.study-page > div[style*="min-height"]').scrollIntoViewIfNeeded()
-  await expect(page.getByRole('heading', { name: 'How the signal changed over time' })).toBeVisible({ timeout: 15000 })
-  await expect(page.getByRole('columnheader', { name: 'Monthly cross-sections' })).toBeVisible()
-  await expect(page.locator('.annual-table tbody tr').last()).toContainText('2026')
-  await expect(page.locator('.annual-table tbody tr').last()).toContainText('8')
+  await expect(page.getByText(/77 valid 20-day and 66 valid 220-day/).first()).toBeVisible()
+  await expect(page.locator('.factor-table tbody tr').first()).toContainText('4.85%')
+  await expect(page.locator('.annual-table')).toHaveCount(0)
   await page.getByRole('link', { name: 'Public methodology note' }).click()
   await expect(page.getByRole('heading', { name: 'R&D investment relative to valuation' })).toBeVisible()
-  await expect(page.getByText(/revision_safe=false/)).toBeVisible()
+  await expect(page.getByText(/77 valid monthly cross-sections/)).toBeVisible()
+  await expect(page.getByText(/No frozen holdout metrics have been produced/)).toBeVisible()
 })
 
-test('R&D annual view separates requested calendar coverage from mature PIT labels', async ({ page }) => {
+test('R&D legacy annual snapshot is not requested by the current study page', async ({ page }) => {
+  const requests: string[] = []
+  page.on('request', (request) => {
+    if (request.url().includes('/data/')) requests.push(new URL(request.url()).pathname.split('/').pop() ?? '')
+  })
   await page.goto('studies/rd-investment')
-  await page.locator('.study-page > div[style*="min-height"]').scrollIntoViewIfNeeded()
-  await expect(page.getByText('Market data as of 2026-09-30')).toBeVisible()
-  await expect(page.getByText(/Requested span: from 2015-01-05 \(the first 2015 trading session\) through 2026-09-30/)).toBeVisible()
-  await expect(page.getByText('First eligible cross-section: 2019-03-29')).toBeVisible()
-  await expect(page.getByText('Signal window: 2019-03-29 to 2026-08-31', { exact: true })).toBeVisible()
-  await expect(page.getByText('20-day outcomes mature through 2026-09-30')).toBeVisible()
-  const firstYear = page.locator('.annual-table tbody tr').filter({ hasText: '2015' })
-  await expect(firstYear).toContainText('0')
-  await expect(firstYear).toContainText('No 2014 TTM lookback')
-  const thinYear = page.locator('.annual-table tbody tr').filter({ hasText: '2018' })
-  await expect(thinYear).toContainText('Below 200-name monthly minimum')
-  const backfillYear = page.locator('.annual-table tbody tr').filter({ hasText: '2019' })
-  await expect(backfillYear).toContainText('10')
-  await expect(backfillYear).toContainText('Retrospective reconstruction sensitivity')
-  await expect(backfillYear).toContainText('2,871')
-  await page.getByLabel('Forward label').selectOption('fwd220')
-  await expect(page.getByText('Signal window: 2019-03-29 to 2025-10-31', { exact: true })).toBeVisible()
-  await expect(page.getByText('220-day outcomes mature through 2026-09-24')).toBeVisible()
-  await page.getByLabel('Year range').selectOption('2015')
-  await expect(page.locator('.annual-table tbody tr').last()).toContainText('2025')
-  await expect(page.locator('.annual-table tbody tr').filter({ hasText: '2026' })).toHaveCount(0)
-  await page.getByLabel('Year range').selectOption('all')
-  await expect(page.locator('.annual-table tbody tr').filter({ hasText: '2026' })).toContainText('No mature labels')
+  await expect(page.getByRole('heading', { name: 'R&D Investment Relative to Valuation: Signal or Size Exposure?' })).toBeVisible()
+  expect(requests).toEqual(['research-studies.json'])
 })
 
-test('R&D study exposes cost sensitivity and denominator attribution with caveats', async ({ page }) => {
+test('R&D method note links to the fixed-cost diagnostic and states its limits', async ({ page }) => {
   await page.goto('studies/rd-investment')
-  await page.locator('.study-page > div[style*="min-height"]').scrollIntoViewIfNeeded()
-  await expect(page.getByRole('heading', { name: 'Cost sensitivity of a fixed Top-200 probe' })).toBeVisible({ timeout: 15000 })
-  await expect(page.getByRole('columnheader', { name: 'One-way cost' })).toBeVisible()
-  await expect(page.locator('.probe-table tbody tr').filter({ hasText: 'R&D / market cap' }).first()).toContainText('12.70%')
-  await expect(page.getByRole('heading', { name: 'What drives R&D / market cap?' })).toBeVisible()
-  await expect(page.locator('.attribution-table tbody')).toContainText('Inverse market cap')
-  await expect(page.getByRole('heading', { name: 'HAC inference across the seven variants' })).toBeVisible()
-  await expect(page.getByRole('columnheader', { name: 'BH q-value across 14 tests' })).toBeVisible()
-  await expect(page.getByText(/not a production portfolio/)).toBeVisible()
+  await page.getByRole('link', { name: 'Public methodology note' }).click()
+  await expect(page.getByText(/25 bp one-way modeled cost/)).toBeVisible()
+  await expect(page.getByText(/not the registered decile validation or a production portfolio/)).toBeVisible()
 })
 
 test('theme switch persists across reloads', async ({ page }) => {
@@ -250,10 +262,10 @@ test('exploration pages localize new controls and evidence notes into Chinese', 
 
   await page.goto('studies/rd-investment')
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
-  await expect(page.getByText(/修正口径后已重跑固定 Top-200 成本探针/)).toBeVisible()
-  await expect(page.getByText(/探索后.*fwd20.*Top-10%.*七个变体的毛收益均为负/)).toBeVisible()
-  await expect(page.getByText(/已封存 2026-10 至 2027-09 月末形成信号的前瞻最终样本外协议/)).toBeVisible()
-  await expect(page.getByText(/成分股生效时点审计仍未完成/)).toBeVisible()
+  await expect(page.getByText(/77 个有效 20 日月度截面和 66 个有效 220 日月度截面/)).toBeVisible()
+  await expect(page.getByText(/单独的固定 Top-200 平台探针.*12\.70%/)).toBeVisible()
+  await expect(page.getByText(/2026-10 至 2027-09 的前瞻最终 OOS 协议已封存，但性能读取仍被门槛阻止/)).toBeVisible()
+  await expect(page.getByText(/历史指数与行业生效时点也没有完全按点时核实/).first()).toBeVisible()
 })
 
 test('deferred charts do not blank the page on a mobile viewport', async ({ page }) => {
@@ -281,7 +293,7 @@ test('routes request only the public data snapshots they need', async ({ page })
   })
 
   await page.goto('/')
-  await expect(page.getByRole('heading', { name: 'Intraday risk states' })).toBeVisible()
+  await expect.poll(() => dataResponses.length).toBe(4)
   const homeNames = dataResponses.map((response) => response.name)
   expect(homeNames).toEqual(expect.arrayContaining([
     'factor-snapshot.json',
@@ -289,8 +301,6 @@ test('routes request only the public data snapshots they need', async ({ page })
     'fundamental-snapshot.json',
     'research-studies.json',
   ]))
-  await expect(page.getByRole('heading', { name: 'What the published evidence says' })).toBeVisible()
-  await expect(page.locator('.home-finding-card').first()).toContainText('Evidence boundary')
   expect(homeNames).not.toContain('alpha810-snapshot.json')
   expect(homeNames).not.toContain('rd-investment-annual.json')
   const homeBytes = (await Promise.all(dataResponses.map((response) => response.body))).reduce((total, body) => total + body.byteLength, 0)
@@ -313,5 +323,5 @@ test('routes request only the public data snapshots they need', async ({ page })
   dataResponses.length = 0
   await page.goto('studies/rd-investment')
   await expect(page.getByRole('heading', { name: 'R&D Investment Relative to Valuation: Signal or Size Exposure?' })).toBeVisible()
-  expect(dataResponses.map((response) => response.name).sort()).toEqual(['rd-investment-annual.json', 'research-studies.json'])
+  expect(dataResponses.map((response) => response.name)).toEqual(['research-studies.json'])
 })

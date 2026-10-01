@@ -5,10 +5,10 @@
   "source_manifest": "docs/research/knowledge-pilot.yml",
   "projections": [
     {
-      "public_id": "rd-investment",
-      "source_ref": "doc:quant-research.docs.strategy-research.research.rdme-rd-validation-protocol",
-      "source_status": "pending_review",
-      "publication_status": "reviewed_aggregate",
+      "public_id": "cashflow-indices",
+      "source_ref": "doc:quant-research.research.cashflow-indices-map",
+      "source_status": "active",
+      "publication_status": "preliminary_aggregate",
       "locales": [
         "en-US",
         "zh-CN"
@@ -21,9 +21,33 @@
         "period",
         "findings",
         "limits",
-        "aggregate_rows",
-        "annual_aggregate_series",
-        "research_log"
+        "aggregate_rows"
+      ],
+      "excluded_fields": [
+        "private_data_paths",
+        "credentials",
+        "per_security_signals",
+        "portfolio_weights",
+        "execution_details",
+        "private_code"
+      ]
+    },
+    {
+      "public_id": "employee-compensation",
+      "source_ref": "doc:quant-research.research.fundamental-research-series",
+      "source_status": "active",
+      "publication_status": "hypothesis_only",
+      "locales": [
+        "en-US",
+        "zh-CN"
+      ],
+      "allowed_fields": [
+        "title",
+        "family",
+        "status",
+        "summary",
+        "findings",
+        "limits"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -34,8 +58,112 @@
       ]
     },
     {
-      "public_id": "cashflow-indices",
-      "source_ref": "doc:quant-research.research.cashflow-indices",
+      "public_id": "fundamental-family-shadow",
+      "source_ref": "doc:quant-research.research.fundamental-family-shadow",
+      "source_status": "pilot",
+      "publication_status": "preliminary_aggregate",
+      "locales": [
+        "en-US",
+        "zh-CN"
+      ],
+      "allowed_fields": [
+        "title",
+        "family",
+        "status",
+        "summary",
+        "period",
+        "findings",
+        "limits"
+      ],
+      "excluded_fields": [
+        "private_data_paths",
+        "credentials",
+        "per_security_signals",
+        "portfolio_weights",
+        "private_code"
+      ]
+    },
+    {
+      "public_id": "fundamental-series",
+      "source_ref": "doc:quant-research.research.fundamental-research-series",
+      "source_status": "active",
+      "publication_status": "reviewed_aggregate",
+      "locales": [
+        "en-US",
+        "zh-CN"
+      ],
+      "allowed_fields": [
+        "title",
+        "status",
+        "summary",
+        "scope",
+        "evidence_boundary",
+        "study_ids",
+        "candidate_count"
+      ],
+      "excluded_fields": [
+        "private_data_paths",
+        "credentials",
+        "per_security_signals",
+        "portfolio_weights",
+        "private_code"
+      ]
+    },
+    {
+      "public_id": "fundamental-state-forecasting",
+      "source_ref": "doc:quant-research.research.long-term-fundamental-v2",
+      "source_status": "pilot",
+      "publication_status": "preliminary_aggregate",
+      "locales": [
+        "en-US",
+        "zh-CN"
+      ],
+      "allowed_fields": [
+        "title",
+        "family",
+        "status",
+        "summary",
+        "period",
+        "findings",
+        "limits"
+      ],
+      "excluded_fields": [
+        "private_data_paths",
+        "credentials",
+        "per_security_signals",
+        "portfolio_weights",
+        "private_code"
+      ]
+    },
+    {
+      "public_id": "hk-fundamental-archive",
+      "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928",
+      "source_status": "historical",
+      "publication_status": "historical_archive",
+      "locales": [
+        "en-US",
+        "zh-CN"
+      ],
+      "allowed_fields": [
+        "title",
+        "family",
+        "status",
+        "summary",
+        "period",
+        "findings",
+        "limits"
+      ],
+      "excluded_fields": [
+        "private_data_paths",
+        "credentials",
+        "per_security_signals",
+        "portfolio_weights",
+        "private_code"
+      ]
+    },
+    {
+      "public_id": "pb-roe",
+      "source_ref": "doc:quant-research.strategy.pb-roe-value-quality",
       "source_status": "active",
       "publication_status": "reviewed_aggregate",
       "locales": [
@@ -57,7 +185,35 @@
         "credentials",
         "per_security_signals",
         "portfolio_weights",
-        "execution_details",
+        "private_code"
+      ]
+    },
+    {
+      "public_id": "rd-investment",
+      "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+      "source_status": "pilot",
+      "publication_status": "preliminary_aggregate",
+      "locales": [
+        "en-US",
+        "zh-CN"
+      ],
+      "allowed_fields": [
+        "title",
+        "family",
+        "status",
+        "summary",
+        "period",
+        "findings",
+        "limits",
+        "aggregate_rows",
+        "annual_aggregate_series",
+        "research_log"
+      ],
+      "excluded_fields": [
+        "private_data_paths",
+        "credentials",
+        "per_security_signals",
+        "portfolio_weights",
         "private_code"
       ]
     }

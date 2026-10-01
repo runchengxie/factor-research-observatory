@@ -1812,5 +1812,7 @@
         }
       ]
     }
-  ]
+  ],
+  "publication_status": "legacy_unaligned_diagnostic",
+  "public_notice": "Earlier 2019-extended retrospective reconstruction. Its horizon counts and yearly aggregates are not part of the corrected current PIT run shown in research-studies.json. Do not interpret it as the current provider result or revision-safe evidence."
 }
