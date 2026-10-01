@@ -12,17 +12,25 @@ class Alpha810ContractTests(unittest.TestCase):
     def test_snapshot_has_versioned_aggregate_evidence_contract(self):
         value = json.loads(SNAPSHOT.read_text())
         self.assertEqual(value["kind"], "moneytree_factor_evidence_snapshot")
-        self.assertEqual(value["schema_version"], "1.0")
-        self.assertGreaterEqual(len(value["factors"]), 2)
+        self.assertEqual(value["schema_version"], "1.1")
+        self.assertEqual(len(value["factors"]), 810)
         self.assertIn("dataset", value)
+        self.assertEqual(value["dataset"]["date_start"], "2016-01-04")
+        self.assertEqual(value["dataset"]["date_end"], "2025-12-30")
         self.assertIn("data_version", value)
+        self.assertTrue(value["code_revision"])
         self.assertIn("quality", value)
         self.assertIn(value["quality"]["status"], {"pass", "warn", "fail"})
+        self.assertEqual(value["temporal_validation"]["status"], "complete")
+        self.assertEqual(value["uncertainty"]["factor_count"], 810)
+        self.assertEqual(value["multiple_testing"]["family_size"], 810)
         for factor in value["factors"]:
             self.assertNotIn("ticker", factor)
             self.assertNotIn("weights", factor)
             self.assertIn("coverage", factor)
             self.assertIn("rank_ic", factor)
+            self.assertEqual(len(factor["annual_slices"]), 10)
+        self.assertTrue(any("point-in-time" in item.lower() for item in value["public_limits"]))
 
     def test_alpha810_loader_validates_contract_and_uses_static_data(self):
         source = (ROOT / "site" / "src" / "data.ts").read_text()

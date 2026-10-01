@@ -66,10 +66,13 @@ test('Alpha 810 schema 1.1 shows annual and uncertainty evidence', async ({ page
   await expect(page.getByText('Available', { exact: true })).toBeVisible()
 })
 
-test('Legacy Alpha 810 snapshots disclose unavailable corrected evidence', async ({ page }) => {
+test('Published Alpha 810 snapshot shows full-period corrected evidence and caveats', async ({ page }) => {
   await page.goto('alpha810')
   await expect(page.getByRole('heading', { name: 'How many factors have BY q ≤ 0.05?' })).toBeVisible()
-  await expect(page.getByText('Corrected p-value diagnostics are not provided in this snapshot.')).toBeVisible()
+  await expect(page.getByText('781 / 810', { exact: true })).toBeVisible()
+  await expect(page.getByText('806 / 810', { exact: true })).toBeVisible()
+  await expect(page.getByText('Available', { exact: true })).toBeVisible()
+  await expect(page.getByText(/Historical input point-in-time availability/)).toBeVisible()
 })
 
 test('language switch changes the rendered study catalog', async ({ page }) => {
