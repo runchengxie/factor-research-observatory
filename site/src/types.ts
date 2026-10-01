@@ -41,9 +41,11 @@ export type FactorRecord = {
   statistics?: FactorStatistics
   series?: FactorSeriesPoint[]
   fundamentalTranslation?: FundamentalCopy
+  researchQuestion?: string
 }
 export type ResearchContext = {
   source: string
+  generatedAt: string
   snapshotRange: string
   universe: string
   frequency: string

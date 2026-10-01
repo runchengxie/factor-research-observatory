@@ -91,6 +91,7 @@ function fundamentalRecord(factor: FundamentalFactor, snapshot: FundamentalSnaps
     status: factor.research_status,
     definition: factor.definition,
     intuition: factor.meaning,
+    researchQuestion: factor.research_question,
     interpretationHigh: '指标值相对更高，具体方向取决于研究定义',
     interpretationLow: '指标值相对更低，具体方向取决于研究定义',
     unit: 'factor-specific',
@@ -136,6 +137,7 @@ export function buildResearchContext(snapshot: Snapshot): ResearchContext {
   const dataset = snapshot.datasets[0]
   return {
     source: snapshot.source === 'demo' ? 'demo snapshot' : 'published snapshot',
+    generatedAt: snapshot.generated_at,
     snapshotRange: dataset ? `${dataset.date_start} → ${dataset.date_end}` : '—',
     universe: dataset ? `${dataset.tickers} tickers` : '—',
     frequency: snapshot.source === 'demo' ? 'illustrative daily sample' : 'published market observations',
