@@ -87,23 +87,30 @@ class PublicResearchContractTests(unittest.TestCase):
         self.assertIn("reserved-window", " ".join(english["limits"]))
         self.assertEqual(study["source_url"], "research/rd-investment-method.html")
         note = (ROOT / "site" / "public" / study["source_url"]).read_text()
-        for required_claim in ("revision_safe=false", "2020-01-23", "retrospective reserved-window diagnostic", "2015"):
+        for required_claim in ("revision_safe=false", "2019-03-29", "retrospective reserved-window diagnostic", "2015"):
             self.assertIn(required_claim, note)
         self.assertNotIn("/home/", note)
 
     def test_rd_annual_evidence_publishes_market_date_and_mature_label_windows(self):
         annual = json.loads((PUBLIC_DATA / "rd-investment-annual.json").read_text())
-        self.assertEqual(annual["market_data_as_of"], "2026-09-29")
+        self.assertEqual(annual["market_data_as_of"], "2026-09-30")
+        self.assertFalse(annual["revision_safe"])
         series = {(item["factor"], item["horizon"]): item for item in annual["series"]}
         raw_20 = series[("rd_mv", "fwd20")]
         raw_220 = series[("rd_mv", "fwd220")]
-        self.assertEqual((raw_20["signal_start"], raw_20["signal_end"]), ("2020-01-23", "2026-05-29"))
-        self.assertEqual((raw_220["signal_start"], raw_220["signal_end"]), ("2020-01-23", "2025-06-30"))
+        self.assertEqual((raw_20["signal_start"], raw_20["signal_end"], raw_20["label_mature_through"]), ("2019-03-29", "2026-08-31", "2026-09-30"))
+        self.assertEqual((raw_220["signal_start"], raw_220["signal_end"], raw_220["label_mature_through"]), ("2019-03-29", "2025-10-31", "2026-09-24"))
         years = {item["year"]: item for item in raw_20["years"]}
         self.assertEqual(list(years), list(range(2015, 2027)))
-        for year in range(2015, 2020):
+        self.assertEqual(years[2019]["cross_sections"], 10)
+        self.assertEqual(years[2019]["evidence_status"], "reconstructed_backfill")
+        self.assertEqual(years[2019]["median_universe_n"], 2871)
+        self.assertEqual(years[2015]["evidence_status"], "missing_lookback")
+        for year in range(2016, 2019):
             self.assertEqual(years[year]["cross_sections"], 0)
             self.assertIsNone(years[year]["rank_ic"])
+            self.assertLessEqual(years[year]["max_universe_n"], 2)
+            self.assertEqual(years[year]["evidence_status"], "below_minimum_cross_section")
 
     def test_cashflow_study_is_backed_by_a_stable_source_projection(self):
         manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())

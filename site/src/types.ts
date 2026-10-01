@@ -60,9 +60,9 @@ export type StudyCopy = {
   columns: string[]; rows: string[][]; findings: string[]; limits: string[];
 }
 export type StudyLogEntry = { date: string; stage: string; note: string; stage_en: string; note_en: string }
-export type StudyAnnualPoint = { year: number; cross_sections: number; rank_ic: number | null; top_minus_bottom: number | null; coverage_mean: number | null }
-export type StudyAnnualSeries = { factor: string; horizon: 'fwd20' | 'fwd220'; signal_start: string; signal_end: string; years: StudyAnnualPoint[] }
-export type StudyAnnualEvidence = { schema_version: number; source_vintage: string; source_type: string; market_data_as_of: string; series: StudyAnnualSeries[] }
+export type StudyAnnualPoint = { year: number; cross_sections: number; rank_ic: number | null; top_minus_bottom: number | null; coverage_mean: number | null; median_universe_n: number | null; max_universe_n: number; evidence_status: string }
+export type StudyAnnualSeries = { factor: string; horizon: 'fwd20' | 'fwd220'; signal_start: string; signal_end: string; label_mature_through: string; years: StudyAnnualPoint[] }
+export type StudyAnnualEvidence = { schema_version: number; source_vintage: string; source_type: string; revision_safe: boolean; market_data_as_of: string; requested_start: string; series: StudyAnnualSeries[] }
 export type Study = StudyCopy & {
   id: string;
   status: 'historical-reviewed' | 'preliminary' | 'hypothesis';

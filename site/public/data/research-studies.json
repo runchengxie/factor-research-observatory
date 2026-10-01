@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-30",
+  "updated_at": "2026-10-01",
   "studies": [
     {
       "id": "pb-roe",
@@ -137,9 +137,9 @@
       "family": "研发与无形资产",
       "status": "preliminary",
       "status_label": "初步筛选",
-      "summary": "校正后的 sealed 公告事件 PIT 月度回放覆盖七个预注册变体；研发 / 市值、研发 / EV 和资本化研发呈探索性正向 Rank IC，中性化后减弱。信号回放从 2020 年开始，不能推断 2015 年以来的因子表现。",
-      "period": "20 日标签：2020-01-23 至 2026-05-29，77 个有效月度截面；220 日标签：2020-01-23 至 2025-06-30，66 个截面（研发增长样本略少）",
-      "source_note": "校正后聚合回放：sealed announcement-event PIT vintage=20260926。财务字段来自历史重建版本，保留公告可用日但无法还原完整历史修订链；仅发布月度横截面聚合统计。",
+      "summary": "将公告事件 PIT 历史重建向前延伸后，2019 年 3–12 月新增 10 个合格月度截面；研发 / 市值、研发 / EV 和资本化研发在 20/220 日呈探索性正 Rank IC，中性化后减弱。2015–2018 年无法形成符合最低样本要求的年度证据，且历史修订链不完整。",
+      "period": "20 日标签：2019-03-29 至 2026-08-31，90 个有效月度截面；220 日标签：2019-03-29 至 2025-10-31，80 个截面（研发增长样本更少）",
+      "source_note": "扩展后的聚合回放使用 sealed announcement-event PIT vintage=20260926，行情截至 2026-09-30。2019 是回溯历史重建敏感性分析；历史财务修订链不完整（revision_safe=false）。仅发布月度横截面聚合统计。",
       "columns": [
         "预注册变体",
         "20 日平均 Rank IC",
@@ -148,49 +148,49 @@
       "rows": [
         [
           "研发 / 市值",
-          "4.85%",
-          "12.81%"
+          "4.89%",
+          "12.18%"
         ],
         [
           "研发 / 企业价值（EV）",
-          "4.71%",
-          "12.62%"
+          "4.93%",
+          "12.28%"
         ],
         [
           "五年衰减资本化研发",
-          "5.00%",
-          "13.08%"
+          "5.01%",
+          "12.17%"
         ],
         [
           "规模/价值/动量/杠杆/行业中性化残差",
-          "2.00%",
-          "5.99%"
+          "2.24%",
+          "6.13%"
         ],
         [
           "研发 / 收入",
-          "0.24%",
-          "0.56%"
+          "0.75%",
+          "2.96%"
         ],
         [
           "研发 / 资产",
-          "0.55%",
-          "1.89%"
+          "1.25%",
+          "4.27%"
         ],
         [
           "研发增长率",
-          "-0.07%",
-          "-2.57%"
+          "-0.21%",
+          "-2.05%"
         ]
       ],
       "findings": [
-        "校正后的独立期限样本中，研发/市值、研发/EV 与资本化研发呈探索性正向 Rank IC；220 日标签相互重叠，不能按独立样本解读。",
-        "对规模、价值、动量、杠杆和行业中性化后，Rank IC 从原始水平回落但仍为正；这不证明独立、可交易的研发 Alpha。",
-        "研发增长率在 20 日近零、220 日为负；研发/收入和研发/资产较弱。",
-        "旧版 25bp 固定 Top-200 平台探针不属于本次因子定义口径修正后的回放；成本、组合验证与最终 OOS 尚未重跑。",
-        "继续作为研究候选，不进入策略或生产。"
+        "2019 年 3–12 月可形成十个合格月度截面，但属于回溯重建敏感性；2015 年缺少 2014 年 TTM 回看数据，2016–2018 年每月横截面最大仅 1、1、2 只，不满足 200 只下限。",
+        "扩展样本中研发 / 市值、研发 / EV 和资本化研发呈探索性正向 Rank IC；220 日标签高度重叠，不能按独立样本解读。",
+        "对规模、价值、动量、杠杆和行业中性化后 Rank IC 下降但仍为正；不能据此认定独立、可交易的研发 Alpha。研发增长、研发 / 收入和研发 / 资产表现较弱。",
+        "年度图汇总的是月度横截面统计算术均值，不是自然年组合回报；2019 单独标为回溯敏感性点。",
+        "定义修正后的回放未重跑成本/组合验证与最终 OOS；继续作为研究候选，不进入策略或生产。"
       ],
       "limits": [
-        "历史修订链不完整，revision_safe=false；信号最早仅覆盖 2020-01-23，不能据此宣称 2015 起的因子表现。行情可用到 2026-09-29，不代表因子标签也更新到该日。",
+        "行情覆盖从 2015-01-05 开始，但行情起始不等于因子起始。当前 sealed PIT 输入缺少构造 2015 年首个交易日 TTM 所需的 2014 年回看数据。另一份本地旧版原始 vintage 中，2014 年有正研发费用记录的公司仅 1 家，远低于 200 只下限，未混入主回放。2016–2018 年可用横截面分别最多只有 1、1、2 只；2019-03 起的十个月来自回溯历史重建，不是修订安全回测；revision_safe=false。",
         "图表逐年值是各月 Rank IC / 分组收益差的算术均值，不是自然年复利组合收益；220 日前瞻标签重叠，年度点不是独立检验，当前未报告置信区间。",
         "CSI300/500/1000 使用历史权重快照与前一快照敏感性检查，但缺乏独立生效/公告时间；CSI2000 从本地 2023-08 可用窗口开始。",
         "口径修正后的回放未重跑交易成本与组合验证。此前记录的四个月探索后 fwd20 Top-10% 毛收益保留窗口（2026-04 至 2026-07）中，七个变体的毛收益均为负。该观察记录于 2026-09-29，晚于同日预注册日志；现有记录不能独立证明窗口在探索前已封存，因此这一短窗口并非预先封存的最终样本外检验。最终样本外检验与成分股生效时点审计仍未完成。",
@@ -201,9 +201,9 @@
           "title": "R&D Investment Relative to Valuation: Signal or Size Exposure?",
           "family": "R&D and intangible assets",
           "status_label": "Preliminary screen",
-          "summary": "A corrected sealed announcement-event PIT replay covers seven preregistered variants. R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC, weaker after neutralization. The replay starts in 2020 and does not establish factor performance from 2015.",
-          "period": "20-day labels: 2020-01-23 to 2026-05-29, 77 valid monthly cross-sections; 220-day labels: 2020-01-23 to 2025-06-30, 66 cross-sections (slightly fewer for R&D growth)",
-          "source_note": "Corrected aggregate replay using sealed announcement-event PIT vintage=20260926. Financial fields come from a historically reconstructed vintage; announcement availability is retained, but the complete historical revision chain cannot be reconstructed. Only monthly cross-sectional aggregates are published.",
+          "summary": "An extended sealed announcement-event PIT reconstruction adds ten eligible monthly cross-sections from March–December 2019. R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC at 20- and 220-day horizons, weaker after neutralization. 2015–2018 cannot support the minimum cross-sectional sample, and historical revisions are incomplete.",
+          "period": "20-day labels: 2019-03-29 to 2026-08-31, 90 valid monthly cross-sections; 220-day labels: 2019-03-29 to 2025-10-31, 80 cross-sections (fewer for R&D growth)",
+          "source_note": "Extended aggregate replay using sealed announcement-event PIT vintage=20260926 and market data through 2026-09-30. 2019 is a retrospective historical-reconstruction sensitivity, not revision-safe evidence (revision_safe=false). Only monthly cross-sectional aggregates are published.",
           "columns": [
             "Preregistered variant",
             "20-day mean Rank IC",
@@ -212,49 +212,49 @@
           "rows": [
             [
               "R&D / market cap",
-              "4.85%",
-              "12.81%"
+              "4.89%",
+              "12.18%"
             ],
             [
               "R&D / enterprise value (EV)",
-              "4.71%",
-              "12.62%"
+              "4.93%",
+              "12.28%"
             ],
             [
               "Five-year decayed capitalized R&D",
-              "5.00%",
-              "13.08%"
+              "5.01%",
+              "12.17%"
             ],
             [
               "Residual after neutralizing size/value/momentum/leverage/industry",
-              "2.00%",
-              "5.99%"
+              "2.24%",
+              "6.13%"
             ],
             [
               "R&D / revenue",
-              "0.24%",
-              "0.56%"
+              "0.75%",
+              "2.96%"
             ],
             [
               "R&D / assets",
-              "0.55%",
-              "1.89%"
+              "1.25%",
+              "4.27%"
             ],
             [
               "R&D growth rate",
-              "-0.07%",
-              "-2.57%"
+              "-0.21%",
+              "-2.05%"
             ]
           ],
           "findings": [
-            "Using each horizon’s own valid observations, R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC; 220-day labels overlap and are not independent observations.",
-            "Neutralizing size, value, momentum, leverage, and industry lowers Rank IC, which remains positive; this does not establish independent or tradable R&D alpha.",
-            "R&D growth is near zero at 20 days and negative at 220 days; R&D/revenue and R&D/assets are weak.",
-            "The older 25 bp fixed Top-200 platform probe is not part of this definition-corrected replay; cost, portfolio validation, and final OOS have not been rerun.",
-            "Keep this as a research candidate; do not use it as a strategy or in production."
+            "Ten eligible monthly cross-sections are available for March–December 2019, but only as a retrospective reconstruction sensitivity. The 2015 snapshot lacks 2014 TTM lookback; 2016–2018 monthly cross-sections contain at most 1, 1, and 2 eligible names, below the 200-name minimum.",
+            "In the extended sample, R&D/market cap, R&D/EV, and capitalized R&D show exploratory positive Rank IC; 220-day labels overlap and are not independent observations.",
+            "Neutralizing size, value, momentum, leverage, and industry lowers Rank IC, which remains positive; this does not establish independent or tradable R&D alpha. R&D growth, R&D/revenue, and R&D/assets are weaker.",
+            "Annual chart values are arithmetic means of monthly cross-sectional statistics, not calendar-year portfolio returns; the 2019 point is separately marked as retrospective sensitivity.",
+            "The definition-corrected replay has not rerun cost/portfolio validation or final OOS. Keep this as a research candidate; do not use it as a strategy or in production."
           ],
           "limits": [
-            "The historical revision chain is incomplete (revision_safe=false). Signals begin only on 2020-01-23, so this does not establish factor performance from 2015. Market data through 2026-09-29 does not mean factor labels are current through that date.",
+            "Market data begins on 2015-01-05, but that is not the factor start. The sealed PIT input lacks the 2014 lookback needed to form TTM on the first 2015 session. A separate legacy raw vintage has positive 2014 R&D expense for only one issuer, far below the 200-name minimum, and is not mixed into the primary replay. 2016–2018 have at most 1, 1, and 2 eligible names per monthly cross-section; the ten observations from 2019-03 onward are retrospective reconstruction sensitivity, not revision-safe evidence (revision_safe=false).",
             "Annual chart values are arithmetic means of monthly Rank IC / group return spreads, not compounded calendar-year portfolio returns; 220-day forward labels overlap, so annual points are not independent tests. No confidence intervals are currently reported.",
             "CSI300/500/1000 use historical weight snapshots and a prior-snapshot sensitivity check, but lack independent effective/announcement timestamps; CSI2000 starts in the available 2023-08 window.",
             "A four-month Top-10% gross-return diagnostic for 2026-04 to 2026-07 was recorded on 2026-09-29, after the preregistration event logged on that date. The available record does not independently establish that this window was sealed before exploration. It is therefore a retrospective reserved-window diagnostic, not a prospective or final OOS test; all seven variants were negative. The definition-corrected replay did not rerun cost/portfolio validation, and the final OOS and constituent effective-time audit remain incomplete.",
@@ -290,6 +290,13 @@
           "stage_en": "Factor definitions corrected and replayed",
           "note": "修正 PIT 因子定义口径后重算月度 Rank IC 与分组聚合。旧版平台 Top-200 探针、交易成本、CPCV 和最终 OOS 未随本次重放更新，因此仍为初步研究。",
           "note_en": "Recomputed monthly Rank IC and grouped aggregates after correcting PIT factor definitions. The older platform Top-200 probe, transaction costs, CPCV, and final OOS were not rerun with this replay, so the work remains preliminary."
+        },
+        {
+          "date": "2026-10-01",
+          "stage": "将历史行情回补至 2015 并检查 PIT 覆盖",
+          "stage_en": "Extended the historical replay to 2015 and audited PIT coverage",
+          "note": "行情从 2015-01-05 可用，但当期快照缺少 2014 年 TTM 回看数据；2016–2018 每月横截面最多 1、1、2 只。2019-03 至 12 月得到十个合格截面，作为回溯重建敏感性单独发布。历史财务修订链不完整，revision_safe=false。 另检查本地旧版原始财报 vintage，2014 年正研发费用记录仅覆盖 1 家公司，未混入主回放。",
+          "note_en": "Market data is available from 2015-01-05, but the snapshot lacks the 2014 TTM lookback; 2016–2018 monthly cross-sections have at most 1, 1, and 2 eligible names. March–December 2019 yields ten eligible cross-sections and is published separately as retrospective reconstruction sensitivity. The historical financial revision chain is incomplete (revision_safe=false). A separate legacy raw financial vintage was checked; positive 2014 R&D expense records cover only one issuer and were not mixed into the primary replay."
         }
       ],
       "source_url": "research/rd-investment-method.html"
