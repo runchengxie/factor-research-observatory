@@ -1,1109 +1,1556 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source_vintage": "20260926",
-  "source_type": "sealed announcement-event PIT aggregate replay",
+  "source_type": "sealed announcement-event PIT aggregate replay with retrospective historical extension",
+  "revision_safe": false,
+  "market_data_as_of": "2026-09-30",
+  "requested_start": "2015-01-05",
   "series": [
     {
       "factor": "rd_mv",
       "horizon": "fwd20",
-      "signal_start": "2020-01-23",
-      "signal_end": "2026-05-29",
+      "signal_start": "2019-03-29",
+      "signal_end": "2026-08-31",
+      "label_mature_through": "2026-09-30",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.04570078171255594,
+          "top_minus_bottom": 0.013254733596486018,
+          "coverage_mean": 0.9968824103997596,
+          "median_universe_n": 2871,
+          "max_universe_n": 2923,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": 0.01295461,
-          "top_minus_bottom": -0.00014414,
-          "coverage_mean": 0.99673
+          "rank_ic": 0.012954646228347992,
+          "top_minus_bottom": -0.00014414129843246722,
+          "coverage_mean": 0.996730138113358,
+          "median_universe_n": 3064,
+          "max_universe_n": 3183,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.0835234,
-          "top_minus_bottom": 0.02402501,
-          "coverage_mean": 0.997801
+          "rank_ic": 0.08352339718964526,
+          "top_minus_bottom": 0.02402500942990325,
+          "coverage_mean": 0.9978010683514071,
+          "median_universe_n": 3516,
+          "max_universe_n": 3815,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.03057157,
-          "top_minus_bottom": 0.00929804,
-          "coverage_mean": 0.997958
+          "rank_ic": 0.030571540159807186,
+          "top_minus_bottom": 0.009298040038893176,
+          "coverage_mean": 0.9979575557470849,
+          "median_universe_n": 4140,
+          "max_universe_n": 4344,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": 0.06876003,
-          "top_minus_bottom": 0.01734597,
-          "coverage_mean": 0.998516
+          "rank_ic": 0.06876002132589808,
+          "top_minus_bottom": 0.017345971734960604,
+          "coverage_mean": 0.9985160687242579,
+          "median_universe_n": 4579,
+          "max_universe_n": 4711,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.06646095,
-          "top_minus_bottom": 0.02300317,
-          "coverage_mean": 0.9986
+          "rank_ic": 0.06646092818941676,
+          "top_minus_bottom": 0.023003174471793102,
+          "coverage_mean": 0.9986002904000112,
+          "median_universe_n": 4824,
+          "max_universe_n": 4840,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
           "cross_sections": 12,
-          "rank_ic": 0.04755265,
-          "top_minus_bottom": 0.01272483,
-          "coverage_mean": 0.997243
+          "rank_ic": 0.04755267167704002,
+          "top_minus_bottom": 0.01272483468138893,
+          "coverage_mean": 0.997243047171438,
+          "median_universe_n": 4865,
+          "max_universe_n": 4889,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
-          "cross_sections": 5,
-          "rank_ic": 0.00335831,
-          "top_minus_bottom": -0.01069874,
-          "coverage_mean": 0.997066
+          "cross_sections": 8,
+          "rank_ic": 0.02789948473031365,
+          "top_minus_bottom": 0.0038550925678647752,
+          "coverage_mean": 0.9975080343991423,
+          "median_universe_n": 4899,
+          "max_universe_n": 4948,
+          "evidence_status": "partial_year"
         }
       ]
     },
     {
       "factor": "rd_mv",
       "horizon": "fwd220",
-      "signal_start": "2020-01-23",
-      "signal_end": "2025-06-30",
+      "signal_start": "2019-03-29",
+      "signal_end": "2025-10-31",
+      "label_mature_through": "2026-09-24",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.10789517756253877,
+          "top_minus_bottom": 0.12985620643415957,
+          "coverage_mean": 0.9957729184092073,
+          "median_universe_n": 2866,
+          "max_universe_n": 2915,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": 0.07278322,
-          "top_minus_bottom": 0.06157134,
-          "coverage_mean": 0.996562
+          "rank_ic": 0.07278322042355041,
+          "top_minus_bottom": 0.0615713439886815,
+          "coverage_mean": 0.996562493120058,
+          "median_universe_n": 3064,
+          "max_universe_n": 3180,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.12043292,
-          "top_minus_bottom": 0.08466806,
-          "coverage_mean": 0.99791
+          "rank_ic": 0.12043292084347461,
+          "top_minus_bottom": 0.0846680609223785,
+          "coverage_mean": 0.9979104871778145,
+          "median_universe_n": 3509,
+          "max_universe_n": 3822,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.17697303,
-          "top_minus_bottom": 0.16492535,
-          "coverage_mean": 0.996943
+          "rank_ic": 0.17697303239802867,
+          "top_minus_bottom": 0.16492535261828303,
+          "coverage_mean": 0.996942628092973,
+          "median_universe_n": 4132,
+          "max_universe_n": 4338,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": 0.12031205,
-          "top_minus_bottom": 0.09517456,
-          "coverage_mean": 0.99539
+          "rank_ic": 0.12031205226700796,
+          "top_minus_bottom": 0.09517456472967821,
+          "coverage_mean": 0.9953901342918366,
+          "median_universe_n": 4565,
+          "max_universe_n": 4685,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.15367409,
-          "top_minus_bottom": 0.20262444,
-          "coverage_mean": 0.995122
+          "rank_ic": 0.15367409452247488,
+          "top_minus_bottom": 0.2026244416281803,
+          "coverage_mean": 0.995122039148486,
+          "median_universe_n": 4808,
+          "max_universe_n": 4830,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
-          "cross_sections": 6,
-          "rank_ic": 0.12081915,
-          "top_minus_bottom": 0.14363088,
-          "coverage_mean": 0.996769
+          "cross_sections": 10,
+          "rank_ic": 0.09338136072600409,
+          "top_minus_bottom": 0.10759744202289741,
+          "coverage_mean": 0.9971607464795023,
+          "median_universe_n": 4854,
+          "max_universe_n": 4882,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_mature_labels"
         }
       ]
     },
     {
       "factor": "rd_ev",
       "horizon": "fwd20",
-      "signal_start": "2020-01-23",
-      "signal_end": "2026-05-29",
+      "signal_start": "2019-03-29",
+      "signal_end": "2026-08-31",
+      "label_mature_through": "2026-09-30",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.059772060681895146,
+          "top_minus_bottom": 0.01718763803203474,
+          "coverage_mean": 0.8481640955463188,
+          "median_universe_n": 2448,
+          "max_universe_n": 2491,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": 0.01086165,
-          "top_minus_bottom": 0.00164787,
-          "coverage_mean": 0.856752
+          "rank_ic": 0.010861697694183216,
+          "top_minus_bottom": 0.0016478680965200585,
+          "coverage_mean": 0.8567518479813382,
+          "median_universe_n": 2634,
+          "max_universe_n": 2747,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.0771245,
-          "top_minus_bottom": 0.02187746,
-          "coverage_mean": 0.865736
+          "rank_ic": 0.0771244931125864,
+          "top_minus_bottom": 0.021877455725072475,
+          "coverage_mean": 0.86573596718816,
+          "median_universe_n": 3027,
+          "max_universe_n": 3349,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.02583418,
-          "top_minus_bottom": 0.00807184,
-          "coverage_mean": 0.930993
+          "rank_ic": 0.025834142376774238,
+          "top_minus_bottom": 0.008071837397039048,
+          "coverage_mean": 0.9309934693060707,
+          "median_universe_n": 3931,
+          "max_universe_n": 4126,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": 0.07091028,
-          "top_minus_bottom": 0.02092471,
-          "coverage_mean": 0.955563
+          "rank_ic": 0.07091027368287772,
+          "top_minus_bottom": 0.02092470688568793,
+          "coverage_mean": 0.9555631955218762,
+          "median_universe_n": 4389,
+          "max_universe_n": 4512,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.07071575,
-          "top_minus_bottom": 0.02727696,
-          "coverage_mean": 0.961031
+          "rank_ic": 0.07071573009388232,
+          "top_minus_bottom": 0.027276963223965073,
+          "coverage_mean": 0.9610310395025091,
+          "median_universe_n": 4646,
+          "max_universe_n": 4663,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
           "cross_sections": 12,
-          "rank_ic": 0.04764779,
-          "top_minus_bottom": 0.0098781,
-          "coverage_mean": 0.966557
+          "rank_ic": 0.04764780974606311,
+          "top_minus_bottom": 0.009878098653455843,
+          "coverage_mean": 0.9665571329468934,
+          "median_universe_n": 4727,
+          "max_universe_n": 4738,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
-          "cross_sections": 5,
-          "rank_ic": -0.00269966,
-          "top_minus_bottom": -0.01113604,
-          "coverage_mean": 0.967445
+          "cross_sections": 8,
+          "rank_ic": 0.025082043919919063,
+          "top_minus_bottom": 0.002953153351930112,
+          "coverage_mean": 0.9682391611402915,
+          "median_universe_n": 4748,
+          "max_universe_n": 4813,
+          "evidence_status": "partial_year"
         }
       ]
     },
     {
       "factor": "rd_ev",
       "horizon": "fwd220",
-      "signal_start": "2020-01-23",
-      "signal_end": "2025-06-30",
+      "signal_start": "2019-03-29",
+      "signal_end": "2025-10-31",
+      "label_mature_through": "2026-09-24",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.13350656257617594,
+          "top_minus_bottom": 0.18848350647234915,
+          "coverage_mean": 0.8469190585956664,
+          "median_universe_n": 2442,
+          "max_universe_n": 2484,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": 0.05963302,
-          "top_minus_bottom": 0.054033,
-          "coverage_mean": 0.856559
+          "rank_ic": 0.059633017654335096,
+          "top_minus_bottom": 0.05403300254325429,
+          "coverage_mean": 0.8565585032524288,
+          "median_universe_n": 2634,
+          "max_universe_n": 2744,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.09340779,
-          "top_minus_bottom": 0.06653123,
-          "coverage_mean": 0.865801
+          "rank_ic": 0.09340778984454941,
+          "top_minus_bottom": 0.06653122951293851,
+          "coverage_mean": 0.8658009262803287,
+          "median_universe_n": 3021,
+          "max_universe_n": 3355,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.19234651,
-          "top_minus_bottom": 0.18473417,
-          "coverage_mean": 0.930102
+          "rank_ic": 0.19234651431906283,
+          "top_minus_bottom": 0.1847341711974474,
+          "coverage_mean": 0.93010198647513,
+          "median_universe_n": 3924,
+          "max_universe_n": 4120,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": 0.12722968,
-          "top_minus_bottom": 0.11241678,
-          "coverage_mean": 0.952418
+          "rank_ic": 0.12722968488754746,
+          "top_minus_bottom": 0.11241678173464081,
+          "coverage_mean": 0.9524179318722656,
+          "median_universe_n": 4375,
+          "max_universe_n": 4487,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.16534365,
-          "top_minus_bottom": 0.21431568,
-          "coverage_mean": 0.95757
+          "rank_ic": 0.1653436486474246,
+          "top_minus_bottom": 0.2143156779045516,
+          "coverage_mean": 0.9575703323493117,
+          "median_universe_n": 4629,
+          "max_universe_n": 4656,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
-          "cross_sections": 6,
-          "rank_ic": 0.11174697,
-          "top_minus_bottom": 0.10017502,
-          "coverage_mean": 0.964743
+          "cross_sections": 10,
+          "rank_ic": 0.0832950511643161,
+          "top_minus_bottom": 0.06764988713232414,
+          "coverage_mean": 0.9664603214397886,
+          "median_universe_n": 4707,
+          "max_universe_n": 4736,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_mature_labels"
         }
       ]
     },
     {
       "factor": "rd_capitalized",
       "horizon": "fwd20",
-      "signal_start": "2020-01-23",
-      "signal_end": "2026-05-29",
+      "signal_start": "2019-03-29",
+      "signal_end": "2026-08-31",
+      "label_mature_through": "2026-09-30",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.04353915495409673,
+          "top_minus_bottom": 0.014494339719037307,
+          "coverage_mean": 0.9968824103997596,
+          "median_universe_n": 2871,
+          "max_universe_n": 2923,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": 0.01265118,
-          "top_minus_bottom": 0.00208789,
-          "coverage_mean": 0.99673
+          "rank_ic": 0.012651211670658212,
+          "top_minus_bottom": 0.0020878870463322593,
+          "coverage_mean": 0.996730138113358,
+          "median_universe_n": 3064,
+          "max_universe_n": 3183,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.08435383,
-          "top_minus_bottom": 0.02519507,
-          "coverage_mean": 0.997801
+          "rank_ic": 0.08435382403153001,
+          "top_minus_bottom": 0.025195068118902857,
+          "coverage_mean": 0.9978010683514071,
+          "median_universe_n": 3516,
+          "max_universe_n": 3815,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.03771392,
-          "top_minus_bottom": 0.01229437,
-          "coverage_mean": 0.997958
+          "rank_ic": 0.03771389561679055,
+          "top_minus_bottom": 0.012294373317670025,
+          "coverage_mean": 0.9979575557470849,
+          "median_universe_n": 4140,
+          "max_universe_n": 4344,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": 0.08090868,
-          "top_minus_bottom": 0.01576795,
-          "coverage_mean": 0.998516
+          "rank_ic": 0.08090866786783628,
+          "top_minus_bottom": 0.015767945761796257,
+          "coverage_mean": 0.9985160687242579,
+          "median_universe_n": 4579,
+          "max_universe_n": 4711,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.06444247,
-          "top_minus_bottom": 0.02471703,
-          "coverage_mean": 0.9986
+          "rank_ic": 0.06444244757264785,
+          "top_minus_bottom": 0.024717026873323004,
+          "coverage_mean": 0.9986002904000112,
+          "median_universe_n": 4824,
+          "max_universe_n": 4840,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
           "cross_sections": 12,
-          "rank_ic": 0.04282797,
-          "top_minus_bottom": 0.01081417,
-          "coverage_mean": 0.997243
+          "rank_ic": 0.04282798825316023,
+          "top_minus_bottom": 0.010814171319673818,
+          "coverage_mean": 0.997243047171438,
+          "median_universe_n": 4865,
+          "max_universe_n": 4889,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
-          "cross_sections": 5,
-          "rank_ic": -0.00470644,
-          "top_minus_bottom": -0.01627403,
-          "coverage_mean": 0.997066
+          "cross_sections": 8,
+          "rank_ic": 0.025206974676319327,
+          "top_minus_bottom": 0.0025061981651720005,
+          "coverage_mean": 0.9975080343991423,
+          "median_universe_n": 4899,
+          "max_universe_n": 4948,
+          "evidence_status": "partial_year"
         }
       ]
     },
     {
       "factor": "rd_capitalized",
       "horizon": "fwd220",
-      "signal_start": "2020-01-23",
-      "signal_end": "2025-06-30",
+      "signal_start": "2019-03-29",
+      "signal_end": "2025-10-31",
+      "label_mature_through": "2026-09-24",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.09559669452940175,
+          "top_minus_bottom": 0.07283277405258064,
+          "coverage_mean": 0.9957729184092073,
+          "median_universe_n": 2866,
+          "max_universe_n": 2915,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": 0.07515962,
-          "top_minus_bottom": 0.09806053,
-          "coverage_mean": 0.996562
+          "rank_ic": 0.07515961959607505,
+          "top_minus_bottom": 0.09806053093487906,
+          "coverage_mean": 0.996562493120058,
+          "median_universe_n": 3064,
+          "max_universe_n": 3180,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.12777757,
-          "top_minus_bottom": 0.09310132,
-          "coverage_mean": 0.99791
+          "rank_ic": 0.12777756634102275,
+          "top_minus_bottom": 0.09310132165762199,
+          "coverage_mean": 0.9979104871778145,
+          "median_universe_n": 3509,
+          "max_universe_n": 3822,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.19852341,
-          "top_minus_bottom": 0.18320812,
-          "coverage_mean": 0.996943
+          "rank_ic": 0.1985234063681489,
+          "top_minus_bottom": 0.18320812064963532,
+          "coverage_mean": 0.996942628092973,
+          "median_universe_n": 4132,
+          "max_universe_n": 4338,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": 0.11787105,
-          "top_minus_bottom": 0.08644511,
-          "coverage_mean": 0.99539
+          "rank_ic": 0.1178710545039026,
+          "top_minus_bottom": 0.08644511035663284,
+          "coverage_mean": 0.9953901342918366,
+          "median_universe_n": 4565,
+          "max_universe_n": 4685,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.14568214,
-          "top_minus_bottom": 0.18134234,
-          "coverage_mean": 0.995122
+          "rank_ic": 0.1456821434526547,
+          "top_minus_bottom": 0.181342338353184,
+          "coverage_mean": 0.995122039148486,
+          "median_universe_n": 4808,
+          "max_universe_n": 4830,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
-          "cross_sections": 6,
-          "rank_ic": 0.1091472,
-          "top_minus_bottom": 0.10765245,
-          "coverage_mean": 0.996769
+          "cross_sections": 10,
+          "rank_ic": 0.07974378205082884,
+          "top_minus_bottom": 0.07385783133754595,
+          "coverage_mean": 0.9971607464795023,
+          "median_universe_n": 4854,
+          "max_universe_n": 4882,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_mature_labels"
         }
       ]
     },
     {
       "factor": "rd_mv_resid",
       "horizon": "fwd20",
-      "signal_start": "2020-01-23",
-      "signal_end": "2026-05-29",
+      "signal_start": "2019-03-29",
+      "signal_end": "2026-08-31",
+      "label_mature_through": "2026-09-30",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.04363842138181949,
+          "top_minus_bottom": 0.011703716069478329,
+          "coverage_mean": 0.9243930754334808,
+          "median_universe_n": 2686,
+          "max_universe_n": 2782,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": 0.02280027,
-          "top_minus_bottom": 0.01100806,
-          "coverage_mean": 0.93714
+          "rank_ic": 0.022800265405282256,
+          "top_minus_bottom": 0.01100805965922251,
+          "coverage_mean": 0.9371399836619828,
+          "median_universe_n": 2866,
+          "max_universe_n": 2992,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.03018652,
-          "top_minus_bottom": 0.00906822,
-          "coverage_mean": 0.912101
+          "rank_ic": 0.030186498208378917,
+          "top_minus_bottom": 0.009068218181186109,
+          "coverage_mean": 0.912100518290488,
+          "median_universe_n": 3184,
+          "max_universe_n": 3474,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.01122608,
-          "top_minus_bottom": 0.00565104,
-          "coverage_mean": 0.921983
+          "rank_ic": 0.011226033767032559,
+          "top_minus_bottom": 0.005651039429887109,
+          "coverage_mean": 0.9219834525073392,
+          "median_universe_n": 3811,
+          "max_universe_n": 4075,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": 0.0217116,
-          "top_minus_bottom": 0.00668957,
-          "coverage_mean": 0.938913
+          "rank_ic": 0.021711656825793495,
+          "top_minus_bottom": 0.006689573190191516,
+          "coverage_mean": 0.938912686517316,
+          "median_universe_n": 4282,
+          "max_universe_n": 4487,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.02948948,
-          "top_minus_bottom": 0.0023154,
-          "coverage_mean": 0.963201
+          "rank_ic": 0.029489474536802656,
+          "top_minus_bottom": 0.0023154007006085,
+          "coverage_mean": 0.9632005860264954,
+          "median_universe_n": 4643,
+          "max_universe_n": 4753,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
           "cross_sections": 12,
-          "rank_ic": 0.01710967,
-          "top_minus_bottom": 0.00262935,
-          "coverage_mean": 0.979797
+          "rank_ic": 0.017109676248862855,
+          "top_minus_bottom": 0.0026293467844055087,
+          "coverage_mean": 0.9797968311044501,
+          "median_universe_n": 4777,
+          "max_universe_n": 4798,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
-          "cross_sections": 5,
-          "rank_ic": -0.00988998,
-          "top_minus_bottom": -0.00454646,
-          "coverage_mean": 0.979929
+          "cross_sections": 8,
+          "rank_ic": -0.0008513731062865636,
+          "top_minus_bottom": -0.0023582600050327377,
+          "coverage_mean": 0.9793072202638324,
+          "median_universe_n": 4814,
+          "max_universe_n": 4846,
+          "evidence_status": "partial_year"
         }
       ]
     },
     {
       "factor": "rd_mv_resid",
       "horizon": "fwd220",
-      "signal_start": "2020-01-23",
-      "signal_end": "2025-06-30",
+      "signal_start": "2019-03-29",
+      "signal_end": "2025-10-31",
+      "label_mature_through": "2026-09-24",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.09757942173602986,
+          "top_minus_bottom": 0.14161178448908598,
+          "coverage_mean": 0.9238706585386713,
+          "median_universe_n": 2683,
+          "max_universe_n": 2777,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": 0.06454892,
-          "top_minus_bottom": 0.11554937,
-          "coverage_mean": 0.937278
+          "rank_ic": 0.06454891944803412,
+          "top_minus_bottom": 0.11554936599918059,
+          "coverage_mean": 0.9372780185671249,
+          "median_universe_n": 2867,
+          "max_universe_n": 2989,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.042262,
-          "top_minus_bottom": 0.01187508,
-          "coverage_mean": 0.912237
+          "rank_ic": 0.04226199918726276,
+          "top_minus_bottom": 0.011875082789386706,
+          "coverage_mean": 0.9122370503719393,
+          "median_universe_n": 3178,
+          "max_universe_n": 3479,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.07483604,
-          "top_minus_bottom": 0.05559048,
-          "coverage_mean": 0.921265
+          "rank_ic": 0.07483603517468503,
+          "top_minus_bottom": 0.05559048439034675,
+          "coverage_mean": 0.9212653131625711,
+          "median_universe_n": 3804,
+          "max_universe_n": 4072,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": 0.05920322,
-          "top_minus_bottom": 0.01755335,
-          "coverage_mean": 0.935898
+          "rank_ic": 0.059203220680584874,
+          "top_minus_bottom": 0.017553349077489882,
+          "coverage_mean": 0.9358984984574862,
+          "median_universe_n": 4269,
+          "max_universe_n": 4461,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.07201391,
-          "top_minus_bottom": 0.07602112,
-          "coverage_mean": 0.960017
+          "rank_ic": 0.07201390612378751,
+          "top_minus_bottom": 0.07602112264192319,
+          "coverage_mean": 0.9600167651721402,
+          "median_universe_n": 4627,
+          "max_universe_n": 4738,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
-          "cross_sections": 6,
-          "rank_ic": 0.03349725,
-          "top_minus_bottom": -0.01680837,
-          "coverage_mean": 0.980998
+          "cross_sections": 10,
+          "rank_ic": 0.01753640546912523,
+          "top_minus_bottom": -0.02571751842487227,
+          "coverage_mean": 0.9800622847868456,
+          "median_universe_n": 4773,
+          "max_universe_n": 4784,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_mature_labels"
         }
       ]
     },
     {
       "factor": "rd_sales",
       "horizon": "fwd20",
-      "signal_start": "2020-01-23",
-      "signal_end": "2026-05-29",
+      "signal_start": "2019-03-29",
+      "signal_end": "2026-08-31",
+      "label_mature_through": "2026-09-30",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.0634571484579014,
+          "top_minus_bottom": 0.02706928982487864,
+          "coverage_mean": 0.9967794696248686,
+          "median_universe_n": 2871,
+          "max_universe_n": 2922,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": -0.03392799,
-          "top_minus_bottom": -0.00889682,
-          "coverage_mean": 0.996378
+          "rank_ic": -0.03392798157527132,
+          "top_minus_bottom": -0.0088968195315472,
+          "coverage_mean": 0.9963781091228635,
+          "median_universe_n": 3063,
+          "max_universe_n": 3182,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": 0.00093035,
-          "top_minus_bottom": 0.00114535,
-          "coverage_mean": 0.99744
+          "rank_ic": 0.0009303657962155704,
+          "top_minus_bottom": 0.0011453543585604575,
+          "coverage_mean": 0.9974401343157459,
+          "median_universe_n": 3514,
+          "max_universe_n": 3815,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": -0.00503745,
-          "top_minus_bottom": 0.00134476,
-          "coverage_mean": 0.997262
+          "rank_ic": -0.005037462755998284,
+          "top_minus_bottom": 0.0013447640221729482,
+          "coverage_mean": 0.9972623927157277,
+          "median_universe_n": 4136,
+          "max_universe_n": 4340,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": -0.00502966,
-          "top_minus_bottom": -0.00225347,
-          "coverage_mean": 0.997691
+          "rank_ic": -0.005029653112274888,
+          "top_minus_bottom": -0.0022534726584166075,
+          "coverage_mean": 0.9976913020639427,
+          "median_universe_n": 4575,
+          "max_universe_n": 4708,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.04217796,
-          "top_minus_bottom": 0.0263933,
-          "coverage_mean": 0.998028
+          "rank_ic": 0.04217794939368269,
+          "top_minus_bottom": 0.0263933040644007,
+          "coverage_mean": 0.9980278073676878,
+          "median_universe_n": 4821,
+          "max_universe_n": 4838,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
           "cross_sections": 12,
-          "rank_ic": 0.00175073,
-          "top_minus_bottom": 0.00821275,
-          "coverage_mean": 0.996901
+          "rank_ic": 0.0017507595543864,
+          "top_minus_bottom": 0.008212748028634868,
+          "coverage_mean": 0.9969006098522097,
+          "median_universe_n": 4864,
+          "max_universe_n": 4887,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
-          "cross_sections": 5,
-          "rank_ic": 0.0342092,
-          "top_minus_bottom": 0.0310158,
-          "coverage_mean": 0.996535
+          "cross_sections": 8,
+          "rank_ic": 0.003835190114061405,
+          "top_minus_bottom": 0.00923041035891105,
+          "coverage_mean": 0.9968724879342392,
+          "median_universe_n": 4897,
+          "max_universe_n": 4944,
+          "evidence_status": "partial_year"
         }
       ]
     },
     {
       "factor": "rd_sales",
       "horizon": "fwd220",
-      "signal_start": "2020-01-23",
-      "signal_end": "2025-06-30",
+      "signal_start": "2019-03-29",
+      "signal_end": "2025-10-31",
+      "label_mature_through": "2026-09-24",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.21250738902059915,
+          "top_minus_bottom": 0.3163138714257598,
+          "coverage_mean": 0.9956699776343164,
+          "median_universe_n": 2866,
+          "max_universe_n": 2914,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": -0.08235145,
-          "top_minus_bottom": -0.08677821,
-          "coverage_mean": 0.99621
+          "rank_ic": -0.08235145032845269,
+          "top_minus_bottom": -0.08677820905762505,
+          "coverage_mean": 0.9962104641295634,
+          "median_universe_n": 3063,
+          "max_universe_n": 3179,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": -0.09216972,
-          "top_minus_bottom": -0.11951001,
-          "coverage_mean": 0.99755
+          "rank_ic": -0.0921697225913954,
+          "top_minus_bottom": -0.11951001447788001,
+          "coverage_mean": 0.9975495531421532,
+          "median_universe_n": 3507,
+          "max_universe_n": 3822,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.08749917,
-          "top_minus_bottom": 0.1225719,
-          "coverage_mean": 0.996247
+          "rank_ic": 0.08749916641880877,
+          "top_minus_bottom": 0.12257190339149292,
+          "coverage_mean": 0.9962474650616158,
+          "median_universe_n": 4127,
+          "max_universe_n": 4334,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": -0.08419158,
-          "top_minus_bottom": -0.08381414,
-          "coverage_mean": 0.994565
+          "rank_ic": -0.08419158211644806,
+          "top_minus_bottom": -0.08381413572236944,
+          "coverage_mean": 0.9945653676315213,
+          "median_universe_n": 4561,
+          "max_universe_n": 4682,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.170111,
-          "top_minus_bottom": 0.25000166,
-          "coverage_mean": 0.99455
+          "rank_ic": 0.17011099798387005,
+          "top_minus_bottom": 0.25000165540195946,
+          "coverage_mean": 0.9945495561161626,
+          "median_universe_n": 4804,
+          "max_universe_n": 4828,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
-          "cross_sections": 6,
-          "rank_ic": 0.06340004,
-          "top_minus_bottom": 0.14978547,
-          "coverage_mean": 0.996357
+          "cross_sections": 10,
+          "rank_ic": 0.02555258744577964,
+          "top_minus_bottom": 0.11904563869406622,
+          "coverage_mean": 0.9968314627218643,
+          "median_universe_n": 4852,
+          "max_universe_n": 4880,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_mature_labels"
         }
       ]
     },
     {
       "factor": "rd_assets",
       "horizon": "fwd20",
-      "signal_start": "2020-01-23",
-      "signal_end": "2026-05-29",
+      "signal_start": "2019-03-29",
+      "signal_end": "2026-08-31",
+      "label_mature_through": "2026-09-30",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.08709150932603382,
+          "top_minus_bottom": 0.03445652823883927,
+          "coverage_mean": 0.9968824103997596,
+          "median_universe_n": 2871,
+          "max_universe_n": 2923,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": -0.0152078,
-          "top_minus_bottom": -0.00162406,
-          "coverage_mean": 0.99673
+          "rank_ic": -0.015207792824780408,
+          "top_minus_bottom": -0.0016240632173624154,
+          "coverage_mean": 0.996730138113358,
+          "median_universe_n": 3064,
+          "max_universe_n": 3183,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": -0.00418827,
-          "top_minus_bottom": 0.00037521,
-          "coverage_mean": 0.997801
+          "rank_ic": -0.004188266866927849,
+          "top_minus_bottom": 0.0003752103630558148,
+          "coverage_mean": 0.9978010683514071,
+          "median_universe_n": 3516,
+          "max_universe_n": 3815,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": -0.00809203,
-          "top_minus_bottom": 0.00081052,
-          "coverage_mean": 0.997958
+          "rank_ic": -0.008092071142673615,
+          "top_minus_bottom": 0.0008105198380910979,
+          "coverage_mean": 0.9979575557470849,
+          "median_universe_n": 4140,
+          "max_universe_n": 4344,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": -0.00382573,
-          "top_minus_bottom": -0.00125759,
-          "coverage_mean": 0.998516
+          "rank_ic": -0.003825702462059858,
+          "top_minus_bottom": -0.0012575871494178656,
+          "coverage_mean": 0.9985160687242579,
+          "median_universe_n": 4579,
+          "max_universe_n": 4711,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.05898332,
-          "top_minus_bottom": 0.03350422,
-          "coverage_mean": 0.9986
+          "rank_ic": 0.058983303710885414,
+          "top_minus_bottom": 0.033504217357175146,
+          "coverage_mean": 0.9986002904000112,
+          "median_universe_n": 4824,
+          "max_universe_n": 4840,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
           "cross_sections": 12,
-          "rank_ic": -0.00201166,
-          "top_minus_bottom": 0.00735677,
-          "coverage_mean": 0.997243
+          "rank_ic": -0.0020116272013666592,
+          "top_minus_bottom": 0.007356767707241159,
+          "coverage_mean": 0.997243047171438,
+          "median_universe_n": 4865,
+          "max_universe_n": 4889,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
-          "cross_sections": 5,
-          "rank_ic": 0.02318878,
-          "top_minus_bottom": 0.03253302,
-          "coverage_mean": 0.997066
+          "cross_sections": 8,
+          "rank_ic": -0.0061934797052425,
+          "top_minus_bottom": 0.009636758076398876,
+          "coverage_mean": 0.9975080343991423,
+          "median_universe_n": 4899,
+          "max_universe_n": 4948,
+          "evidence_status": "partial_year"
         }
       ]
     },
     {
       "factor": "rd_assets",
       "horizon": "fwd220",
-      "signal_start": "2020-01-23",
-      "signal_end": "2025-06-30",
+      "signal_start": "2019-03-29",
+      "signal_end": "2025-10-31",
+      "label_mature_through": "2026-09-24",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 2,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
-          "cross_sections": 0,
-          "rank_ic": null,
-          "top_minus_bottom": null,
-          "coverage_mean": null
+          "cross_sections": 10,
+          "rank_ic": 0.23713759161660866,
+          "top_minus_bottom": 0.3664666053119172,
+          "coverage_mean": 0.9957729184092073,
+          "median_universe_n": 2866,
+          "max_universe_n": 2915,
+          "evidence_status": "reconstructed_backfill"
         },
         {
           "year": 2020,
           "cross_sections": 12,
-          "rank_ic": -0.05889159,
-          "top_minus_bottom": -0.05818996,
-          "coverage_mean": 0.996562
+          "rank_ic": -0.058891590362042064,
+          "top_minus_bottom": -0.058189957090212095,
+          "coverage_mean": 0.996562493120058,
+          "median_universe_n": 3064,
+          "max_universe_n": 3180,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": -0.08921706,
-          "top_minus_bottom": -0.1140616,
-          "coverage_mean": 0.99791
+          "rank_ic": -0.0892170616427328,
+          "top_minus_bottom": -0.11406160126551872,
+          "coverage_mean": 0.9979104871778145,
+          "median_universe_n": 3509,
+          "max_universe_n": 3822,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": 0.08002479,
-          "top_minus_bottom": 0.12790973,
-          "coverage_mean": 0.996943
+          "rank_ic": 0.08002479155288834,
+          "top_minus_bottom": 0.12790972526919073,
+          "coverage_mean": 0.996942628092973,
+          "median_universe_n": 4132,
+          "max_universe_n": 4338,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": -0.01348811,
-          "top_minus_bottom": -0.04328817,
-          "coverage_mean": 0.99539
+          "rank_ic": -0.013488114992374173,
+          "top_minus_bottom": -0.04328816838192836,
+          "coverage_mean": 0.9953901342918366,
+          "median_universe_n": 4565,
+          "max_universe_n": 4685,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.16993764,
-          "top_minus_bottom": 0.27074102,
-          "coverage_mean": 0.995122
+          "rank_ic": 0.1699376441456937,
+          "top_minus_bottom": 0.2707410221731767,
+          "coverage_mean": 0.995122039148486,
+          "median_universe_n": 4808,
+          "max_universe_n": 4830,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
-          "cross_sections": 6,
-          "rank_ic": 0.03104446,
-          "top_minus_bottom": 0.09487024,
-          "coverage_mean": 0.996769
+          "cross_sections": 10,
+          "rank_ic": -0.0013641509984341198,
+          "top_minus_bottom": 0.08290404451262219,
+          "coverage_mean": 0.9971607464795023,
+          "median_universe_n": 4854,
+          "max_universe_n": 4882,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_mature_labels"
         }
       ]
     },
@@ -1111,91 +1558,128 @@
       "factor": "rd_growth",
       "horizon": "fwd20",
       "signal_start": "2020-03-31",
-      "signal_end": "2026-05-29",
+      "signal_end": "2026-08-31",
+      "label_mature_through": "2026-09-30",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_eligible_cross_section"
         },
         {
           "year": 2020,
           "cross_sections": 10,
-          "rank_ic": 0.04443311,
-          "top_minus_bottom": 0.01019572,
-          "coverage_mean": 0.314563
+          "rank_ic": 0.04443310928706584,
+          "top_minus_bottom": 0.0101957175750704,
+          "coverage_mean": 0.3145632075946253,
+          "median_universe_n": 286,
+          "max_universe_n": 2756,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": -0.01940742,
-          "top_minus_bottom": -0.0044731,
-          "coverage_mean": 0.897994
+          "rank_ic": -0.019407393382892348,
+          "top_minus_bottom": -0.004473096773454242,
+          "coverage_mean": 0.8979936420065404,
+          "median_universe_n": 3142,
+          "max_universe_n": 3459,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": -0.014133,
-          "top_minus_bottom": -0.00647104,
-          "coverage_mean": 0.920255
+          "rank_ic": -0.014133012314399706,
+          "top_minus_bottom": -0.006471043097364983,
+          "coverage_mean": 0.9202553677721866,
+          "median_universe_n": 3750,
+          "max_universe_n": 4051,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": -0.04297152,
-          "top_minus_bottom": -0.00973089,
-          "coverage_mean": 0.935213
+          "rank_ic": -0.04297148722542333,
+          "top_minus_bottom": -0.009730885260449648,
+          "coverage_mean": 0.9352126179423733,
+          "median_universe_n": 4289,
+          "max_universe_n": 4551,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": 0.00350837,
-          "top_minus_bottom": -0.00678795,
-          "coverage_mean": 0.918355
+          "rank_ic": 0.003508405256597709,
+          "top_minus_bottom": -0.006787953618622982,
+          "coverage_mean": 0.9183553074799655,
+          "median_universe_n": 4419,
+          "max_universe_n": 4607,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
           "cross_sections": 12,
-          "rank_ic": 0.01139191,
-          "top_minus_bottom": 0.00571983,
-          "coverage_mean": 0.947228
+          "rank_ic": 0.011391935343139509,
+          "top_minus_bottom": 0.0057198299569571585,
+          "coverage_mean": 0.9472276502237138,
+          "median_universe_n": 4631,
+          "max_universe_n": 4747,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
-          "cross_sections": 5,
-          "rank_ic": 0.0479831,
-          "top_minus_bottom": 0.03302154,
-          "coverage_mean": 0.9632
+          "cross_sections": 8,
+          "rank_ic": 0.016112179213644637,
+          "top_minus_bottom": 0.015633135368344403,
+          "coverage_mean": 0.9624749335375253,
+          "median_universe_n": 4729,
+          "max_universe_n": 4760,
+          "evidence_status": "partial_year"
         }
       ]
     },
@@ -1203,91 +1687,128 @@
       "factor": "rd_growth",
       "horizon": "fwd220",
       "signal_start": "2020-03-31",
-      "signal_end": "2025-06-30",
+      "signal_end": "2025-10-31",
+      "label_mature_through": "2026-09-24",
       "years": [
         {
           "year": 2015,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "missing_lookback"
         },
         {
           "year": 2016,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2017,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2018,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 1,
+          "evidence_status": "below_minimum_cross_section"
         },
         {
           "year": 2019,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_eligible_cross_section"
         },
         {
           "year": 2020,
           "cross_sections": 10,
-          "rank_ic": 0.08335507,
-          "top_minus_bottom": 0.25356038,
-          "coverage_mean": 0.31431
+          "rank_ic": 0.08335507221147456,
+          "top_minus_bottom": 0.2535603825676171,
+          "coverage_mean": 0.3143100288294135,
+          "median_universe_n": 287,
+          "max_universe_n": 2753,
+          "evidence_status": "observed"
         },
         {
           "year": 2021,
           "cross_sections": 12,
-          "rank_ic": -0.05311842,
-          "top_minus_bottom": -0.02343969,
-          "coverage_mean": 0.898072
+          "rank_ic": -0.05311842151880586,
+          "top_minus_bottom": -0.02343969476300838,
+          "coverage_mean": 0.898071500385314,
+          "median_universe_n": 3137,
+          "max_universe_n": 3465,
+          "evidence_status": "observed"
         },
         {
           "year": 2022,
           "cross_sections": 12,
-          "rank_ic": -0.10030235,
-          "top_minus_bottom": -0.09635499,
-          "coverage_mean": 0.919538
+          "rank_ic": -0.1003023538806392,
+          "top_minus_bottom": -0.0963549899289707,
+          "coverage_mean": 0.9195375823809537,
+          "median_universe_n": 3745,
+          "max_universe_n": 4049,
+          "evidence_status": "observed"
         },
         {
           "year": 2023,
           "cross_sections": 12,
-          "rank_ic": -0.0485286,
-          "top_minus_bottom": -0.02457699,
-          "coverage_mean": 0.932217
+          "rank_ic": -0.04852860436972018,
+          "top_minus_bottom": -0.02457698691457423,
+          "coverage_mean": 0.9322167037726997,
+          "median_universe_n": 4281,
+          "max_universe_n": 4525,
+          "evidence_status": "observed"
         },
         {
           "year": 2024,
           "cross_sections": 12,
-          "rank_ic": -0.02307901,
-          "top_minus_bottom": -0.04034313,
-          "coverage_mean": 0.915015
+          "rank_ic": -0.023079013290417987,
+          "top_minus_bottom": -0.040343128220969554,
+          "coverage_mean": 0.9150154877435216,
+          "median_universe_n": 4410,
+          "max_universe_n": 4583,
+          "evidence_status": "observed"
         },
         {
           "year": 2025,
-          "cross_sections": 6,
-          "rank_ic": 0.03662041,
-          "top_minus_bottom": 0.15152809,
-          "coverage_mean": 0.930415
+          "cross_sections": 10,
+          "rank_ic": 0.047274441324595226,
+          "top_minus_bottom": 0.15478084423153088,
+          "coverage_mean": 0.9440814567388136,
+          "median_universe_n": 4612,
+          "max_universe_n": 4752,
+          "evidence_status": "observed"
         },
         {
           "year": 2026,
           "cross_sections": 0,
           "rank_ic": null,
           "top_minus_bottom": null,
-          "coverage_mean": null
+          "coverage_mean": null,
+          "median_universe_n": null,
+          "max_universe_n": 0,
+          "evidence_status": "no_mature_labels"
         }
       ]
     }

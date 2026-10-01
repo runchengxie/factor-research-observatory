@@ -45,10 +45,50 @@ test('R&D study shows annual sample counts and an accessible public method note'
   await expect(page.getByRole('heading', { name: 'How the signal changed over time' })).toBeVisible({ timeout: 15000 })
   await expect(page.getByRole('columnheader', { name: 'Monthly cross-sections' })).toBeVisible()
   await expect(page.locator('.annual-table tbody tr').last()).toContainText('2026')
-  await expect(page.locator('.annual-table tbody tr').last()).toContainText('5')
+  await expect(page.locator('.annual-table tbody tr').last()).toContainText('8')
   await page.getByRole('link', { name: 'Public methodology note' }).click()
   await expect(page.getByRole('heading', { name: 'R&D investment relative to valuation' })).toBeVisible()
   await expect(page.getByText(/revision_safe=false/)).toBeVisible()
+})
+
+test('R&D annual view separates requested calendar coverage from mature PIT labels', async ({ page }) => {
+  await page.goto('studies/rd-investment')
+  await page.locator('.study-page > div[style*="min-height"]').scrollIntoViewIfNeeded()
+  await expect(page.getByText('Market data as of 2026-09-30')).toBeVisible()
+  await expect(page.getByText(/Requested span: from 2015-01-05 \(the first 2015 trading session\) through 2026-09-30/)).toBeVisible()
+  await expect(page.getByText('First eligible cross-section: 2019-03-29')).toBeVisible()
+  await expect(page.getByText('Signal window: 2019-03-29 to 2026-08-31', { exact: true })).toBeVisible()
+  await expect(page.getByText('20-day outcomes mature through 2026-09-30')).toBeVisible()
+  const firstYear = page.locator('.annual-table tbody tr').filter({ hasText: '2015' })
+  await expect(firstYear).toContainText('0')
+  await expect(firstYear).toContainText('No 2014 TTM lookback')
+  const thinYear = page.locator('.annual-table tbody tr').filter({ hasText: '2018' })
+  await expect(thinYear).toContainText('Below 200-name monthly minimum')
+  const backfillYear = page.locator('.annual-table tbody tr').filter({ hasText: '2019' })
+  await expect(backfillYear).toContainText('10')
+  await expect(backfillYear).toContainText('Retrospective reconstruction sensitivity')
+  await expect(backfillYear).toContainText('2,871')
+  await page.getByLabel('Forward label').selectOption('fwd220')
+  await expect(page.getByText('Signal window: 2019-03-29 to 2025-10-31', { exact: true })).toBeVisible()
+  await expect(page.getByText('220-day outcomes mature through 2026-09-24')).toBeVisible()
+  await page.getByLabel('Year range').selectOption('2015')
+  await expect(page.locator('.annual-table tbody tr').last()).toContainText('2025')
+  await expect(page.locator('.annual-table tbody tr').filter({ hasText: '2026' })).toHaveCount(0)
+  await page.getByLabel('Year range').selectOption('all')
+  await expect(page.locator('.annual-table tbody tr').filter({ hasText: '2026' })).toContainText('No mature labels')
+})
+
+test('R&D study exposes cost sensitivity and denominator attribution with caveats', async ({ page }) => {
+  await page.goto('studies/rd-investment')
+  await page.locator('.study-page > div[style*="min-height"]').scrollIntoViewIfNeeded()
+  await expect(page.getByRole('heading', { name: 'Cost sensitivity of a fixed Top-200 probe' })).toBeVisible({ timeout: 15000 })
+  await expect(page.getByRole('columnheader', { name: 'One-way cost' })).toBeVisible()
+  await expect(page.locator('.probe-table tbody tr').filter({ hasText: 'R&D / market cap' }).first()).toContainText('12.70%')
+  await expect(page.getByRole('heading', { name: 'What drives R&D / market cap?' })).toBeVisible()
+  await expect(page.locator('.attribution-table tbody')).toContainText('Inverse market cap')
+  await expect(page.getByRole('heading', { name: 'HAC inference across the seven variants' })).toBeVisible()
+  await expect(page.getByRole('columnheader', { name: 'BH q-value across 14 tests' })).toBeVisible()
+  await expect(page.getByText(/not a production portfolio/)).toBeVisible()
 })
 
 test('theme switch persists across reloads', async ({ page }) => {
@@ -114,6 +154,35 @@ test('fundamentals explorer selects published series and shows cross-sectional q
   await expect(page.getByRole('heading', { name: 'Return on equity (ROE)' })).toBeVisible()
 })
 
+test('fundamentals catalog groups are keyboard-accessible disclosures on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('fundamentals')
+  const group = page.locator('.catalog-grid details').first()
+  await expect(group).toBeVisible()
+  await expect(group).not.toHaveAttribute('open', '')
+  const summary = group.locator('summary')
+  await expect(summary).toBeVisible()
+  await summary.focus()
+  await page.keyboard.press('Enter')
+  await expect(group).toHaveAttribute('open', '')
+  await expect(group.locator('.catalog-row').first()).toBeVisible()
+  const widths = await page.evaluate(() => ({ viewport: window.innerWidth, content: document.documentElement.scrollWidth }))
+  expect(widths.content).toBeLessThanOrEqual(widths.viewport)
+})
+
+test('fundamentals route defers chart code until a chart section approaches view', async ({ page }) => {
+  const chartRequests: string[] = []
+  page.on('request', (request) => {
+    if (new URL(request.url()).pathname.includes('echarts-')) chartRequests.push(request.url())
+  })
+  await page.goto('fundamentals')
+  await expect(page.getByRole('heading', { name: 'Operating states, slowly becoming signals.' })).toBeVisible()
+  expect(chartRequests).toEqual([])
+  await page.locator('.quantile-panel').scrollIntoViewIfNeeded()
+  await expect(page.locator('.quantile-panel .echarts-for-react')).toBeVisible()
+  await expect.poll(() => chartRequests.length).toBeGreaterThan(0)
+})
+
 test('exploration pages localize new controls and evidence notes into Chinese', async ({ page }) => {
   await page.goto('hermite')
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
@@ -132,9 +201,10 @@ test('exploration pages localize new controls and evidence notes into Chinese', 
 
   await page.goto('studies/rd-investment')
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
-  await expect(page.getByText(/口径修正后的回放未重跑交易成本与组合验证/)).toBeVisible()
+  await expect(page.getByText(/修正口径后已重跑固定 Top-200 成本探针/)).toBeVisible()
   await expect(page.getByText(/探索后.*fwd20.*Top-10%.*七个变体的毛收益均为负/)).toBeVisible()
-  await expect(page.getByText(/最终样本外检验与成分股生效时点审计仍未完成/)).toBeVisible()
+  await expect(page.getByText(/已封存 2026-10 至 2027-09 月末形成信号的前瞻最终样本外协议/)).toBeVisible()
+  await expect(page.getByText(/成分股生效时点审计仍未完成/)).toBeVisible()
 })
 
 test('deferred charts do not blank the page on a mobile viewport', async ({ page }) => {

@@ -47,12 +47,12 @@ export function StudyDetailPage({ study, updatedAt }: { study: Study | undefined
       'Financial statement YTD fields are converted to TTM using current YTD + prior full-year − prior-year same-period YTD; an annual filing contributes its full-year value.',
       'A filing becomes eligible on the next calendar day after disclosure; the latest available filing is carried forward only while its age is at most 540 days. Signals are formed at month-end and the forward return label starts from the next trading-day close.',
       'The forward 20/220 labels are price-return labels over subsequent trading sessions. They omit transaction costs and do not establish that the assumed entry/exit prices were executable.',
-      'The 20-day replay has 77 valid monthly cross-sections through 2026-05-29; the 220-day replay has 66 through 2025-06-30 because longer labels need more time to mature. These windows are horizon-specific.',
+      'The extended replay has 90 valid monthly cross-sections for 20-day labels through 2026-08-31 and 80 for 220-day labels through 2025-10-31. The windows are horizon-specific; the ten 2019 observations are retrospective reconstruction sensitivity.',
     ] : [
       '财报累计值按 TTM = 本年年初至今 + 上一完整年度 − 上年同期累计值还原；年报直接使用全年值。',
       '公告次日才视为可用；最近一期财报仅在财报年龄不超过 540 天时沿用。月末形成信号，前瞻收益标签从下一交易日收盘价开始。',
       '20 / 220 日标签是随后交易日价格收益，不含交易成本，也不能证明假设的进出场价格实际可成交。',
-      '20 日回放截至 2026-05-29 有 77 个有效月度截面；220 日回放截至 2025-06-30 有 66 个，因长周期标签需要更久才能成熟。两个期限各自按可用标签独立取样。',
+      '扩展回放中，20 日标签截至 2026-08-31 有 90 个有效月度截面，220 日标签截至 2025-10-31 有 80 个。两个期限按各自标签成熟情况分别取样；其中 2019 年的十个截面属于回溯重建敏感性。',
     ]).map((note) => <li key={note}>{note}</li>)}</ul><p className="panel-note">{english ? 'Universe eligibility and historical index membership have known timing limitations; the revision chain is incomplete. See the public methodology note for the full protocol and exclusions.' : '股票池资格与历史指数成分时点存在已知限制，财报历史修订链也不完整。完整协议与排除项见公开方法说明。'} <a href={`${import.meta.env.BASE_URL}research/rd-investment-method.html`}>{english ? 'Public methodology note ↗' : '公开方法说明 ↗'}</a></p></section>}
     {study.id === 'rd-investment' && study.annual_evidence && <DeferredContent minHeight={740} label={english ? 'Loading annual evidence…' : '逐年证据加载中…'}><AnnualEvidence study={study} english={english} /></DeferredContent>}
     {study.research_log?.length ? <section className="panel research-log"><div className="section-heading"><p className="eyebrow">EXPLORATION RECORD</p><h2>{english ? 'Research log' : '探索过程记录'}</h2></div><ol>{study.research_log.map((entry) => <li key={`${entry.date}-${entry.stage}`}><time>{entry.date}</time><div><strong>{english ? entry.stage_en : entry.stage}</strong><p>{english ? entry.note_en : entry.note}</p></div></li>)}</ol></section> : null}
