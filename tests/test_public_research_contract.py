@@ -67,6 +67,15 @@ class PublicResearchContractTests(unittest.TestCase):
             set(catalog["series"][0]["study_ids"]),
             {study["id"] for study in catalog["studies"]},
         )
+        fundamental_series = catalog["series"][0]
+        candidate_coverage = fundamental_series["candidate_coverage"]
+        factor_catalog = json.loads((PUBLIC_DATA / candidate_coverage["catalog_source"]).read_text())
+        catalog_candidate_ids = {factor["id"] for factor in factor_catalog["factors"]}
+        self.assertEqual(candidate_coverage["status"], "catalog_hypothesis_only")
+        self.assertEqual(set(candidate_coverage["candidate_ids"]), catalog_candidate_ids)
+        self.assertEqual(fundamental_series["candidate_count"], len(catalog_candidate_ids))
+        self.assertEqual(candidate_coverage["candidate_level_predictive_validation_ids"], [])
+        self.assertTrue(all(factor["research_status"] == "experimental" for factor in factor_catalog["factors"]))
         allowed_markets = {"a_share", "hong_kong"}
         allowed_stages = {
             "hypothesis",
