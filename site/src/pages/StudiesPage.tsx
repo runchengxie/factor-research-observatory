@@ -24,6 +24,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
         <div className="panel study-series-intro">
           <p className="eyebrow">{copy.studies.seriesEyebrow}</p><h2 id={`series-${series.id}`}>{series.title}</h2>
           <p>{series.summary}</p><p>{series.scope}</p><p className="study-series-boundary">{series.evidence_boundary}</p>
+          {series.id === 'fundamental' && <p className="study-series-boundary">{english ? `${series.candidate_coverage.candidate_ids.length} catalog definitions are tracked as hypotheses; ${series.candidate_coverage.candidate_level_predictive_validation_ids.length} have published candidate-level predictive validation.` : `当前跟踪 ${series.candidate_coverage.candidate_ids.length} 个因子目录定义，均作为研究假设；已发布逐因子预测性验证结果 ${series.candidate_coverage.candidate_level_predictive_validation_ids.length} 个。`}</p>}
           <a className="section-link" href={`${import.meta.env.BASE_URL}${series.candidate_href}`}>{copy.studies.candidateLink} ({series.candidate_count})</a>
         </div>
         <section className="study-grid" aria-label={series.title}>{studies.map((rawStudy) => {

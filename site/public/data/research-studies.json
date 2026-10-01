@@ -748,6 +748,36 @@
           "scope": "公开因子目录列出 23 个基本面与人力资本候选。进入目录表示有研究问题，不代表因子已通过验证。",
           "evidence_boundary": "预测准确度、截面排序能力和可执行组合收益属于不同证据阶段。港股历史发现只适用于对应市场，不能据此认定可迁移到 A 股。"
         }
+      },
+      "candidate_coverage": {
+        "catalog_source": "fundamental-factor-catalog.json",
+        "status": "catalog_hypothesis_only",
+        "candidate_ids": [
+          "asset_impairment_stability",
+          "cash_to_market_value_zscore",
+          "comprehensive_income_yield_zscore",
+          "finance_expense_ratio_improvement",
+          "income_tax_yield_zscore_120",
+          "income_tax_zscore_120",
+          "income_tax_zscore_250",
+          "invest_income_yield_zscore",
+          "labor_cost_growth",
+          "labor_cost_intensity",
+          "labor_efficiency",
+          "labor_intensity_investment_state",
+          "negative_earnings_yield_cv_120",
+          "negative_roa_cv_250",
+          "negative_roa_exp_mean_120",
+          "negative_roe_exp_mean_750",
+          "operating_earnings_yield_zscore",
+          "operating_profit_acceleration",
+          "operating_profit_yoy_zscore",
+          "other_gain_yield_zscore",
+          "revenue_minus_labor_cost_growth",
+          "revenue_zscore",
+          "standardized_operating_profit"
+        ],
+        "candidate_level_predictive_validation_ids": []
       }
     }
   ]

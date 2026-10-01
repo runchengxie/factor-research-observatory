@@ -67,6 +67,7 @@ export type StudyMethod = 'direct_factor_test' | 'fundamental_state_forecast' | 
 export type StudyFrequency = 'daily' | 'weekly' | 'monthly' | 'quarterly' | 'annual' | 'event_driven' | 'mixed' | 'not_applicable'
 export type StudyEvidenceStage = 'hypothesis' | 'exploratory' | 'retrospective_diagnostic' | 'prospective_holdout_pending' | 'reviewed_research' | 'historical_archive'
 export type StudySeriesCopy = { title: string; summary: string; scope: string; evidence_boundary: string }
+export type StudyCandidateCoverage = { catalog_source: string; status: 'catalog_hypothesis_only'; candidate_ids: string[]; candidate_level_predictive_validation_ids: string[] }
 export type StudySeries = {
   id: string
   source_ref: string
@@ -74,6 +75,7 @@ export type StudySeries = {
   publication_status: string
   candidate_count: number
   candidate_href: string
+  candidate_coverage: StudyCandidateCoverage
   study_ids: string[]
   translations: Partial<Record<'en-US' | 'zh-CN', StudySeriesCopy>>
 }
