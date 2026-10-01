@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-01",
+  "updated_at": "2026-10-02",
   "studies": [
     {
       "id": "pb-roe",
@@ -716,6 +716,246 @@
       "evidence_stage": "hypothesis",
       "publication_id": "employee-compensation",
       "source_ref": "doc:quant-research.research.fundamental-research-series"
+    },
+    {
+      "id": "absolute-level-forecast",
+      "series": "fundamental",
+      "market": "a_share",
+      "method": [
+        "fundamental_state_forecast",
+        "cross_sectional_ranking",
+        "portfolio_replay",
+        "robustness"
+      ],
+      "frequency": [
+        "annual"
+      ],
+      "evidence_stage": "retrospective_diagnostic",
+      "publication_id": "absolute-level-forecast",
+      "source_ref": "doc:quant-research.research.fundamental-state-forecasting",
+      "status": "exploratory",
+      "translations": {
+        "en-US": {
+          "title": "Absolute revenue and net-income forecasts: a selection pilot",
+          "family": "Fundamental forecasting and cross-sectional selection",
+          "status_label": "Retrospective pilot",
+          "summary": "An audited annual PIT sample of 32,339 common rows forecasts next-year revenue and consolidated net-income levels, then compares top-decile screens. Persistence has lower transformed MAE than Ridge and XGBoost in all six comparisons; XGBoost net-income RankIC gains are tiny and selection results vary across years.",
+          "period": "Formation cohorts 2020–2025; forecast and one-year return folds 2023–2025",
+          "source_note": "Annual event-PIT panel vintage 20260802, outcomes as of 20260831. Net income is consolidated n_income including minority interests, not parent-attributable income. Market-cap inputs use data on or before formation. Provider revisions, outcome coverage, and delisting eligibility are incomplete; this is retrospective, not strict final OOS.",
+          "columns": [
+            "Diagnostic",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "rows": [
+            [
+              "Revenue persistence transformed MAE",
+              "0.097",
+              "0.091",
+              "0.087"
+            ],
+            [
+              "Revenue Ridge transformed MAE",
+              "0.418",
+              "0.407",
+              "0.413"
+            ],
+            [
+              "Revenue XGBoost transformed MAE / RankIC",
+              "0.124 / 0.973",
+              "0.112 / 0.979",
+              "0.107 / 0.979"
+            ],
+            [
+              "Net-income persistence transformed MAE",
+              "0.573",
+              "0.514",
+              "0.451"
+            ],
+            [
+              "Net-income Ridge transformed MAE",
+              "0.814",
+              "0.817",
+              "0.770"
+            ],
+            [
+              "Net-income XGBoost transformed MAE / RankIC",
+              "0.594 / 0.755",
+              "0.570 / 0.791",
+              "0.529 / 0.834"
+            ],
+            [
+              "Market-cap top-decile excess",
+              "8.0%",
+              "-37.9%",
+              "5.0%"
+            ],
+            [
+              "Current absolute composite top-decile excess",
+              "10.1%",
+              "-46.5%",
+              "2.1%"
+            ],
+            [
+              "Persistence forecast rank top-decile excess",
+              "10.1%",
+              "-46.4%",
+              "2.1%"
+            ],
+            [
+              "Ridge forecast rank top-decile excess",
+              "8.7%",
+              "-45.2%",
+              "2.8%"
+            ],
+            [
+              "XGBoost forecast rank top-decile excess",
+              "10.0%",
+              "-46.1%",
+              "2.7%"
+            ],
+            [
+              "Current financial yield top-decile excess",
+              "8.9%",
+              "-34.7%",
+              "0.3%"
+            ],
+            [
+              "Ridge forecast yield top-decile excess",
+              "16.4%",
+              "41.8%",
+              "-7.4%"
+            ],
+            [
+              "XGBoost forecast yield top-decile excess",
+              "13.3%",
+              "-25.0%",
+              "0.1%"
+            ]
+          ],
+          "findings": [
+            "Persistence has lower transformed MAE than both learned models in all six target-year comparisons.",
+            "XGBoost net-income RankIC is only 0.002–0.005 above persistence; this small ranking increment does not establish stock-return alpha.",
+            "The three annual selection windows disagree; Ridge forecast-yield excess reverses in 2025 and XGBoost forecast-yield excess is positive only in 2023."
+          ],
+          "limits": [
+            "Only three annual forecast/return folds are available; provider revision history, outcome-panel coverage, and all-market delisting eligibility are incomplete.",
+            "Price returns use adjusted-close proxies, a price-complete survivor subset, no dividends or delisting recovery, and fixed 25 bp one-way modeled costs.",
+            "Selection screens are not industry-, size-, liquidity-, or benchmark-risk controlled and are not a mature portfolio replay."
+          ]
+        },
+        "zh-CN": {
+          "title": "营收与净利润绝对值预测：截面选股试验",
+          "family": "基本面预测与截面选股",
+          "status_label": "回溯试验",
+          "summary": "在 32,339 个共同样本的年度 PIT 试验中预测下一年营收和合并净利润绝对值，再比较 Top Decile 选股。Persistence 在六个目标年比较中的变换 MAE 均优于 Ridge 与 XGBoost；XGBoost 净利润 RankIC 增量很小，年度选股结果差异明显。",
+          "period": "2020–2025 形成批次；2023–2025 预测与一年收益留出折",
+          "source_note": "年度公告事件 PIT 面板 vintage=20260802，结果快照 as_of=20260831。净利润为包含少数股东损益的合并 n_income，不是归母净利润。市值取形成日及之前数据。供应商修订、结果覆盖和退市资格审计不完整；这是回溯研究，不是严格最终 OOS。",
+          "columns": [
+            "诊断指标",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "rows": [
+            [
+              "营收 persistence 变换 MAE",
+              "0.097",
+              "0.091",
+              "0.087"
+            ],
+            [
+              "营收 Ridge 变换 MAE",
+              "0.418",
+              "0.407",
+              "0.413"
+            ],
+            [
+              "营收 XGBoost 变换 MAE / RankIC",
+              "0.124 / 0.973",
+              "0.112 / 0.979",
+              "0.107 / 0.979"
+            ],
+            [
+              "净利润 persistence 变换 MAE",
+              "0.573",
+              "0.514",
+              "0.451"
+            ],
+            [
+              "净利润 Ridge 变换 MAE",
+              "0.814",
+              "0.817",
+              "0.770"
+            ],
+            [
+              "净利润 XGBoost 变换 MAE / RankIC",
+              "0.594 / 0.755",
+              "0.570 / 0.791",
+              "0.529 / 0.834"
+            ],
+            [
+              "市值 Top Decile 超额",
+              "8.0%",
+              "-37.9%",
+              "5.0%"
+            ],
+            [
+              "当前绝对值组合 Top Decile 超额",
+              "10.1%",
+              "-46.5%",
+              "2.1%"
+            ],
+            [
+              "Persistence 预测排名 Top Decile 超额",
+              "10.1%",
+              "-46.4%",
+              "2.1%"
+            ],
+            [
+              "Ridge 预测排名 Top Decile 超额",
+              "8.7%",
+              "-45.2%",
+              "2.8%"
+            ],
+            [
+              "XGBoost 预测排名 Top Decile 超额",
+              "10.0%",
+              "-46.1%",
+              "2.7%"
+            ],
+            [
+              "当前财务收益率 Top Decile 超额",
+              "8.9%",
+              "-34.7%",
+              "0.3%"
+            ],
+            [
+              "Ridge 预测收益率 Top Decile 超额",
+              "16.4%",
+              "41.8%",
+              "-7.4%"
+            ],
+            [
+              "XGBoost 预测收益率 Top Decile 超额",
+              "13.3%",
+              "-25.0%",
+              "0.1%"
+            ]
+          ],
+          "findings": [
+            "六个目标年比较中，persistence 的变换 MAE 均低于两种学习模型。",
+            "XGBoost 净利润 RankIC 只比 persistence 高 0.002–0.005；如此微弱的排序增量不能证明股票收益 Alpha。",
+            "三个年度选股窗口结论不一致；Ridge 预测收益率超额于 2025 年反转，XGBoost 预测收益率超额只有 2023 年为正。"
+          ],
+          "limits": [
+            "只有三个年频预测 / 收益留出折；供应商修订历史、结果面板覆盖和全市场退市样本资格尚不完整。",
+            "收益使用复权收盘价代理，限于价格完整股票；不含股息或退市回收，成本只按单边 25bp 固定值估算。",
+            "选股未控制行业、规模、流动性或基准风险，也不是成熟组合回放。"
+          ]
+        }
+      }
     }
   ],
   "series": [
@@ -733,18 +973,19 @@
         "fundamental-family-shadow",
         "cashflow-indices",
         "hk-fundamental-archive",
-        "employee-compensation"
+        "employee-compensation",
+        "absolute-level-forecast"
       ],
       "translations": {
         "en-US": {
           "title": "Fundamental research across factors and markets",
-          "summary": "A source-linked map of R&D investment, value and quality, cash flow, operating-state forecasts, and historical Hong Kong experiments.",
+          "summary": "A source-linked map of R&D investment, value and quality, cash flow, operating-state forecasts, historical Hong Kong experiments, and a pilot of absolute financial-level forecasts.",
           "scope": "The public factor catalog lists 23 fundamental and human-capital candidates. Catalog inclusion describes a research question; it does not mean the factor has passed validation.",
           "evidence_boundary": "Forecast accuracy, cross-sectional ranking, and executable portfolio returns are separate evidence stages. Historical Hong Kong findings remain market-specific and do not establish A-share transferability."
         },
         "zh-CN": {
           "title": "跨因子与市场的基本面研究",
-          "summary": "按来源串联研发投入、价值与质量、现金流、经营状态预测和港股历史实验。",
+          "summary": "按来源串联研发投入、价值与质量、现金流、经营状态预测、港股历史实验，以及一项财务绝对值预测试验。",
           "scope": "公开因子目录列出 23 个基本面与人力资本候选。进入目录表示有研究问题，不代表因子已通过验证。",
           "evidence_boundary": "预测准确度、截面排序能力和可执行组合收益属于不同证据阶段。港股历史发现只适用于对应市场，不能据此认定可迁移到 A 股。"
         }

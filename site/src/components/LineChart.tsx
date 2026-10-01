@@ -1,7 +1,7 @@
-import ReactECharts from 'echarts-for-react/esm/core'
-import echarts from '../echarts'
-
-export default function LineChart({ dates, series, showLegend = true }: { dates: string[]; series: Array<{ name: string; values: Array<number | null>; color: string }>; showLegend?: boolean }) {
+import ChartSvg from './ChartSvg'
+type Series = { name: string; values: Array<number | null>; color: string }
+export default function LineChart({ dates, series, showLegend = true }: { dates: string[]; series: Series[]; showLegend?: boolean }) {
   if (!dates.length || !series.some((item) => item.values.some((value) => value !== null))) return <div className="chart-empty">暂无可绘制的数据</div>
-  return <ReactECharts echarts={echarts} style={{ height: 300 }} option={{ animation: false, tooltip: { trigger: 'axis', backgroundColor: '#fffefa', borderColor: '#d8d0c3', textStyle: { color: '#252525' } }, legend: { show: showLegend, textStyle: { color: '#514b43' } }, grid: { left: 50, right: 20, top: 35, bottom: showLegend ? 45 : 32 }, xAxis: { type: 'category', data: dates, axisLabel: { color: '#81796e', hideOverlap: true } }, yAxis: { type: 'value', axisLabel: { color: '#81796e' }, splitLine: { lineStyle: { color: '#e8e1d6' } } }, series: series.map((item) => ({ name: item.name, type: 'line', showSymbol: false, connectNulls: false, data: item.values, lineStyle: { color: item.color, width: 2 }, itemStyle: { color: item.color } })) }} />
+  const displaySeries = series
+  return <div className="line-chart"><ChartSvg kind="line" labels={dates} points={displaySeries} height={300} description={series.map((item) => item.name).join(', ')} />{showLegend && <div className="chart-legend">{series.map((item) => <span key={item.name}><i style={{ backgroundColor: item.color }} />{item.name}</span>)}</div>}</div>
 }

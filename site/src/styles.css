@@ -309,3 +309,7 @@
 @media (max-width: 520px) {
   .study-brief, .factor-evidence-grid, .evidence-card-row { grid-template-columns: 1fr; }
 }
+.chart-svg { display: block; width: 100%; max-width: 100%; overflow: visible; }
+.chart-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; color: var(--muted, #81796e); font-size: .8rem; }
+.chart-legend span { display: inline-flex; align-items: center; gap: .4rem; }
+.chart-legend i { width: .7rem; height: .7rem; border-radius: 50%; }
