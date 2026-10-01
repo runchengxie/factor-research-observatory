@@ -17,7 +17,10 @@ export default function AnnualEvidence({ study, english }: { study: Study; engli
   const annual = study.annual_evidence?.series ?? []
   const selected = annual.filter((item) => item.horizon === horizon)
   const yearSet = selected[0]?.years.map((point) => point.year) ?? []
-  const years = range === 'all' ? yearSet : range === '10y' ? yearSet.filter((year) => year >= 2017) : yearSet.filter((year) => year >= 2015)
+  const primarySeries = selected.find((item) => item.factor === 'rd_mv')
+  const observedYears = primarySeries?.years.filter((point) => point.cross_sections > 0) ?? []
+  const latestObservedYear = observedYears[observedYears.length - 1]
+  const years = range === 'all' ? yearSet : range === '10y' ? yearSet.filter((year) => year >= 2017) : yearSet.filter((year) => year >= 2015 && year <= (latestObservedYear?.year ?? Number.NEGATIVE_INFINITY))
   const baseOption = (metric: 'rank_ic' | 'top_minus_bottom') => ({
     animation: false,
     color: palette,
@@ -39,10 +42,7 @@ export default function AnnualEvidence({ study, english }: { study: Study; engli
   const coveredFrom = selected.map((item) => item.signal_start).sort()[0]
   const coveredDates = selected.map((item) => item.signal_end).sort()
   const coveredTo = coveredDates[coveredDates.length - 1]
-  const primarySeries = selected.find((item) => item.factor === 'rd_mv')
   const tableYears = years.map((year) => primarySeries?.years.find((point) => point.year === year)).filter((point) => point !== undefined)
-  const observedYears = primarySeries?.years.filter((point) => point.cross_sections > 0) ?? []
-  const latestObservedYear = observedYears[observedYears.length - 1]
   const labelDays = horizon === 'fwd20' ? 20 : 220
   const marketDataAsOf = study.annual_evidence?.market_data_as_of ?? '—'
   const statusForYear = (year: number, count: number) => {

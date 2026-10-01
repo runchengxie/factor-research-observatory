@@ -63,6 +63,11 @@ test('R&D annual view separates requested calendar coverage from mature PIT labe
   await expect(firstYear).toContainText('No PIT signal')
   await page.getByLabel('Forward label').selectOption('fwd220')
   await expect(page.getByText('220-day labels mature through 2025-06-30')).toBeVisible()
+  await page.getByLabel('Year range').selectOption('2015')
+  await expect(page.locator('.annual-table tbody tr').last()).toContainText('2025')
+  await expect(page.locator('.annual-table tbody tr').filter({ hasText: '2026' })).toHaveCount(0)
+  await page.getByLabel('Year range').selectOption('all')
+  await expect(page.locator('.annual-table tbody tr').filter({ hasText: '2026' })).toContainText('No mature labels')
 })
 
 test('theme switch persists across reloads', async ({ page }) => {
