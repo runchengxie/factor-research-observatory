@@ -24,6 +24,7 @@ type FundamentalsCopy = {
   processedTickers: string; pitCoverage: string; validOperatingProfit: string; validShare: string
   latestAvailable: string; median: string; standardizedProxy: string; valid: string; missing: string; entries: string
   metricLabels: Record<string, string>; factorDescriptions: Record<string, string>
+  loadingChart: string
 }
 export type ExplorationCopy = { hermite: HermiteCopy; jumps: JumpCopy; fundamentals: FundamentalsCopy }
 
@@ -75,6 +76,7 @@ export const explorationCopy: Record<Locale, ExplorationCopy> = {
         'The standardized operating-profit value remains null until four complete quarters and six historical TTM observations are available.',
         'TTM derivation treats reported values as cumulative fiscal-year values; validate this data contract before any backtest.',
       ],
+      loadingChart: 'Loading chart…',
       metricLabels: {
         standardized_operating_profit: 'Standardized operating profit', roe: 'Return on equity (ROE)', roa: 'Return on assets (ROA)',
         net_profit_yoy: 'Net profit year-over-year', revenue_yoy: 'Revenue year-over-year',
@@ -135,6 +137,7 @@ export const explorationCopy: Record<Locale, ExplorationCopy> = {
         '标准化营业利润值需具备四个完整季度和六个历史 TTM 观测后才会生成，否则为空。',
         'TTM 推导将报表字段视为财年累计值；用于回测前应先验证这一数据契约。',
       ],
+      loadingChart: '正在加载图表…',
       metricLabels: {
         standardized_operating_profit: '标准化营业利润', roe: '净资产收益率（ROE）', roa: '总资产收益率（ROA）',
         net_profit_yoy: '净利润同比', revenue_yoy: '营业收入同比',

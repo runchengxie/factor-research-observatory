@@ -51,6 +51,20 @@ test('R&D study shows annual sample counts and an accessible public method note'
   await expect(page.getByText(/revision_safe=false/)).toBeVisible()
 })
 
+test('R&D annual view separates requested calendar coverage from mature PIT labels', async ({ page }) => {
+  await page.goto('studies/rd-investment')
+  await page.locator('.study-page > div[style*="min-height"]').scrollIntoViewIfNeeded()
+  await expect(page.getByText('Market data as of 2026-09-29')).toBeVisible()
+  await expect(page.getByText('Requested span: the first 2015 trading session through the 2026-09-29 market snapshot. Annual summaries are not a daily backtest.')).toBeVisible()
+  await expect(page.getByText('PIT factor signal available from 2020-01-23')).toBeVisible()
+  await expect(page.getByText('20-day labels mature through 2026-05-29')).toBeVisible()
+  const firstYear = page.locator('.annual-table tbody tr').filter({ hasText: '2015' })
+  await expect(firstYear).toContainText('0')
+  await expect(firstYear).toContainText('No PIT signal')
+  await page.getByLabel('Forward label').selectOption('fwd220')
+  await expect(page.getByText('220-day labels mature through 2025-06-30')).toBeVisible()
+})
+
 test('theme switch persists across reloads', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: /Dark mode/ }).click()
@@ -112,6 +126,35 @@ test('fundamentals explorer selects published series and shows cross-sectional q
   await expect(page.getByText(/public time-series examples are available for only three representative tickers/)).toBeVisible()
   await page.getByLabel('Series metric').selectOption('roe')
   await expect(page.getByRole('heading', { name: 'Return on equity (ROE)' })).toBeVisible()
+})
+
+test('fundamentals catalog groups are keyboard-accessible disclosures on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('fundamentals')
+  const group = page.locator('.catalog-grid details').first()
+  await expect(group).toBeVisible()
+  await expect(group).not.toHaveAttribute('open', '')
+  const summary = group.locator('summary')
+  await expect(summary).toBeVisible()
+  await summary.focus()
+  await page.keyboard.press('Enter')
+  await expect(group).toHaveAttribute('open', '')
+  await expect(group.locator('.catalog-row').first()).toBeVisible()
+  const widths = await page.evaluate(() => ({ viewport: window.innerWidth, content: document.documentElement.scrollWidth }))
+  expect(widths.content).toBeLessThanOrEqual(widths.viewport)
+})
+
+test('fundamentals route defers chart code until a chart section approaches view', async ({ page }) => {
+  const chartRequests: string[] = []
+  page.on('request', (request) => {
+    if (new URL(request.url()).pathname.includes('echarts-')) chartRequests.push(request.url())
+  })
+  await page.goto('fundamentals')
+  await expect(page.getByRole('heading', { name: 'Operating states, slowly becoming signals.' })).toBeVisible()
+  expect(chartRequests).toEqual([])
+  await page.locator('.quantile-panel').scrollIntoViewIfNeeded()
+  await expect(page.locator('.quantile-panel .echarts-for-react')).toBeVisible()
+  await expect.poll(() => chartRequests.length).toBeGreaterThan(0)
 })
 
 test('exploration pages localize new controls and evidence notes into Chinese', async ({ page }) => {

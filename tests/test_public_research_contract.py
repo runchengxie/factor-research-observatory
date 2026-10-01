@@ -91,6 +91,20 @@ class PublicResearchContractTests(unittest.TestCase):
             self.assertIn(required_claim, note)
         self.assertNotIn("/home/", note)
 
+    def test_rd_annual_evidence_publishes_market_date_and_mature_label_windows(self):
+        annual = json.loads((PUBLIC_DATA / "rd-investment-annual.json").read_text())
+        self.assertEqual(annual["market_data_as_of"], "2026-09-29")
+        series = {(item["factor"], item["horizon"]): item for item in annual["series"]}
+        raw_20 = series[("rd_mv", "fwd20")]
+        raw_220 = series[("rd_mv", "fwd220")]
+        self.assertEqual((raw_20["signal_start"], raw_20["signal_end"]), ("2020-01-23", "2026-05-29"))
+        self.assertEqual((raw_220["signal_start"], raw_220["signal_end"]), ("2020-01-23", "2025-06-30"))
+        years = {item["year"]: item for item in raw_20["years"]}
+        self.assertEqual(list(years), list(range(2015, 2027)))
+        for year in range(2015, 2020):
+            self.assertEqual(years[year]["cross_sections"], 0)
+            self.assertIsNone(years[year]["rank_ic"])
+
     def test_cashflow_study_is_backed_by_a_stable_source_projection(self):
         manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
         projection = next(

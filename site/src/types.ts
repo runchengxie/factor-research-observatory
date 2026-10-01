@@ -62,12 +62,13 @@ export type StudyCopy = {
 export type StudyLogEntry = { date: string; stage: string; note: string; stage_en: string; note_en: string }
 export type StudyAnnualPoint = { year: number; cross_sections: number; rank_ic: number | null; top_minus_bottom: number | null; coverage_mean: number | null }
 export type StudyAnnualSeries = { factor: string; horizon: 'fwd20' | 'fwd220'; signal_start: string; signal_end: string; years: StudyAnnualPoint[] }
+export type StudyAnnualEvidence = { schema_version: number; source_vintage: string; source_type: string; market_data_as_of: string; series: StudyAnnualSeries[] }
 export type Study = StudyCopy & {
   id: string;
   status: 'historical-reviewed' | 'preliminary' | 'hypothesis';
   source_url?: string;
   research_log?: StudyLogEntry[];
-  annual_evidence?: StudyAnnualSeries[];
+  annual_evidence?: StudyAnnualEvidence;
   translations?: Partial<Record<'en-US' | 'zh-CN', StudyCopy>>;
 }
 export type StudyCatalog = { schema_version: number; updated_at: string; studies: Study[] }

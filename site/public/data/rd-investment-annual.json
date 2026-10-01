@@ -2,6 +2,7 @@
   "schema_version": 1,
   "source_vintage": "20260926",
   "source_type": "sealed announcement-event PIT aggregate replay",
+  "market_data_as_of": "2026-09-29",
   "series": [
     {
       "factor": "rd_mv",

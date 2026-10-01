@@ -236,3 +236,29 @@
 :root[data-theme="dark"] .availability-bar { border-color: #303a4d; background: #303a4d; }
 :root[data-theme="dark"] .availability-bar span { background: #5cc8b0; }
 :root[data-theme="dark"] .quality-summary span { border-color: #76513f; background: #2b241b; color: #efb36d; }
+
+.catalog-group { padding: 0; overflow: hidden; }
+.catalog-group summary { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 58px; padding: 16px; cursor: pointer; list-style: none; }
+.catalog-group summary::-webkit-details-marker { display: none; }
+.catalog-group summary::after { content: '+'; color: var(--accent); font: 18px/1 monospace; }
+.catalog-group[open] summary::after { content: '−'; }
+.catalog-group summary h3 { margin: 0; }
+.catalog-group summary span { margin-left: auto; color: var(--muted); font-size: 12px; white-space: nowrap; }
+.catalog-group summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+.catalog-group[open] > summary { border-bottom: 1px solid var(--rule); }
+.catalog-group > .catalog-row { margin: 0 16px; }
+.catalog-group > .catalog-row:last-child { margin-bottom: 12px; }
+.annual-coverage, .annual-uncertainty { margin: 20px 0; padding: 18px; border: 1px solid var(--rule); background: var(--surface); }
+.annual-coverage h3, .annual-uncertainty h3 { margin: 0 0 8px; }
+.annual-coverage > p, .annual-uncertainty > p { margin: 0; color: var(--muted); line-height: 1.65; }
+.annual-coverage-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.annual-coverage-grid > div { display: grid; gap: 7px; min-width: 0; }
+.annual-coverage-grid span { color: var(--muted); font-size: 12px; }
+.annual-coverage-grid strong { font-size: 14px; overflow-wrap: anywhere; }
+.annual-uncertainty { border-color: var(--accent); }
+.annual-uncertainty h3 { font-size: 17px; }
+.annual-table td small { display: block; margin-top: 4px; color: var(--muted); }
+@media (max-width: 700px) {
+  .annual-coverage-grid { grid-template-columns: 1fr; }
+  .annual-coverage-grid > div { padding-top: 10px; border-top: 1px solid var(--rule); }
+}

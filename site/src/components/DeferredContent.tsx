@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useRef, useState, type ReactNode } from 'react'
 
-export default function DeferredContent({ children, minHeight, label = 'Loading…' }: { children: ReactNode; minHeight: number; label?: string }) {
+export default function DeferredContent({ children, minHeight, label = 'Loading…', rootMargin = '320px 0px' }: { children: ReactNode; minHeight: number; label?: string; rootMargin?: string }) {
   const container = useRef<HTMLDivElement>(null)
   const [nearViewport, setNearViewport] = useState(false)
 
@@ -15,10 +15,10 @@ export default function DeferredContent({ children, minHeight, label = 'Loading�
         setNearViewport(true)
         observer.disconnect()
       }
-    }, { rootMargin: '320px 0px' })
+    }, { rootMargin })
     observer.observe(container.current)
     return () => observer.disconnect()
-  }, [])
+  }, [rootMargin])
 
   return <div ref={container} style={{ minHeight }}>
     {nearViewport ? <Suspense fallback={<div className="chart-empty" style={{ minHeight }}>{label}</div>}>{children}</Suspense> : null}
