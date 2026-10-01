@@ -43,3 +43,7 @@ python -m unittest discover -s tests -v
 ```
 
 Alpha 810 快照由 [`money-trees`](https://github.com/runchengxie/money-trees) 生成。当前 schema 1.1 快照覆盖 2016–2025，在聚合 IC、RankIC、覆盖率和分组收益之外，增加年度与沪深 300 市场状态摘要、不确定性估计和全因子多重检验诊断。快照不包含逐证券值、组合权重或原始数据路径；历史输入的 point-in-time 可得性和真实成交价尚未证实。公开契约见 [英文契约](docs/alpha810-public-contract.md) 和[中文参考](docs/alpha810-public-contract.zh-CN.md)；研究专题发布边界见[英文契约](docs/research-publication-contract.md)和[中文说明](docs/research-publication-contract.zh-CN.md)。
+
+## 与完整公开研究的关系
+
+本站维护因子目录组织、标准化因子专题、发布状态和符合发布契约的审核投影。独立的市场研究项目及其项目级方法由 [`quant-market-research`](https://github.com/runchengxie/quant-market-research) 维护。符合本站来源身份和审核要求的因子专题可以在此展示；应链接到权威方法与证据，不复制整份源材料。私有策略证据仍由所属仓库维护，只有明确审核并脱敏的投影可以发布到本站。

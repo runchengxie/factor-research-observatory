@@ -3,6 +3,14 @@
 `quant-factor-observatory` is a public projection layer, not the source of
 truth for private research. A research note remains authoritative in its owner
 repository and may be published here only as a reviewed aggregate projection.
+Independent market research projects and their project-specific methods
+belong to `quant-market-research`. This site owns factor catalog organization,
+standardized factor studies, publication status, and reviewed projections
+under this contract. A factor study may be presented here when its source
+identity and review requirements are met. Link to authoritative methods and
+evidence instead of copying complete source material. Private strategy
+evidence remains in `quant-research` unless a separate publication review
+approves a redacted projection.
 
 ## Input and identity
 
