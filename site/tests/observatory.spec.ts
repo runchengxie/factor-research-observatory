@@ -78,6 +78,19 @@ test('R&D annual view separates requested calendar coverage from mature PIT labe
   await expect(page.locator('.annual-table tbody tr').filter({ hasText: '2026' })).toContainText('No mature labels')
 })
 
+test('R&D study exposes cost sensitivity and denominator attribution with caveats', async ({ page }) => {
+  await page.goto('studies/rd-investment')
+  await page.locator('.study-page > div[style*="min-height"]').scrollIntoViewIfNeeded()
+  await expect(page.getByRole('heading', { name: 'Cost sensitivity of a fixed Top-200 probe' })).toBeVisible({ timeout: 15000 })
+  await expect(page.getByRole('columnheader', { name: 'One-way cost' })).toBeVisible()
+  await expect(page.locator('.probe-table tbody tr').filter({ hasText: 'R&D / market cap' }).first()).toContainText('12.70%')
+  await expect(page.getByRole('heading', { name: 'What drives R&D / market cap?' })).toBeVisible()
+  await expect(page.locator('.attribution-table tbody')).toContainText('Inverse market cap')
+  await expect(page.getByRole('heading', { name: 'HAC inference across the seven variants' })).toBeVisible()
+  await expect(page.getByRole('columnheader', { name: 'BH q-value across 14 tests' })).toBeVisible()
+  await expect(page.getByText(/not a production portfolio/)).toBeVisible()
+})
+
 test('theme switch persists across reloads', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: /Dark mode/ }).click()
@@ -188,9 +201,10 @@ test('exploration pages localize new controls and evidence notes into Chinese', 
 
   await page.goto('studies/rd-investment')
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
-  await expect(page.getByText(/口径修正后的回放未重跑交易成本与组合验证/)).toBeVisible()
+  await expect(page.getByText(/修正口径后已重跑固定 Top-200 成本探针/)).toBeVisible()
   await expect(page.getByText(/探索后.*fwd20.*Top-10%.*七个变体的毛收益均为负/)).toBeVisible()
-  await expect(page.getByText(/最终样本外检验与成分股生效时点审计仍未完成/)).toBeVisible()
+  await expect(page.getByText(/已封存 2026-10 至 2027-09 月末形成信号的前瞻最终样本外协议/)).toBeVisible()
+  await expect(page.getByText(/成分股生效时点审计仍未完成/)).toBeVisible()
 })
 
 test('deferred charts do not blank the page on a mobile viewport', async ({ page }) => {

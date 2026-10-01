@@ -17,7 +17,7 @@ const messages = {
     partialYear: 'Partial year',
     observed: 'Observed',
     uncertaintyTitle: 'How to read the annual evidence',
-    uncertainty: 'revision_safe=false: historical financial revisions are incomplete. The 2019 extension is a retrospective reconstruction sensitivity, not a revision-safe PIT backtest. The sealed PIT input lacks 2014 TTM lookback; a separate legacy raw vintage has positive 2014 R&D for only one issuer, far below the 200-name monthly minimum, and is not mixed into the primary replay. 2016–2018 also remain below the minimum. Blank values are missing evidence, not zero returns. Monthly forward labels overlap, especially at 220 days, so the count is not an independent sample size. Confidence intervals are not reported; the post-exploration window is not a frozen final out-of-sample test.',
+    uncertainty: 'revision_safe=false: historical financial revisions are incomplete. The 2019 extension is a retrospective reconstruction sensitivity, not a revision-safe PIT backtest. The sealed PIT input lacks 2014 TTM lookback; a separate legacy raw vintage has positive 2014 R&D for only one issuer, far below the 200-name monthly minimum, and is not mixed into the primary replay. 2016–2018 also remain below the minimum. Blank values are missing evidence, not zero returns. Monthly forward labels overlap, especially at 220 days, so the count is not an independent sample size. Supplemental HAC intervals partially address serial dependence but do not make observations independent; the post-exploration window is not a frozen final out-of-sample test.',
     monthlyCrossSections: 'monthly cross-sections',
   },
   'zh-CN': {
@@ -36,7 +36,7 @@ const messages = {
     partialYear: '部分年度',
     observed: '有观测',
     uncertaintyTitle: '年度证据的解读边界',
-    uncertainty: 'revision_safe=false：历史财务修订链不完整。2019 年扩展是回溯重建敏感性分析，不是修订安全的 PIT 回测。sealed PIT 输入缺少 2014 年 TTM 回看数据；另一份本地旧版原始数据中，2014 年有正研发费用记录的公司仅 1 家，远低于每月 200 只股票下限，因此未混入主回放。2016–2018 年也均未达到下限。空白表示缺少证据，不代表收益为零。月度前瞻标签彼此重叠，220 日尤其明显，因此月度截面数不等于独立样本数。当前未报告置信区间；探索后窗口也不是预先冻结的最终样本外检验。',
+    uncertainty: 'revision_safe=false：历史财务修订链不完整。2019 年扩展是回溯重建敏感性分析，不是修订安全的 PIT 回测。sealed PIT 输入缺少 2014 年 TTM 回看数据；另一份本地旧版原始数据中，2014 年有正研发费用记录的公司仅 1 家，远低于每月 200 只股票下限，因此未混入主回放。2016–2018 年也均未达到下限。空白表示缺少证据，不代表收益为零。月度前瞻标签彼此重叠，220 日尤其明显，因此月度截面数不等于独立样本数。补充 HAC 区间仅部分处理序列相关，不能令观测彼此独立；探索后窗口也不是预先冻结的最终样本外检验。',
     monthlyCrossSections: '个月度截面',
   },
 } satisfies Record<Locale, Record<string, string>>
