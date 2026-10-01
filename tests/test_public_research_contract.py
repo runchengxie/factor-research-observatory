@@ -139,7 +139,10 @@ class PublicResearchContractTests(unittest.TestCase):
         self.assertTrue(contract.exists())
         text = contract.read_text()
         self.assertIn("schema_version", text)
-        self.assertIn("逐股票", text)
+        self.assertIn("point-in-time", text.lower())
+        reference = ROOT / "docs" / "alpha810-public-contract.zh-CN.md"
+        self.assertTrue(reference.exists())
+        self.assertIn("逐股票", reference.read_text())
 
     def test_pages_deployment_builds_and_checks_a_deep_link_fallback(self):
         workflow = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text()

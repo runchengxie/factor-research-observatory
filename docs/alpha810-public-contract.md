@@ -1,38 +1,38 @@
 # Alpha 810 Public Contract
 
-本站消费 `money-trees` 生成的静态 Alpha 810 研究快照，不执行因子计算、模型训练或完整回测。
+The site consumes a static aggregate Alpha 810 research snapshot produced by `money-trees`. It does not calculate factors, train models, or run a full backtest.
 
-## 快照身份
+## Snapshot identity
 
-公开快照必须满足：
+A published snapshot must use `kind: moneytree_factor_evidence_snapshot` and a supported `schema_version`. Schema 1.0 contains full-window aggregate IC, RankIC, coverage, and group-return evidence. Schema 1.1 adds annual and market-regime slices, Newey–West uncertainty diagnostics, and family-wide multiple-testing results. The snapshot must include generation time, data version, code revision, dataset, configuration, factor records, quality status, and public limits.
 
-- `kind` 为 `moneytree_factor_evidence_snapshot`；
-- `schema_version` 为 `"1.0"`；
-- 带有 `generated_at`、`data_version`、`dataset`、`config` 和 `public_limits`；
-- 每个因子带有因子族、覆盖率、IC、RankIC 和可选的分组收益。
+## Allowed content
 
-## 允许展示的内容
+- Factor names and public family labels.
+- Date range, coverage, valid-observation counts, and data version.
+- Aggregate IC, RankIC, positive rate, group means, and yearly or market-regime summaries.
+- Standard errors, confidence intervals, raw p-values, and family-adjusted q-values when present.
+- Generation time, research methods, quality warnings, and evidence limitations.
 
-- 因子名称和因子族；
-- 样本区间、覆盖率、有效观测数和数据版本；
-- 聚合 IC、RankIC、正值比例和分组平均收益；
-- 快照生成时间、研究口径和公开限制。
+## Excluded content
 
-## 禁止展示的内容
+- Per-security factor values or returns.
+- Portfolio weights, holdings, trades, or execution results.
+- Raw input paths, credentials, provider mappings, or private implementation details.
 
-- 逐股票因子值或逐股票收益；
-- 组合权重、持仓、交易明细或执行结果；
-- 原始数据路径、凭证、私有参数和未审计的内部实现细节。
+## Metric definitions
 
-Alpha 810 页面是公开研究证据浏览器，不构成投资建议。需要了解生成方式、数据版本和发布审计时，请查看 [money-trees MkDocs 文档](https://runchengxie.github.io/money-trees/)。
+- IC and RankIC are daily cross-sectional Pearson and Spearman correlations. The full-window means average across dates with valid statistics.
+- IR is the mean divided by the population standard deviation of daily correlations. Positive rate is the fraction of valid daily correlations above zero.
+- Each date’s valid factor values are sorted into five groups from low (G1) to high (G5). The snapshot averages each group’s daily mean return across valid dates. These are simple one-period returns, not compounded and not net of costs.
+- The return field is `next_period_return`, and this release declares a one-trading-day holding period. A next-session close-based outcome is a research label; it does not establish an executable fill.
+- Annual slices group the same daily diagnostics by calendar year. Regime labels use the preceding 252 CSI 300 daily returns, compounded; positive cumulative return is `bull`, otherwise `bear`. The current date’s benchmark return is excluded from its label.
+- Uncertainty uses a two-sided normal-reference Newey–West test. With a one-day holding period the configured lag count is zero; the interval does not remove selection bias or establish robustness to serial dependence beyond that setting.
+- Benjamini–Yekutieli q-values adjust the tested factor family of 810; Benjamini–Hochberg is supplied as a sensitivity comparison. Four factors have no valid test and remain untested.
+- Quality checks warn when a factor has below 80% coverage or lacks a RankIC mean. A warning is retained in the published snapshot; quality status is not a performance rating.
 
-## 页面指标口径
+## Evidence limits
 
-- IC 与 RankIC 分别为逐日横截面 Pearson 和 Spearman 相关系数；页面显示其跨有效日期的均值。
-- IR 为有效日期相关系数的均值除以总体标准差；正值比例为有效日期中相关系数大于零的比例。
-- 分组按每个日期的有效因子值从低到高排序，G1 最低、G5 最高。先计算每个日期、每个组的横截面平均收益，再对该组的有效日期求简单平均；`periods` 是有效日期数。
-- 分组收益是一次收益观测的百分比，未复利，也未扣除交易成本。
-- 公开快照只给出收益字段 `next_period_return`。精确持有期和执行时点未写入当前契约，因此页面不据此推断可交易收益。
-- 质量门禁检查覆盖率低于 80% 的因子和缺失 RankIC 均值的因子。`quality.source.generated_at` 记录质量报告引用的源快照时间，可能与最终组装快照的 `generated_at` 不同；契约没有单独的质量检查执行时间字段。
+The 2016–2025 values are historical factor-store outputs. Their point-in-time availability has not been independently established for every input, and Alpha 101/191 generation metadata specifically calls for point-in-time industry inputs. The yearly, regime, HAC, and multiple-testing views are descriptive diagnostics on this historical panel. They do not establish a point-in-time backtest, out-of-sample performance, tradability, or investment value.
 
-这些定义与 provider 的公开快照计算代码核对过。若 provider 更改方法，需同步更新契约与页面说明。
+Alpha 810 is a public research browser, not investment advice. See the [money-trees public documentation](https://runchengxie.github.io/money-trees/) for the producer workflow.

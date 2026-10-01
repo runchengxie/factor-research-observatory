@@ -42,4 +42,4 @@ python scripts/audit_public_release.py
 python -m unittest discover -s tests -v
 ```
 
-Alpha 810 快照由 [`money-trees`](https://github.com/runchengxie/money-trees) 生成，本站只消费 `schema_version="1.0"` 的聚合证据。公开契约见 [Alpha 810 公开契约](docs/alpha810-public-contract.md)；研究专题发布边界见[英文契约](docs/research-publication-contract.md)和[中文说明](docs/research-publication-contract.zh-CN.md)。
+Alpha 810 快照由 [`money-trees`](https://github.com/runchengxie/money-trees) 生成。当前 schema 1.1 快照覆盖 2016–2025，在聚合 IC、RankIC、覆盖率和分组收益之外，增加年度与沪深 300 市场状态摘要、不确定性估计和全因子多重检验诊断。快照不包含逐证券值、组合权重或原始数据路径；历史输入的 point-in-time 可得性和真实成交价尚未证实。公开契约见 [英文契约](docs/alpha810-public-contract.md) 和[中文参考](docs/alpha810-public-contract.zh-CN.md)；研究专题发布边界见[英文契约](docs/research-publication-contract.md)和[中文说明](docs/research-publication-contract.zh-CN.md)。
