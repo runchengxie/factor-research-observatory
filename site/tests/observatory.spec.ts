@@ -294,6 +294,7 @@ test('routes request only the public data snapshots they need', async ({ page })
 
   await page.goto('/')
   await expect.poll(() => dataResponses.length).toBe(4)
+  await expect(page.getByRole('heading', { name: 'What the published evidence says' })).toBeVisible()
   const homeNames = dataResponses.map((response) => response.name)
   expect(homeNames).toEqual(expect.arrayContaining([
     'factor-snapshot.json',
@@ -303,6 +304,7 @@ test('routes request only the public data snapshots they need', async ({ page })
   ]))
   expect(homeNames).not.toContain('alpha810-snapshot.json')
   expect(homeNames).not.toContain('rd-investment-annual.json')
+  await expect(page.locator('.home-finding-card').first()).toContainText('Evidence boundary')
   const homeBytes = (await Promise.all(dataResponses.map((response) => response.body))).reduce((total, body) => total + body.byteLength, 0)
   console.info(`Observed overview JSON response bodies: ${homeBytes} bytes`)
 
