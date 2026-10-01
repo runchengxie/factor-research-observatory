@@ -3,7 +3,7 @@ import echarts from '../echarts'
 import type { Alpha810FactorEvidence } from '../types'
 
 type Props = {
-  kind: 'family' | 'coverage' | 'rankic' | 'scatter'
+  kind: 'family' | 'coverage' | 'rankic' | 'rankic-positive-rate' | 'scatter'
   counts?: Array<{ name: string; value: number }>
   factors?: Alpha810FactorEvidence[]
   english: boolean
@@ -39,6 +39,12 @@ export default function ResearchCharts({ kind, counts = [], factors = [], englis
     const values = histogram(validRankIc, edges)
     const labels = edges.slice(0, -1).map((edge) => `${edge.toFixed(2)}…${(edge + .02).toFixed(2)}`)
     option = { ...common, grid: { left: 50, right: 22, top: 22, bottom: 68 }, xAxis: { type: 'category', data: labels, axisLabel: { color: muted, rotate: 40 } }, yAxis: { type: 'value', minInterval: 1, axisLabel: { color: muted }, splitLine: { lineStyle: { color: grid } } }, series: [{ type: 'bar', barMaxWidth: 40, data: values, itemStyle: { color: bar } }] }
+    description = values.map((value, index) => `${labels[index]}: ${value}`).join('; ')
+  } else if (kind === 'rankic-positive-rate') {
+    const edges = [0, .2, .4, .6, .8, 1.000001]
+    const values = histogram(factors.map((factor) => factor.rank_ic.positive_rate).filter((value): value is number => value !== null && Number.isFinite(value)), edges)
+    const labels = ['0–20%', '20–40%', '40–60%', '60–80%', '80–100%']
+    option = { ...common, xAxis: { type: 'category', data: labels, axisLabel: { color: muted } }, yAxis: { type: 'value', minInterval: 1, axisLabel: { color: muted }, splitLine: { lineStyle: { color: grid } } }, series: [{ type: 'bar', barMaxWidth: 44, data: values.map((value, index) => ({ value, itemStyle: { color: index >= 3 ? accent : bar } })) }] }
     description = values.map((value, index) => `${labels[index]}: ${value}`).join('; ')
   } else {
     const points = factors.filter((factor) => factor.coverage.ratio !== null && factor.rank_ic.mean !== null).map((factor) => ({ name: factor.name, value: [factor.coverage.ratio, factor.rank_ic.mean] }))

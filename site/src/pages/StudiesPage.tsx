@@ -19,15 +19,16 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
   </main>
 }
 
-export function StudyDetailPage({ study }: { study: Study | undefined }) {
-  const { locale } = useLocale()
+export function StudyDetailPage({ study, updatedAt }: { study: Study | undefined; updatedAt: string }) {
+  const { locale, copy } = useLocale()
   const english = locale === 'en-US'
   if (!study) return <main className="page"><a className="back" href={`${import.meta.env.BASE_URL}studies`}>← {english ? 'Back to research studies' : '返回研究专题'}</a><h1>{english ? 'Study not found' : '找不到这项研究'}</h1></main>
   const content = localizedStudy(study, locale)
   return <main className="page study-page">
     <a className="back" href={`${import.meta.env.BASE_URL}studies`}>← {english ? 'All studies' : '全部研究专题'}</a>
-    <section className="detail-head"><p className="eyebrow">{content.family}</p><h1>{content.title}</h1><p className="lede">{content.summary}</p><span className={`study-status study-status-${study.status}`}>{content.status_label}</span></section>
+    <section className="detail-head"><p className="eyebrow">{content.family}</p><h1>{content.title}</h1><p className="lede">{content.summary}</p><div className="detail-tags"><span className={`study-status study-status-${study.status}`}>{content.status_label}</span><span className="tag">{copy.studies.updated} {updatedAt}</span></div></section>
     <section className="study-context"><div><span>{english ? 'Observation period' : '观察区间'}</span><strong>{content.period}</strong></div><div><span>{english ? 'Evidence source' : '证据来源'}</span><strong>{content.source_note}</strong></div></section>
+    <section className="study-brief"><article><p className="eyebrow">{copy.studies.question}</p><h2>{copy.studyQuestions[study.id] ?? content.title}</h2></article><article><p className="eyebrow">{copy.studies.design}</p><p>{content.source_note}</p><small>{copy.studies.interval}: {content.period}</small></article><article><p className="eyebrow">{copy.studies.openGap}</p><p>{content.limits[0] ?? (english ? 'No published evidence limits are available.' : '暂无已发布的证据边界。')}</p></article></section>
     {content.rows.length > 0 && <section className="panel"><div className="section-heading"><p className="eyebrow">AGGREGATE EVIDENCE</p><h2>{english ? 'Historical comparison' : '历史对照'}</h2></div><div className="table-scroll"><table className="factor-table"><thead><tr>{content.columns.map((column) => <th key={column}>{column}</th>)}</tr></thead><tbody>{content.rows.map((row) => <tr key={row[0]}>{row.map((value, index) => <td key={content.columns[index]}>{value}</td>)}</tr>)}</tbody></table></div></section>}
     {study.id === 'rd-investment' && <section className="panel rd-method-panel"><div className="section-heading"><p className="eyebrow">RESEARCH DESIGN / PIT</p><h2>{english ? 'What was measured' : '研究口径与因子定义'}</h2><p className="panel-note">{english ? 'This is a monthly cross-sectional signal screen. It is not a portfolio backtest.' : '这是月度横截面信号筛查，不是完整组合回测。'}</p></div><div className="table-scroll"><table className="factor-table"><thead><tr><th>{english ? 'Variant' : '变体'}</th><th>{english ? 'Definition / interpretation' : '定义 / 含义'}</th></tr></thead><tbody>{(english ? [
       ['R&D / market cap', 'TTM R&D expense divided by equity market capitalization; mixes R&D intensity with the market-value denominator.'],
