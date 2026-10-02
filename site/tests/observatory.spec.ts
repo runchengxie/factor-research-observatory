@@ -69,10 +69,18 @@ test('Alpha 810 schema 1.1 shows annual and uncertainty evidence', async ({ page
 test('Published Alpha 810 snapshot shows full-period corrected evidence and caveats', async ({ page }) => {
   await page.goto('alpha810')
   await expect(page.getByRole('heading', { name: 'How many factors have BY q ≤ 0.05?' })).toBeVisible()
-  await expect(page.getByText('781 / 810', { exact: true })).toBeVisible()
-  await expect(page.getByText('806 / 810', { exact: true })).toBeVisible()
+  await expect(page.getByText('781 / 810', { exact: true }).first()).toBeVisible()
+  await expect(page.getByText('806 / 810', { exact: true }).first()).toBeVisible()
   await expect(page.getByText('Available', { exact: true })).toBeVisible()
   await expect(page.getByText(/Historical input point-in-time availability/)).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'How many factors remain significant as dependence allowances increase?' })).toBeVisible()
+  await expect(page.getByText('778 / 810', { exact: true })).toBeVisible()
+  await expect(page.getByText('784 / 806', { exact: true })).toBeVisible()
+  await page.goto('alpha810/factors/alpha101_001')
+  await expect(page.getByRole('heading', { name: 'Lag sensitivity and block-bootstrap interval' })).toBeVisible()
+  await expect(page.getByRole('columnheader', { name: 'HAC lag' })).toBeVisible()
+  await expect(page.locator('.sensitivity-table tbody tr')).toHaveCount(5)
+  await expect(page.getByText('20-session block bootstrap 95% CI')).toBeVisible()
 })
 
 test('language switch changes the rendered study catalog', async ({ page }) => {
@@ -326,12 +334,13 @@ test('deferred native charts do not blank the page on a mobile viewport', async 
 })
 
 test('routes request only the public data snapshots they need', async ({ page }) => {
-  const dataResponses: Array<{ name: string; body: Promise<Buffer> }> = []
+  const dataResponses: Array<{ name: string; body?: Promise<Buffer> }> = []
+  let captureBodies = true
   let echartsRequested = false
   page.on('response', (response) => {
     const url = new URL(response.url())
     const match = url.pathname.match(/\/data\/([^/]+\.json)$/)
-    if (match) dataResponses.push({ name: match[1], body: response.body() })
+    if (match) dataResponses.push({ name: match[1], body: captureBodies ? response.body() : undefined })
   })
   page.on('request', (request) => {
     if (new URL(request.url()).pathname.includes('echarts-')) echartsRequested = true
@@ -350,9 +359,10 @@ test('routes request only the public data snapshots they need', async ({ page })
   expect(homeNames).not.toContain('alpha810-snapshot.json')
   expect(homeNames).not.toContain('rd-investment-annual.json')
   await expect(page.locator('.home-finding-card').first()).toContainText('Evidence boundary')
-  const homeBytes = (await Promise.all(dataResponses.map((response) => response.body))).reduce((total, body) => total + body.byteLength, 0)
+  const homeBytes = (await Promise.all(dataResponses.map((response) => response.body).filter((body): body is Promise<Buffer> => body !== undefined))).reduce((total, body) => total + body.byteLength, 0)
   console.info(`Observed overview JSON response bodies: ${homeBytes} bytes`)
 
+  captureBodies = false
   dataResponses.length = 0
   await page.goto('alpha810')
   await expect(page.getByRole('heading', { name: /Classic factors/ })).toBeVisible()

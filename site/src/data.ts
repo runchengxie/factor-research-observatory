@@ -70,16 +70,22 @@ export async function loadAlpha810Snapshot(): Promise<Alpha810Snapshot> {
   if (!value || typeof value !== 'object') throw new Error('Alpha 810 研究快照格式无效')
   for (const key of alpha810Required) if (!(key in value)) throw new Error(`Alpha 810 快照缺少字段：${key}`)
   const candidate = value as { kind?: unknown; schema_version?: unknown; factors?: unknown }
-  if (candidate.kind !== 'moneytree_factor_evidence_snapshot' || !['1.0', '1.1'].includes(String(candidate.schema_version))) {
+  if (candidate.kind !== 'moneytree_factor_evidence_snapshot' || !['1.0', '1.1', '1.2'].includes(String(candidate.schema_version))) {
     throw new Error('Alpha 810 快照版本不受支持')
   }
   if (!Array.isArray(candidate.factors)) throw new Error('Alpha 810 因子证据格式无效')
-  if (candidate.schema_version === '1.1') {
+  if (candidate.schema_version === '1.1' || candidate.schema_version === '1.2') {
     const diagnostics = value as Record<string, unknown>
     for (const key of ['uncertainty', 'temporal_validation', 'multiple_testing']) {
       if (!diagnostics[key] || typeof diagnostics[key] !== 'object') {
         throw new Error(`Alpha 810 v1.1 缺少有效的 ${key} 诊断字段`)
       }
+    }
+  }
+  if (candidate.schema_version === '1.2') {
+    const diagnostics = value as Record<string, unknown>
+    if (!diagnostics.inference_sensitivity || typeof diagnostics.inference_sensitivity !== 'object') {
+      throw new Error('Alpha 810 v1.2 缺少有效的 inference_sensitivity 诊断字段')
     }
   }
   return value as Alpha810Snapshot
