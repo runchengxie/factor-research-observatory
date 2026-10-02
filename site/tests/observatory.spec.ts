@@ -143,7 +143,7 @@ test('R&D study shows corrected PIT evidence and an accessible public method not
   await expect(page.getByRole('heading', { name: 'What was measured' })).toBeVisible()
   await expect(page.getByText('TTM R&D expense divided by equity market capitalization', { exact: false })).toBeVisible()
   await expect(page.getByText(/77 valid 20-day and 66 valid 220-day/).first()).toBeVisible()
-  await expect(page.locator('.factor-table tbody tr').first()).toContainText('4.85%')
+  await expect(page.getByRole('row').filter({hasText:'4.85%'}).first()).toContainText('4.85%')
   await expect(page.getByRole('heading', { name: 'Annual replay by year' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Separate historical extension' })).toBeVisible()
   await expect(page.getByRole('table', { name: 'Yearly factor evidence' })).toContainText('2019')
@@ -163,7 +163,7 @@ test('R&D yearly evidence is loaded only on its detail route', async ({ page }) 
   await page.goto('studies/rd-investment')
   await expect(page.getByRole('heading', { name: 'R&D Investment Relative to Valuation: Signal or Size Exposure?' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Annual replay by year' })).toBeVisible()
-  expect(requests.sort()).toEqual(['research-studies.json', 'rd-investment-annual.json', 'rd-investment.json'].sort())
+  expect(requests.sort()).toEqual(['research-studies.json', 'rd-investment-annual.json', 'rd-investment.json', 'rd-investment.json'].sort())
 })
 
 test('R&D annual evidence controls and boundary notes are localized in Chinese', async ({ page }) => {
@@ -409,10 +409,10 @@ test('all fundamental studies show source-backed exploration and optional charts
     await expect(page.getByRole('heading', { name: 'How the evidence developed' })).toBeVisible()
     await expect(page.locator('.study-exploration-steps > li')).toHaveCount(id === 'rd-investment' ? 6 : 3)
     if (['employee-compensation', 'fundamental-family-shadow'].includes(id)) {
-      await expect(page.locator('.study-exploration-svg')).toHaveCount(0)
+      await expect(page.locator('.study-exploration .study-exploration-svg')).toHaveCount(0)
       await expect(page.getByText('No reviewed performance values', { exact: false })).toBeVisible()
     } else {
-      await expect(page.locator('.study-exploration-svg')).toBeVisible()
+      await expect(page.locator('.study-exploration .study-exploration-svg')).toBeVisible()
     }
   }
 })
@@ -420,7 +420,7 @@ test('all fundamental studies show source-backed exploration and optional charts
 test('study chart controls and exact values are localized with negative observations preserved', async ({ page }) => {
   await page.goto('/studies/absolute-level-forecast')
   await page.getByLabel('Comparison to view').selectOption('selection')
-  await page.getByText('Show exact aggregate values', { exact: true }).click()
+  await page.locator('.study-exploration').getByText('Show exact aggregate values', { exact: true }).click()
   await expect(page.locator('.study-values')).toContainText('-7.4%')
   await page.getByRole('button', { name: '中文' }).click()
   await expect(page.getByRole('heading', { name: '探索过程与中间结论' })).toBeVisible()
@@ -428,7 +428,7 @@ test('study chart controls and exact values are localized with negative observat
   await expect(page.locator('.study-values')).toContainText('-7.4%')
   await expect(page.locator('.study-chart-context')).toContainText('无交易成本')
   await page.setViewportSize({ width: 390, height: 844 })
-  await expect(page.locator('.study-exploration-svg')).toBeVisible()
+  await expect(page.locator('.study-exploration .study-exploration-svg')).toBeVisible()
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy()
 })
 
@@ -454,14 +454,14 @@ test('invalid exploration identity fails safely without changing published concl
   await page.goto('/studies/employee-compensation')
   await expect(page.getByText('Additional exploration evidence is unavailable.', { exact: false })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'What we can say now' })).toBeVisible()
-  await expect(page.locator('.study-exploration-svg')).toHaveCount(0)
+  await expect(page.locator('.study-exploration .study-exploration-svg')).toHaveCount(0)
 })
 
 test('R&D follow-up shows failure rates and conditional coverage in both locales', async ({ page }) => {
   await page.goto('/studies/rd-investment')
   await page.getByLabel('Comparison to view').selectOption('endpoint-failures')
   await expect(page.locator('.study-chart-context')).toContainText('not actual fills')
-  await page.getByText('Show exact aggregate values', { exact: true }).click()
+  await page.locator('.study-exploration').getByText('Show exact aggregate values', { exact: true }).click()
   await expect(page.locator('.study-values')).toContainText('2019')
   await page.getByLabel('Comparison to view').selectOption('input-coverage')
   await expect(page.locator('.study-chart-context')).toContainText('already filtered panel')
@@ -549,4 +549,43 @@ test('research hub and comparison controls localize on mobile', async ({ page })
  await expect(page.getByLabel('已复核口径的实验对照', { exact: true })).toBeVisible()
  await expect(page.locator('main')).not.toContainText('Comparison boundary')
  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy()
+})
+
+test('study navigation shows trust, honest provenance and isolated paired diagnostics', async ({ page }) => {
+ await page.goto('/studies/absolute-level-forecast')
+ await expect(page.getByRole('heading',{name:'Data trust card'})).toBeVisible()
+ await expect(page.locator('.study-trust-card tbody tr')).toHaveCount(6)
+ await expect(page.locator('.study-reproduction')).toContainText('Not recorded; do not infer')
+ await expect(page.locator('.study-paired-diagnostics tbody tr')).toHaveCount(6)
+ await page.getByLabel('Separate horizon / target').selectOption('net_profit')
+ await expect(page.locator('.study-paired-diagnostics tbody tr')).toHaveCount(6)
+ await expect(page.getByRole('heading',{name:'Forecast-decile calibration'})).toBeVisible()
+ await page.getByLabel('Forecast target').selectOption('net_profit')
+ await page.getByLabel('Formation year').selectOption('2025')
+ await expect(page.locator('.forecast-calibration')).toContainText('Missing current revenue')
+ await expect(page.getByRole('heading',{name:'Research decision queue'})).toBeVisible()
+})
+
+test('alternative research views distinguish negative tests from missing experiments', async ({ page }) => {
+ await page.goto('/studies')
+ await page.getByLabel('Browse research').selectOption('experiment')
+ await expect(page.locator('.research-evidence-hub tbody tr')).toHaveCount(8)
+ await expect(page.locator('.research-evidence-hub')).toContainText('20261002-final-v4')
+ await page.getByLabel('Browse research').selectOption('decision')
+ await page.getByLabel('Show negative or inconclusive tests').check()
+ await expect(page.locator('.research-evidence-hub tbody tr')).toHaveCount(5)
+ await expect(page.locator('.research-evidence-hub tbody')).not.toContainText('labor-cost-definition')
+})
+
+test('navigation failures preserve findings and retry on mobile in Chinese', async ({ page }) => {
+ let invalid=true
+ await page.route('**/data/study-navigation/rd-investment.json',async route=>{const response=await route.fetch();const data=await response.json();if(invalid)data.study_id='wrong';await route.fulfill({response,json:data})})
+ await page.setViewportSize({width:390,height:844});await page.goto('/studies/rd-investment')
+ await expect(page.getByText('Trust and reproduction evidence could not be loaded.')).toBeVisible()
+ await expect(page.getByRole('heading',{name:'What we can say now'})).toBeVisible()
+ invalid=false;await page.getByRole('button',{name:'Retry',exact:true}).click()
+ await expect(page.getByRole('heading',{name:'Data trust card'})).toBeVisible()
+ await page.getByRole('button',{name:'Switch to 中文'}).click()
+ await expect(page.getByRole('heading',{name:'数据可信度卡片'})).toBeVisible()
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy()
 })

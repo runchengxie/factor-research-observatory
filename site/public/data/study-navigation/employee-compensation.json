@@ -1,0 +1,118 @@
+{
+  "schema_version": "observatory.study_navigation.v1",
+  "study_id": "employee-compensation",
+  "source_ref": "doc:quant-research.research.fundamental-research-series",
+  "source_revision": "e1ddc637be13f6f62693f91c9b98b8e98bbfb5b4",
+  "reviewed_at": "2026-10-03",
+  "authority_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+  "trust": [
+    {
+      "dimension": "announcement_clock",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-research-series"
+      ]
+    },
+    {
+      "dimension": "financial_versions",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-research-series"
+      ]
+    },
+    {
+      "dimension": "historical_universe",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-research-series"
+      ]
+    },
+    {
+      "dimension": "delisting_and_terminal",
+      "status": "not_applicable",
+      "detail": {
+        "en-US": "No predictive or portfolio experiment exists for this hypothesis.",
+        "zh-CN": "此假设尚无预测或组合实验。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-research-series"
+      ]
+    },
+    {
+      "dimension": "execution_timing",
+      "status": "not_applicable",
+      "detail": {
+        "en-US": "No execution experiment is reported.",
+        "zh-CN": "尚无执行实验。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-research-series"
+      ]
+    },
+    {
+      "dimension": "transaction_costs",
+      "status": "not_applicable",
+      "detail": {
+        "en-US": "No costed portfolio result is reported.",
+        "zh-CN": "尚无含成本组合结果。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-research-series"
+      ]
+    }
+  ],
+  "reproduction": {
+    "run_id": "labor-cost-definition",
+    "status": "not_run",
+    "code_revision": null,
+    "runner_sha256": null,
+    "data_version": {
+      "en-US": "Definition hypothesis only; no predictive artifact or run is claimed.",
+      "zh-CN": "仅为定义假设，不声称已有预测产物或运行。"
+    },
+    "missing": {
+      "en-US": "A source entry or artifact hash does not certify a complete rerun; original availability, dependencies and historical eligibility must match.",
+      "zh-CN": "来源入口或产物哈希不等于完整复跑认证；原始可得性、依赖和历史资格必须一致。"
+    },
+    "source_refs": [
+      "doc:quant-research.research.fundamental-research-series"
+    ],
+    "artifact_sha256": null
+  },
+  "decision": "hypothesis",
+  "resume_when": {
+    "en-US": "Distinguish payable balances from labor-cost flows and audit coverage before the first predictive test.",
+    "zh-CN": "先区分应付余额与劳动成本流量，核实覆盖后再做首个预测检验。"
+  },
+  "next_tasks": [
+    {
+      "id": "employee-compensation-qualification",
+      "priority": "P0",
+      "status": "ready",
+      "action": {
+        "en-US": "Distinguish payable balances from labor-cost flows and audit coverage before the first predictive test.",
+        "zh-CN": "先区分应付余额与劳动成本流量，核实覆盖后再做首个预测检验。"
+      },
+      "acceptance": {
+        "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+        "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+      }
+    }
+  ],
+  "diagnostic_intervals": [],
+  "diagnostic_note": null,
+  "scale_slices": [],
+  "calibration": []
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": "observatory.study_navigation.v1",
+  "study_id": "pb-roe",
+  "source_ref": "doc:quant-research.strategy.pb-roe-value-quality",
+  "source_revision": "e1ddc637be13f6f62693f91c9b98b8e98bbfb5b4",
+  "reviewed_at": "2026-10-03",
+  "authority_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+  "trust": [
+    {
+      "dimension": "announcement_clock",
+      "status": "partial",
+      "detail": {
+        "en-US": "Month-end financial visibility is described; original filing timestamps were not independently checked.",
+        "zh-CN": "描述了月末财务可见性，但未独立核对原始公告时刻。"
+      },
+      "source_refs": [
+        "doc:quant-research.strategy.pb-roe-value-quality"
+      ]
+    },
+    {
+      "dimension": "financial_versions",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.strategy.pb-roe-value-quality"
+      ]
+    },
+    {
+      "dimension": "historical_universe",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.strategy.pb-roe-value-quality"
+      ]
+    },
+    {
+      "dimension": "delisting_and_terminal",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.strategy.pb-roe-value-quality"
+      ]
+    },
+    {
+      "dimension": "execution_timing",
+      "status": "partial",
+      "detail": {
+        "en-US": "Daily close approximations; full trade replay is absent.",
+        "zh-CN": "使用日线收盘近似，缺少完整成交回放。"
+      },
+      "source_refs": [
+        "doc:quant-research.strategy.pb-roe-value-quality"
+      ]
+    },
+    {
+      "dimension": "transaction_costs",
+      "status": "partial",
+      "detail": {
+        "en-US": "Complete impact and fill costs remain unqualified.",
+        "zh-CN": "完整冲击与成交成本尚未核实。"
+      },
+      "source_refs": [
+        "doc:quant-research.strategy.pb-roe-value-quality"
+      ]
+    }
+  ],
+  "reproduction": {
+    "run_id": "external-pb-roe-d887fc2",
+    "status": "external_partial",
+    "code_revision": null,
+    "runner_sha256": null,
+    "data_version": {
+      "en-US": "External source revision is abbreviated; an exact local replay is unavailable.",
+      "zh-CN": "外部来源版本仅有缩写，无法保证本机精确复跑。"
+    },
+    "missing": {
+      "en-US": "A source entry or artifact hash does not certify a complete rerun; original availability, dependencies and historical eligibility must match.",
+      "zh-CN": "来源入口或产物哈希不等于完整复跑认证；原始可得性、依赖和历史资格必须一致。"
+    },
+    "source_refs": [
+      "doc:quant-research.strategy.pb-roe-value-quality"
+    ],
+    "artifact_sha256": null
+  },
+  "decision": "retain_baseline",
+  "resume_when": {
+    "en-US": "Recover versioned external inputs and rerun the same candidate-pool comparison before changing the PB baseline.",
+    "zh-CN": "恢复有版本的外部输入并复跑相同候选池对照，再考虑改变 PB 基线。"
+  },
+  "next_tasks": [
+    {
+      "id": "pb-roe-qualification",
+      "priority": "P1",
+      "status": "blocked",
+      "action": {
+        "en-US": "Recover versioned external inputs and rerun the same candidate-pool comparison before changing the PB baseline.",
+        "zh-CN": "恢复有版本的外部输入并复跑相同候选池对照，再考虑改变 PB 基线。"
+      },
+      "acceptance": {
+        "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+        "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+      }
+    }
+  ],
+  "diagnostic_intervals": [],
+  "diagnostic_note": null,
+  "scale_slices": [],
+  "calibration": []
+}

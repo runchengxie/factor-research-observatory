@@ -1,0 +1,118 @@
+{
+  "schema_version": "observatory.study_navigation.v1",
+  "study_id": "hk-fundamental-archive",
+  "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928",
+  "source_revision": "e1ddc637be13f6f62693f91c9b98b8e98bbfb5b4",
+  "reviewed_at": "2026-10-03",
+  "authority_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+  "trust": [
+    {
+      "dimension": "announcement_clock",
+      "status": "partial",
+      "detail": {
+        "en-US": "PIT feature methods are archived; restored notes do not recertify every original input.",
+        "zh-CN": "归档了 PIT 特征方法；恢复笔记不能重新认证每份原始输入。"
+      },
+      "source_refs": [
+        "doc:quant-research.archive.hk-experiment-recovery-20260928"
+      ]
+    },
+    {
+      "dimension": "financial_versions",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.archive.hk-experiment-recovery-20260928"
+      ]
+    },
+    {
+      "dimension": "historical_universe",
+      "status": "partial",
+      "detail": {
+        "en-US": "Universe and industry diagnostics exist; exact historical artifacts are incomplete.",
+        "zh-CN": "已有股票池与行业诊断，但精确历史产物不完整。"
+      },
+      "source_refs": [
+        "doc:quant-research.archive.hk-experiment-recovery-20260928"
+      ]
+    },
+    {
+      "dimension": "delisting_and_terminal",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.archive.hk-experiment-recovery-20260928"
+      ]
+    },
+    {
+      "dimension": "execution_timing",
+      "status": "partial",
+      "detail": {
+        "en-US": "Historical model and portfolio diagnostics do not certify current fills.",
+        "zh-CN": "历史模型与组合诊断不能认证当前成交。"
+      },
+      "source_refs": [
+        "doc:quant-research.archive.hk-experiment-recovery-20260928"
+      ]
+    },
+    {
+      "dimension": "transaction_costs",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.archive.hk-experiment-recovery-20260928"
+      ]
+    }
+  ],
+  "reproduction": {
+    "run_id": "hk-archive-26-notes",
+    "status": "archive_partial",
+    "code_revision": null,
+    "runner_sha256": null,
+    "data_version": {
+      "en-US": "26 restored notes; exact historical artifact reproducibility is incomplete.",
+      "zh-CN": "26 篇恢复笔记；精确历史产物可复现性不完整。"
+    },
+    "missing": {
+      "en-US": "A source entry or artifact hash does not certify a complete rerun; original availability, dependencies and historical eligibility must match.",
+      "zh-CN": "来源入口或产物哈希不等于完整复跑认证；原始可得性、依赖和历史资格必须一致。"
+    },
+    "source_refs": [
+      "doc:quant-research.archive.hk-experiment-recovery-20260928"
+    ],
+    "artifact_sha256": null
+  },
+  "decision": "archived",
+  "resume_when": {
+    "en-US": "Recover the exact frozen/latest snapshots and full test windows before revisiting recent-window highlights.",
+    "zh-CN": "恢复精确冻结与最新快照及完整测试区间，再评估近期亮点。"
+  },
+  "next_tasks": [
+    {
+      "id": "hk-fundamental-archive-qualification",
+      "priority": "P1",
+      "status": "blocked",
+      "action": {
+        "en-US": "Recover the exact frozen/latest snapshots and full test windows before revisiting recent-window highlights.",
+        "zh-CN": "恢复精确冻结与最新快照及完整测试区间，再评估近期亮点。"
+      },
+      "acceptance": {
+        "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+        "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+      }
+    }
+  ],
+  "diagnostic_intervals": [],
+  "diagnostic_note": null,
+  "scale_slices": [],
+  "calibration": []
+}

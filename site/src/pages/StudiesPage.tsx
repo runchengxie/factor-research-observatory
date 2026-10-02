@@ -3,6 +3,7 @@ import { ResearchEvidenceHub, StudyConnections } from '../components/ResearchEvi
 import type { RdAnnualEvidence, Study, StudyCatalog, StudySeries } from '../types'
 import { useLocale } from '../i18n'
 import { RdAnnualEvidencePanel } from './RdAnnualEvidence'
+const StudyNavigation = lazy(() => import('../components/StudyNavigation'))
 const StudyExploration = lazy(() => import('../components/StudyExploration'))
 const href = (id: string) => `${import.meta.env.BASE_URL}studies/${id}`
 const localizedStudy = (study: Study, locale: 'en-US' | 'zh-CN') => ({ ...study, ...(study.translations?.[locale] ?? {}) })
@@ -67,6 +68,7 @@ export function StudyDetailPage({ study, updatedAt, rdAnnual, catalog }: { catal
     <section className="detail-head"><p className="eyebrow">{content.family}</p><h1>{content.title}</h1><p className="lede">{content.summary}</p><div className="detail-tags"><span className={`study-status study-status-${study.status}`}>{content.status_label}</span><span className="tag">{copy.studies.updated} {updatedAt}</span>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div></section>
     <div className="study-columns"><section className="panel"><p className="eyebrow">{copy.studies.highlights}</p><h2>{copy.studies.whatCan}</h2><ul>{content.findings.map((item) => <li key={item}>{item}</li>)}</ul></section><section className="panel"><p className="eyebrow">{copy.studies.limitsLabel}</p><h2>{english ? 'What this evidence does not establish' : '还不能据此推断什么'}</h2><ul>{content.limits.map((item) => <li key={item}>{item}</li>)}</ul></section></div>
     <section className="study-brief"><article><p className="eyebrow">{copy.studies.question}</p><h2>{copy.studyQuestions[study.id] ?? content.title}</h2></article><article><p className="eyebrow">{copy.studies.design}</p><p>{content.source_note}</p><small>{copy.studies.interval}: {content.period}</small></article><article><p className="eyebrow">{copy.studies.openGap}</p><p>{content.limits[0] ?? (english ? 'No published evidence limits are available.' : '暂无已发布的证据边界。')}</p></article></section>
+    {study.navigation_asset && <Suspense fallback={<p className="panel">{copy.loading}</p>}><StudyNavigation study={study} /></Suspense>}
     {study.exploration_asset && <Suspense fallback={<p className="panel">{copy.studyExploration.loading}</p>}><StudyExploration study={study} /></Suspense>}
     {content.rows.length > 0 && <section className="panel"><div className="section-heading"><p className="eyebrow">AGGREGATE EVIDENCE</p><h2>{english ? 'Historical comparison' : '历史对照'}</h2></div><div className="table-scroll"><table className="factor-table"><thead><tr>{content.columns.map((column) => <th key={column}>{column}</th>)}</tr></thead><tbody>{content.rows.map((row) => <tr key={row[0]}>{row.map((value, index) => <td key={content.columns[index]}>{value}</td>)}</tr>)}</tbody></table></div></section>}
     {study.id === 'rd-investment' && rdAnnual ? <RdAnnualEvidencePanel data={rdAnnual} /> : null}

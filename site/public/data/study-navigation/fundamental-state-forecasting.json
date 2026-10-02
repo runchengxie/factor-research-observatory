@@ -1,0 +1,118 @@
+{
+  "schema_version": "observatory.study_navigation.v1",
+  "study_id": "fundamental-state-forecasting",
+  "source_ref": "doc:quant-research.research.long-term-fundamental-v2",
+  "source_revision": "e1ddc637be13f6f62693f91c9b98b8e98bbfb5b4",
+  "reviewed_at": "2026-10-03",
+  "authority_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+  "trust": [
+    {
+      "dimension": "announcement_clock",
+      "status": "partial",
+      "detail": {
+        "en-US": "Reconstructed availability and common-fold targets are checked; original provider versions are incomplete.",
+        "zh-CN": "检查了重建可得日和共同折目标；原始供应商版本仍不完整。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.long-term-fundamental-v2"
+      ]
+    },
+    {
+      "dimension": "financial_versions",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.long-term-fundamental-v2"
+      ]
+    },
+    {
+      "dimension": "historical_universe",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.long-term-fundamental-v2"
+      ]
+    },
+    {
+      "dimension": "delisting_and_terminal",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.long-term-fundamental-v2"
+      ]
+    },
+    {
+      "dimension": "execution_timing",
+      "status": "partial",
+      "detail": {
+        "en-US": "Forecast accuracy and stock-return replay are separate stages; the portfolio bridge remains immature.",
+        "zh-CN": "财务预测准确度与股票收益回放为两阶段，组合衔接仍不成熟。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.long-term-fundamental-v2"
+      ]
+    },
+    {
+      "dimension": "transaction_costs",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.long-term-fundamental-v2"
+      ]
+    }
+  ],
+  "reproduction": {
+    "run_id": "common-fold-objectives-20260904",
+    "status": "partial",
+    "code_revision": null,
+    "runner_sha256": null,
+    "data_version": {
+      "en-US": "Several annual and quarterly receipts; do not merge unequal horizons or panels.",
+      "zh-CN": "多个年频与季频回执，不能合并不同期限或面板。"
+    },
+    "missing": {
+      "en-US": "A source entry or artifact hash does not certify a complete rerun; original availability, dependencies and historical eligibility must match.",
+      "zh-CN": "来源入口或产物哈希不等于完整复跑认证；原始可得性、依赖和历史资格必须一致。"
+    },
+    "source_refs": [
+      "doc:quant-research.research.long-term-fundamental-v2"
+    ],
+    "artifact_sha256": null
+  },
+  "decision": "no_stable_increment",
+  "resume_when": {
+    "en-US": "Demonstrate stable same-fold improvement over persistence and current fundamentals on separately qualified stock-return labels.",
+    "zh-CN": "在同折、独立核实的股票收益标签上证明超过 persistence 与当前基本面的稳定增量。"
+  },
+  "next_tasks": [
+    {
+      "id": "fundamental-state-forecasting-qualification",
+      "priority": "P1",
+      "status": "blocked",
+      "action": {
+        "en-US": "Demonstrate stable same-fold improvement over persistence and current fundamentals on separately qualified stock-return labels.",
+        "zh-CN": "在同折、独立核实的股票收益标签上证明超过 persistence 与当前基本面的稳定增量。"
+      },
+      "acceptance": {
+        "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+        "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+      }
+    }
+  ],
+  "diagnostic_intervals": [],
+  "diagnostic_note": null,
+  "scale_slices": [],
+  "calibration": []
+}

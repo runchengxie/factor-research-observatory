@@ -94,6 +94,8 @@ export type Study = StudyCopy & {
   evidence_summary?: { decision: string; scope: import("./studyExploration").BilingualText; baseline: import("./studyExploration").BilingualText; input_basis: import("./studyExploration").BilingualText; sample: import("./studyExploration").BilingualText };
   related_studies?: { study_id: string; kind: string; rationale: import("./studyExploration").BilingualText }[];
   source_review_status?: { status: string; checked_at: string };
+  navigation_asset?: string;
+  navigation_summary?: { run_id: string; reproduction_status: string; decision: string; negative_result: boolean; resume_when: import("./studyExploration").BilingualText; tasks: import("./studyNavigation").NavigationTask[] };
   exploration_asset?: string;
   exploration_counts?: { steps: number; charts: number };
   translations?: Partial<Record<'en-US' | 'zh-CN', StudyCopy>>;

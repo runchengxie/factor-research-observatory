@@ -205,7 +205,33 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T15:26:36+00:00"
+        "checked_at": "2026-10-02T16:45:31+00:00"
+      },
+      "navigation_asset": "data/study-navigation/pb-roe.json",
+      "navigation_summary": {
+        "run_id": "external-pb-roe-d887fc2",
+        "reproduction_status": "external_partial",
+        "decision": "retain_baseline",
+        "negative_result": true,
+        "resume_when": {
+          "en-US": "Recover versioned external inputs and rerun the same candidate-pool comparison before changing the PB baseline.",
+          "zh-CN": "恢复有版本的外部输入并复跑相同候选池对照，再考虑改变 PB 基线。"
+        },
+        "tasks": [
+          {
+            "id": "pb-roe-qualification",
+            "priority": "P1",
+            "status": "blocked",
+            "action": {
+              "en-US": "Recover versioned external inputs and rerun the same candidate-pool comparison before changing the PB baseline.",
+              "zh-CN": "恢复有版本的外部输入并复跑相同候选池对照，再考虑改变 PB 基线。"
+            },
+            "acceptance": {
+              "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+              "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+            }
+          }
+        ]
       }
     },
     {
@@ -522,7 +548,46 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T15:26:36+00:00"
+        "checked_at": "2026-10-02T16:45:31+00:00"
+      },
+      "navigation_asset": "data/study-navigation/rd-investment.json",
+      "navigation_summary": {
+        "run_id": "rd-diagnostics-20261002-v3",
+        "reproduction_status": "partial",
+        "decision": "exploratory",
+        "negative_result": true,
+        "resume_when": {
+          "en-US": "Resolve held-price and terminal gaps and dated eligibility before portfolio promotion; keep the prospective holdout sealed.",
+          "zh-CN": "解决持仓价格、终止事件和定时资格缺口后再评估组合；前瞻留出继续封存。"
+        },
+        "tasks": [
+          {
+            "id": "rd-investment-qualification",
+            "priority": "P0",
+            "status": "blocked",
+            "action": {
+              "en-US": "Resolve held-price and terminal gaps and dated eligibility before portfolio promotion; keep the prospective holdout sealed.",
+              "zh-CN": "解决持仓价格、终止事件和定时资格缺口后再评估组合；前瞻留出继续封存。"
+            },
+            "acceptance": {
+              "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+              "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+            }
+          },
+          {
+            "id": "rd-investment-paired-diagnostic",
+            "priority": "P1",
+            "status": "completed",
+            "action": {
+              "en-US": "Paired uncertainty, annual / size slices and calibration retained under the fixed retrospective follow-up.",
+              "zh-CN": "已按固定回溯方案保留配对不确定性、年度／规模切片与校准记录。"
+            },
+            "acceptance": {
+              "en-US": "Hashes and original cohort/metric reproduction checks passed; no executable return claim.",
+              "zh-CN": "哈希与原始样本／指标复现检查通过，不声称可执行收益。"
+            }
+          }
+        ]
       }
     },
     {
@@ -654,7 +719,33 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T15:26:36+00:00"
+        "checked_at": "2026-10-02T16:45:31+00:00"
+      },
+      "navigation_asset": "data/study-navigation/fundamental-state-forecasting.json",
+      "navigation_summary": {
+        "run_id": "common-fold-objectives-20260904",
+        "reproduction_status": "partial",
+        "decision": "no_stable_increment",
+        "negative_result": true,
+        "resume_when": {
+          "en-US": "Demonstrate stable same-fold improvement over persistence and current fundamentals on separately qualified stock-return labels.",
+          "zh-CN": "在同折、独立核实的股票收益标签上证明超过 persistence 与当前基本面的稳定增量。"
+        },
+        "tasks": [
+          {
+            "id": "fundamental-state-forecasting-qualification",
+            "priority": "P1",
+            "status": "blocked",
+            "action": {
+              "en-US": "Demonstrate stable same-fold improvement over persistence and current fundamentals on separately qualified stock-return labels.",
+              "zh-CN": "在同折、独立核实的股票收益标签上证明超过 persistence 与当前基本面的稳定增量。"
+            },
+            "acceptance": {
+              "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+              "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+            }
+          }
+        ]
       }
     },
     {
@@ -759,7 +850,33 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T15:26:36+00:00"
+        "checked_at": "2026-10-02T16:45:31+00:00"
+      },
+      "navigation_asset": "data/study-navigation/fundamental-family-shadow.json",
+      "navigation_summary": {
+        "run_id": "fundamental_family_shadow_v1",
+        "reproduction_status": "protocol_only",
+        "decision": "protocol_only",
+        "negative_result": false,
+        "resume_when": {
+          "en-US": "Recover and review family-level common-key receipts before publishing a performance verdict.",
+          "zh-CN": "恢复并复核家族级共同样本回执，再发布绩效判断。"
+        },
+        "tasks": [
+          {
+            "id": "fundamental-family-shadow-qualification",
+            "priority": "P1",
+            "status": "ready",
+            "action": {
+              "en-US": "Recover and review family-level common-key receipts before publishing a performance verdict.",
+              "zh-CN": "恢复并复核家族级共同样本回执，再发布绩效判断。"
+            },
+            "acceptance": {
+              "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+              "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+            }
+          }
+        ]
       }
     },
     {
@@ -896,7 +1013,33 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T15:26:36+00:00"
+        "checked_at": "2026-10-02T16:45:31+00:00"
+      },
+      "navigation_asset": "data/study-navigation/cashflow-indices.json",
+      "navigation_summary": {
+        "run_id": "cashflow-shadow-standard-80-months",
+        "reproduction_status": "partial",
+        "decision": "research_only",
+        "negative_result": false,
+        "resume_when": {
+          "en-US": "Qualify historical rules and components, then compare on common dates, weights and execution costs.",
+          "zh-CN": "核实历史规则与成分，再对齐日期、权重与执行成本比较。"
+        },
+        "tasks": [
+          {
+            "id": "cashflow-indices-qualification",
+            "priority": "P1",
+            "status": "blocked",
+            "action": {
+              "en-US": "Qualify historical rules and components, then compare on common dates, weights and execution costs.",
+              "zh-CN": "核实历史规则与成分，再对齐日期、权重与执行成本比较。"
+            },
+            "acceptance": {
+              "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+              "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+            }
+          }
+        ]
       }
     },
     {
@@ -1001,8 +1144,34 @@
         }
       ],
       "source_review_status": {
-        "status": "matched",
-        "checked_at": "2026-10-02T15:26:36+00:00"
+        "status": "needs_review",
+        "checked_at": "2026-10-02T16:45:31+00:00"
+      },
+      "navigation_asset": "data/study-navigation/hk-fundamental-archive.json",
+      "navigation_summary": {
+        "run_id": "hk-archive-26-notes",
+        "reproduction_status": "archive_partial",
+        "decision": "archived",
+        "negative_result": true,
+        "resume_when": {
+          "en-US": "Recover the exact frozen/latest snapshots and full test windows before revisiting recent-window highlights.",
+          "zh-CN": "恢复精确冻结与最新快照及完整测试区间，再评估近期亮点。"
+        },
+        "tasks": [
+          {
+            "id": "hk-fundamental-archive-qualification",
+            "priority": "P1",
+            "status": "blocked",
+            "action": {
+              "en-US": "Recover the exact frozen/latest snapshots and full test windows before revisiting recent-window highlights.",
+              "zh-CN": "恢复精确冻结与最新快照及完整测试区间，再评估近期亮点。"
+            },
+            "acceptance": {
+              "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+              "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+            }
+          }
+        ]
       }
     },
     {
@@ -1099,7 +1268,33 @@
       ],
       "source_review_status": {
         "status": "needs_review",
-        "checked_at": "2026-10-02T15:26:36+00:00"
+        "checked_at": "2026-10-02T16:45:31+00:00"
+      },
+      "navigation_asset": "data/study-navigation/employee-compensation.json",
+      "navigation_summary": {
+        "run_id": "labor-cost-definition",
+        "reproduction_status": "not_run",
+        "decision": "hypothesis",
+        "negative_result": false,
+        "resume_when": {
+          "en-US": "Distinguish payable balances from labor-cost flows and audit coverage before the first predictive test.",
+          "zh-CN": "先区分应付余额与劳动成本流量，核实覆盖后再做首个预测检验。"
+        },
+        "tasks": [
+          {
+            "id": "employee-compensation-qualification",
+            "priority": "P0",
+            "status": "ready",
+            "action": {
+              "en-US": "Distinguish payable balances from labor-cost flows and audit coverage before the first predictive test.",
+              "zh-CN": "先区分应付余额与劳动成本流量，核实覆盖后再做首个预测检验。"
+            },
+            "acceptance": {
+              "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+              "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+            }
+          }
+        ]
       }
     },
     {
@@ -1387,7 +1582,46 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T15:26:36+00:00"
+        "checked_at": "2026-10-02T16:45:31+00:00"
+      },
+      "navigation_asset": "data/study-navigation/absolute-level-forecast.json",
+      "navigation_summary": {
+        "run_id": "20261002-final-v4",
+        "reproduction_status": "artifact_verified",
+        "decision": "no_stable_increment",
+        "negative_result": true,
+        "resume_when": {
+          "en-US": "Add qualified historical revisions, industry and market-cap controls, longer cohorts and delisting-aware returns before promotion.",
+          "zh-CN": "先补充可靠历史版本、行业与市值控制、更长样本和退市感知收益，再考虑升级。"
+        },
+        "tasks": [
+          {
+            "id": "absolute-level-forecast-qualification",
+            "priority": "P0",
+            "status": "blocked",
+            "action": {
+              "en-US": "Add qualified historical revisions, industry and market-cap controls, longer cohorts and delisting-aware returns before promotion.",
+              "zh-CN": "先补充可靠历史版本、行业与市值控制、更长样本和退市感知收益，再考虑升级。"
+            },
+            "acceptance": {
+              "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+              "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+            }
+          },
+          {
+            "id": "absolute-level-forecast-paired-diagnostic",
+            "priority": "P1",
+            "status": "completed",
+            "action": {
+              "en-US": "Paired uncertainty, annual / size slices and calibration retained under the fixed retrospective follow-up.",
+              "zh-CN": "已按固定回溯方案保留配对不确定性、年度／规模切片与校准记录。"
+            },
+            "acceptance": {
+              "en-US": "Hashes and original cohort/metric reproduction checks passed; no executable return claim.",
+              "zh-CN": "哈希与原始样本／指标复现检查通过，不声称可执行收益。"
+            }
+          }
+        ]
       }
     }
   ],

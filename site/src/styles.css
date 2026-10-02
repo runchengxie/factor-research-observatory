@@ -378,7 +378,8 @@
 .study-chart-mobile-note{display:none;color:var(--muted);font-size:12px}
 @media(max-width:600px){.study-chart-mobile-note{display:block}}
 
-:root[data-theme="dark"] .study-exploration {
+:root[data-theme="dark"] .study-exploration,
+:root[data-theme="dark"] .study-navigation {
   --ink: #e9edf4;
   --ink-soft: #d0d7e2;
   --muted: #a8b0bf;
@@ -404,3 +405,7 @@
 .research-evidence-hub small { display:block; overflow-wrap:anywhere; }
 .hub-change { border-top:1px solid var(--border); padding:1rem 0; }
 .hub-change dt { font-weight:600; } .hub-change dd { margin:.4rem 0 1rem; }
+
+.study-navigation code { overflow-wrap:anywhere; }
+.study-navigation dl { display:grid; gap:.6rem; }
+.study-navigation dd { margin:0 0 .6rem; }

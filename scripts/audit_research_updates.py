@@ -47,7 +47,14 @@ def capture(catalog, owner):
             if path is None:
                 raise ValueError('Missing pinned source: ' + ref)
             sources.append({'source_ref': ref, 'sha256': digest(git(owner, 'show', revision + ':' + path))})
-        entries.append({'study_id': study['id'], 'source_revision': revision, 'catalog_sha256': digest(projection(study)), 'exploration_sha256': digest(data), 'sources': sources})
+        navigation = json.loads((ROOT / 'site/public' / study['navigation_asset']).read_text()) if study.get('navigation_asset') else None
+        navigation_sources = []
+        if navigation:
+            nav_revision = navigation['source_revision']
+            nav_index = index_sources(owner, nav_revision)
+            ref = navigation['authority_ref']
+            navigation_sources.append({'source_ref': ref, 'sha256': digest(git(owner, 'show', nav_revision + ':' + nav_index[ref]))})
+        entries.append({'navigation_sha256': digest(navigation) if navigation else None, 'navigation_sources': navigation_sources, 'study_id': study['id'], 'source_revision': revision, 'catalog_sha256': digest(projection(study)), 'exploration_sha256': digest(data), 'sources': sources})
     return {'schema_version': 'observatory.source_review.v1', 'studies': entries, 'hub_sha256': digest(catalog.get('research_hub'))}
 
 def audit(catalog, baseline, owner=None):
@@ -60,10 +67,12 @@ def audit(catalog, baseline, owner=None):
     for study in catalog['studies']:
         entry = entries.get(study['id'])
         data = json.loads((ROOT / 'site/public' / study['exploration_asset']).read_text())
-        public_changed = entry is None or entry['catalog_sha256'] != digest(projection(study)) or entry['exploration_sha256'] != digest(data)
+        navigation = json.loads((ROOT / 'site/public' / study['navigation_asset']).read_text()) if study.get('navigation_asset') else None
+        navigation_changed = entry is not None and entry.get('navigation_sha256') != (digest(navigation) if navigation else None)
+        public_changed = navigation_changed or entry is None or entry['catalog_sha256'] != digest(projection(study)) or entry['exploration_sha256'] != digest(data)
         sources = []
         if owner and entry:
-            for source in entry['sources']:
+            for source in entry['sources'] + entry.get('navigation_sources', []):
                 path = index.get(source['source_ref'])
                 local = Path(owner) / path if path else None
                 status = 'unavailable' if not local or not local.is_file() else 'matched' if digest(local.read_bytes()) == source['sha256'] else 'needs_review'
