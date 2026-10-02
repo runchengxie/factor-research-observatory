@@ -28,7 +28,7 @@ def _walk(value: Any) -> list[str]:
 def validate_snapshot(payload: dict[str, Any]) -> dict[str, Any]:
     if payload.get("kind") != "moneytree_factor_evidence_snapshot":
         raise ValueError("unexpected snapshot kind")
-    if payload.get("schema_version") != "1.0":
+    if payload.get("schema_version") not in {"1.0", "1.1"}:
         raise ValueError("unsupported snapshot schema_version")
     if not isinstance(payload.get("factors"), list) or not payload["factors"]:
         raise ValueError("snapshot must contain factors")

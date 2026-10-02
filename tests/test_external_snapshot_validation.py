@@ -11,7 +11,7 @@ def test_validate_snapshot_accepts_current_public_alpha810_contract() -> None:
 
     result = validate_snapshot(json.loads(path.read_text()))
 
-    assert result["schema_version"] == "1.0"
+    assert result["schema_version"] == "1.1"
     assert result["factor_count"] >= 2
 
 
@@ -31,3 +31,11 @@ def test_validate_snapshot_rejects_private_row_level_fields() -> None:
         assert "ticker" in str(error)
     else:
         raise AssertionError("private field was accepted")
+
+
+def test_validate_snapshot_rejects_unknown_schema() -> None:
+    import pytest
+
+    payload = {"kind": "moneytree_factor_evidence_snapshot", "schema_version": "9.9"}
+    with pytest.raises(ValueError, match="schema_version"):
+        validate_snapshot(payload)
