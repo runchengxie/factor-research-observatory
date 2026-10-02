@@ -11,7 +11,7 @@ def test_validate_snapshot_accepts_current_public_alpha810_contract() -> None:
 
     result = validate_snapshot(json.loads(path.read_text()))
 
-    assert result["schema_version"] == "1.1"
+    assert result["schema_version"] == "1.2"
     assert result["factor_count"] >= 2
 
 
