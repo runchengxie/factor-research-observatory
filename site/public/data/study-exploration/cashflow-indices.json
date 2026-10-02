@@ -259,5 +259,30 @@
   "next_question": {
     "en-US": "Can a stable cash-flow rule survive consistent historical rules, PIT and common execution assumptions?",
     "zh-CN": "稳定现金流规则能否通过一致历史规则、PIT 与共同执行假设检验？"
-  }
+  },
+  "conclusion_changes": [
+    {
+      "id": "cashflow-indices-1",
+      "kind": "boundary",
+      "period": {
+        "en-US": "Available snapshots",
+        "zh-CN": "可用快照区间"
+      },
+      "before": {
+        "en-US": "High official-return correlation might be read as complete index replication.",
+        "zh-CN": "较高官方收益相关性可能被理解为完整指数复现。"
+      },
+      "trigger": {
+        "en-US": "Available snapshots leave missing historical constituents and rule changes.",
+        "zh-CN": "可用快照仍缺历史成分，并存在规则变化。"
+      },
+      "after": {
+        "en-US": "Treat calibration and current-rule shadows as separate, bounded evidence.",
+        "zh-CN": "将校准与现行规则影子视为独立且有边界的证据。"
+      },
+      "source_ids": [
+        "status"
+      ]
+    }
+  ]
 }

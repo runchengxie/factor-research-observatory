@@ -58,3 +58,7 @@ A study may declare an optional `exploration_asset` under `data/study-exploratio
 Every chart declares its metric, unit, sample/protocol context, interpretation and source IDs. All series share the chart's category order; missing values are null, never zero. Different targets, forecast correlations, stock-return correlations, annualized returns and cumulative active returns must remain labeled and separate. Exact values remain available in a table. A hypothesis or protocol without reviewed results publishes no performance chart. Source notes may be private; expose stable identities and sanitized provenance, not inaccessible raw file links or private implementation.
 
 Optional evidence loading or schema failure must preserve the main study and provide a localized retry. Native SVG comparisons remain keyboard-readable through their controls and corresponding tables. New projections must update the publication manifest and pass bilingual, source, metric and public-release validation.
+
+## Research hub extension
+
+Optional `evidence_summary`, `related_studies`, `source_review_status`, and exploration `conclusion_changes` follow the same reviewed aggregate boundary. The catalog's `research_hub` registers permitted comparison groups and source-backed interpretation changes. Source-content hashes are public metadata; private paths and raw observations remain excluded. See [Research evidence hub](research-hub.md) for baseline review and scheduled audit operation.

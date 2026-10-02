@@ -332,5 +332,30 @@
   "next_question": {
     "en-US": "Can a preregistered, observation-time cohort show a forecast increment and then costed selection value?",
     "zh-CN": "预注册、受观察时间约束的样本能否先显示预测增量，再显示成本后选股价值？"
-  }
+  },
+  "conclusion_changes": [
+    {
+      "id": "absolute-level-forecast-1",
+      "kind": "negative_evidence",
+      "period": {
+        "en-US": "2023–2025 test years",
+        "zh-CN": "2023–2025 测试年"
+      },
+      "before": {
+        "en-US": "Complex models might improve forecasts of financial levels.",
+        "zh-CN": "复杂模型可能改善财务水平预测。"
+      },
+      "trigger": {
+        "en-US": "Persistence wins all six transformed-MAE comparisons.",
+        "zh-CN": "持续性赢得全部六项变换 MAE 对照。"
+      },
+      "after": {
+        "en-US": "No learned-model promotion follows; test the selection bridge independently.",
+        "zh-CN": "不提升学习模型资格，独立检验选股桥接。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ]
 }

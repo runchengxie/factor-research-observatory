@@ -245,5 +245,53 @@
   "next_question": {
     "en-US": "Can any archived candidate survive a new market window with matched sector and execution controls?",
     "zh-CN": "归档候选能否在新的市场窗口及匹配行业、执行控制下保留？"
-  }
+  },
+  "conclusion_changes": [
+    {
+      "id": "hk-fundamental-archive-1",
+      "kind": "negative_evidence",
+      "period": {
+        "en-US": "2026-03–2026-04",
+        "zh-CN": "2026-03–2026-04"
+      },
+      "before": {
+        "en-US": "Recent final-window highlights looked promising.",
+        "zh-CN": "近期最终窗口亮点较好。"
+      },
+      "trigger": {
+        "en-US": "Full quarterly tests and all six walk-forward windows were weak.",
+        "zh-CN": "完整季频测试及六个前推窗口均弱。"
+      },
+      "after": {
+        "en-US": "Recent performance is a regime observation and does not replace the full record.",
+        "zh-CN": "近期表现是阶段观察，不能替换完整记录。"
+      },
+      "source_ids": [
+        "quarter"
+      ]
+    },
+    {
+      "id": "hk-fundamental-archive-2",
+      "kind": "refinement",
+      "period": {
+        "en-US": "2026-04-13",
+        "zh-CN": "2026-04-13"
+      },
+      "before": {
+        "en-US": "Financial-only active return appeared strongest.",
+        "zh-CN": "仅金融组主动收益看似最强。"
+      },
+      "trigger": {
+        "en-US": "The same monthly diagnostic reports negative financial-only IC.",
+        "zh-CN": "同一月频诊断记录仅金融组 IC 为负。"
+      },
+      "after": {
+        "en-US": "Retain sector and concentration attribution; do not infer a superior ranking signal.",
+        "zh-CN": "保留行业与集中度归因，不推断更优排序信号。"
+      },
+      "source_ids": [
+        "monthly"
+      ]
+    }
+  ]
 }

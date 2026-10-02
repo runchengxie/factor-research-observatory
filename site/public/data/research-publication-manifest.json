@@ -25,7 +25,11 @@
         "exploration_steps",
         "aggregate_charts",
         "source_references",
-        "next_question"
+        "next_question",
+        "evidence_summary",
+        "conclusion_changes",
+        "related_studies",
+        "source_review_status"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -57,7 +61,11 @@
         "exploration_steps",
         "aggregate_charts",
         "source_references",
-        "next_question"
+        "next_question",
+        "evidence_summary",
+        "conclusion_changes",
+        "related_studies",
+        "source_review_status"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -89,7 +97,11 @@
         "exploration_steps",
         "aggregate_charts",
         "source_references",
-        "next_question"
+        "next_question",
+        "evidence_summary",
+        "conclusion_changes",
+        "related_studies",
+        "source_review_status"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -147,7 +159,11 @@
         "exploration_steps",
         "aggregate_charts",
         "source_references",
-        "next_question"
+        "next_question",
+        "evidence_summary",
+        "conclusion_changes",
+        "related_studies",
+        "source_review_status"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -180,7 +196,11 @@
         "exploration_steps",
         "aggregate_charts",
         "source_references",
-        "next_question"
+        "next_question",
+        "evidence_summary",
+        "conclusion_changes",
+        "related_studies",
+        "source_review_status"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -213,7 +233,11 @@
         "exploration_steps",
         "aggregate_charts",
         "source_references",
-        "next_question"
+        "next_question",
+        "evidence_summary",
+        "conclusion_changes",
+        "related_studies",
+        "source_review_status"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -246,7 +270,11 @@
         "exploration_steps",
         "aggregate_charts",
         "source_references",
-        "next_question"
+        "next_question",
+        "evidence_summary",
+        "conclusion_changes",
+        "related_studies",
+        "source_review_status"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -281,7 +309,11 @@
         "exploration_steps",
         "aggregate_charts",
         "source_references",
-        "next_question"
+        "next_question",
+        "evidence_summary",
+        "conclusion_changes",
+        "related_studies",
+        "source_review_status"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -293,5 +325,6 @@
       "exploration_asset": "data/study-exploration/rd-investment.json",
       "exploration_reviewed_at": "2026-10-02"
     }
-  ]
+  ],
+  "hub_schema": "observatory.research_hub.v1"
 }
