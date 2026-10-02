@@ -209,7 +209,8 @@
         "The historical financial statement revision chain is incomplete. The corrected historical reconstruction is not revision-safe, and historical index/industry effective times are not fully point-in-time verified.",
         "The 220-day labels overlap. Cross-sectional Rank IC and the Top-200 price-return probe do not establish executable fills, market impact, or a deployable portfolio.",
         "The Top-200 cost probe is separate from registered decile validation; the full frozen-holdout readiness audit still blocks performance reading.",
-        "The older 2019 extended annual snapshot uses a separate retrospective reconstruction and is not included in the corrected current-run metrics above."
+        "The older 2019 extended annual snapshot uses a separate retrospective reconstruction and is not included in the corrected current-run metrics above.",
+        "2026-10-02 输入审计补齐了原始与调整后报表，并实现受实际采集时间约束的版本留存。这些后来采集的数据不能证明严格历史 PIT。R&D 冻结窗口持续至 2027 年 9 月，需等全部长期标签成熟后才能解封，约在 2028 年。本次未读取冻结表现。"
       ],
       "translations": {
         "en-US": {
@@ -273,7 +274,8 @@
             "The historical financial statement revision chain is incomplete. The corrected historical reconstruction is not revision-safe, and historical index/industry effective times are not fully point-in-time verified.",
             "The 220-day labels overlap. Cross-sectional Rank IC and the Top-200 price-return probe do not establish executable fills, market impact, or a deployable portfolio.",
             "The Top-200 cost probe is separate from registered decile validation; the full frozen-holdout readiness audit still blocks performance reading.",
-            "The older 2019 extended annual snapshot uses a separate retrospective reconstruction and is not included in the corrected current-run metrics above."
+            "The older 2019 extended annual snapshot uses a separate retrospective reconstruction and is not included in the corrected current-run metrics above.",
+            "The 2026-10-02 input audit supplemented original and adjusted statements and implemented retrieval-time-bounded version retention. These later observations cannot certify strict historical PIT. The frozen R&D window runs through September 2027 and all long-horizon labels must mature before performance is unsealed, approximately in 2028. No frozen performance was read."
           ]
         },
         "zh-CN": {
@@ -337,7 +339,8 @@
             "历史财报修订链不完整。修正后的历史重建并非修订安全，历史指数与行业生效时点也没有完全按点时核实。",
             "220 日标签重叠。截面 Rank IC 和 Top-200 价格收益探针不能证明实际成交、市场冲击或可部署组合。",
             "Top-200 成本探针与预注册十分组验证相互独立；冻结留出就绪审计仍阻止读取绩效。",
-            "较早的 2019 年扩展年度快照来自另一份回溯重建，不属于上方修正后当前运行结果。"
+            "较早的 2019 年扩展年度快照来自另一份回溯重建，不属于上方修正后当前运行结果。",
+            "2026-10-02 输入审计补齐了原始与调整后报表，并实现受实际采集时间约束的版本留存。这些后来采集的数据不能证明严格历史 PIT。R&D 冻结窗口持续至 2027 年 9 月，需等全部长期标签成熟后才能解封，约在 2028 年。本次未读取冻结表现。"
           ]
         }
       },
@@ -842,7 +845,8 @@
           "limits": [
             "Only three annual forecast/return folds are available; provider revision history, outcome-panel coverage, and all-market delisting eligibility are incomplete.",
             "Price returns use adjusted-close proxies, a price-complete survivor subset, no dividends or delisting recovery, and fixed 25 bp one-way modeled costs.",
-            "Selection screens are not industry-, size-, liquidity-, or benchmark-risk controlled and are not a mature portfolio replay."
+            "Selection screens are not industry-, size-, liquidity-, or benchmark-risk controlled and are not a mature portfolio replay.",
+            "The 2026-10-02 input audit supplemented original and adjusted statements and implemented retrieval-time-bounded version retention. These later observations cannot certify strict historical PIT. The frozen R&D window runs through September 2027 and all long-horizon labels must mature before performance is unsealed, approximately in 2028. No frozen performance was read."
           ]
         },
         "zh-CN": {
@@ -952,7 +956,8 @@
           "limits": [
             "只有三个年频预测 / 收益留出折；供应商修订历史、结果面板覆盖和全市场退市样本资格尚不完整。",
             "收益使用复权收盘价代理，限于价格完整股票；不含股息或退市回收，成本只按单边 25bp 固定值估算。",
-            "选股未控制行业、规模、流动性或基准风险，也不是成熟组合回放。"
+            "选股未控制行业、规模、流动性或基准风险，也不是成熟组合回放。",
+            "2026-10-02 输入审计补齐了原始与调整后报表，并实现受实际采集时间约束的版本留存。这些后来采集的数据不能证明严格历史 PIT。R&D 冻结窗口持续至 2027 年 9 月，需等全部长期标签成熟后才能解封，约在 2028 年。本次未读取冻结表现。"
           ]
         }
       }
