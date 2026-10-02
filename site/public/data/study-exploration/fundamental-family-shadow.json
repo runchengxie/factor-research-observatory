@@ -106,5 +106,30 @@
   "next_question": {
     "en-US": "Which family survives same-sample ablation after costs and exposure controls?",
     "zh-CN": "哪个家族在同样本消融、成本与暴露控制后仍有效？"
-  }
+  },
+  "conclusion_changes": [
+    {
+      "id": "fundamental-family-shadow-1",
+      "kind": "protocol",
+      "period": {
+        "en-US": "Pending results",
+        "zh-CN": "结果待复核"
+      },
+      "before": {
+        "en-US": "Combining useful-looking families might seem sufficient.",
+        "zh-CN": "组合看似有用的家族可能显得已经足够。"
+      },
+      "trigger": {
+        "en-US": "A protocol and common keys exist, but reviewed family performance does not.",
+        "zh-CN": "已有协议与共同键，但尚无已复核家族绩效。"
+      },
+      "after": {
+        "en-US": "Keep family effectiveness unproven until the ablation is reviewed.",
+        "zh-CN": "消融复核之前，家族有效性仍未证明。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ]
 }

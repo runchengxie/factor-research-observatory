@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily research source content review
+
+[Timer]
+OnCalendar=*-*-* 06:45:00 Asia/Shanghai
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

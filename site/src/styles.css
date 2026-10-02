@@ -377,3 +377,12 @@
 @media(max-width:600px){.study-exploration-steps>li{grid-template-columns:1fr;gap:16px}.study-step-marker{flex-direction:row;flex-wrap:wrap;align-items:center}.study-step-marker small{flex:1}.study-exploration-nav{display:grid;gap:14px}.study-exploration-steps h3{font-size:18px}}
 .study-chart-mobile-note{display:none;color:var(--muted);font-size:12px}
 @media(max-width:600px){.study-chart-mobile-note{display:block}}
+
+.hub-filters { display:flex; flex-wrap:wrap; gap:1rem; align-items:end; margin:1rem 0; }
+.hub-filters label, .study-page label { display:flex; flex-direction:column; gap:.5rem; max-width:100%; }
+.hub-filters input, .study-page select { max-width:100%; padding:.6rem; background:var(--panel); color:inherit; border:1px solid var(--border); }
+.research-evidence-hub td { min-width:180px; vertical-align:top; }
+.research-evidence-hub td:first-child { min-width:280px; }
+.research-evidence-hub small { display:block; overflow-wrap:anywhere; }
+.hub-change { border-top:1px solid var(--border); padding:1rem 0; }
+.hub-change dt { font-weight:600; } .hub-change dd { margin:.4rem 0 1rem; }

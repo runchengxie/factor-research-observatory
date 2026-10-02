@@ -527,5 +527,53 @@
   "next_question": {
     "en-US": "Can forecast changes add selection value beyond current profitability and valuation on common dates?",
     "zh-CN": "预测变化能否在共同日期上，相对当期盈利与估值增加选股价值？"
-  }
+  },
+  "conclusion_changes": [
+    {
+      "id": "fundamental-state-forecasting-1",
+      "kind": "correction",
+      "period": {
+        "en-US": "2026-09-04",
+        "zh-CN": "2026-09-04"
+      },
+      "before": {
+        "en-US": "An initial persistence result had an impossible Rank IC of 1.",
+        "zh-CN": "最初 persistence 结果出现不合理的 Rank IC=1。"
+      },
+      "trigger": {
+        "en-US": "The baseline incorrectly read future values; the run was corrected.",
+        "zh-CN": "基线错误读取未来值，运行随后修正。"
+      },
+      "after": {
+        "en-US": "Exclude the invalid run and use corrected current-state baselines only.",
+        "zh-CN": "排除无效运行，仅使用修正的当期状态基线。"
+      },
+      "source_ids": [
+        "objectives"
+      ]
+    },
+    {
+      "id": "fundamental-state-forecasting-2",
+      "kind": "negative_evidence",
+      "period": {
+        "en-US": "2026-09-04",
+        "zh-CN": "2026-09-04"
+      },
+      "before": {
+        "en-US": "One annual panel showed a positive net-profit-growth model increment.",
+        "zh-CN": "一个年度面板显示正向净利润增速模型增量。"
+      },
+      "trigger": {
+        "en-US": "Later common-fold objectives did not show a stable learned-model advantage.",
+        "zh-CN": "后续共同折目标对照没有显示稳定学习模型优势。"
+      },
+      "after": {
+        "en-US": "The early observation remains recorded without model or portfolio promotion.",
+        "zh-CN": "保留早期观察，不提升模型或组合资格。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ]
 }

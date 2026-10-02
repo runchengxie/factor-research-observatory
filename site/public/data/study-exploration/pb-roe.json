@@ -229,5 +229,30 @@
   "next_question": {
     "en-US": "Can a preregistered ROE variant improve PB on the same eligible names after costs?",
     "zh-CN": "预注册 ROE 变体能否在同一合格股票池中改善成本后 PB 对照？"
-  }
+  },
+  "conclusion_changes": [
+    {
+      "id": "pb-roe-1",
+      "kind": "refinement",
+      "period": {
+        "en-US": "Historical comparison",
+        "zh-CN": "历史对照"
+      },
+      "before": {
+        "en-US": "ROE could complement low PB.",
+        "zh-CN": "ROE 可能补充低 PB。"
+      },
+      "trigger": {
+        "en-US": "Same-pool ranking removes eligibility differences.",
+        "zh-CN": "共同池排序排除入选差异。"
+      },
+      "after": {
+        "en-US": "Static ROE did not improve the PB comparator in this history.",
+        "zh-CN": "静态 ROE 在本历史对照中没有改善 PB。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ]
 }
