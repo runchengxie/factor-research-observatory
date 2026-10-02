@@ -1,6 +1,6 @@
 {
   "schema_version": "observatory.research_publication.v1",
-  "generated_at": "2026-09-30",
+  "generated_at": "2026-10-02",
   "source_repository": "quant-research",
   "source_manifest": "docs/research/knowledge-pilot.yml",
   "projections": [
@@ -21,7 +21,11 @@
         "period",
         "findings",
         "limits",
-        "aggregate_rows"
+        "aggregate_rows",
+        "exploration_steps",
+        "aggregate_charts",
+        "source_references",
+        "next_question"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -30,7 +34,9 @@
         "portfolio_weights",
         "execution_details",
         "private_code"
-      ]
+      ],
+      "exploration_asset": "data/study-exploration/cashflow-indices.json",
+      "exploration_reviewed_at": "2026-10-02"
     },
     {
       "public_id": "employee-compensation",
@@ -47,7 +53,11 @@
         "status",
         "summary",
         "findings",
-        "limits"
+        "limits",
+        "exploration_steps",
+        "aggregate_charts",
+        "source_references",
+        "next_question"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -55,7 +65,9 @@
         "per_security_signals",
         "portfolio_weights",
         "private_code"
-      ]
+      ],
+      "exploration_asset": "data/study-exploration/employee-compensation.json",
+      "exploration_reviewed_at": "2026-10-02"
     },
     {
       "public_id": "fundamental-family-shadow",
@@ -73,7 +85,11 @@
         "summary",
         "period",
         "findings",
-        "limits"
+        "limits",
+        "exploration_steps",
+        "aggregate_charts",
+        "source_references",
+        "next_question"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -81,7 +97,9 @@
         "per_security_signals",
         "portfolio_weights",
         "private_code"
-      ]
+      ],
+      "exploration_asset": "data/study-exploration/fundamental-family-shadow.json",
+      "exploration_reviewed_at": "2026-10-02"
     },
     {
       "public_id": "fundamental-series",
@@ -125,7 +143,11 @@
         "summary",
         "period",
         "findings",
-        "limits"
+        "limits",
+        "exploration_steps",
+        "aggregate_charts",
+        "source_references",
+        "next_question"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -133,7 +155,9 @@
         "per_security_signals",
         "portfolio_weights",
         "private_code"
-      ]
+      ],
+      "exploration_asset": "data/study-exploration/fundamental-state-forecasting.json",
+      "exploration_reviewed_at": "2026-10-02"
     },
     {
       "public_id": "absolute-level-forecast",
@@ -152,7 +176,11 @@
         "period",
         "findings",
         "limits",
-        "aggregate_rows"
+        "aggregate_rows",
+        "exploration_steps",
+        "aggregate_charts",
+        "source_references",
+        "next_question"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -161,7 +189,9 @@
         "portfolio_weights",
         "execution_details",
         "private_code"
-      ]
+      ],
+      "exploration_asset": "data/study-exploration/absolute-level-forecast.json",
+      "exploration_reviewed_at": "2026-10-02"
     },
     {
       "public_id": "hk-fundamental-archive",
@@ -179,7 +209,11 @@
         "summary",
         "period",
         "findings",
-        "limits"
+        "limits",
+        "exploration_steps",
+        "aggregate_charts",
+        "source_references",
+        "next_question"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -187,7 +221,9 @@
         "per_security_signals",
         "portfolio_weights",
         "private_code"
-      ]
+      ],
+      "exploration_asset": "data/study-exploration/hk-fundamental-archive.json",
+      "exploration_reviewed_at": "2026-10-02"
     },
     {
       "public_id": "pb-roe",
@@ -206,7 +242,11 @@
         "period",
         "findings",
         "limits",
-        "aggregate_rows"
+        "aggregate_rows",
+        "exploration_steps",
+        "aggregate_charts",
+        "source_references",
+        "next_question"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -214,7 +254,9 @@
         "per_security_signals",
         "portfolio_weights",
         "private_code"
-      ]
+      ],
+      "exploration_asset": "data/study-exploration/pb-roe.json",
+      "exploration_reviewed_at": "2026-10-02"
     },
     {
       "public_id": "rd-investment",
@@ -235,7 +277,11 @@
         "limits",
         "aggregate_rows",
         "annual_aggregate_series",
-        "research_log"
+        "research_log",
+        "exploration_steps",
+        "aggregate_charts",
+        "source_references",
+        "next_question"
       ],
       "excluded_fields": [
         "private_data_paths",
@@ -243,7 +289,9 @@
         "per_security_signals",
         "portfolio_weights",
         "private_code"
-      ]
+      ],
+      "exploration_asset": "data/study-exploration/rd-investment.json",
+      "exploration_reviewed_at": "2026-10-02"
     }
   ]
 }

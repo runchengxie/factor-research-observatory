@@ -1,0 +1,110 @@
+{
+  "schema_version": "observatory.study_exploration.v1",
+  "study_id": "employee-compensation",
+  "source_ref": "doc:quant-research.research.fundamental-research-series",
+  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+  "reviewed_at": "2026-10-02",
+  "evidence_stage": "hypothesis",
+  "summary": {
+    "en-US": "Accounting stocks and labor-cost flows must be separated before building a predictive test.",
+    "zh-CN": "构建预测检验之前须先区分会计存量与劳动成本流量。"
+  },
+  "sources": [
+    {
+      "id": "overview",
+      "source_ref": "doc:quant-research.research.fundamental-research-series",
+      "label": {
+        "en-US": "Authoritative study overview",
+        "zh-CN": "权威研究综述"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "field",
+      "period": {
+        "en-US": "Definition review",
+        "zh-CN": "定义核对"
+      },
+      "status": "hypothesis",
+      "title": {
+        "en-US": "Separate payable balances from expense flows",
+        "zh-CN": "区分应付款余额与费用流量"
+      },
+      "question": {
+        "en-US": "Is employee compensation payable a wage measure?",
+        "zh-CN": "应付职工薪酬是否代表工资？"
+      },
+      "finding": {
+        "en-US": "It is a period-end liability; it is not current-period wages or R&D staff investment.",
+        "zh-CN": "它是期末负债，不代表当期工资或研发人员投入。"
+      },
+      "decision": {
+        "en-US": "Do not treat a balance change as a verified labor-cost factor.",
+        "zh-CN": "不能将余额变化视为已验证劳动成本因子。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "coverage",
+      "period": {
+        "en-US": "Before experiment",
+        "zh-CN": "实验前"
+      },
+      "status": "pending",
+      "title": {
+        "en-US": "Audit comparable disclosures",
+        "zh-CN": "审计可比披露"
+      },
+      "question": {
+        "en-US": "Are labor flows and workforce counts comparable?",
+        "zh-CN": "劳动成本流量与人数是否可比？"
+      },
+      "finding": {
+        "en-US": "Flow disclosures, headcount, outsourcing and capitalization need distinct coverage checks.",
+        "zh-CN": "流量披露、员工人数、外包及资本化需要分别检查覆盖。"
+      },
+      "decision": {
+        "en-US": "Fix definition and availability before comparing labor efficiency or intensity.",
+        "zh-CN": "先固定定义与可见时间，再比较劳动效率或强度。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "test",
+      "period": {
+        "en-US": "Not yet validated",
+        "zh-CN": "尚未验证"
+      },
+      "status": "hypothesis",
+      "title": {
+        "en-US": "Register a predictive test",
+        "zh-CN": "注册预测检验"
+      },
+      "question": {
+        "en-US": "Does labor information add to industry and size?",
+        "zh-CN": "劳动信息是否在行业与规模之外有增量？"
+      },
+      "finding": {
+        "en-US": "No candidate-level predictive results have been published for this family.",
+        "zh-CN": "该家族尚无已发布逐因子预测结果。"
+      },
+      "decision": {
+        "en-US": "Keep this page at hypothesis status with no performance chart.",
+        "zh-CN": "本页保留假设状态，不绘制绩效图。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ],
+  "charts": [],
+  "next_question": {
+    "en-US": "After coverage audit, does a labor flow measure add predictive information beyond basic controls?",
+    "zh-CN": "覆盖审计之后，劳动流量指标能否相对基本控制增加预测信息？"
+  }
+}
