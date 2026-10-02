@@ -15,13 +15,17 @@
     },
     {
       "study_id": "rd-investment",
-      "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "8fffeed0932daa06939efb7e3ff163cc6a35c378c37a9dcd430db0a93d21c174",
-      "exploration_sha256": "fcdb06020289e0a039983a0c1eb700e97558e1f0ac73b5c5783c987cac3a27a5",
+      "source_revision": "1de94d25fd5f4c06dadbfed751a8270121d91738",
+      "catalog_sha256": "90c095d9d5549092613120a487f8ff729d14bed1c04f5ea0e86c181a6a0ae5d9",
+      "exploration_sha256": "99b11ae4a126e1d63f310a6b3a73f663f6fafff6ff68b05939d5780c4e92ef6a",
       "sources": [
         {
           "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
-          "sha256": "d4e0441dbefd0e9360e6526c03ef58951d6ba05acdba20c66a8514fa14bc6e2b"
+          "sha256": "c7abcf20597f6893c40ddae4994233d96dc3541c9cc897eb73b294b05cd0d57b"
+        },
+        {
+          "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+          "sha256": "c7abcf20597f6893c40ddae4994233d96dc3541c9cc897eb73b294b05cd0d57b"
         }
       ]
     },
