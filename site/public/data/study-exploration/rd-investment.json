@@ -2,7 +2,7 @@
   "schema_version": "observatory.study_exploration.v1",
   "study_id": "rd-investment",
   "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
-  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+  "source_revision": "1de94d25fd5f4c06dadbfed751a8270121d91738",
   "reviewed_at": "2026-10-02",
   "evidence_stage": "exploratory",
   "summary": {
