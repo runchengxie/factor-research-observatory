@@ -50,6 +50,7 @@ export default function JumpPage({ snapshot }: { snapshot: Snapshot }) {
   return <main className="page">
     <a className="back" href={import.meta.env.BASE_URL}>{copy.back}</a>
     <section className="detail-head"><p className="eyebrow">{copy.eyebrow}</p><h1>{copy.title}</h1><p className="lede">{copy.lede}</p><span className="badge">{snapshot.source === 'demo' ? copy.demo : `${snapshot.source} · ${dataset?.name ?? ''}`}</span></section>
+    <section className="panel research-verdict"><h2>{copy.conclusionLabel}</h2><p className="lede">{copy.conclusion}</p><p className="panel-note">{copy.boundary}</p></section>
     <ContextStrip items={[
       { label: copy.observation, value: `${rows.length} ${english ? 'rows' : '条观测'}` },
       { label: copy.snapshotDate, value: dataset?.date_end ?? row?.date ?? '—' },

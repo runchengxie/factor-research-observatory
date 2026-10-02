@@ -383,3 +383,21 @@ test('routes request only the public data snapshots they need', async ({ page })
   await expect(page.getByRole('heading', { name: 'R&D Investment Relative to Valuation: Signal or Size Exposure?' })).toBeVisible()
   expect(dataResponses.map((response) => response.name)).toEqual(['research-studies.json', 'rd-investment-annual.json'])
 })
+
+ test('research conclusions precede evidence and methods', async ({ page }) => {
+  await page.goto('/studies/rd-investment')
+  await expect(page.locator('.study-columns')).toBeVisible()
+  expect(await page.locator('main').evaluate(el => {
+    const sections = [...el.querySelectorAll('section')]
+    return sections.indexOf(el.querySelector('.study-columns section')!) < sections.findIndex(s => s.querySelector('table'))
+  })).toBe(true)
+  for (const route of ['/hermite', '/jumps', '/fundamentals']) {
+    await page.goto(route)
+    await expect(page.locator('.research-verdict')).toBeVisible()
+    expect(await page.locator('main').evaluate(el => {
+      const verdict = el.querySelector('.research-verdict')!
+      const chart = el.querySelector('.chart-panel, .availability-panel')!
+      return Boolean(verdict.compareDocumentPosition(chart) & Node.DOCUMENT_POSITION_FOLLOWING)
+    })).toBe(true)
+  }
+})

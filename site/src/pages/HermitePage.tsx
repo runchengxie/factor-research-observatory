@@ -33,6 +33,7 @@ export default function HermitePage({ snapshot }: { snapshot: Snapshot }) {
       <p className="eyebrow">{copy.eyebrow}</p><h1>{copy.title}</h1><p className="lede">{copy.lede}</p>
       <span className="badge">{snapshot.source === 'demo' ? copy.demo : `${snapshot.source} · ${dataset?.name ?? ''}`}</span>
     </section>
+    <section className="panel research-verdict"><h2>{copy.conclusionLabel}</h2><p className="lede">{copy.conclusion}</p><p className="panel-note">{copy.boundary}</p></section>
     <ContextStrip items={[
       { label: copy.coverage, value: `${dataset?.date_start ?? '—'} → ${dataset?.date_end ?? '—'}` },
       { label: copy.ticker, value: `${dataset?.tickers ?? tickers.length} · ${tickers.join(', ') || '—'}` },
