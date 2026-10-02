@@ -6,7 +6,7 @@ The owner registry is authoritative for these navigation decisions; source studi
 
 ## Presentation
 
-The list defaults to the research-problem matrix. Experiment-type and decision views use compact catalog metadata and do not fetch all optional assets. Negative/inconclusive filtering includes scoped unsuccessful comparisons, not protocol-only or unrun hypotheses. Detail routes load only their own navigation asset and preserve current findings if an optional asset is unavailable or malformed. Retry is localized.
+The concise topic list remains at `/studies`; its evidence link opens `/studies/evidence`, which defaults to the research-problem matrix. Experiment-type and decision views use compact catalog metadata and do not fetch all optional assets. Negative/inconclusive filtering includes scoped unsuccessful comparisons, not protocol-only or unrun hypotheses. Detail routes load only their own navigation asset and preserve current findings if an optional asset is unavailable or malformed. Retry is localized.
 
 A trust card displays announcement clock, original financial versions, historical universe, delisting/terminal handling, execution timing and transaction costs. `qualified` applies only within the named scope. `partial`, `unverified`, `failed`, `protocol_only` and `not_applicable` remain distinct.
 
