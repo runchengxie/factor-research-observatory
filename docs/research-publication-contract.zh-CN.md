@@ -36,3 +36,5 @@ manifest 记录源引用、研究状态、公开 ID 和发布状态；公开 ID 
 ## 研究总览扩展
 
 可选的 `evidence_summary`、`related_studies`、`source_review_status` 和探索资产的 `conclusion_changes` 遵循相同的已复核聚合边界。目录的 `research_hub` 登记允许展示的对照组与有来源依据的解释变化。内容哈希可作为公开元数据，私有路径与原始观测仍不得公开。基线复核与定时审计见 [研究证据总览中文参考](research-hub.zh-CN.md)。
+
+可选研究导航资产及简要 `navigation_summary` 元数据遵循相同的聚合隐私边界。可信度、复现回执、决策任务与回溯区间／校准必须通过来源身份、单位、样本、空值和双语检查。参见 [研究证据导航](research-evidence-navigation.zh-CN.md)。

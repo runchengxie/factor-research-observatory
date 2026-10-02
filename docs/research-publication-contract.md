@@ -62,3 +62,5 @@ Optional evidence loading or schema failure must preserve the main study and pro
 ## Research hub extension
 
 Optional `evidence_summary`, `related_studies`, `source_review_status`, and exploration `conclusion_changes` follow the same reviewed aggregate boundary. The catalog's `research_hub` registers permitted comparison groups and source-backed interpretation changes. Source-content hashes are public metadata; private paths and raw observations remain excluded. See [Research evidence hub](research-hub.md) for baseline review and scheduled audit operation.
+
+Optional study navigation assets and compact `navigation_summary` metadata follow the same aggregate privacy boundary. Trust dimensions, reproduction receipts, decision tasks and retrospective uncertainty/calibration must pass source identity, unit, cohort, null-value and bilingual checks. See [Study evidence navigation](research-evidence-navigation.md).

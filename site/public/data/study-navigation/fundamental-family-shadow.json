@@ -1,0 +1,118 @@
+{
+  "schema_version": "observatory.study_navigation.v1",
+  "study_id": "fundamental-family-shadow",
+  "source_ref": "doc:quant-research.research.fundamental-family-shadow",
+  "source_revision": "e1ddc637be13f6f62693f91c9b98b8e98bbfb5b4",
+  "reviewed_at": "2026-10-03",
+  "authority_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+  "trust": [
+    {
+      "dimension": "announcement_clock",
+      "status": "protocol_only",
+      "detail": {
+        "en-US": "PIT, purge and embargo requirements are specified; this entry has no reviewed family-level result.",
+        "zh-CN": "协议规定了 PIT、purge 和 embargo；入口尚无复核的家族级结果。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-family-shadow"
+      ]
+    },
+    {
+      "dimension": "financial_versions",
+      "status": "protocol_only",
+      "detail": {
+        "en-US": "Revision-safe inputs are required by the design, not certified here.",
+        "zh-CN": "设计要求修订安全输入，此处尚未认证。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-family-shadow"
+      ]
+    },
+    {
+      "dimension": "historical_universe",
+      "status": "protocol_only",
+      "detail": {
+        "en-US": "Common candidates and valid keys are prescribed.",
+        "zh-CN": "协议规定共同候选和有效样本键。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-family-shadow"
+      ]
+    },
+    {
+      "dimension": "delisting_and_terminal",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Not independently qualified in the cited record.",
+        "zh-CN": "引用记录尚未独立完成这一项核查。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-family-shadow"
+      ]
+    },
+    {
+      "dimension": "execution_timing",
+      "status": "protocol_only",
+      "detail": {
+        "en-US": "Next-open labels and horizon alignment are specified.",
+        "zh-CN": "协议规定次日开盘标签与期限对齐。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-family-shadow"
+      ]
+    },
+    {
+      "dimension": "transaction_costs",
+      "status": "protocol_only",
+      "detail": {
+        "en-US": "Cost stress is specified; completed executable evidence is absent.",
+        "zh-CN": "规定了成本压力测试，尚无完整可执行证据。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-family-shadow"
+      ]
+    }
+  ],
+  "reproduction": {
+    "run_id": "fundamental_family_shadow_v1",
+    "status": "protocol_only",
+    "code_revision": null,
+    "runner_sha256": null,
+    "data_version": {
+      "en-US": "Protocol and lifecycle are known; published reviewed results are absent.",
+      "zh-CN": "已知协议和生命周期，尚无已发布复核结果。"
+    },
+    "missing": {
+      "en-US": "A source entry or artifact hash does not certify a complete rerun; original availability, dependencies and historical eligibility must match.",
+      "zh-CN": "来源入口或产物哈希不等于完整复跑认证；原始可得性、依赖和历史资格必须一致。"
+    },
+    "source_refs": [
+      "doc:quant-research.research.fundamental-family-shadow"
+    ],
+    "artifact_sha256": null
+  },
+  "decision": "protocol_only",
+  "resume_when": {
+    "en-US": "Recover and review family-level common-key receipts before publishing a performance verdict.",
+    "zh-CN": "恢复并复核家族级共同样本回执，再发布绩效判断。"
+  },
+  "next_tasks": [
+    {
+      "id": "fundamental-family-shadow-qualification",
+      "priority": "P1",
+      "status": "ready",
+      "action": {
+        "en-US": "Recover and review family-level common-key receipts before publishing a performance verdict.",
+        "zh-CN": "恢复并复核家族级共同样本回执，再发布绩效判断。"
+      },
+      "acceptance": {
+        "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+        "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+      }
+    }
+  ],
+  "diagnostic_intervals": [],
+  "diagnostic_note": null,
+  "scale_slices": [],
+  "calibration": []
+}

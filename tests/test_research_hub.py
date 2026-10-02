@@ -53,12 +53,19 @@ class ResearchHubTests(unittest.TestCase):
     def test_source_change_missing_and_unrelated_revision(self):
         with tempfile.TemporaryDirectory() as folder:
             owner = Path(folder); (owner / 'source.md').write_bytes(b'original')
-            first = self.baseline['studies'][0]; first['sources'] = [{'source_ref': 'doc:one', 'sha256': review.digest(b'original')}]
+            first = self.baseline['studies'][0]; first['navigation_sources'] = []; first['sources'] = [{'source_ref': 'doc:one', 'sha256': review.digest(b'original')}]
             with patch.object(review, 'index_sources', return_value={'doc:one': 'source.md'}):
                 self.assertEqual(review.audit(self.catalog, self.baseline, owner)['studies'][0]['status'], 'matched')
                 (owner / 'source.md').write_bytes(b'changed')
                 self.assertEqual(review.audit(self.catalog, self.baseline, owner)['studies'][0]['status'], 'needs_review')
                 (owner / 'source.md').unlink()
                 self.assertEqual(review.audit(self.catalog, self.baseline, owner)['studies'][0]['status'], 'unavailable')
+    def test_navigation_change_and_removal_are_detected(self):
+        original = review.digest
+        with patch.object(review, 'digest', side_effect=lambda value: 'changed' if isinstance(value, dict) and value.get('schema_version') == 'observatory.study_navigation.v1' else original(value)):
+            self.assertTrue(review.audit(self.catalog, self.baseline)['studies'][0]['public_changed'])
+        del self.catalog['studies'][0]['navigation_asset']
+        self.assertTrue(review.audit(self.catalog, self.baseline)['studies'][0]['public_changed'])
+
     def test_generated_output_cannot_be_written_in_repository(self):
         with self.assertRaises(ValueError): review.external(ROOT / 'reports')

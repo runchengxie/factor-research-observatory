@@ -1,0 +1,2373 @@
+{
+  "schema_version": "observatory.study_navigation.v1",
+  "study_id": "absolute-level-forecast",
+  "source_ref": "doc:quant-research.research.fundamental-state-forecasting",
+  "source_revision": "e1ddc637be13f6f62693f91c9b98b8e98bbfb5b4",
+  "reviewed_at": "2026-10-03",
+  "authority_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+  "trust": [
+    {
+      "dimension": "announcement_clock",
+      "status": "partial",
+      "detail": {
+        "en-US": "Training targets were available before each test date; next-year target availability follows formation.",
+        "zh-CN": "训练目标在测试日前可得，下一年度目标的可得日在形成日之后。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-state-forecasting"
+      ]
+    },
+    {
+      "dimension": "financial_versions",
+      "status": "partial",
+      "detail": {
+        "en-US": "Announcement alignment does not supply the complete historical financial revision chain.",
+        "zh-CN": "公告对齐不能补出完整历史财报修订链。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-state-forecasting"
+      ]
+    },
+    {
+      "dimension": "historical_universe",
+      "status": "partial",
+      "detail": {
+        "en-US": "Common price-complete subsets can introduce survivorship selection.",
+        "zh-CN": "共同价格完整子集可能引入幸存选择。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-state-forecasting"
+      ]
+    },
+    {
+      "dimension": "delisting_and_terminal",
+      "status": "unverified",
+      "detail": {
+        "en-US": "Delisting-aware returns and terminal recovery remain incomplete.",
+        "zh-CN": "退市感知收益与终止事件回收仍不完整。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-state-forecasting"
+      ]
+    },
+    {
+      "dimension": "execution_timing",
+      "status": "partial",
+      "detail": {
+        "en-US": "Adjusted-close endpoints are price proxies, not fills or total-return accounts.",
+        "zh-CN": "复权收盘端点是价格代理，不是成交或总收益账户。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-state-forecasting"
+      ]
+    },
+    {
+      "dimension": "transaction_costs",
+      "status": "partial",
+      "detail": {
+        "en-US": "Fixed entry/exit costs are modeled; impact is not modeled.",
+        "zh-CN": "模拟固定买卖成本，但没有市场冲击模型。"
+      },
+      "source_refs": [
+        "doc:quant-research.research.fundamental-state-forecasting"
+      ]
+    }
+  ],
+  "reproduction": {
+    "run_id": "20261002-final-v4",
+    "status": "artifact_verified",
+    "code_revision": null,
+    "runner_sha256": "0ec9636e92b2d02aa368e20cfce241fe08b508a260727850a5363ef6072aedc8",
+    "data_version": {
+      "en-US": "Input vintage 20260802; outcome snapshot 20260831; 2023–2025 test folds.",
+      "zh-CN": "输入 vintage 20260802；结果快照 20260831；2023–2025 测试折。"
+    },
+    "missing": {
+      "en-US": "A source entry or artifact hash does not certify a complete rerun; original availability, dependencies and historical eligibility must match.",
+      "zh-CN": "来源入口或产物哈希不等于完整复跑认证；原始可得性、依赖和历史资格必须一致。"
+    },
+    "source_refs": [
+      "doc:quant-research.research.fundamental-state-forecasting"
+    ],
+    "artifact_sha256": {
+      "selection_diagnostic.csv": "891b01870abf5cffd4369395acdb607ba93ea6b63e0501d3c4493df902cd6e11",
+      "oos_predictions.parquet": "7b9d423a2dd4734d1853498bdad5344f8e1e311fdac8eaf242deba2328a3f0f4",
+      "common_pit_sample.parquet": "01d3875843e76a471dd0648f23c2b9eb6b094269b706fb9d26166d1ff137318f"
+    }
+  },
+  "decision": "no_stable_increment",
+  "resume_when": {
+    "en-US": "Add qualified historical revisions, industry and market-cap controls, longer cohorts and delisting-aware returns before promotion.",
+    "zh-CN": "先补充可靠历史版本、行业与市值控制、更长样本和退市感知收益，再考虑升级。"
+  },
+  "next_tasks": [
+    {
+      "id": "absolute-level-forecast-qualification",
+      "priority": "P0",
+      "status": "blocked",
+      "action": {
+        "en-US": "Add qualified historical revisions, industry and market-cap controls, longer cohorts and delisting-aware returns before promotion.",
+        "zh-CN": "先补充可靠历史版本、行业与市值控制、更长样本和退市感知收益，再考虑升级。"
+      },
+      "acceptance": {
+        "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
+        "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+      }
+    },
+    {
+      "id": "absolute-level-forecast-paired-diagnostic",
+      "priority": "P1",
+      "status": "completed",
+      "action": {
+        "en-US": "Paired uncertainty, annual / size slices and calibration retained under the fixed retrospective follow-up.",
+        "zh-CN": "已按固定回溯方案保留配对不确定性、年度／规模切片与校准记录。"
+      },
+      "acceptance": {
+        "en-US": "Hashes and original cohort/metric reproduction checks passed; no executable return claim.",
+        "zh-CN": "哈希与原始样本／指标复现检查通过，不声称可执行收益。"
+      }
+    }
+  ],
+  "diagnostic_intervals": [
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "baseline": "persistence",
+      "n": 5596,
+      "mean_difference": 0.32167286247434085,
+      "lower": 0.31316282720447153,
+      "upper": 0.33003100826529597,
+      "block": 1
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "baseline": "persistence",
+      "n": 5596,
+      "mean_difference": 0.02695609453226548,
+      "lower": 0.02437040211726951,
+      "upper": 0.02964727427556624,
+      "block": 1
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "baseline": "persistence",
+      "n": 5596,
+      "mean_difference": 0.24192460028980717,
+      "lower": 0.22258967719169948,
+      "upper": 0.26068596030268076,
+      "block": 1
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "baseline": "persistence",
+      "n": 5596,
+      "mean_difference": 0.021858865157086727,
+      "lower": 0.0089919468342476,
+      "upper": 0.03441222602493003,
+      "block": 1
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "baseline": "persistence",
+      "n": 5741,
+      "mean_difference": 0.3163086044174244,
+      "lower": 0.308147227507852,
+      "upper": 0.32411821499889504,
+      "block": 1
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "baseline": "persistence",
+      "n": 5741,
+      "mean_difference": 0.021814406273476004,
+      "lower": 0.019422376049448315,
+      "upper": 0.024216299890689356,
+      "block": 1
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "baseline": "persistence",
+      "n": 5741,
+      "mean_difference": 0.30270070013828276,
+      "lower": 0.28403190617704926,
+      "upper": 0.32204713551148206,
+      "block": 1
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "baseline": "persistence",
+      "n": 5741,
+      "mean_difference": 0.05612145775557991,
+      "lower": 0.043403705737184634,
+      "upper": 0.06896009735371081,
+      "block": 1
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "baseline": "persistence",
+      "n": 5923,
+      "mean_difference": 0.32644594790014253,
+      "lower": 0.3185320805703057,
+      "upper": 0.33494159144016944,
+      "block": 1
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "baseline": "persistence",
+      "n": 5923,
+      "mean_difference": 0.020594234130233785,
+      "lower": 0.01826106660747568,
+      "upper": 0.023063279665474848,
+      "block": 1
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "baseline": "persistence",
+      "n": 5923,
+      "mean_difference": 0.31837169499575113,
+      "lower": 0.29884459295335114,
+      "upper": 0.3387712935779609,
+      "block": 1
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "baseline": "persistence",
+      "n": 5923,
+      "mean_difference": 0.07812402096313094,
+      "lower": 0.06479527405245047,
+      "upper": 0.09092120683539391,
+      "block": 1
+    }
+  ],
+  "diagnostic_note": {
+    "en-US": "Retrospective paired diagnostics: monthly circular blocks of 12 for R&D; issuer resampling within one year for forecast errors. These intervals do not remove exploratory selection, incomplete financial revisions or market-time dependence. Positive forecast MAE differences mean worse errors.",
+    "zh-CN": "回溯配对诊断：研发按 12 个月循环区块，预测误差在同一年内重采样公司。区间不能消除探索选择、不完整财报版本或市场时间依赖；预测 MAE 差值为正表示误差更大。"
+  },
+  "scale_slices": [
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 0,
+      "n": 2,
+      "mae_difference": -0.5783811411616839
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 1,
+      "n": 1398,
+      "mae_difference": 0.37512181797633987
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 2,
+      "n": 1399,
+      "mae_difference": 0.23001558919427248
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 3,
+      "n": 1398,
+      "mae_difference": 0.14291320363122095
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 4,
+      "n": 1399,
+      "mae_difference": 0.5398379779832579
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 0,
+      "n": 2,
+      "mae_difference": -0.5331329013732198
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 1,
+      "n": 1398,
+      "mae_difference": 0.03739065424147109
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 2,
+      "n": 1399,
+      "mae_difference": 0.011347811488731787
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 3,
+      "n": 1398,
+      "mae_difference": 0.01174593572071623
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 4,
+      "n": 1399,
+      "mae_difference": 0.04813726216256644
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 0,
+      "n": 2,
+      "mae_difference": 0.5902693540506109
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 1,
+      "n": 1398,
+      "mae_difference": 0.23396845153944856
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 2,
+      "n": 1399,
+      "mae_difference": 0.07978997027517877
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 3,
+      "n": 1398,
+      "mae_difference": 0.17299518894896715
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 4,
+      "n": 1399,
+      "mae_difference": 0.48039184181263717
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 0,
+      "n": 2,
+      "mae_difference": 0.49695849712136686
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 1,
+      "n": 1398,
+      "mae_difference": 0.019527660191542395
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 2,
+      "n": 1399,
+      "mae_difference": -0.0075752910908485575
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 3,
+      "n": 1398,
+      "mae_difference": 0.0004068189822938026
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 4,
+      "n": 1399,
+      "mae_difference": 0.07438007346382326
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 0,
+      "n": 2,
+      "mae_difference": -0.5367631083376909
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 1,
+      "n": 1434,
+      "mae_difference": 0.3621271035828948
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 2,
+      "n": 1435,
+      "mae_difference": 0.21986773869263862
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 3,
+      "n": 1435,
+      "mae_difference": 0.14111425732370217
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 4,
+      "n": 1435,
+      "mae_difference": 0.5433461974604802
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 0,
+      "n": 2,
+      "mae_difference": -0.5426921527412655
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 1,
+      "n": 1434,
+      "mae_difference": 0.04080804435191158
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 2,
+      "n": 1435,
+      "mae_difference": 0.008740076528498284
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 3,
+      "n": 1435,
+      "mae_difference": 0.00897730735969748
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 4,
+      "n": 1435,
+      "mae_difference": 0.029532201561885803
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 0,
+      "n": 2,
+      "mae_difference": 0.35058557102007926
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 1,
+      "n": 1434,
+      "mae_difference": 0.233814849748816
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 2,
+      "n": 1435,
+      "mae_difference": 0.13631670928713255
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 3,
+      "n": 1435,
+      "mae_difference": 0.2360362687984095
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 4,
+      "n": 1435,
+      "mae_difference": 0.604520230145844
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 0,
+      "n": 2,
+      "mae_difference": 0.5019851617131065
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 1,
+      "n": 1434,
+      "mae_difference": 0.01272956514193337
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 2,
+      "n": 1435,
+      "mae_difference": 0.018965848487573506
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 3,
+      "n": 1435,
+      "mae_difference": 0.0472848094167289
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 4,
+      "n": 1435,
+      "mae_difference": 0.14485395689557604
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 0,
+      "n": 1,
+      "mae_difference": -0.1292003992452747
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 1,
+      "n": 1480,
+      "mae_difference": 0.354550090527532
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 2,
+      "n": 1481,
+      "mae_difference": 0.234564809946821
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 3,
+      "n": 1480,
+      "mae_difference": 0.1463509261661471
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "current_revenue_quartile": 4,
+      "n": 1481,
+      "mae_difference": 0.5705229990370712
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 0,
+      "n": 1,
+      "mae_difference": -0.527369363191438
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 1,
+      "n": 1480,
+      "mae_difference": 0.03732520826287736
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 2,
+      "n": 1481,
+      "mae_difference": 0.00568993442501226
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 3,
+      "n": 1480,
+      "mae_difference": 0.0034723955781365903
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "current_revenue_quartile": 4,
+      "n": 1481,
+      "mae_difference": 0.03625913001243912
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 0,
+      "n": 1,
+      "mae_difference": -0.036849020800826526
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 1,
+      "n": 1480,
+      "mae_difference": 0.2014139681438554
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 2,
+      "n": 1481,
+      "mae_difference": 0.11038302949761998
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 3,
+      "n": 1480,
+      "mae_difference": 0.26467942533742367
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "current_revenue_quartile": 4,
+      "n": 1481,
+      "mae_difference": 0.6971349827429889
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 0,
+      "n": 1,
+      "mae_difference": 0.04820308207023116
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 1,
+      "n": 1480,
+      "mae_difference": 0.028462401374175807
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 2,
+      "n": 1481,
+      "mae_difference": 0.018652207349505137
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 3,
+      "n": 1480,
+      "mae_difference": 0.0680607100060721
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "current_revenue_quartile": 4,
+      "n": 1481,
+      "mae_difference": 0.19730064088802857
+    }
+  ],
+  "calibration": [
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 1,
+      "n": 559,
+      "mean_forecast_transformed": 0.10891175763036355,
+      "mean_actual_transformed": 0.12630943905944067
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 2,
+      "n": 560,
+      "mean_forecast_transformed": 0.22934843728995316,
+      "mean_actual_transformed": 0.24930593844534046
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 3,
+      "n": 559,
+      "mean_forecast_transformed": 0.3387786554838687,
+      "mean_actual_transformed": 0.3491101697648841
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 4,
+      "n": 560,
+      "mean_forecast_transformed": 0.466905423039874,
+      "mean_actual_transformed": 0.4882585514315967
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 5,
+      "n": 560,
+      "mean_forecast_transformed": 0.6313392303936827,
+      "mean_actual_transformed": 0.6498941270766023
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 6,
+      "n": 559,
+      "mean_forecast_transformed": 0.8345285249408987,
+      "mean_actual_transformed": 0.8384017371796411
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 7,
+      "n": 560,
+      "mean_forecast_transformed": 1.0936465274258038,
+      "mean_actual_transformed": 1.0956176743235488
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 8,
+      "n": 559,
+      "mean_forecast_transformed": 1.4440484017978727,
+      "mean_actual_transformed": 1.4446161870633212
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 9,
+      "n": 560,
+      "mean_forecast_transformed": 2.033481549645055,
+      "mean_actual_transformed": 1.9944997307439272
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 10,
+      "n": 560,
+      "mean_forecast_transformed": 3.534792676604516,
+      "mean_actual_transformed": 3.5438239974346977
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 1,
+      "n": 559,
+      "mean_forecast_transformed": 0.32766419273790537,
+      "mean_actual_transformed": 0.28190992688409183
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 2,
+      "n": 560,
+      "mean_forecast_transformed": 0.5541820186314256,
+      "mean_actual_transformed": 0.4146726291926093
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 3,
+      "n": 559,
+      "mean_forecast_transformed": 0.6734693080422437,
+      "mean_actual_transformed": 0.5052193671614247
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 4,
+      "n": 560,
+      "mean_forecast_transformed": 0.7722179644982341,
+      "mean_actual_transformed": 0.5908612204329149
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 5,
+      "n": 560,
+      "mean_forecast_transformed": 0.8694986363133572,
+      "mean_actual_transformed": 0.7130372723140819
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 6,
+      "n": 559,
+      "mean_forecast_transformed": 0.9697241579712319,
+      "mean_actual_transformed": 0.8469890241941326
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 7,
+      "n": 560,
+      "mean_forecast_transformed": 1.0727093581667995,
+      "mean_actual_transformed": 0.9960973947616282
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 8,
+      "n": 559,
+      "mean_forecast_transformed": 1.2038014892146915,
+      "mean_actual_transformed": 1.2790247296740376
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 9,
+      "n": 560,
+      "mean_forecast_transformed": 1.437935589892366,
+      "mean_actual_transformed": 1.68803968382774
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 10,
+      "n": 560,
+      "mean_forecast_transformed": 2.9369386514726243,
+      "mean_actual_transformed": 3.46426256392828
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 1,
+      "n": 562,
+      "mean_forecast_transformed": 0.20474681390774208,
+      "mean_actual_transformed": 0.12697206183549062
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 2,
+      "n": 557,
+      "mean_forecast_transformed": 0.2937461091222198,
+      "mean_actual_transformed": 0.24910620596587918
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 3,
+      "n": 559,
+      "mean_forecast_transformed": 0.39521404668981996,
+      "mean_actual_transformed": 0.3519017513525741
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 4,
+      "n": 559,
+      "mean_forecast_transformed": 0.519558670429083,
+      "mean_actual_transformed": 0.48736742856498205
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 5,
+      "n": 561,
+      "mean_forecast_transformed": 0.6879008153118127,
+      "mean_actual_transformed": 0.6496722951493366
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 6,
+      "n": 559,
+      "mean_forecast_transformed": 0.8913084879544212,
+      "mean_actual_transformed": 0.8501864538340779
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 7,
+      "n": 559,
+      "mean_forecast_transformed": 1.1312351024214824,
+      "mean_actual_transformed": 1.0895141609197556
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 8,
+      "n": 560,
+      "mean_forecast_transformed": 1.4723394900560378,
+      "mean_actual_transformed": 1.44014594550757
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 9,
+      "n": 560,
+      "mean_forecast_transformed": 2.055520868940013,
+      "mean_actual_transformed": 1.996681314732892
+    },
+    {
+      "year": 2023,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 10,
+      "n": 560,
+      "mean_forecast_transformed": 3.4775882392197337,
+      "mean_actual_transformed": 3.538047496197374
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 1,
+      "n": 559,
+      "mean_forecast_transformed": -2.086764335409781,
+      "mean_actual_transformed": -0.8946780906062857
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 2,
+      "n": 560,
+      "mean_forecast_transformed": -0.38650499613555594,
+      "mean_actual_transformed": -0.26957046891793884
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 3,
+      "n": 559,
+      "mean_forecast_transformed": 0.13741618836085545,
+      "mean_actual_transformed": 0.010742135056447959
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 4,
+      "n": 560,
+      "mean_forecast_transformed": 0.3149337441247593,
+      "mean_actual_transformed": 0.17631671614747882
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 5,
+      "n": 560,
+      "mean_forecast_transformed": 0.5008621805165279,
+      "mean_actual_transformed": 0.3552554187726012
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 6,
+      "n": 559,
+      "mean_forecast_transformed": 0.7423300711810198,
+      "mean_actual_transformed": 0.5323692174379657
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 7,
+      "n": 560,
+      "mean_forecast_transformed": 1.0616904580022732,
+      "mean_actual_transformed": 0.8176402680764318
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 8,
+      "n": 559,
+      "mean_forecast_transformed": 1.5509733533348558,
+      "mean_actual_transformed": 1.299752490223955
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 9,
+      "n": 560,
+      "mean_forecast_transformed": 2.2683411915266958,
+      "mean_actual_transformed": 1.8013129312667924
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 10,
+      "n": 560,
+      "mean_forecast_transformed": 3.9183003672834795,
+      "mean_actual_transformed": 3.507288323328237
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 1,
+      "n": 559,
+      "mean_forecast_transformed": -0.4305654544470531,
+      "mean_actual_transformed": -0.9230191284753538
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 2,
+      "n": 560,
+      "mean_forecast_transformed": 0.25552428231539576,
+      "mean_actual_transformed": -0.1953329694983213
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 3,
+      "n": 559,
+      "mean_forecast_transformed": 0.4635573374256558,
+      "mean_actual_transformed": 0.0569056187210898
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 4,
+      "n": 560,
+      "mean_forecast_transformed": 0.5605793585049251,
+      "mean_actual_transformed": 0.33950440968429796
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 5,
+      "n": 560,
+      "mean_forecast_transformed": 0.6399518801097488,
+      "mean_actual_transformed": 0.5148096673369705
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 6,
+      "n": 559,
+      "mean_forecast_transformed": 0.7184546305982452,
+      "mean_actual_transformed": 0.6824316810783561
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 7,
+      "n": 560,
+      "mean_forecast_transformed": 0.8124831096180665,
+      "mean_actual_transformed": 0.816894992874009
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 8,
+      "n": 559,
+      "mean_forecast_transformed": 0.932416332242255,
+      "mean_actual_transformed": 1.0907666973002046
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 9,
+      "n": 560,
+      "mean_forecast_transformed": 1.1713854763166263,
+      "mean_actual_transformed": 1.632523234660005
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 10,
+      "n": 560,
+      "mean_forecast_transformed": 2.830992970931723,
+      "mean_actual_transformed": 3.3208713426696277
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 1,
+      "n": 559,
+      "mean_forecast_transformed": -0.7042739217524452,
+      "mean_actual_transformed": -0.9500450469817684
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 2,
+      "n": 560,
+      "mean_forecast_transformed": -0.23818551570709262,
+      "mean_actual_transformed": -0.19989128912509072
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 3,
+      "n": 560,
+      "mean_forecast_transformed": 0.025306391366133798,
+      "mean_actual_transformed": -0.04469142830305045
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 4,
+      "n": 559,
+      "mean_forecast_transformed": 0.2521464523987608,
+      "mean_actual_transformed": 0.1416205792044878
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 5,
+      "n": 560,
+      "mean_forecast_transformed": 0.43624574531401905,
+      "mean_actual_transformed": 0.37482865870269955
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 6,
+      "n": 559,
+      "mean_forecast_transformed": 0.6390991550012224,
+      "mean_actual_transformed": 0.5862825233086405
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 7,
+      "n": 560,
+      "mean_forecast_transformed": 0.8856554013277803,
+      "mean_actual_transformed": 0.8144335510349511
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 8,
+      "n": 559,
+      "mean_forecast_transformed": 1.3446663215036683,
+      "mean_actual_transformed": 1.2607379398458316
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 9,
+      "n": 560,
+      "mean_forecast_transformed": 1.9606155853186336,
+      "mean_actual_transformed": 1.832580808108345
+    },
+    {
+      "year": 2023,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 10,
+      "n": 560,
+      "mean_forecast_transformed": 3.3878359444514095,
+      "mean_actual_transformed": 3.5207340918536123
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 1,
+      "n": 574,
+      "mean_forecast_transformed": 0.10609641629710989,
+      "mean_actual_transformed": 0.11848671027670143
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 2,
+      "n": 574,
+      "mean_forecast_transformed": 0.22252254293492246,
+      "mean_actual_transformed": 0.23156904906714745
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 3,
+      "n": 574,
+      "mean_forecast_transformed": 0.32919969667186894,
+      "mean_actual_transformed": 0.33962844798350567
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 4,
+      "n": 574,
+      "mean_forecast_transformed": 0.4544424527068064,
+      "mean_actual_transformed": 0.4685634288876752
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 5,
+      "n": 574,
+      "mean_forecast_transformed": 0.6152847077622012,
+      "mean_actual_transformed": 0.6130146229679562
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 6,
+      "n": 574,
+      "mean_forecast_transformed": 0.8121922153069202,
+      "mean_actual_transformed": 0.8176011775655363
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 7,
+      "n": 574,
+      "mean_forecast_transformed": 1.0627917522133277,
+      "mean_actual_transformed": 1.0707466695325407
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 8,
+      "n": 574,
+      "mean_forecast_transformed": 1.4132015855003965,
+      "mean_actual_transformed": 1.4100079559669008
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 9,
+      "n": 574,
+      "mean_forecast_transformed": 1.9859807137319714,
+      "mean_actual_transformed": 1.956005472586118
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 10,
+      "n": 575,
+      "mean_forecast_transformed": 3.5119843634023735,
+      "mean_actual_transformed": 3.4908052298009613
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 1,
+      "n": 574,
+      "mean_forecast_transformed": 0.29920249787867154,
+      "mean_actual_transformed": 0.25416325556646213
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 2,
+      "n": 574,
+      "mean_forecast_transformed": 0.5209687943442682,
+      "mean_actual_transformed": 0.3910077324744326
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 3,
+      "n": 574,
+      "mean_forecast_transformed": 0.6354898389322344,
+      "mean_actual_transformed": 0.4971421641291602
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 4,
+      "n": 574,
+      "mean_forecast_transformed": 0.7378609519208762,
+      "mean_actual_transformed": 0.5896996339544962
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 5,
+      "n": 574,
+      "mean_forecast_transformed": 0.8353405978268976,
+      "mean_actual_transformed": 0.6794905217361124
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 6,
+      "n": 574,
+      "mean_forecast_transformed": 0.9314264861818035,
+      "mean_actual_transformed": 0.836072661226577
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 7,
+      "n": 574,
+      "mean_forecast_transformed": 1.041434805385756,
+      "mean_actual_transformed": 0.9793342535832752
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 8,
+      "n": 574,
+      "mean_forecast_transformed": 1.1715605822058492,
+      "mean_actual_transformed": 1.2302578676264735
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 9,
+      "n": 574,
+      "mean_forecast_transformed": 1.3916395268487582,
+      "mean_actual_transformed": 1.653002663438928
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 10,
+      "n": 575,
+      "mean_forecast_transformed": 2.8897179338331775,
+      "mean_actual_transformed": 3.4064050495406946
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 1,
+      "n": 574,
+      "mean_forecast_transformed": 0.2029449330960832,
+      "mean_actual_transformed": 0.12008880259686625
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 2,
+      "n": 575,
+      "mean_forecast_transformed": 0.2892209689513497,
+      "mean_actual_transformed": 0.2313381383968809
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 3,
+      "n": 573,
+      "mean_forecast_transformed": 0.3815522809719332,
+      "mean_actual_transformed": 0.33842148037313985
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 4,
+      "n": 573,
+      "mean_forecast_transformed": 0.5029922525608103,
+      "mean_actual_transformed": 0.4688680781101784
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 5,
+      "n": 574,
+      "mean_forecast_transformed": 0.6600741297525812,
+      "mean_actual_transformed": 0.6211230682108428
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 6,
+      "n": 576,
+      "mean_forecast_transformed": 0.855245765298605,
+      "mean_actual_transformed": 0.8101784257951172
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 7,
+      "n": 573,
+      "mean_forecast_transformed": 1.0854740869936519,
+      "mean_actual_transformed": 1.0761614563269484
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 8,
+      "n": 574,
+      "mean_forecast_transformed": 1.4222711987196361,
+      "mean_actual_transformed": 1.4000588056441983
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 9,
+      "n": 574,
+      "mean_forecast_transformed": 1.9780515430280972,
+      "mean_actual_transformed": 1.9559202202787795
+    },
+    {
+      "year": 2024,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 10,
+      "n": 575,
+      "mean_forecast_transformed": 3.4326568061353986,
+      "mean_actual_transformed": 3.494319490581608
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 1,
+      "n": 574,
+      "mean_forecast_transformed": -1.987578231523135,
+      "mean_actual_transformed": -1.30318836242829
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 2,
+      "n": 574,
+      "mean_forecast_transformed": -0.46571843785852807,
+      "mean_actual_transformed": -0.41736903221373217
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 3,
+      "n": 574,
+      "mean_forecast_transformed": 0.07971606520333056,
+      "mean_actual_transformed": -0.07850280078101028
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 4,
+      "n": 574,
+      "mean_forecast_transformed": 0.25697299438026605,
+      "mean_actual_transformed": 0.12400952143982705
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 5,
+      "n": 574,
+      "mean_forecast_transformed": 0.43333284999143856,
+      "mean_actual_transformed": 0.23727794517270526
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 6,
+      "n": 574,
+      "mean_forecast_transformed": 0.6532039313340376,
+      "mean_actual_transformed": 0.38928409583722623
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 7,
+      "n": 574,
+      "mean_forecast_transformed": 0.9674367187495911,
+      "mean_actual_transformed": 0.7227357624205822
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 8,
+      "n": 574,
+      "mean_forecast_transformed": 1.4732805085654956,
+      "mean_actual_transformed": 1.1563888497290553
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 9,
+      "n": 574,
+      "mean_forecast_transformed": 2.1932966996866523,
+      "mean_actual_transformed": 1.817450748482152
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 10,
+      "n": 575,
+      "mean_forecast_transformed": 3.844501590984807,
+      "mean_actual_transformed": 3.372299675032821
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 1,
+      "n": 574,
+      "mean_forecast_transformed": -0.4956680094489759,
+      "mean_actual_transformed": -1.2019887242743859
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 2,
+      "n": 574,
+      "mean_forecast_transformed": 0.19945903525648306,
+      "mean_actual_transformed": -0.4698061969885632
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 3,
+      "n": 574,
+      "mean_forecast_transformed": 0.40498418773210726,
+      "mean_actual_transformed": -0.10835550976320824
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 4,
+      "n": 574,
+      "mean_forecast_transformed": 0.499963364971927,
+      "mean_actual_transformed": 0.16847090319596209
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 5,
+      "n": 574,
+      "mean_forecast_transformed": 0.5782664503609359,
+      "mean_actual_transformed": 0.43624182365792435
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 6,
+      "n": 574,
+      "mean_forecast_transformed": 0.6557132308956045,
+      "mean_actual_transformed": 0.5763689534803773
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 7,
+      "n": 574,
+      "mean_forecast_transformed": 0.7426327146409535,
+      "mean_actual_transformed": 0.7176418954662025
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 8,
+      "n": 574,
+      "mean_forecast_transformed": 0.8623400310111318,
+      "mean_actual_transformed": 1.036847787355514
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 9,
+      "n": 574,
+      "mean_forecast_transformed": 1.086608721066287,
+      "mean_actual_transformed": 1.6464994697176856
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 10,
+      "n": 575,
+      "mean_forecast_transformed": 2.6542405986512807,
+      "mean_actual_transformed": 3.218733537668505
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 1,
+      "n": 572,
+      "mean_forecast_transformed": -0.6879936789611837,
+      "mean_actual_transformed": -1.3149986289282352
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 2,
+      "n": 573,
+      "mean_forecast_transformed": -0.2557477397262322,
+      "mean_actual_transformed": -0.39730895028646673
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 3,
+      "n": 576,
+      "mean_forecast_transformed": -0.01947186800367086,
+      "mean_actual_transformed": -0.11905717509270233
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 4,
+      "n": 576,
+      "mean_forecast_transformed": 0.1714564987277198,
+      "mean_actual_transformed": 0.07119411848346918
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 5,
+      "n": 568,
+      "mean_forecast_transformed": 0.33845320826684927,
+      "mean_actual_transformed": 0.2261970123231525
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 6,
+      "n": 575,
+      "mean_forecast_transformed": 0.5345095430768054,
+      "mean_actual_transformed": 0.45655388509371625
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 7,
+      "n": 587,
+      "mean_forecast_transformed": 0.7828921218746971,
+      "mean_actual_transformed": 0.7323545510556494
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 8,
+      "n": 565,
+      "mean_forecast_transformed": 1.2470555982758513,
+      "mean_actual_transformed": 1.1561360509526257
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 9,
+      "n": 574,
+      "mean_forecast_transformed": 1.8614963095777957,
+      "mean_actual_transformed": 1.7865728747140495
+    },
+    {
+      "year": 2024,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 10,
+      "n": 575,
+      "mean_forecast_transformed": 3.3436941699023395,
+      "mean_actual_transformed": 3.420661308548996
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 1,
+      "n": 592,
+      "mean_forecast_transformed": 0.10608047405312927,
+      "mean_actual_transformed": 0.1261337927174019
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 2,
+      "n": 592,
+      "mean_forecast_transformed": 0.22403574918937724,
+      "mean_actual_transformed": 0.23438457812170546
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 3,
+      "n": 592,
+      "mean_forecast_transformed": 0.3222819922434065,
+      "mean_actual_transformed": 0.3343548044040263
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 4,
+      "n": 593,
+      "mean_forecast_transformed": 0.447320257505675,
+      "mean_actual_transformed": 0.46293633696968806
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 5,
+      "n": 592,
+      "mean_forecast_transformed": 0.5999066364085224,
+      "mean_actual_transformed": 0.6238794503303238
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 6,
+      "n": 592,
+      "mean_forecast_transformed": 0.7873291617709343,
+      "mean_actual_transformed": 0.8106515009838101
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 7,
+      "n": 593,
+      "mean_forecast_transformed": 1.0390122890444056,
+      "mean_actual_transformed": 1.0562533712120339
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 8,
+      "n": 592,
+      "mean_forecast_transformed": 1.3871286092041855,
+      "mean_actual_transformed": 1.3992125445286676
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 9,
+      "n": 592,
+      "mean_forecast_transformed": 1.9423154109095513,
+      "mean_actual_transformed": 1.955879001136065
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "persistence",
+      "forecast_decile": 10,
+      "n": 593,
+      "mean_forecast_transformed": 3.477931677949621,
+      "mean_actual_transformed": 3.4632864261779623
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 1,
+      "n": 592,
+      "mean_forecast_transformed": 0.30053542626699625,
+      "mean_actual_transformed": 0.28649334781815666
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 2,
+      "n": 592,
+      "mean_forecast_transformed": 0.5132744351713101,
+      "mean_actual_transformed": 0.3979851114416056
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 3,
+      "n": 592,
+      "mean_forecast_transformed": 0.6318487030619934,
+      "mean_actual_transformed": 0.480843411898957
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 4,
+      "n": 593,
+      "mean_forecast_transformed": 0.7302293605976599,
+      "mean_actual_transformed": 0.6100521433931776
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 5,
+      "n": 592,
+      "mean_forecast_transformed": 0.8280139112644862,
+      "mean_actual_transformed": 0.7190459575899923
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 6,
+      "n": 592,
+      "mean_forecast_transformed": 0.9248418475376898,
+      "mean_actual_transformed": 0.7980855628349467
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 7,
+      "n": 593,
+      "mean_forecast_transformed": 1.03282143371922,
+      "mean_actual_transformed": 0.9777611070615088
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 8,
+      "n": 592,
+      "mean_forecast_transformed": 1.1555772150701598,
+      "mean_actual_transformed": 1.2009370303558993
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 9,
+      "n": 592,
+      "mean_forecast_transformed": 1.3719174989628034,
+      "mean_actual_transformed": 1.6322777258286807
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "ridge",
+      "forecast_decile": 10,
+      "n": 593,
+      "mean_forecast_transformed": 2.8310358058167,
+      "mean_actual_transformed": 3.363542975771149
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 1,
+      "n": 583,
+      "mean_forecast_transformed": 0.20020546890654653,
+      "mean_actual_transformed": 0.12137799087441342
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 2,
+      "n": 600,
+      "mean_forecast_transformed": 0.28553947878380614,
+      "mean_actual_transformed": 0.2398788168015785
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 3,
+      "n": 593,
+      "mean_forecast_transformed": 0.37167025004430326,
+      "mean_actual_transformed": 0.3329067075160547
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 4,
+      "n": 593,
+      "mean_forecast_transformed": 0.49119067227257446,
+      "mean_actual_transformed": 0.46514167143726476
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 5,
+      "n": 592,
+      "mean_forecast_transformed": 0.6347839138596445,
+      "mean_actual_transformed": 0.6198553858154285
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 6,
+      "n": 591,
+      "mean_forecast_transformed": 0.8206764257902219,
+      "mean_actual_transformed": 0.8164162683042294
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 7,
+      "n": 593,
+      "mean_forecast_transformed": 1.0547235496530645,
+      "mean_actual_transformed": 1.052056765568252
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 8,
+      "n": 593,
+      "mean_forecast_transformed": 1.3829550505890613,
+      "mean_actual_transformed": 1.4064874812914276
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 9,
+      "n": 592,
+      "mean_forecast_transformed": 1.9172495428372074,
+      "mean_actual_transformed": 1.9451568686356133
+    },
+    {
+      "year": 2025,
+      "target": "revenue",
+      "model": "xgboost",
+      "forecast_decile": 10,
+      "n": 593,
+      "mean_forecast_transformed": 3.378234973756718,
+      "mean_actual_transformed": 3.4647393432716056
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 1,
+      "n": 592,
+      "mean_forecast_transformed": -2.2164267479002846,
+      "mean_actual_transformed": -1.4055243189233162
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 2,
+      "n": 592,
+      "mean_forecast_transformed": -0.6968598781722054,
+      "mean_actual_transformed": -0.46274439885008556
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 3,
+      "n": 592,
+      "mean_forecast_transformed": -0.07793408311185349,
+      "mean_actual_transformed": -0.12181284664681381
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 4,
+      "n": 593,
+      "mean_forecast_transformed": 0.17263222307465004,
+      "mean_actual_transformed": 0.069961427344288
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 5,
+      "n": 592,
+      "mean_forecast_transformed": 0.3566278075559147,
+      "mean_actual_transformed": 0.2529210762946359
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 6,
+      "n": 592,
+      "mean_forecast_transformed": 0.569179643885644,
+      "mean_actual_transformed": 0.4625392893010202
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 7,
+      "n": 593,
+      "mean_forecast_transformed": 0.8748570838822921,
+      "mean_actual_transformed": 0.7267656623601529
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 8,
+      "n": 592,
+      "mean_forecast_transformed": 1.3311624959079578,
+      "mean_actual_transformed": 1.1517536447096213
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 9,
+      "n": 592,
+      "mean_forecast_transformed": 2.0931328774185984,
+      "mean_actual_transformed": 1.927027353800316
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "persistence",
+      "forecast_decile": 10,
+      "n": 593,
+      "mean_forecast_transformed": 3.7705342040154983,
+      "mean_actual_transformed": 3.6380443927588835
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 1,
+      "n": 592,
+      "mean_forecast_transformed": -0.7330168092955357,
+      "mean_actual_transformed": -1.3599639041886578
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 2,
+      "n": 592,
+      "mean_forecast_transformed": 0.0220004165554747,
+      "mean_actual_transformed": -0.4953685607409422
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 3,
+      "n": 592,
+      "mean_forecast_transformed": 0.28543064077552455,
+      "mean_actual_transformed": -0.09575440709338653
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 4,
+      "n": 593,
+      "mean_forecast_transformed": 0.41255476590206375,
+      "mean_actual_transformed": 0.14673075266899882
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 5,
+      "n": 592,
+      "mean_forecast_transformed": 0.5008888708905669,
+      "mean_actual_transformed": 0.37335537480298286
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 6,
+      "n": 592,
+      "mean_forecast_transformed": 0.5896830481270228,
+      "mean_actual_transformed": 0.6322410719706196
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 7,
+      "n": 593,
+      "mean_forecast_transformed": 0.6836841530434743,
+      "mean_actual_transformed": 0.842200082557245
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 8,
+      "n": 592,
+      "mean_forecast_transformed": 0.8125239538342427,
+      "mean_actual_transformed": 1.113768825827374
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 9,
+      "n": 592,
+      "mean_forecast_transformed": 1.0332032831800397,
+      "mean_actual_transformed": 1.6406858547860521
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "ridge",
+      "forecast_decile": 10,
+      "n": 593,
+      "mean_forecast_transformed": 2.542562117347411,
+      "mean_actual_transformed": 3.4410442935072845
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 1,
+      "n": 592,
+      "mean_forecast_transformed": -0.8960352025523379,
+      "mean_actual_transformed": -1.423151704733544
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 2,
+      "n": 593,
+      "mean_forecast_transformed": -0.4190848264183604,
+      "mean_actual_transformed": -0.43827721795827285
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 3,
+      "n": 592,
+      "mean_forecast_transformed": -0.1403120206417264,
+      "mean_actual_transformed": -0.1279826028735368
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 4,
+      "n": 590,
+      "mean_forecast_transformed": 0.038696588534305375,
+      "mean_actual_transformed": 0.042713317600623135
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 5,
+      "n": 594,
+      "mean_forecast_transformed": 0.2458438692921741,
+      "mean_actual_transformed": 0.2317199286355477
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 6,
+      "n": 594,
+      "mean_forecast_transformed": 0.443252624385686,
+      "mean_actual_transformed": 0.4531069778496777
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 7,
+      "n": 591,
+      "mean_forecast_transformed": 0.6821538386409456,
+      "mean_actual_transformed": 0.7595669527188982
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 8,
+      "n": 592,
+      "mean_forecast_transformed": 1.0686922213314354,
+      "mean_actual_transformed": 1.1776929387194741
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 9,
+      "n": 592,
+      "mean_forecast_transformed": 1.7545461449268702,
+      "mean_actual_transformed": 1.8974366984913467
+    },
+    {
+      "year": 2025,
+      "target": "net_profit",
+      "model": "xgboost",
+      "forecast_decile": 10,
+      "n": 593,
+      "mean_forecast_transformed": 3.2298570212217905,
+      "mean_actual_transformed": 3.667256554375846
+    }
+  ]
+}

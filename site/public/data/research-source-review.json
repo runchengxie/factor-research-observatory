@@ -2,9 +2,16 @@
   "schema_version": "observatory.source_review.v1",
   "studies": [
     {
+      "navigation_sha256": "4a47f1615e0738e15418d01c9e51f8d91ae02c4e34573e2e48c81781186a0f9f",
+      "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+          "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        }
+      ],
       "study_id": "pb-roe",
       "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "765b6e588d74b20b9047842aa9ad7b40b366191ed8d1003cd76b1ff85388fdcb",
+      "catalog_sha256": "8dc85d75ff016043e52bfa0b8cd47d5f978f19f338ec12f2f41b9ad720e97b2e",
       "exploration_sha256": "1d1d84321530487696e2814136e89f9a1a7b03167fd617be5ddac480ff855de6",
       "sources": [
         {
@@ -14,9 +21,16 @@
       ]
     },
     {
+      "navigation_sha256": "1bcfc9d23a29893018d4e8f9885936cf7c841301ff0f5e6ea10acd1501555d05",
+      "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+          "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        }
+      ],
       "study_id": "rd-investment",
       "source_revision": "1de94d25fd5f4c06dadbfed751a8270121d91738",
-      "catalog_sha256": "90c095d9d5549092613120a487f8ff729d14bed1c04f5ea0e86c181a6a0ae5d9",
+      "catalog_sha256": "2ead3ae3ad7f1d7319ed0d17d55f9386948b28bab6d47a6a1d34bc27f00027f6",
       "exploration_sha256": "99b11ae4a126e1d63f310a6b3a73f663f6fafff6ff68b05939d5780c4e92ef6a",
       "sources": [
         {
@@ -30,9 +44,16 @@
       ]
     },
     {
+      "navigation_sha256": "6011f0c4970b30c7f6ded8307fcec05c7761e4c836e02f37b5cef8f885953445",
+      "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+          "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        }
+      ],
       "study_id": "fundamental-state-forecasting",
       "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "65b38670b81b755db7ae5ac59f56976a8c74be29f8ca7e8c174d54312e3ce309",
+      "catalog_sha256": "f29441fc6fd92c653e4c6cf8f03d55c374d0e08cd5e53b34b4ca144d922d3434",
       "exploration_sha256": "368bdf294ef393716f0a4915ff13ddc05bafd18ca8e9eff9dba05b544819beb3",
       "sources": [
         {
@@ -54,9 +75,16 @@
       ]
     },
     {
+      "navigation_sha256": "b2e075e4b30ac4ec6b53f0ff71433b5d52670936fcda075a2a25762ee80aaf1e",
+      "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+          "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        }
+      ],
       "study_id": "fundamental-family-shadow",
       "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "fa1350136a89a04408921913cd186fdc09d8d24097f416c382a10c63f47c4d17",
+      "catalog_sha256": "2299b6c19f72774c476177e10e81b3ebb62a93a8a1c0ef31948f209f8e133974",
       "exploration_sha256": "e8c876b4cd076fc503397588138644dacf52bdfb443674ff00277e77c74eac1c",
       "sources": [
         {
@@ -66,9 +94,16 @@
       ]
     },
     {
+      "navigation_sha256": "108990c89b2fac39991e334b0f768c9b33110166911416a241e456229cbb4da6",
+      "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+          "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        }
+      ],
       "study_id": "cashflow-indices",
       "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "d05dbfdfb3a27f431364c504a713081eadf780eb984ea7f6dba1b9240dfe94a3",
+      "catalog_sha256": "51a42d24f00d0006649f649efee8ddad40d09ebb3312097a3f9ebb42662e62d9",
       "exploration_sha256": "fb20a5f5aa50ee3e545e2451a9db7f02a4a7d910ca49e61f123ca55a1deae45e",
       "sources": [
         {
@@ -86,9 +121,16 @@
       ]
     },
     {
+      "navigation_sha256": "4b8b29f37671a7bcf47664c5e9f5215dd2ac9d804873fb073bd84eb85db5d8e2",
+      "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+          "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        }
+      ],
       "study_id": "hk-fundamental-archive",
       "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "0762e7f6dea648950829dca1808ffab759b6ff70e72c53c1f55a318165e53ebe",
+      "catalog_sha256": "3ca99b5ea2feeb670bb5f97751aa7122139dc9f1d7b4bd9ce577f120ca695a04",
       "exploration_sha256": "0921fbb4dceebf98c2e5132248be9bb857f905888b5681a6b2ce08abb61069b2",
       "sources": [
         {
@@ -106,9 +148,16 @@
       ]
     },
     {
+      "navigation_sha256": "c651c5f342a28732b4a7c2699e14382b0742db8daa979dc99079dff1b04e0904",
+      "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+          "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        }
+      ],
       "study_id": "employee-compensation",
       "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "1cd0f9d46a267e07cc20af3f4cc311e4a2b54847992b0f40859ff890df0d5eea",
+      "catalog_sha256": "6dbb41bd526b8ab09c192d1c75216f11e40954d1aea0ca39fbdc089411e5c102",
       "exploration_sha256": "941bdd50f02d0f4fa3388d17c24798a3758947d2475ee6999263c7b59c1071b9",
       "sources": [
         {
@@ -118,9 +167,16 @@
       ]
     },
     {
+      "navigation_sha256": "f03c40ae1da962b992782357f3e84e9e79570148448fc843a43bfbaea5cad973",
+      "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
+          "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        }
+      ],
       "study_id": "absolute-level-forecast",
       "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "91554e200e7c43f42850cd02110896abbc1b0042a4514521707d626ef76c8120",
+      "catalog_sha256": "3c768fe9c1e4d16b4b23829b19b5e7572fabd0a945451c746435b0d79b2fc26c",
       "exploration_sha256": "9fa25ce32335e769542c3f1eec1e9836bcd58d6d0ca86a5d5fd369b78b4cc123",
       "sources": [
         {
