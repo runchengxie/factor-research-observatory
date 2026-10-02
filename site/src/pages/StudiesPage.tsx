@@ -44,7 +44,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
             <span className={`study-status study-status-${study.status}`}>{study.status_label}</span>
             <small>{study.family}</small><h2>{study.title}</h2><p>{copy.studyBriefs[study.id] ?? study.summary}</p><SourceReviewWarning study={study} />
             <p className="study-card-scope">{study.evidence_summary?.sample[locale] ?? study.period}</p>
-            <p className="study-card-gap">{copy.researchHub.gap}: {study.limits[0]}</p>
+            <p className="study-card-gap">{copy.researchHub.gap}{english ? ': ' : '：'}{study.limits[0]}</p>
             <div className="study-taxonomy" aria-label={copy.studies.studyClassifications}>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div>
             {study.exploration_counts && <p className="study-exploration-preview">{study.exploration_counts.steps} {copy.studyExploration.steps} · {study.exploration_counts.charts} {copy.studyExploration.charts}</p>}
             <span className="study-link">{english ? 'Read study →' : '阅读研究 →'}</span>
@@ -58,7 +58,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
         <span className={`study-status study-status-${study.status}`}>{study.status_label}</span>
         <small>{study.family}</small><h2>{study.title}</h2><p>{copy.studyBriefs[study.id] ?? study.summary}</p><SourceReviewWarning study={study} />
         <p className="study-card-scope">{study.evidence_summary?.sample[locale] ?? study.period}</p>
-        <p className="study-card-gap">{copy.researchHub.gap}: {study.limits[0]}</p>
+        <p className="study-card-gap">{copy.researchHub.gap}{english ? ': ' : '：'}{study.limits[0]}</p>
         {study.method || study.market || study.evidence_stage ? <div className="study-taxonomy" aria-label={copy.studies.studyClassifications}>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div> : null}
         {study.exploration_counts && <p className="study-exploration-preview">{study.exploration_counts.steps} {copy.studyExploration.steps} · {study.exploration_counts.charts} {copy.studyExploration.charts}</p>}
             <span className="study-link">{english ? 'Read study →' : '阅读研究 →'}</span>
