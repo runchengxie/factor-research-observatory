@@ -136,21 +136,58 @@ test('R&D study shows corrected PIT evidence and an accessible public method not
   await expect(page.getByText('TTM R&D expense divided by equity market capitalization', { exact: false })).toBeVisible()
   await expect(page.getByText(/77 valid 20-day and 66 valid 220-day/).first()).toBeVisible()
   await expect(page.locator('.factor-table tbody tr').first()).toContainText('4.85%')
-  await expect(page.locator('.annual-table')).toHaveCount(0)
+  await expect(page.getByRole('heading', { name: 'Annual replay by year' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Separate historical extension' })).toBeVisible()
+  await expect(page.getByRole('table', { name: 'Yearly factor evidence' })).toContainText('2019')
+  await expect(page.getByRole('table', { name: 'Yearly factor evidence' })).toContainText('Insufficient cross-section')
+  await expect(page.getByText(/retrospective extension.*not part of the corrected current PIT run/i)).toBeVisible()
   await page.getByRole('link', { name: 'Public methodology note' }).click()
   await expect(page.getByRole('heading', { name: 'R&D investment relative to valuation' })).toBeVisible()
   await expect(page.getByText(/77 valid monthly cross-sections/)).toBeVisible()
   await expect(page.getByText(/No frozen holdout metrics have been produced/)).toBeVisible()
 })
 
-test('R&D legacy annual snapshot is not requested by the current study page', async ({ page }) => {
+test('R&D yearly evidence is loaded only on its detail route', async ({ page }) => {
   const requests: string[] = []
   page.on('request', (request) => {
     if (request.url().includes('/data/')) requests.push(new URL(request.url()).pathname.split('/').pop() ?? '')
   })
   await page.goto('studies/rd-investment')
   await expect(page.getByRole('heading', { name: 'R&D Investment Relative to Valuation: Signal or Size Exposure?' })).toBeVisible()
-  expect(requests).toEqual(['research-studies.json'])
+  await expect(page.getByRole('heading', { name: 'Annual replay by year' })).toBeVisible()
+  expect(requests).toEqual(['research-studies.json', 'rd-investment-annual.json'])
+})
+
+test('R&D annual evidence controls and boundary notes are localized in Chinese', async ({ page }) => {
+  await page.goto('studies/rd-investment')
+  await page.getByRole('button', { name: 'Switch to 中文' }).click()
+  await expect(page.getByRole('heading', { name: '逐年因子表现' })).toBeVisible()
+  await expect(page.getByLabel('因子变体')).toBeVisible()
+  await expect(page.getByLabel('预测窗口')).toBeVisible()
+  await expect(page.getByRole('heading', { name: '独立的历史扩展' })).toBeVisible()
+  await expect(page.getByRole('table', { name: '逐年因子证据' })).toContainText('回溯重建')
+  await expect(page.getByText(/不属于当前修正后的 PIT 回放结果/)).toBeVisible()
+})
+
+test('R&D annual chart preserves unavailable years and the study survives an optional evidence load failure', async ({ page }) => {
+  await page.goto('studies/rd-investment')
+  await page.getByLabel('Forward label').selectOption('fwd220')
+  await expect(page.getByRole('table', { name: 'Yearly factor evidence' }).getByRole('row', { name: /2026/ })).toContainText('Labels not mature')
+  await page.route('**/data/rd-investment-annual.json', (route) => route.fulfill({ status: 503, body: 'unavailable' }))
+  await page.reload()
+  await expect(page.getByRole('heading', { name: 'What was measured' })).toBeVisible()
+  await expect(page.getByText('Yearly evidence is temporarily unavailable.')).toBeVisible()
+})
+
+test('R&D annual evidence remains readable on a phone-sized viewport', async ({ page }) => {
+  const runtimeErrors: string[] = []
+  page.on('pageerror', (error) => runtimeErrors.push(error.message))
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('studies/rd-investment')
+  await expect(page.getByRole('heading', { name: 'Annual replay by year' })).toBeVisible()
+  await expect(page.getByRole('img', { name: 'Annual Rank IC by formation year' })).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true)
+  expect(runtimeErrors).toEqual([])
 })
 
 test('R&D method note links to the fixed-cost diagnostic and states its limits', async ({ page }) => {
@@ -334,5 +371,5 @@ test('routes request only the public data snapshots they need', async ({ page })
   dataResponses.length = 0
   await page.goto('studies/rd-investment')
   await expect(page.getByRole('heading', { name: 'R&D Investment Relative to Valuation: Signal or Size Exposure?' })).toBeVisible()
-  expect(dataResponses.map((response) => response.name)).toEqual(['research-studies.json'])
+  expect(dataResponses.map((response) => response.name)).toEqual(['research-studies.json', 'rd-investment-annual.json'])
 })

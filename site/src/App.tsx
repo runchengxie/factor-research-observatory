@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { loadAlpha810Snapshot, loadFundamentalData, loadSnapshot, loadStudies } from './data'
+import { loadAlpha810Snapshot, loadFundamentalData, loadRdAnnualEvidence, loadSnapshot, loadStudies } from './data'
 import { buildResearchContext, toResearchRecords } from './research'
-import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
+import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, RdAnnualEvidence, Snapshot, StudyCatalog } from './types'
 import { initialLocale, LocaleContext, useLocale, type Copy, type Locale } from './i18n'
 
 const OverviewPage = lazy(() => import('./pages/OverviewPage'))
@@ -21,7 +21,7 @@ type RouteData =
   | { kind: 'overview'; snapshot: Snapshot; fundamental: FundamentalData; studies: StudyCatalog }
   | { kind: 'market'; snapshot: Snapshot }
   | { kind: 'fundamentals'; fundamental: FundamentalData }
-  | { kind: 'studies'; studies: StudyCatalog }
+  | { kind: 'studies'; studies: StudyCatalog; rdAnnual?: RdAnnualEvidence }
   | { kind: 'research'; snapshot: Snapshot; fundamental: FundamentalData }
   | { kind: 'alpha810'; snapshot: Alpha810Snapshot }
   | { kind: 'not-found' }
@@ -38,8 +38,11 @@ async function loadRouteData(path: string): Promise<RouteData> {
   if (path === 'jumps' || path === 'hermite') return { kind: 'market', snapshot: await loadSnapshot() }
   if (path === 'fundamentals') return { kind: 'fundamentals', fundamental: await loadFundamentalData() }
   if (path === 'studies' || path.startsWith('studies/')) {
-    const studies = await loadStudies()
-    return { kind: 'studies', studies }
+    const [studies, rdAnnual] = await Promise.all([
+      loadStudies(),
+      path === 'studies/rd-investment' ? loadRdAnnualEvidence().catch(() => undefined) : Promise.resolve(undefined),
+    ])
+    return { kind: 'studies', studies, rdAnnual }
   }
   if (path === 'factors' || path.startsWith('factors/')) {
     const [snapshot, fundamental] = await Promise.all([loadSnapshot(), loadFundamentalData()])
@@ -59,7 +62,7 @@ function pathView(path: string, data: RouteData, copy: Copy) {
   if (data.kind === 'fundamentals') return <FundamentalsPage catalog={data.fundamental.catalog} snapshot={data.fundamental.snapshot} />
   if (data.kind === 'studies') {
     if (path === 'studies') return <StudiesPage catalog={data.studies} />
-    return <StudyDetailPage study={data.studies.studies.find((item) => item.id === path.slice(8))} updatedAt={data.studies.updated_at} />
+    return <StudyDetailPage study={data.studies.studies.find((item) => item.id === path.slice(8))} updatedAt={data.studies.updated_at} rdAnnual={data.rdAnnual} />
   }
   if (data.kind === 'research') {
     const records = toResearchRecords(data.snapshot, data.fundamental.catalog, data.fundamental.snapshot)

@@ -313,3 +313,31 @@
 .chart-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; color: var(--muted, #81796e); font-size: .8rem; }
 .chart-legend span { display: inline-flex; align-items: center; gap: .4rem; }
 .chart-legend i { width: .7rem; height: .7rem; border-radius: 50%; }
+
+
+.rd-annual-panel { margin-top: 18px; }
+.rd-annual-boundary { margin: 18px 0; border: 1px solid var(--accent); padding: 14px 16px; background: var(--accent-soft); }
+.rd-annual-boundary h3 { margin: 0 0 6px; font: 600 18px/1.4 "Noto Serif SC", serif; }
+.rd-annual-boundary p { margin: 6px 0 0; }
+.rd-annual-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 14px; margin: 18px 0 6px; }
+.rd-annual-controls label { display: grid; gap: 6px; color: var(--muted); font-size: 12px; }
+.rd-annual-controls select { min-width: 190px; border: 1px solid var(--rule); border-radius: 0; padding: 9px 10px; color: var(--ink); background: var(--surface); font: inherit; }
+.rd-annual-controls > span { margin-left: auto; color: var(--muted); font: 11px/1.6 "DM Mono", monospace; }
+.rd-annual-chart-wrap { overflow-x: auto; margin-top: 12px; }
+.rd-annual-chart { display: block; width: 100%; min-width: 640px; height: auto; overflow: visible; }
+.rd-annual-axis { stroke: var(--ink-soft); stroke-width: 1; }
+.rd-annual-zero { stroke: var(--rule); stroke-width: 1.5; }
+.rd-annual-bar-positive { fill: #315b74; }
+.rd-annual-bar-negative { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.rd-annual-bar-missing { fill: #aaa397; }
+.rd-annual-year, .rd-annual-axis-label { fill: var(--muted); font: 11px "DM Mono", monospace; }
+.rd-annual-measure-note { margin: 0 0 12px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.rd-annual-table { min-width: 840px !important; }
+.rd-annual-table td:first-child { font-weight: 600; }
+:root[data-theme="dark"] .rd-annual-boundary { background: #2a211f; }
+:root[data-theme="dark"] .rd-annual-controls select { color: #d0d7e2; background: #131a27; border-color: #263043; }
+@media (max-width: 620px) {
+  .rd-annual-controls { align-items: stretch; }
+  .rd-annual-controls label, .rd-annual-controls select { width: 100%; }
+  .rd-annual-controls > span { width: 100%; margin-left: 0; }
+}

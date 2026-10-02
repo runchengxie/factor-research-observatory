@@ -1,4 +1,4 @@
-import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, Snapshot, StudyCatalog } from './types'
+import type { Alpha810Snapshot, FundamentalCatalog, FundamentalSnapshot, RdAnnualEvidence, Snapshot, StudyCatalog } from './types'
 
 const required = ['schema_version', 'generated_at', 'source', 'datasets', 'factor_groups', 'factors', 'series', 'cross_section', 'jump_decomposition'] as const
 const fundamentalRequired = ['schema_version', 'source', 'vintage', 'coverage', 'latest_cross_section', 'validation', 'series', 'notes'] as const
@@ -41,6 +41,26 @@ export async function loadStudies(): Promise<StudyCatalog> {
     throw new Error('研究专题数据格式无效')
   }
   return value as StudyCatalog
+}
+
+export async function loadRdAnnualEvidence(): Promise<RdAnnualEvidence> {
+  const response = await fetch(`${import.meta.env.BASE_URL}data/rd-investment-annual.json`)
+  if (!response.ok) throw new Error(`无法加载研发因子年度证据（HTTP ${response.status}）`)
+  const value: unknown = await response.json()
+  if (!value || typeof value !== 'object') throw new Error('研发因子年度证据格式无效')
+  const candidate = value as Partial<RdAnnualEvidence>
+  if (!Array.isArray(candidate.series) || typeof candidate.source_vintage !== 'string') {
+    throw new Error('研发因子年度证据缺少序列或来源版本')
+  }
+  if (candidate.publication_status !== 'legacy_unaligned_diagnostic') {
+    throw new Error('研发因子年度证据状态不受支持')
+  }
+  for (const series of candidate.series) {
+    if (!Array.isArray(series.years) || !['fwd20', 'fwd220'].includes(series.horizon)) {
+      throw new Error('研发因子年度序列格式无效')
+    }
+  }
+  return candidate as RdAnnualEvidence
 }
 
 export async function loadAlpha810Snapshot(): Promise<Alpha810Snapshot> {
