@@ -180,6 +180,33 @@ class PublicResearchContractTests(unittest.TestCase):
         self.assertNotIn("annual_evidence", study)
         self.assertNotIn("supplemental_evidence", study)
 
+    def test_rd_annual_projection_is_aggregate_and_marks_unavailable_years(self):
+        annual = json.loads((PUBLIC_DATA / "rd-investment-annual.json").read_text())
+        self.assertFalse(annual["revision_safe"])
+        self.assertEqual(annual["publication_status"], "legacy_unaligned_diagnostic")
+        expected_factors = {
+            "rd_mv", "rd_mv_resid", "rd_ev", "rd_capitalized", "rd_sales", "rd_assets", "rd_growth",
+        }
+        self.assertEqual({item["factor"] for item in annual["series"]}, expected_factors)
+        forbidden = {"symbol", "ticker", "security_id", "portfolio_weights", "weight"}
+
+        def keys(value):
+            if isinstance(value, dict):
+                for key, nested in value.items():
+                    yield key
+                    yield from keys(nested)
+            elif isinstance(value, list):
+                for nested in value:
+                    yield from keys(nested)
+
+        self.assertTrue(forbidden.isdisjoint(set(keys(annual))))
+        for series in annual["series"]:
+            years = {point["year"]: point for point in series["years"]}
+            self.assertTrue(set(range(2015, 2027)).issubset(years))
+            self.assertIsNone(years[2015]["rank_ic"])
+            self.assertEqual(years[2015]["evidence_status"], "missing_lookback")
+            self.assertEqual(years[2016]["evidence_status"], "below_minimum_cross_section")
+
     def test_cashflow_study_is_backed_by_a_stable_source_projection(self):
         manifest = json.loads((PUBLIC_DATA / "research-publication-manifest.json").read_text())
         projection = next(

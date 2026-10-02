@@ -94,6 +94,35 @@ export type Study = StudyCopy & {
   translations?: Partial<Record<'en-US' | 'zh-CN', StudyCopy>>;
 }
 export type StudyCatalog = { schema_version: number; updated_at: string; series?: StudySeries[]; studies: Study[] }
+export type RdAnnualPoint = {
+  year: number
+  cross_sections: number
+  rank_ic: number | null
+  top_minus_bottom: number | null
+  coverage_mean: number | null
+  median_universe_n: number | null
+  max_universe_n: number
+  evidence_status: string
+}
+export type RdAnnualSeries = {
+  factor: string
+  horizon: 'fwd20' | 'fwd220'
+  signal_start: string | null
+  signal_end: string | null
+  label_mature_through: string | null
+  years: RdAnnualPoint[]
+}
+export type RdAnnualEvidence = {
+  schema_version: number
+  source_vintage: string
+  source_type: string
+  revision_safe: boolean
+  market_data_as_of: string
+  requested_start: string
+  series: RdAnnualSeries[]
+  publication_status: string
+  public_notice: string
+}
 
 export type Alpha810Metric = { mean: number | null; ir: number | null; positive_rate: number | null }
 export type Alpha810GroupReturn = { group: number; mean_return: number | null; periods: number }
