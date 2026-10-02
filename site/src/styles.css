@@ -409,3 +409,12 @@
 .study-navigation code { overflow-wrap:anywhere; }
 .study-navigation dl { display:grid; gap:.6rem; }
 .study-navigation dd { margin:0 0 .6rem; }
+.study-navigation-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.study-evidence-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+.study-evidence-fields dt { color: var(--muted); font-size: 13px; }
+.study-evidence-fields dd { margin: 8px 0; line-height: 1.7; }
+.study-source-record { margin-top: 20px; }
+.study-source-record summary { cursor: pointer; }
+.study-source-record code { overflow-wrap: anywhere; font-size: 12px; }
+.study-card-scope, .study-card-gap { font-size: 13px; }
+@media(max-width:600px) { .study-evidence-fields { grid-template-columns: 1fr; } }

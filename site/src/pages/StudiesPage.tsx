@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { ResearchEvidenceHub, StudyConnections } from '../components/ResearchEvidenceHub'
+import { lazy, Suspense, useState } from 'react'
+import { StudyConnections, SourceReviewWarning, StudyEvidenceSummary, StudyFilters, filterStudies } from '../components/ResearchEvidenceHub'
 import type { RdAnnualEvidence, Study, StudyCatalog, StudySeries } from '../types'
 import { useLocale } from '../i18n'
 import { RdAnnualEvidencePanel } from './RdAnnualEvidence'
@@ -18,14 +18,20 @@ const taxonomyLabels = (study: Study, labels: Record<string, string>) => [
 export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
   const { locale, copy } = useLocale()
   const english = locale === 'en-US'
+  const [query, setQuery] = useState(''), [market, setMarket] = useState(''), [stage, setStage] = useState('')
+  const visible = filterStudies(catalog.studies, locale, query, market, stage, copy.studyBriefs)
   const groupedIds = new Set((catalog.series ?? []).flatMap((series) => series.study_ids))
-  const ungroupedStudies = catalog.studies.filter((study) => !groupedIds.has(study.id))
+  const ungroupedStudies = visible.filter((study) => !groupedIds.has(study.id))
   return <main className="page study-page">
     <section className="detail-head"><p className="eyebrow">FACTOR RESEARCH / STUDIES</p><h1>{english ? 'Research studies' : '因子研究专题'}</h1><p className="lede">{english ? 'Review research hypotheses and historical evidence with explicit data definitions, validation status, and open questions.' : '从研究假设到历史证据，逐项标明数据口径、检验状态和仍待解决的问题。'}</p><span className="badge">{english ? 'Updated' : '更新于'} {catalog.updated_at}</span></section>
-    <ResearchEvidenceHub catalog={catalog} />
+    <p>{copy.researchHub.indexNote}</p>
+    <StudyFilters studies={catalog.studies} query={query} market={market} stage={stage} setQuery={setQuery} setMarket={setMarket} setStage={setStage} />
+    <p className="study-navigation-links"><a href={href('evidence')}>{copy.researchHub.evidenceLink}</a><a href={href('compare')}>{copy.researchHub.compare}</a></p>
+    {!visible.length && <p role="status">{copy.researchHub.empty}</p>}
     {(catalog.series ?? []).map((rawSeries) => {
       const series = localizedSeries(rawSeries, locale)
-      const studies = catalog.studies.filter((study) => rawSeries.study_ids.includes(study.id))
+      const studies = visible.filter((study) => rawSeries.study_ids.includes(study.id))
+      if (!studies.length) return null
       return <section className="study-series" key={series.id} aria-labelledby={`series-${series.id}`}>
         <div className="panel study-series-intro">
           <p className="eyebrow">{copy.studies.seriesEyebrow}</p><h2 id={`series-${series.id}`}>{series.title}</h2>
@@ -37,7 +43,9 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
           const study = localizedStudy(rawStudy, locale)
           return <a className="study-card" href={href(study.id)} key={study.id}>
             <span className={`study-status study-status-${study.status}`}>{study.status_label}</span>
-            <small>{study.family}</small><h2>{study.title}</h2><p>{study.summary}</p>
+            <small>{study.family}</small><h2>{study.title}</h2><p>{copy.studyBriefs[study.id] ?? study.summary}</p><SourceReviewWarning study={study} />
+            <p className="study-card-scope">{study.evidence_summary?.sample[locale] ?? study.period}</p>
+            <p className="study-card-gap">{copy.researchHub.gap}{english ? ': ' : '：'}{study.limits[0]}</p>
             <div className="study-taxonomy" aria-label={copy.studies.studyClassifications}>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div>
             {study.exploration_counts && <p className="study-exploration-preview">{study.exploration_counts.steps} {copy.studyExploration.steps} · {study.exploration_counts.charts} {copy.studyExploration.charts}</p>}
             <span className="study-link">{english ? 'Read study →' : '阅读研究 →'}</span>
@@ -49,7 +57,9 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
       {catalog.series?.length ? <div className="section-heading"><h2>{copy.studies.otherStudies}</h2></div> : null}
       <div className="study-grid">{ungroupedStudies.map((rawStudy) => { const study = localizedStudy(rawStudy, locale); return <a className="study-card" href={href(study.id)} key={study.id}>
         <span className={`study-status study-status-${study.status}`}>{study.status_label}</span>
-        <small>{study.family}</small><h2>{study.title}</h2><p>{study.summary}</p>
+        <small>{study.family}</small><h2>{study.title}</h2><p>{copy.studyBriefs[study.id] ?? study.summary}</p><SourceReviewWarning study={study} />
+        <p className="study-card-scope">{study.evidence_summary?.sample[locale] ?? study.period}</p>
+        <p className="study-card-gap">{copy.researchHub.gap}{english ? ': ' : '：'}{study.limits[0]}</p>
         {study.method || study.market || study.evidence_stage ? <div className="study-taxonomy" aria-label={copy.studies.studyClassifications}>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div> : null}
         {study.exploration_counts && <p className="study-exploration-preview">{study.exploration_counts.steps} {copy.studyExploration.steps} · {study.exploration_counts.charts} {copy.studyExploration.charts}</p>}
             <span className="study-link">{english ? 'Read study →' : '阅读研究 →'}</span>
@@ -67,6 +77,7 @@ export function StudyDetailPage({ study, updatedAt, rdAnnual, catalog }: { catal
     <a className="back" href={`${import.meta.env.BASE_URL}studies`}>← {english ? 'All studies' : '全部研究专题'}</a>
     <section className="detail-head"><p className="eyebrow">{content.family}</p><h1>{content.title}</h1><p className="lede">{content.summary}</p><div className="detail-tags"><span className={`study-status study-status-${study.status}`}>{content.status_label}</span><span className="tag">{copy.studies.updated} {updatedAt}</span>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div></section>
     <div className="study-columns"><section className="panel"><p className="eyebrow">{copy.studies.highlights}</p><h2>{copy.studies.whatCan}</h2><ul>{content.findings.map((item) => <li key={item}>{item}</li>)}</ul></section><section className="panel"><p className="eyebrow">{copy.studies.limitsLabel}</p><h2>{english ? 'What this evidence does not establish' : '还不能据此推断什么'}</h2><ul>{content.limits.map((item) => <li key={item}>{item}</li>)}</ul></section></div>
+    <StudyEvidenceSummary study={study} />
     <section className="study-brief"><article><p className="eyebrow">{copy.studies.question}</p><h2>{copy.studyQuestions[study.id] ?? content.title}</h2></article><article><p className="eyebrow">{copy.studies.design}</p><p>{content.source_note}</p><small>{copy.studies.interval}: {content.period}</small></article><article><p className="eyebrow">{copy.studies.openGap}</p><p>{content.limits[0] ?? (english ? 'No published evidence limits are available.' : '暂无已发布的证据边界。')}</p></article></section>
     {study.navigation_asset && <Suspense fallback={<p className="panel">{copy.loading}</p>}><StudyNavigation study={study} /></Suspense>}
     {study.exploration_asset && <Suspense fallback={<p className="panel">{copy.studyExploration.loading}</p>}><StudyExploration study={study} /></Suspense>}
