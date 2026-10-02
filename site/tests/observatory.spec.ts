@@ -407,7 +407,7 @@ test('all fundamental studies show source-backed exploration and optional charts
   for (const id of ids) {
     await page.goto(`/studies/${id}`)
     await expect(page.getByRole('heading', { name: 'How the evidence developed' })).toBeVisible()
-    await expect(page.locator('.study-exploration-steps > li')).toHaveCount(3)
+    await expect(page.locator('.study-exploration-steps > li')).toHaveCount(id === 'rd-investment' ? 6 : 3)
     if (['employee-compensation', 'fundamental-family-shadow'].includes(id)) {
       await expect(page.locator('.study-exploration-svg')).toHaveCount(0)
       await expect(page.getByText('No reviewed performance values', { exact: false })).toBeVisible()
@@ -455,4 +455,39 @@ test('invalid exploration identity fails safely without changing published concl
   await expect(page.getByText('Additional exploration evidence is unavailable.', { exact: false })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'What we can say now' })).toBeVisible()
   await expect(page.locator('.study-exploration-svg')).toHaveCount(0)
+})
+
+test('R&D follow-up shows failure rates and conditional coverage in both locales', async ({ page }) => {
+  await page.goto('/studies/rd-investment')
+  await page.getByLabel('Comparison to view').selectOption('endpoint-failures')
+  await expect(page.locator('.study-chart-context')).toContainText('not actual fills')
+  await page.getByText('Show exact aggregate values', { exact: true }).click()
+  await expect(page.locator('.study-values')).toContainText('2019')
+  await page.getByLabel('Comparison to view').selectOption('input-coverage')
+  await expect(page.locator('.study-chart-context')).toContainText('already filtered panel')
+  await page.getByRole('button', { name: 'Switch to 中文', exact: true }).click()
+  await expect(page.locator('.study-chart-context')).toContainText('已筛选面板')
+  await expect(page.locator('.study-exploration-steps')).toContainText('10,825')
+  await page.getByLabel('选择对照').selectOption('matched-components')
+  await expect(page.locator('.study-chart-context')).toContainText('独立的历史扩展')
+})
+
+test('study chart annotations retain readable contrast in dark mode', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('quant-factor-theme', 'dark'))
+  await page.goto('/studies/rd-investment')
+  await page.getByLabel('Comparison to view').selectOption('input-coverage')
+  const contrasts = await page.evaluate(() => {
+    const luminance = (color: string) => {
+      const rgb = color.match(/[\d.]+/g)!.slice(0, 3).map(Number).map((v) => v / 255)
+      return rgb.map((v) => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0)
+    }
+    return ['.study-chart-label', '.study-chart-legend', '.study-chart-context'].map((selector) => {
+      const element = document.querySelector(selector)!
+      const style = getComputedStyle(element)
+      const foreground = luminance(selector === '.study-chart-label' ? style.fill : style.color)
+      const background = luminance(getComputedStyle(selector === '.study-chart-context' ? element : element.closest('.panel')!).backgroundColor)
+      return (Math.max(foreground, background) + .05) / (Math.min(foreground, background) + .05)
+    })
+  })
+  for (const contrast of contrasts) expect(contrast).toBeGreaterThanOrEqual(4.5)
 })

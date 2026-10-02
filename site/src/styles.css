@@ -377,3 +377,22 @@
 @media(max-width:600px){.study-exploration-steps>li{grid-template-columns:1fr;gap:16px}.study-step-marker{flex-direction:row;flex-wrap:wrap;align-items:center}.study-step-marker small{flex:1}.study-exploration-nav{display:grid;gap:14px}.study-exploration-steps h3{font-size:18px}}
 .study-chart-mobile-note{display:none;color:var(--muted);font-size:12px}
 @media(max-width:600px){.study-chart-mobile-note{display:block}}
+
+:root[data-theme="dark"] .study-exploration {
+  --ink: #e9edf4;
+  --ink-soft: #d0d7e2;
+  --muted: #a8b0bf;
+  --rule: #303a4d;
+  --rule-soft: #303a4d;
+  --surface: #131a27;
+  --accent: #ef8d5e;
+  --accent-soft: #2a211f;
+  --study-series-1: #8fb7d8;
+  --study-series-2: #ef8d5e;
+  --study-series-3: #72d2b6;
+  --study-series-4: #efb36d;
+  --study-series-5: #bba1d6;
+}
+:root[data-theme="dark"] .study-exploration .panel-note { color: var(--muted); }
+
+:root[data-theme="dark"] .study-exploration .study-chart-context { color: var(--ink-soft); }

@@ -1,7 +1,7 @@
 import type { Locale } from '../i18n'
 import type { ExplorationChart } from '../studyExploration'
 
-const colors = ['#315b74', '#b64d33', '#33796c', '#967326', '#795a94']
+const colors = ['var(--study-series-1, #315b74)', 'var(--study-series-2, #b64d33)', 'var(--study-series-3, #33796c)', 'var(--study-series-4, #967326)', 'var(--study-series-5, #795a94)']
 export function formatStudyValue(value: number | null, chart: ExplorationChart, locale: Locale) {
   return value === null ? '—' : new Intl.NumberFormat(locale, chart.unit === 'percent' ? { style: 'percent', maximumFractionDigits: 2 } : { maximumFractionDigits: 3 }).format(value)
 }

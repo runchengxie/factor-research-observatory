@@ -86,3 +86,14 @@ class StudyExplorationTests(unittest.TestCase):
         self.assertIn('invalid initial run', data['steps'][1]['finding']['en-US'])
         self.assertEqual(data['charts'][0]['series'][0]['values'], [.840, .767, .715])
         self.assertTrue(all('corrected' in c['context']['en-US'].lower() for c in data['charts']))
+
+    def test_rd_followup_quality_charts_are_separate_from_corrected_performance(self):
+        data = self.asset('rd-investment')
+        charts = {c['id']: c for c in data['charts']}
+        self.assertTrue({'endpoint-failures', 'input-coverage', 'matched-components'} <= charts.keys())
+        self.assertIn('reconstructed historical extension', charts['matched-components']['context']['en-US'])
+        self.assertIn('already filtered panel', charts['input-coverage']['context']['en-US'])
+        self.assertEqual(charts['endpoint-failures']['unit'], 'percent')
+        self.assertIn('not actual fills', charts['endpoint-failures']['context']['en-US'])
+        self.assertTrue(any('10,825' in step['finding']['en-US'] for step in data['steps']))
+        self.assertTrue(any('holdout remains sealed' in step['decision']['en-US'] for step in data['steps']))

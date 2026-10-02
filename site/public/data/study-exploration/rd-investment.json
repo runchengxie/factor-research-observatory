@@ -6,8 +6,8 @@
   "reviewed_at": "2026-10-02",
   "evidence_stage": "exploratory",
   "summary": {
-    "en-US": "The signal becomes weaker after style controls; scaling and accounting definitions matter.",
-    "zh-CN": "加入风格控制后信号减弱，尺度与会计口径会影响结论。"
+    "en-US": "R&D remains a research candidate. Historical execution and input audits expose unresolved gaps; the corrected signal screen and older historical extension remain separate.",
+    "zh-CN": "研发仍是研究候选。历史执行与输入审计发现未解决的缺口；修正后的信号筛查与更早的历史扩展保持分开。"
   },
   "sources": [
     {
@@ -16,6 +16,14 @@
       "label": {
         "en-US": "Authoritative study overview",
         "zh-CN": "权威研究综述"
+      }
+    },
+    {
+      "id": "followup",
+      "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+      "label": {
+        "en-US": "Historical execution, input and accounting follow-up",
+        "zh-CN": "历史执行、输入与会计口径后续核验"
       }
     }
   ],
@@ -99,6 +107,87 @@
       },
       "source_ids": [
         "overview"
+      ]
+    },
+    {
+      "id": "source-scope",
+      "period": {
+        "en-US": "2026-10-02",
+        "zh-CN": "2026-10-02"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Check accounting definitions across filing samples",
+        "zh-CN": "跨年报样本核对会计定义"
+      },
+      "question": {
+        "en-US": "Does a common currency imply the same R&D measure?",
+        "zh-CN": "币种一致是否代表研发口径一致？"
+      },
+      "finding": {
+        "en-US": "Ten purposive issuer/year comparisons cover four issuers and five report years. Total investment and expensed R&D differ; one later comparative value disagrees with the archived field.",
+        "zh-CN": "十个定向公司/年度比较覆盖四家公司、五个报告年度。投入合计与费用化研发不同；一处后续比较值与归档字段不一致。"
+      },
+      "decision": {
+        "en-US": "Keep annual total investment separate from expense TTM; do not certify universe-wide units from samples.",
+        "zh-CN": "年度投入合计与费用 TTM 分开，不从抽样推断全市场口径已通过。"
+      },
+      "source_ids": [
+        "followup"
+      ]
+    },
+    {
+      "id": "endpoint-audit",
+      "period": {
+        "en-US": "2026-10-02",
+        "zh-CN": "2026-10-02"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Separate failure reasons and concentration",
+        "zh-CN": "拆分失败原因与集中度"
+      },
+      "question": {
+        "en-US": "Are a few anomalous securities blocking the historical deciles?",
+        "zh-CN": "历史十分组是否仅被少数异常证券阻断？"
+      },
+      "finding": {
+        "en-US": "There are 10,825 deduplicated endpoint failure events across 3,894 securities; no factor/decile series passes every endpoint.",
+        "zh-CN": "端点失败去重后有 10,825 个事件，涉及 3,894 只证券；没有因子/分组序列通过全部端点检查。"
+      },
+      "decision": {
+        "en-US": "Use persistent holdings diagnostics and retain unresolved gaps; the holdout remains sealed.",
+        "zh-CN": "继续用保留持仓的诊断处理缺口；前瞻留出仍封存。"
+      },
+      "source_ids": [
+        "followup"
+      ]
+    },
+    {
+      "id": "input-components",
+      "period": {
+        "en-US": "2026-10-02",
+        "zh-CN": "2026-10-02"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Audit inputs and compare identical samples",
+        "zh-CN": "审计输入并比较相同样本"
+      },
+      "question": {
+        "en-US": "Does the numerator explain the same association as valuation?",
+        "zh-CN": "研发分子能否解释与估值相同的关联？"
+      },
+      "finding": {
+        "en-US": "Independent industry mapping agrees with the archived panel. On matched rows, inverse size and value associations exceed log R&D; this does not establish a causal return source.",
+        "zh-CN": "独立行业映射与归档面板一致。同样本中，逆规模与估值关联高于对数研发金额；这不能证明收益的因果来源。"
+      },
+      "decision": {
+        "en-US": "Keep conditional coverage separate from PIT qualification, and association separate from portfolio validation.",
+        "zh-CN": "条件覆盖率与 PIT 资格分开，相关性与组合验证分开。"
+      },
+      "source_ids": [
+        "followup"
       ]
     }
   ],
@@ -189,10 +278,328 @@
         "overview"
       ],
       "unit": "percent"
+    },
+    {
+      "id": "endpoint-failures",
+      "title": {
+        "en-US": "Historical endpoint failure rates",
+        "zh-CN": "历史端点失败率"
+      },
+      "metric": {
+        "en-US": "Flagged portfolio-position endpoints / tested endpoints",
+        "zh-CN": "被标记的组合持仓端点 / 已检查端点"
+      },
+      "unit": "percent",
+      "context": {
+        "en-US": "Separate reconstructed historical extension, 2019–2026 (partial first/last years). Securities repeat across portfolios. Closing limits are proxies, not actual fills; reasons can overlap.",
+        "zh-CN": "独立的历史重建扩展，2019–2026 年（首尾年份不完整）。同一证券可出现在多个组合中。收盘涨跌停是代理检查，不代表真实成交；失败原因可重叠。"
+      },
+      "interpretation": {
+        "en-US": "Failure is not confined to a few names: 10,825 unique security/date/side/reason events across 3,894 securities; the top ten account for 1.10%. Missing suspension quotes do not prove an absence of suspensions.",
+        "zh-CN": "失败并非集中于少数名字：证券/日期/方向/原因去重后有 10,825 个事件，涉及 3,894 只证券，前十只占 1.10%。停牌日缺少行情不代表没有停牌。"
+      },
+      "categories": [
+        {
+          "en-US": "2019",
+          "zh-CN": "2019"
+        },
+        {
+          "en-US": "2020",
+          "zh-CN": "2020"
+        },
+        {
+          "en-US": "2021",
+          "zh-CN": "2021"
+        },
+        {
+          "en-US": "2022",
+          "zh-CN": "2022"
+        },
+        {
+          "en-US": "2023",
+          "zh-CN": "2023"
+        },
+        {
+          "en-US": "2024",
+          "zh-CN": "2024"
+        },
+        {
+          "en-US": "2025",
+          "zh-CN": "2025"
+        },
+        {
+          "en-US": "2026",
+          "zh-CN": "2026"
+        }
+      ],
+      "series": [
+        {
+          "id": "entry-limit",
+          "label": {
+            "en-US": "Entry closing-limit proxy",
+            "zh-CN": "买入端收盘涨跌停代理"
+          },
+          "values": [
+            0.014787418711298806,
+            0.025152401580957058,
+            0.018142543999659495,
+            0.015313273491784213,
+            0.009074885161841684,
+            0.024268172030495257,
+            0.014538394205471674,
+            0.016764663823487354
+          ]
+        },
+        {
+          "id": "exit-limit",
+          "label": {
+            "en-US": "Exit closing-limit proxy",
+            "zh-CN": "卖出端收盘涨跌停代理"
+          },
+          "values": [
+            0.10245614944166645,
+            0.003711229707701583,
+            0.0037703859768598324,
+            0.0024036024214952436,
+            0.0018774703557312253,
+            0.0047772191422766185,
+            0.0034294046027916296,
+            0.002973561797091209
+          ]
+        },
+        {
+          "id": "entry-missing",
+          "label": {
+            "en-US": "Missing entry mark",
+            "zh-CN": "买入端价格缺失"
+          },
+          "values": [
+            0.0008808974790786849,
+            0.0006877609807292946,
+            0.0004681946838621805,
+            0.0007276414278471953,
+            0.0005207776946907381,
+            0.0003314701841304221,
+            0.0005033760913714395,
+            0.00031544149191208015
+          ]
+        },
+        {
+          "id": "exit-missing",
+          "label": {
+            "en-US": "Missing exit mark",
+            "zh-CN": "卖出端价格缺失"
+          },
+          "values": [
+            0.002338264631966215,
+            0.0021615345108634974,
+            0.001567742805053665,
+            0.0018131392956192407,
+            0.0012925969447708577,
+            0.0012980473622817294,
+            0.0022168385501776695,
+            0.0014804720687073628
+          ]
+        }
+      ],
+      "source_ids": [
+        "followup"
+      ]
+    },
+    {
+      "id": "input-coverage",
+      "title": {
+        "en-US": "Conditional industry and control coverage",
+        "zh-CN": "行业与控制变量的条件覆盖率"
+      },
+      "metric": {
+        "en-US": "Covered rows / retained historical panel rows",
+        "zh-CN": "覆盖行数 / 已保留历史面板行数"
+      },
+      "unit": "percent",
+      "context": {
+        "en-US": "Separate historical extension, 2019–2026. Denominator: already filtered panel, not all-market eligibility. The industry interval join was independently recomputed; publication times remain unverified.",
+        "zh-CN": "独立的历史扩展，2019–2026 年。分母是已筛选面板，不是全市场合格股票。独立重算了行业区间匹配，但历史公布时点尚未验证。"
+      },
+      "interpretation": {
+        "en-US": "High retained-row coverage and zero mapping disagreements do not prove historical information availability. Early thin years are not plotted as broad coverage.",
+        "zh-CN": "保留样本中的高覆盖率、映射零差异不等于历史时点可得性已被证明。早期稀疏年份不作为广泛覆盖绘图。"
+      },
+      "categories": [
+        {
+          "en-US": "2019",
+          "zh-CN": "2019"
+        },
+        {
+          "en-US": "2020",
+          "zh-CN": "2020"
+        },
+        {
+          "en-US": "2021",
+          "zh-CN": "2021"
+        },
+        {
+          "en-US": "2022",
+          "zh-CN": "2022"
+        },
+        {
+          "en-US": "2023",
+          "zh-CN": "2023"
+        },
+        {
+          "en-US": "2024",
+          "zh-CN": "2024"
+        },
+        {
+          "en-US": "2025",
+          "zh-CN": "2025"
+        },
+        {
+          "en-US": "2026",
+          "zh-CN": "2026"
+        }
+      ],
+      "series": [
+        {
+          "id": "industry_coverage",
+          "label": {
+            "en-US": "Industry interval",
+            "zh-CN": "行业区间"
+          },
+          "values": [
+            0.9800941141320586,
+            0.9830641664860178,
+            0.9880774609495366,
+            0.9947229017974484,
+            0.996185992189496,
+            0.9966394706300128,
+            0.9972277837671338,
+            0.997558991049634
+          ]
+        },
+        {
+          "id": "controls_coverage",
+          "label": {
+            "en-US": "Four numeric controls",
+            "zh-CN": "四项数值控制变量"
+          },
+          "values": [
+            0.9473409023005676,
+            0.9562649035334922,
+            0.925407096636564,
+            0.9292747528255728,
+            0.94368407606117,
+            0.967936392454399,
+            0.985077947190992,
+            0.9840317331163548
+          ]
+        },
+        {
+          "id": "joint_coverage",
+          "label": {
+            "en-US": "Joint complete rows",
+            "zh-CN": "联合完整行"
+          },
+          "values": [
+            0.9288541977890648,
+            0.939762627357468,
+            0.9139112090829364,
+            0.9241594047594978,
+            0.9401073031862476,
+            0.964610507717092,
+            0.9823228434040078,
+            0.9815907241659886
+          ]
+        }
+      ],
+      "source_ids": [
+        "followup"
+      ]
+    },
+    {
+      "id": "matched-components",
+      "title": {
+        "en-US": "Matched-sample numerator and denominator comparison",
+        "zh-CN": "同样本研发分子与估值分母对照"
+      },
+      "metric": {
+        "en-US": "Mean monthly Rank IC on identical names within each horizon",
+        "zh-CN": "各期限内相同证券样本的月度平均 Rank IC"
+      },
+      "unit": "percent",
+      "context": {
+        "en-US": "Separate reconstructed historical extension: 90 mature 20-session and 80 mature 220-session sections through 2026-09-30. All six components use the same complete rows per date. Not the corrected current replay, not portfolio returns.",
+        "zh-CN": "独立的历史扩展：截至 2026-09-30，20 日有 90 个成熟截面，220 日有 80 个。每个日期六项对照使用相同完整样本。不属于当前修正回放，也不是组合收益。"
+      },
+      "interpretation": {
+        "en-US": "Inverse size and value have stronger univariate associations than the R&D numerator. Prior joint regressions give different conditional slopes, so these correlations cannot establish causal attribution.",
+        "zh-CN": "逆规模与估值的单变量关联强于研发分子。此前联合回归的条件系数方向不同，因此这些相关性不能证明因果归因。"
+      },
+      "categories": [
+        {
+          "en-US": "R&D / market cap",
+          "zh-CN": "研发 / 市值"
+        },
+        {
+          "en-US": "Log R&D amount",
+          "zh-CN": "对数研发金额"
+        },
+        {
+          "en-US": "Inverse size",
+          "zh-CN": "逆规模"
+        },
+        {
+          "en-US": "Book-to-price",
+          "zh-CN": "账面价值 / 市值"
+        },
+        {
+          "en-US": "Momentum",
+          "zh-CN": "动量"
+        },
+        {
+          "en-US": "Archived full residual",
+          "zh-CN": "原记录完整残差"
+        }
+      ],
+      "series": [
+        {
+          "id": "fwd20",
+          "label": {
+            "en-US": "20 sessions",
+            "zh-CN": "20 交易日"
+          },
+          "values": [
+            0.0469126690304435,
+            0.0020340341588159,
+            0.0520232800237717,
+            0.0578796614472569,
+            -0.0187688305106777,
+            0.0224428498763748
+          ]
+        },
+        {
+          "id": "fwd220",
+          "label": {
+            "en-US": "220 sessions",
+            "zh-CN": "220 交易日"
+          },
+          "values": [
+            0.1164966145073403,
+            -0.0087264346392282,
+            0.1384373424170561,
+            0.1245713310233463,
+            -0.0515382484597471,
+            0.0613190904927975
+          ]
+        }
+      ],
+      "source_ids": [
+        "followup"
+      ]
     }
   ],
   "next_question": {
-    "en-US": "Does the residual survive a prospectively observed, mature and executable comparison?",
-    "zh-CN": "残差信号能否在前瞻观察、标签成熟且可执行的对照中保留？"
+    "en-US": "Explicit full-day suspension evidence advances all 60 replay failure dates, but later unresolved marks remain; ten growth portfolios also have incomplete formations. Identity and terminal-event recovery, formal portfolio validation, and revision gates remain open.",
+    "zh-CN": "明确的全天停牌证据让 60 条回放的失败日期全部后移，但后续仍有未解释的价格缺口；另有十条研发增长组合建仓不完整。证券身份与退市事件恢复、正式组合验证及修订门槛仍未完成。"
   }
 }
