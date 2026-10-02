@@ -1,19 +1,19 @@
 import type { Locale } from './i18n'
 
 type HermiteCopy = {
-  back: string; eyebrow: string; title: string; lede: string; metric: string; ticker: string
+  back: string; eyebrow: string; title: string; lede: string; conclusion: string; conclusionLabel: string; metric: string; ticker: string
   coverage: string; observations: string; series: string; noSeries: string; demo: string
   metrics: Record<string, { label: string; title: string; description: string }>
   boundary: string
 }
 type JumpCopy = {
-  back: string; eyebrow: string; title: string; lede: string; observation: string; rvShare: string
+  back: string; eyebrow: string; title: string; lede: string; conclusion: string; conclusionLabel: string; observation: string; rvShare: string
   jumpComposition: string; component: string; value: string; share: string; jumpShare: string; snapshotDate: string; illustrativeUniverse: string
   checkPassed: string; checkFailed: string; checkUnavailable: string; noData: string; demo: string; identity: string; observedValues: string
   boundary: string
 }
 type FundamentalsCopy = {
-  back: string; eyebrow: string; title: string; lede: string; metric: string; ticker: string
+  back: string; eyebrow: string; title: string; lede: string; conclusion: string; conclusionLabel: string; metric: string; ticker: string
   latestDistribution: string; distributionNote: string; timeSeries: string; range: string
   observations: string; exampleCoverage: string; demo: string; noSeries: string
   availabilityBasis: string; researchNotes: string[]
@@ -31,6 +31,7 @@ export type ExplorationCopy = { hermite: HermiteCopy; jumps: JumpCopy; fundament
 export const explorationCopy: Record<Locale, ExplorationCopy> = {
   'en-US': {
     hermite: {
+      conclusionLabel: 'Current conclusion', conclusion: 'These distribution-shape indicators are descriptive examples. Predictive power and portfolio performance have not been validated.',
       back: '← Factor overview', eyebrow: 'HERMITE REGIME / 03',
       title: 'Find the cracks in the distribution.',
       lede: 'Inspect higher-order distribution shape and a stability diagnostic one at a time. These are exploratory descriptors, not validated forecasts.',
@@ -44,6 +45,7 @@ export const explorationCopy: Record<Locale, ExplorationCopy> = {
       boundary: 'The public snapshot is a three-ticker, 42-session illustration. Short windows and extreme observations can make higher-order statistics unstable. No return prediction or trading result is established here.',
     },
     jumps: {
+      conclusionLabel: 'Current conclusion', conclusion: 'The example illustrates how continuous and jump variation partition realized variance. It does not establish jump frequency or return predictability.',
       back: '← Factor overview', eyebrow: 'JUMP DECOMPOSITION / 02',
       title: 'Volatility is not one number.',
       lede: 'Separate a continuous-variation estimate from jump variation, then inspect the large- and small-jump components without double-counting them.',
@@ -57,6 +59,7 @@ export const explorationCopy: Record<Locale, ExplorationCopy> = {
       boundary: 'The displayed observations are a three-ticker example for one date. They explain the decomposition only; they do not establish how often jumps occur or predict future returns.',
     },
     fundamentals: {
+      conclusionLabel: 'Current conclusion', conclusion: 'Point-in-time availability and coverage can be inspected here; catalog definitions remain hypotheses without candidate-level predictive validation.',
       back: '← Factor overview', eyebrow: 'FUNDAMENTAL STATES / 04',
       title: 'Operating states, slowly becoming signals.',
       lede: 'Explore available point-in-time fundamental series and their latest cross-sectional coverage. Catalog hypotheses do not imply predictive validation.',
@@ -92,6 +95,7 @@ export const explorationCopy: Record<Locale, ExplorationCopy> = {
   },
   'zh-CN': {
     hermite: {
+      conclusionLabel: '当前结论', conclusion: '这些分布形态指标是描述性示例，预测能力与组合表现尚未验证。',
       back: '← 因子总览', eyebrow: 'HERMITE 体制 / 03',
       title: '寻找分布形状的变化。',
       lede: '逐项查看高阶分布形状与稳定性诊断。这些是探索性描述指标，不是经过验证的预测信号。',
@@ -105,6 +109,7 @@ export const explorationCopy: Record<Locale, ExplorationCopy> = {
       boundary: '公开快照仅为 3 只股票、42 个交易日的示例。较短窗口和极端观测可能使高阶统计量不稳定；这里没有验证收益预测或交易效果。',
     },
     jumps: {
+      conclusionLabel: '当前结论', conclusion: '示例说明连续变差与跳跃变差如何分解已实现方差，尚不能据此判断跳跃频率或收益预测能力。',
       back: '← 因子总览', eyebrow: '跳跃分解 / 02',
       title: '波动并不只有一个数字。',
       lede: '将连续变化估计与跳跃变化分开，再分别观察大、小跳跃，避免重复计算。',
@@ -118,6 +123,7 @@ export const explorationCopy: Record<Locale, ExplorationCopy> = {
       boundary: '当前显示的是同一日期下 3 只股票的示例，只用于说明分解方式；不能据此判断跳跃发生频率或预测未来收益。',
     },
     fundamentals: {
+      conclusionLabel: '当前结论', conclusion: '这里可检查时点可用性与覆盖情况；因子目录定义仍是研究假设，尚无逐因子预测性验证。',
       back: '← 因子总览', eyebrow: '基本面状态 / 04',
       title: '经营状态，逐步成为研究信号。',
       lede: '查看可用的 PIT 基本面序列及其最新横截面覆盖。目录中的研究假设不等于预测性验证。',
