@@ -149,7 +149,7 @@ export type Alpha810Quality = {
 }
 export type Alpha810Snapshot = {
   kind: 'moneytree_factor_evidence_snapshot'
-  schema_version: '1.0' | '1.1'
+  schema_version: '1.0' | '1.1' | '1.2'
   generated_at: string
   data_version: string
   code_revision: string | null
@@ -168,4 +168,20 @@ export type Alpha810Snapshot = {
   uncertainty?: { status: string; method?: string; holding_period_days?: number; tested_factor_count?: number; factor_count?: number }
   temporal_validation?: { status: string; annual_status?: string; market_regime?: { status: string; reason?: string; benchmark?: string; window?: number } }
   multiple_testing?: { status: string; method?: string; sensitivity_method?: string; family_size?: number; tested_count?: number; factors?: Record<string, { q_value_by?: number | null; q_value_bh?: number | null }> }
+  inference_sensitivity?: {
+    status: string
+    method: string
+    lags: number[]
+    family_size: number
+    tested_count: number
+    by_q_le_0_05_counts: Record<string, number>
+    moving_block_bootstrap: { block_length_sessions: number; replicates: number; ci_excludes_zero_count: number; interval: string }
+    source: { date_start: string; date_end: string; observation_dates: number; source_calendar_dates: number; source_rows: number; script_sha256: string; output_csv_sha256: string }
+    limitations: string[]
+    factors: Record<string, {
+      by_lag_q: Array<number | null>
+      by_lag_standard_error: Array<number | null>
+      moving_block_bootstrap: { confidence_interval: [number, number] | null; sign_probability: number | null; ci_excludes_zero: boolean | null }
+    }>
+  }
 }
