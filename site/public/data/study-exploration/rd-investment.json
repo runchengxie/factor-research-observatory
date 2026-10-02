@@ -601,5 +601,53 @@
   "next_question": {
     "en-US": "Explicit full-day suspension evidence advances all 60 replay failure dates, but later unresolved marks remain; ten growth portfolios also have incomplete formations. Identity and terminal-event recovery, formal portfolio validation, and revision gates remain open.",
     "zh-CN": "明确的全天停牌证据让 60 条回放的失败日期全部后移，但后续仍有未解释的价格缺口；另有十条研发增长组合建仓不完整。证券身份与退市事件恢复、正式组合验证及修订门槛仍未完成。"
-  }
+  },
+  "conclusion_changes": [
+    {
+      "id": "rd-investment-1",
+      "kind": "boundary",
+      "period": {
+        "en-US": "2026-09-30",
+        "zh-CN": "2026-09-30"
+      },
+      "before": {
+        "en-US": "Raw R&D/market-cap correlation could be read as an R&D premium.",
+        "zh-CN": "原始研发/市值相关性可能被解释为研发溢价。"
+      },
+      "trigger": {
+        "en-US": "Style controls and alternate scales weaken the signal.",
+        "zh-CN": "风格控制与替代尺度使信号减弱。"
+      },
+      "after": {
+        "en-US": "Retain an exploratory valuation-linked signal; independence is unresolved.",
+        "zh-CN": "保留探索性估值相关信号，独立性未解决。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "rd-investment-2",
+      "kind": "pending_evidence",
+      "period": {
+        "en-US": "2026-10-01–2026-10-02",
+        "zh-CN": "2026-10-01–2026-10-02"
+      },
+      "before": {
+        "en-US": "A frozen protocol could appear ready to evaluate immediately.",
+        "zh-CN": "冻结协议可能看起来可以立即评估。"
+      },
+      "trigger": {
+        "en-US": "The prospective window and long labels have not matured.",
+        "zh-CN": "前瞻窗口与长期标签尚未成熟。"
+      },
+      "after": {
+        "en-US": "The holdout remains sealed; no performance reading is authorized by this display.",
+        "zh-CN": "留出仍封存；本次呈现不赋予读取表现的资格。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ]
 }

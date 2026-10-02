@@ -149,6 +149,63 @@
       "exploration_counts": {
         "steps": 3,
         "charts": 2
+      },
+      "evidence_summary": {
+        "decision": "retain_baseline",
+        "scope": {
+          "en-US": "Same eligible pool; five PB/ROE rankings",
+          "zh-CN": "共同候选池；五种 PB/ROE 排序"
+        },
+        "baseline": {
+          "en-US": "PB ranking in the same quality-constrained pool",
+          "zh-CN": "同一质量约束候选池中的 PB 排序"
+        },
+        "input_basis": {
+          "en-US": "Historical filing-time reconstruction; original versions not independently rechecked",
+          "zh-CN": "历史财报时点重建，原始版本未独立复核"
+        },
+        "sample": {
+          "en-US": "2010–2026 published historical comparison",
+          "zh-CN": "2010–2026 已公开历史对照"
+        }
+      },
+      "related_studies": [
+        {
+          "study_id": "rd-investment",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Both examine whether a fundamental input adds beyond a valuation denominator.",
+            "zh-CN": "都检验基本面信息是否在估值分母之外增加信号。"
+          }
+        },
+        {
+          "study_id": "fundamental-state-forecasting",
+          "kind": "method_extension",
+          "rationale": {
+            "en-US": "Current profitability versus predicted profitability provides two ways to test the valuation bridge.",
+            "zh-CN": "当期盈利与预测盈利提供两种估值桥接检验。"
+          }
+        },
+        {
+          "study_id": "cashflow-indices",
+          "kind": "component_test",
+          "rationale": {
+            "en-US": "Valuation and quality filters also help diagnose value traps in cash-flow portfolios.",
+            "zh-CN": "估值与质量过滤也可用于诊断现金流组合的价值陷阱。"
+          }
+        },
+        {
+          "study_id": "absolute-level-forecast",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Both require separating firm scale, current valuation and the proposed financial increment.",
+            "zh-CN": "都须分开公司规模、当期估值与拟检验财务增量。"
+          }
+        }
+      ],
+      "source_review_status": {
+        "status": "matched",
+        "checked_at": "2026-10-02T15:26:36+00:00"
       }
     },
     {
@@ -425,6 +482,47 @@
       "exploration_counts": {
         "steps": 6,
         "charts": 4
+      },
+      "evidence_summary": {
+        "decision": "exploratory",
+        "scope": {
+          "en-US": "R&D numerator versus valuation and style exposure",
+          "zh-CN": "研发分子与估值、风格暴露"
+        },
+        "baseline": {
+          "en-US": "R&D/market cap; scale and alternative denominators",
+          "zh-CN": "研发/市值；规模与替代分母对照"
+        },
+        "input_basis": {
+          "en-US": "Announcement-event reconstruction; complete correction chain absent",
+          "zh-CN": "公告事件重建，完整更正链缺失"
+        },
+        "sample": {
+          "en-US": "77 / 66 monthly sections at 20 / 220 sessions",
+          "zh-CN": "20 / 220 日分别为 77 / 66 个月度截面"
+        }
+      },
+      "related_studies": [
+        {
+          "study_id": "pb-roe",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Both examine whether a fundamental input adds beyond a valuation denominator.",
+            "zh-CN": "都检验基本面信息是否在估值分母之外增加信号。"
+          }
+        },
+        {
+          "study_id": "employee-compensation",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Labor and R&D inputs both require stock/flow and capitalization distinctions.",
+            "zh-CN": "劳动与研发投入都须区分存量、流量及资本化。"
+          }
+        }
+      ],
+      "source_review_status": {
+        "status": "matched",
+        "checked_at": "2026-10-02T15:26:36+00:00"
       }
     },
     {
@@ -492,6 +590,71 @@
       "exploration_counts": {
         "steps": 3,
         "charts": 4
+      },
+      "evidence_summary": {
+        "decision": "no_stable_increment",
+        "scope": {
+          "en-US": "Financial target forecasts before portfolio selection",
+          "zh-CN": "先预测财务目标，再检验组合选股"
+        },
+        "baseline": {
+          "en-US": "Current-state persistence on common folds",
+          "zh-CN": "共同折上的当期状态持续性基线"
+        },
+        "input_basis": {
+          "en-US": "Sealed current vintage; reconstructed announcement-time history",
+          "zh-CN": "封存当期快照，按公告时点重建历史"
+        },
+        "sample": {
+          "en-US": "Annual diagnostic plus 1/2/4-quarter common folds",
+          "zh-CN": "年度诊断与 1/2/4 季度共同折"
+        }
+      },
+      "related_studies": [
+        {
+          "study_id": "pb-roe",
+          "kind": "method_extension",
+          "rationale": {
+            "en-US": "Current profitability versus predicted profitability provides two ways to test the valuation bridge.",
+            "zh-CN": "当期盈利与预测盈利提供两种估值桥接检验。"
+          }
+        },
+        {
+          "study_id": "absolute-level-forecast",
+          "kind": "method_extension",
+          "rationale": {
+            "en-US": "The level-target pilot extends target selection while retaining persistence as the comparator.",
+            "zh-CN": "绝对值目标试验扩展目标选择，继续保留持续性对照。"
+          }
+        },
+        {
+          "study_id": "hk-fundamental-archive",
+          "kind": "market_boundary",
+          "rationale": {
+            "en-US": "Both use financial forecasts and ranking; Hong Kong evidence cannot establish A-share transferability.",
+            "zh-CN": "都使用财务预测与排序；港股证据不能证明 A 股迁移有效。"
+          }
+        },
+        {
+          "study_id": "fundamental-family-shadow",
+          "kind": "component_test",
+          "rationale": {
+            "en-US": "Forecasting operating states and adding quality/growth families test different parts of selection.",
+            "zh-CN": "经营状态预测与加入质量、成长家族检验选股的不同环节。"
+          }
+        },
+        {
+          "study_id": "employee-compensation",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Accounting definitions and observation-time coverage must be settled before forecasting.",
+            "zh-CN": "预测之前都需要核清会计定义与观察时间覆盖。"
+          }
+        }
+      ],
+      "source_review_status": {
+        "status": "matched",
+        "checked_at": "2026-10-02T15:26:36+00:00"
       }
     },
     {
@@ -556,6 +719,47 @@
       "exploration_counts": {
         "steps": 3,
         "charts": 0
+      },
+      "evidence_summary": {
+        "decision": "protocol_only",
+        "scope": {
+          "en-US": "Value, quality and growth family ablation",
+          "zh-CN": "价值、质量、成长家族消融"
+        },
+        "baseline": {
+          "en-US": "Shared baseline with overlapping valuation inputs removed",
+          "zh-CN": "去掉重复估值输入的共同基线"
+        },
+        "input_basis": {
+          "en-US": "Availability and common-sample gates are part of the protocol",
+          "zh-CN": "可见时间与共同样本门禁属于协议约束"
+        },
+        "sample": {
+          "en-US": "Protocol only; no reviewed family-performance table",
+          "zh-CN": "仅协议；无已复核家族绩效表"
+        }
+      },
+      "related_studies": [
+        {
+          "study_id": "fundamental-state-forecasting",
+          "kind": "component_test",
+          "rationale": {
+            "en-US": "Forecasting operating states and adding quality/growth families test different parts of selection.",
+            "zh-CN": "经营状态预测与加入质量、成长家族检验选股的不同环节。"
+          }
+        },
+        {
+          "study_id": "cashflow-indices",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Family decomposition can separate value and quality exposure from the cash-flow thesis.",
+            "zh-CN": "家族拆解可区分价值、质量暴露与现金流解释。"
+          }
+        }
+      ],
+      "source_review_status": {
+        "status": "matched",
+        "checked_at": "2026-10-02T15:26:36+00:00"
       }
     },
     {
@@ -644,6 +848,55 @@
       "exploration_counts": {
         "steps": 3,
         "charts": 2
+      },
+      "evidence_summary": {
+        "decision": "research_only",
+        "scope": {
+          "en-US": "Official-snapshot calibration and separate rule shadows",
+          "zh-CN": "官方快照校准与独立规则影子"
+        },
+        "baseline": {
+          "en-US": "Official daily returns for calibration; common shadow arms for construction",
+          "zh-CN": "校准对照官方日收益，构造对照共同影子组合臂"
+        },
+        "input_basis": {
+          "en-US": "Partial constituents and reconstructed financial history",
+          "zh-CN": "部分成分与重建财务历史"
+        },
+        "sample": {
+          "en-US": "Available snapshots; standard shadow breadth replay has 80 monthly intervals",
+          "zh-CN": "可用快照；标准影子持仓宽度回放含 80 个区间"
+        }
+      },
+      "related_studies": [
+        {
+          "study_id": "pb-roe",
+          "kind": "component_test",
+          "rationale": {
+            "en-US": "Valuation and quality filters also help diagnose value traps in cash-flow portfolios.",
+            "zh-CN": "估值与质量过滤也可用于诊断现金流组合的价值陷阱。"
+          }
+        },
+        {
+          "study_id": "hk-fundamental-archive",
+          "kind": "market_boundary",
+          "rationale": {
+            "en-US": "Cash-flow overlays appear in both archives, with separate sector and market-regime limits.",
+            "zh-CN": "两边均有现金流叠加，但行业与市场阶段限制各自独立。"
+          }
+        },
+        {
+          "study_id": "fundamental-family-shadow",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Family decomposition can separate value and quality exposure from the cash-flow thesis.",
+            "zh-CN": "家族拆解可区分价值、质量暴露与现金流解释。"
+          }
+        }
+      ],
+      "source_review_status": {
+        "status": "matched",
+        "checked_at": "2026-10-02T15:26:36+00:00"
       }
     },
     {
@@ -709,6 +962,47 @@
       "exploration_counts": {
         "steps": 3,
         "charts": 2
+      },
+      "evidence_summary": {
+        "decision": "archived",
+        "scope": {
+          "en-US": "Monthly/quarterly targets, sector and regime attribution",
+          "zh-CN": "月频、季频目标以及行业、阶段归因"
+        },
+        "baseline": {
+          "en-US": "Matched historical model and sector variants",
+          "zh-CN": "匹配历史模型与行业变体"
+        },
+        "input_basis": {
+          "en-US": "Archived PIT notes; restored run integrity does not revalidate performance",
+          "zh-CN": "归档 PIT 笔记；恢复完整性不等于绩效重新验证"
+        },
+        "sample": {
+          "en-US": "26 notes, March–April 2026; monthly and quarterly records separate",
+          "zh-CN": "2026 年 3–4 月 26 篇笔记；月频与季频分别记录"
+        }
+      },
+      "related_studies": [
+        {
+          "study_id": "fundamental-state-forecasting",
+          "kind": "market_boundary",
+          "rationale": {
+            "en-US": "Both use financial forecasts and ranking; Hong Kong evidence cannot establish A-share transferability.",
+            "zh-CN": "都使用财务预测与排序；港股证据不能证明 A 股迁移有效。"
+          }
+        },
+        {
+          "study_id": "cashflow-indices",
+          "kind": "market_boundary",
+          "rationale": {
+            "en-US": "Cash-flow overlays appear in both archives, with separate sector and market-regime limits.",
+            "zh-CN": "两边均有现金流叠加，但行业与市场阶段限制各自独立。"
+          }
+        }
+      ],
+      "source_review_status": {
+        "status": "matched",
+        "checked_at": "2026-10-02T15:26:36+00:00"
       }
     },
     {
@@ -765,6 +1059,47 @@
       "exploration_counts": {
         "steps": 3,
         "charts": 0
+      },
+      "evidence_summary": {
+        "decision": "hypothesis",
+        "scope": {
+          "en-US": "Labor flow and workforce measurement",
+          "zh-CN": "劳动流量与员工人数度量"
+        },
+        "baseline": {
+          "en-US": "Proposed industry/size controls; no predictive baseline run",
+          "zh-CN": "拟用行业、规模控制；预测基线尚未运行"
+        },
+        "input_basis": {
+          "en-US": "Expense-flow and disclosure coverage still need audit",
+          "zh-CN": "费用流量与披露覆盖待审计"
+        },
+        "sample": {
+          "en-US": "No candidate-level predictive sample published",
+          "zh-CN": "尚无已发布逐因子预测样本"
+        }
+      },
+      "related_studies": [
+        {
+          "study_id": "fundamental-state-forecasting",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Accounting definitions and observation-time coverage must be settled before forecasting.",
+            "zh-CN": "预测之前都需要核清会计定义与观察时间覆盖。"
+          }
+        },
+        {
+          "study_id": "rd-investment",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Labor and R&D inputs both require stock/flow and capitalization distinctions.",
+            "zh-CN": "劳动与研发投入都须区分存量、流量及资本化。"
+          }
+        }
+      ],
+      "source_review_status": {
+        "status": "needs_review",
+        "checked_at": "2026-10-02T15:26:36+00:00"
       }
     },
     {
@@ -1012,6 +1347,47 @@
       "exploration_counts": {
         "steps": 3,
         "charts": 3
+      },
+      "evidence_summary": {
+        "decision": "no_stable_increment",
+        "scope": {
+          "en-US": "Absolute financial forecasts and valuation bridge",
+          "zh-CN": "财务绝对值预测与估值桥接"
+        },
+        "baseline": {
+          "en-US": "Persistence for forecasts; current financial yield for selection",
+          "zh-CN": "预测对照持续性，选股对照当期财务收益率"
+        },
+        "input_basis": {
+          "en-US": "Reconstructed history; later revisions and surviving-universe limits",
+          "zh-CN": "重建历史；后来修订与幸存股票池限制"
+        },
+        "sample": {
+          "en-US": "32,339 common rows; three annual test folds, 2023–2025",
+          "zh-CN": "32,339 个共同样本；2023–2025 三个年度折"
+        }
+      },
+      "related_studies": [
+        {
+          "study_id": "fundamental-state-forecasting",
+          "kind": "method_extension",
+          "rationale": {
+            "en-US": "The level-target pilot extends target selection while retaining persistence as the comparator.",
+            "zh-CN": "绝对值目标试验扩展目标选择，继续保留持续性对照。"
+          }
+        },
+        {
+          "study_id": "pb-roe",
+          "kind": "shared_question",
+          "rationale": {
+            "en-US": "Both require separating firm scale, current valuation and the proposed financial increment.",
+            "zh-CN": "都须分开公司规模、当期估值与拟检验财务增量。"
+          }
+        }
+      ],
+      "source_review_status": {
+        "status": "matched",
+        "checked_at": "2026-10-02T15:26:36+00:00"
       }
     }
   ],
@@ -1078,5 +1454,508 @@
         "candidate_level_predictive_validation_ids": []
       }
     }
-  ]
+  ],
+  "research_hub": {
+    "schema_version": "observatory.research_hub.v1",
+    "reviewed_at": "2026-10-02",
+    "comparison_groups": [
+      {
+        "id": "pb-excess",
+        "study_id": "pb-roe",
+        "chart_id": "return",
+        "mode": "variants",
+        "baseline_id": "0",
+        "series_ids": null,
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "PB/ROE: excess return",
+          "zh-CN": "PB/ROE：超额收益"
+        },
+        "scope": {
+          "en-US": "Same historical eligible pool, date window and annualized excess metric.",
+          "zh-CN": "同一历史候选池、日期窗口与年化超额指标。"
+        }
+      },
+      {
+        "id": "pb-ir",
+        "study_id": "pb-roe",
+        "chart_id": "ir",
+        "mode": "variants",
+        "baseline_id": "0",
+        "series_ids": null,
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "PB/ROE: information ratio",
+          "zh-CN": "PB/ROE：信息比率"
+        },
+        "scope": {
+          "en-US": "Same eligible pool and information-ratio definition; not strategy Sharpe.",
+          "zh-CN": "同一候选池与信息比率定义；不是策略夏普。"
+        }
+      },
+      {
+        "id": "rd-20",
+        "study_id": "rd-investment",
+        "chart_id": "variants",
+        "mode": "variants",
+        "baseline_id": "0",
+        "series_ids": [
+          "20"
+        ],
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "R&D: 20-session Rank IC",
+          "zh-CN": "研发：20 日 Rank IC"
+        },
+        "scope": {
+          "en-US": "Same corrected monthly sample within the 20-session label; not a comparison across label lengths.",
+          "zh-CN": "同一修正月度样本内的 20 日标签；不跨标签长度比较。"
+        }
+      },
+      {
+        "id": "rd-220",
+        "study_id": "rd-investment",
+        "chart_id": "variants",
+        "mode": "variants",
+        "baseline_id": "0",
+        "series_ids": [
+          "220"
+        ],
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "R&D: 220-session Rank IC",
+          "zh-CN": "研发：220 日 Rank IC"
+        },
+        "scope": {
+          "en-US": "Same corrected monthly sample within the 220-session label; not a comparison across label lengths.",
+          "zh-CN": "同一修正月度样本内的 220 日标签；不跨标签长度比较。"
+        }
+      },
+      {
+        "id": "forecast-roa",
+        "study_id": "fundamental-state-forecasting",
+        "chart_id": "roa",
+        "mode": "models",
+        "baseline_id": "persistence",
+        "series_ids": null,
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "ROA forecast objectives",
+          "zh-CN": "ROA预测目标"
+        },
+        "scope": {
+          "en-US": "Same corrected target panel and model folds within the selected horizon.",
+          "zh-CN": "同一修正目标面板与模型折，在所选期限内比较。"
+        }
+      },
+      {
+        "id": "forecast-margin",
+        "study_id": "fundamental-state-forecasting",
+        "chart_id": "margin",
+        "mode": "models",
+        "baseline_id": "persistence",
+        "series_ids": null,
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "Gross margin forecast objectives",
+          "zh-CN": "毛利率预测目标"
+        },
+        "scope": {
+          "en-US": "Same corrected target panel and model folds within the selected horizon.",
+          "zh-CN": "同一修正目标面板与模型折，在所选期限内比较。"
+        }
+      },
+      {
+        "id": "forecast-growth",
+        "study_id": "fundamental-state-forecasting",
+        "chart_id": "growth",
+        "mode": "models",
+        "baseline_id": "persistence",
+        "series_ids": null,
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "Revenue growth forecast objectives",
+          "zh-CN": "营收增长预测目标"
+        },
+        "scope": {
+          "en-US": "Same corrected target panel and model folds within the selected horizon.",
+          "zh-CN": "同一修正目标面板与模型折，在所选期限内比较。"
+        }
+      },
+      {
+        "id": "forecast-cash-conversion",
+        "study_id": "fundamental-state-forecasting",
+        "chart_id": "cash-conversion",
+        "mode": "models",
+        "baseline_id": "persistence",
+        "series_ids": null,
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "Cash conversion forecast objectives",
+          "zh-CN": "现金转化预测目标"
+        },
+        "scope": {
+          "en-US": "Same corrected target panel and model folds within the selected horizon.",
+          "zh-CN": "同一修正目标面板与模型折，在所选期限内比较。"
+        }
+      },
+      {
+        "id": "absolute-revenue-error",
+        "study_id": "absolute-level-forecast",
+        "chart_id": "revenue-error",
+        "mode": "models",
+        "baseline_id": "persistence",
+        "series_ids": null,
+        "direction": "lower",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "Revenue forecast error",
+          "zh-CN": "营收预测误差"
+        },
+        "scope": {
+          "en-US": "Same common annual cohort within the selected test year; no cross-target MAE comparison.",
+          "zh-CN": "同一年度共同样本，在所选测试年内比较；不跨目标比较 MAE。"
+        }
+      },
+      {
+        "id": "absolute-income-error",
+        "study_id": "absolute-level-forecast",
+        "chart_id": "income-error",
+        "mode": "models",
+        "baseline_id": "persistence",
+        "series_ids": null,
+        "direction": "lower",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "Net-income forecast error",
+          "zh-CN": "净利润预测误差"
+        },
+        "scope": {
+          "en-US": "Same common annual cohort within the selected test year; no cross-target MAE comparison.",
+          "zh-CN": "同一年度共同样本，在所选测试年内比较；不跨目标比较 MAE。"
+        }
+      },
+      {
+        "id": "absolute-selection",
+        "study_id": "absolute-level-forecast",
+        "chart_id": "selection",
+        "mode": "models",
+        "baseline_id": "current",
+        "series_ids": null,
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "Forecast yield selection",
+          "zh-CN": "预测收益率选股"
+        },
+        "scope": {
+          "en-US": "Same common annual cohort within the selected test year; no cross-target MAE comparison.",
+          "zh-CN": "同一年度共同样本，在所选测试年内比较；不跨目标比较 MAE。"
+        }
+      },
+      {
+        "id": "cash-breadth",
+        "study_id": "cashflow-indices",
+        "chart_id": "breadth",
+        "mode": "models",
+        "baseline_id": "equal",
+        "series_ids": null,
+        "direction": "higher",
+        "reviewed_at": "2026-10-02",
+        "label": {
+          "en-US": "Cash-flow shadow weighting",
+          "zh-CN": "现金流影子权重"
+        },
+        "scope": {
+          "en-US": "Same standard shadow protocol and selected breadth; official history remains separate.",
+          "zh-CN": "同一标准影子协议与所选持仓宽度；官方历史保持独立。"
+        }
+      }
+    ],
+    "change_entries": [
+      {
+        "id": "pb-roe-1",
+        "kind": "refinement",
+        "period": {
+          "en-US": "Historical comparison",
+          "zh-CN": "历史对照"
+        },
+        "before": {
+          "en-US": "ROE could complement low PB.",
+          "zh-CN": "ROE 可能补充低 PB。"
+        },
+        "trigger": {
+          "en-US": "Same-pool ranking removes eligibility differences.",
+          "zh-CN": "共同池排序排除入选差异。"
+        },
+        "after": {
+          "en-US": "Static ROE did not improve the PB comparator in this history.",
+          "zh-CN": "静态 ROE 在本历史对照中没有改善 PB。"
+        },
+        "source_ids": [
+          "overview"
+        ],
+        "study_id": "pb-roe",
+        "source_ref": "doc:quant-research.strategy.pb-roe-value-quality"
+      },
+      {
+        "id": "rd-investment-1",
+        "kind": "boundary",
+        "period": {
+          "en-US": "2026-09-30",
+          "zh-CN": "2026-09-30"
+        },
+        "before": {
+          "en-US": "Raw R&D/market-cap correlation could be read as an R&D premium.",
+          "zh-CN": "原始研发/市值相关性可能被解释为研发溢价。"
+        },
+        "trigger": {
+          "en-US": "Style controls and alternate scales weaken the signal.",
+          "zh-CN": "风格控制与替代尺度使信号减弱。"
+        },
+        "after": {
+          "en-US": "Retain an exploratory valuation-linked signal; independence is unresolved.",
+          "zh-CN": "保留探索性估值相关信号，独立性未解决。"
+        },
+        "source_ids": [
+          "overview"
+        ],
+        "study_id": "rd-investment",
+        "source_ref": "doc:quant-research.research.rd-investment-relative-valuation"
+      },
+      {
+        "id": "rd-investment-2",
+        "kind": "pending_evidence",
+        "period": {
+          "en-US": "2026-10-01–2026-10-02",
+          "zh-CN": "2026-10-01–2026-10-02"
+        },
+        "before": {
+          "en-US": "A frozen protocol could appear ready to evaluate immediately.",
+          "zh-CN": "冻结协议可能看起来可以立即评估。"
+        },
+        "trigger": {
+          "en-US": "The prospective window and long labels have not matured.",
+          "zh-CN": "前瞻窗口与长期标签尚未成熟。"
+        },
+        "after": {
+          "en-US": "The holdout remains sealed; no performance reading is authorized by this display.",
+          "zh-CN": "留出仍封存；本次呈现不赋予读取表现的资格。"
+        },
+        "source_ids": [
+          "overview"
+        ],
+        "study_id": "rd-investment",
+        "source_ref": "doc:quant-research.research.rd-investment-relative-valuation"
+      },
+      {
+        "id": "fundamental-state-forecasting-1",
+        "kind": "correction",
+        "period": {
+          "en-US": "2026-09-04",
+          "zh-CN": "2026-09-04"
+        },
+        "before": {
+          "en-US": "An initial persistence result had an impossible Rank IC of 1.",
+          "zh-CN": "最初 persistence 结果出现不合理的 Rank IC=1。"
+        },
+        "trigger": {
+          "en-US": "The baseline incorrectly read future values; the run was corrected.",
+          "zh-CN": "基线错误读取未来值，运行随后修正。"
+        },
+        "after": {
+          "en-US": "Exclude the invalid run and use corrected current-state baselines only.",
+          "zh-CN": "排除无效运行，仅使用修正的当期状态基线。"
+        },
+        "source_ids": [
+          "objectives"
+        ],
+        "study_id": "fundamental-state-forecasting",
+        "source_ref": "doc:quant-research.research.long-term-fundamental-v2"
+      },
+      {
+        "id": "fundamental-state-forecasting-2",
+        "kind": "negative_evidence",
+        "period": {
+          "en-US": "2026-09-04",
+          "zh-CN": "2026-09-04"
+        },
+        "before": {
+          "en-US": "One annual panel showed a positive net-profit-growth model increment.",
+          "zh-CN": "一个年度面板显示正向净利润增速模型增量。"
+        },
+        "trigger": {
+          "en-US": "Later common-fold objectives did not show a stable learned-model advantage.",
+          "zh-CN": "后续共同折目标对照没有显示稳定学习模型优势。"
+        },
+        "after": {
+          "en-US": "The early observation remains recorded without model or portfolio promotion.",
+          "zh-CN": "保留早期观察，不提升模型或组合资格。"
+        },
+        "source_ids": [
+          "overview"
+        ],
+        "study_id": "fundamental-state-forecasting",
+        "source_ref": "doc:quant-research.research.long-term-fundamental-v2"
+      },
+      {
+        "id": "fundamental-family-shadow-1",
+        "kind": "protocol",
+        "period": {
+          "en-US": "Pending results",
+          "zh-CN": "结果待复核"
+        },
+        "before": {
+          "en-US": "Combining useful-looking families might seem sufficient.",
+          "zh-CN": "组合看似有用的家族可能显得已经足够。"
+        },
+        "trigger": {
+          "en-US": "A protocol and common keys exist, but reviewed family performance does not.",
+          "zh-CN": "已有协议与共同键，但尚无已复核家族绩效。"
+        },
+        "after": {
+          "en-US": "Keep family effectiveness unproven until the ablation is reviewed.",
+          "zh-CN": "消融复核之前，家族有效性仍未证明。"
+        },
+        "source_ids": [
+          "overview"
+        ],
+        "study_id": "fundamental-family-shadow",
+        "source_ref": "doc:quant-research.research.fundamental-family-shadow"
+      },
+      {
+        "id": "cashflow-indices-1",
+        "kind": "boundary",
+        "period": {
+          "en-US": "Available snapshots",
+          "zh-CN": "可用快照区间"
+        },
+        "before": {
+          "en-US": "High official-return correlation might be read as complete index replication.",
+          "zh-CN": "较高官方收益相关性可能被理解为完整指数复现。"
+        },
+        "trigger": {
+          "en-US": "Available snapshots leave missing historical constituents and rule changes.",
+          "zh-CN": "可用快照仍缺历史成分，并存在规则变化。"
+        },
+        "after": {
+          "en-US": "Treat calibration and current-rule shadows as separate, bounded evidence.",
+          "zh-CN": "将校准与现行规则影子视为独立且有边界的证据。"
+        },
+        "source_ids": [
+          "status"
+        ],
+        "study_id": "cashflow-indices",
+        "source_ref": "doc:quant-research.research.cashflow-indices-map"
+      },
+      {
+        "id": "hk-fundamental-archive-1",
+        "kind": "negative_evidence",
+        "period": {
+          "en-US": "2026-03–2026-04",
+          "zh-CN": "2026-03–2026-04"
+        },
+        "before": {
+          "en-US": "Recent final-window highlights looked promising.",
+          "zh-CN": "近期最终窗口亮点较好。"
+        },
+        "trigger": {
+          "en-US": "Full quarterly tests and all six walk-forward windows were weak.",
+          "zh-CN": "完整季频测试及六个前推窗口均弱。"
+        },
+        "after": {
+          "en-US": "Recent performance is a regime observation and does not replace the full record.",
+          "zh-CN": "近期表现是阶段观察，不能替换完整记录。"
+        },
+        "source_ids": [
+          "quarter"
+        ],
+        "study_id": "hk-fundamental-archive",
+        "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928"
+      },
+      {
+        "id": "hk-fundamental-archive-2",
+        "kind": "refinement",
+        "period": {
+          "en-US": "2026-04-13",
+          "zh-CN": "2026-04-13"
+        },
+        "before": {
+          "en-US": "Financial-only active return appeared strongest.",
+          "zh-CN": "仅金融组主动收益看似最强。"
+        },
+        "trigger": {
+          "en-US": "The same monthly diagnostic reports negative financial-only IC.",
+          "zh-CN": "同一月频诊断记录仅金融组 IC 为负。"
+        },
+        "after": {
+          "en-US": "Retain sector and concentration attribution; do not infer a superior ranking signal.",
+          "zh-CN": "保留行业与集中度归因，不推断更优排序信号。"
+        },
+        "source_ids": [
+          "monthly"
+        ],
+        "study_id": "hk-fundamental-archive",
+        "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928"
+      },
+      {
+        "id": "employee-compensation-1",
+        "kind": "definition",
+        "period": {
+          "en-US": "Definition review",
+          "zh-CN": "定义核对"
+        },
+        "before": {
+          "en-US": "Employee compensation payable might proxy current wages.",
+          "zh-CN": "应付职工薪酬可能被当作当期工资代理。"
+        },
+        "trigger": {
+          "en-US": "The field is a period-end liability balance.",
+          "zh-CN": "该字段为期末负债余额。"
+        },
+        "after": {
+          "en-US": "Require expense flows and workforce coverage before a predictive test.",
+          "zh-CN": "预测检验前须取得费用流量与员工人数覆盖。"
+        },
+        "source_ids": [
+          "overview"
+        ],
+        "study_id": "employee-compensation",
+        "source_ref": "doc:quant-research.research.fundamental-research-series"
+      },
+      {
+        "id": "absolute-level-forecast-1",
+        "kind": "negative_evidence",
+        "period": {
+          "en-US": "2023–2025 test years",
+          "zh-CN": "2023–2025 测试年"
+        },
+        "before": {
+          "en-US": "Complex models might improve forecasts of financial levels.",
+          "zh-CN": "复杂模型可能改善财务水平预测。"
+        },
+        "trigger": {
+          "en-US": "Persistence wins all six transformed-MAE comparisons.",
+          "zh-CN": "持续性赢得全部六项变换 MAE 对照。"
+        },
+        "after": {
+          "en-US": "No learned-model promotion follows; test the selection bridge independently.",
+          "zh-CN": "不提升学习模型资格，独立检验选股桥接。"
+        },
+        "source_ids": [
+          "overview"
+        ],
+        "study_id": "absolute-level-forecast",
+        "source_ref": "doc:quant-research.research.fundamental-state-forecasting"
+      }
+    ]
+  }
 }

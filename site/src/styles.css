@@ -396,3 +396,11 @@
 :root[data-theme="dark"] .study-exploration .panel-note { color: var(--muted); }
 
 :root[data-theme="dark"] .study-exploration .study-chart-context { color: var(--ink-soft); }
+.hub-filters { display:flex; flex-wrap:wrap; gap:1rem; align-items:end; margin:1rem 0; }
+.hub-filters label, .study-page label { display:flex; flex-direction:column; gap:.5rem; max-width:100%; }
+.hub-filters input, .study-page select { max-width:100%; padding:.6rem; background:var(--panel); color:inherit; border:1px solid var(--border); }
+.research-evidence-hub td { min-width:180px; vertical-align:top; }
+.research-evidence-hub td:first-child { min-width:280px; }
+.research-evidence-hub small { display:block; overflow-wrap:anywhere; }
+.hub-change { border-top:1px solid var(--border); padding:1rem 0; }
+.hub-change dt { font-weight:600; } .hub-change dd { margin:.4rem 0 1rem; }

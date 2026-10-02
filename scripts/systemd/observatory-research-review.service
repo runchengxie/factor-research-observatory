@@ -1,0 +1,8 @@
+[Unit]
+Description=Read-only research source review audit
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/quant-factor-observatory/research-review.env
+ExecStart=/bin/sh -c 'exec /usr/bin/python3 "$OBSERVATORY_ROOT/scripts/audit_research_updates.py" --owner-root "$RESEARCH_OWNER_ROOT" --report-dir "$RESEARCH_REVIEW_ROOT"'
+NoNewPrivileges=true

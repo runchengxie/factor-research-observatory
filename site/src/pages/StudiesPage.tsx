@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+import { ResearchEvidenceHub, StudyConnections } from '../components/ResearchEvidenceHub'
 import type { RdAnnualEvidence, Study, StudyCatalog, StudySeries } from '../types'
 import { useLocale } from '../i18n'
 import { RdAnnualEvidencePanel } from './RdAnnualEvidence'
@@ -20,6 +21,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
   const ungroupedStudies = catalog.studies.filter((study) => !groupedIds.has(study.id))
   return <main className="page study-page">
     <section className="detail-head"><p className="eyebrow">FACTOR RESEARCH / STUDIES</p><h1>{english ? 'Research studies' : '因子研究专题'}</h1><p className="lede">{english ? 'Review research hypotheses and historical evidence with explicit data definitions, validation status, and open questions.' : '从研究假设到历史证据，逐项标明数据口径、检验状态和仍待解决的问题。'}</p><span className="badge">{english ? 'Updated' : '更新于'} {catalog.updated_at}</span></section>
+    <ResearchEvidenceHub catalog={catalog} />
     {(catalog.series ?? []).map((rawSeries) => {
       const series = localizedSeries(rawSeries, locale)
       const studies = catalog.studies.filter((study) => rawSeries.study_ids.includes(study.id))
@@ -55,7 +57,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
   </main>
 }
 
-export function StudyDetailPage({ study, updatedAt, rdAnnual }: { study: Study | undefined; updatedAt: string; rdAnnual?: RdAnnualEvidence }) {
+export function StudyDetailPage({ study, updatedAt, rdAnnual, catalog }: { catalog?: StudyCatalog; study: Study | undefined; updatedAt: string; rdAnnual?: RdAnnualEvidence }) {
   const { locale, copy } = useLocale()
   const english = locale === 'en-US'
   if (!study) return <main className="page"><a className="back" href={`${import.meta.env.BASE_URL}studies`}>← {english ? 'Back to research studies' : '返回研究专题'}</a><h1>{english ? 'Study not found' : '找不到这项研究'}</h1></main>
@@ -98,6 +100,7 @@ export function StudyDetailPage({ study, updatedAt, rdAnnual }: { study: Study |
     ]).map((note) => <li key={note}>{note}</li>)}</ul><p className="panel-note">{english ? 'Universe eligibility and historical index membership have known timing limitations; the revision chain is incomplete. See the public methodology note for the full protocol and exclusions.' : '股票池资格与历史指数成分时点存在已知限制，财报历史修订链也不完整。完整协议与排除项见公开方法说明。'} <a href={`${import.meta.env.BASE_URL}research/rd-investment-method.html`}>{english ? 'Public methodology note ↗' : '公开方法说明 ↗'}</a></p></section>}
     {study.research_log?.length ? <section className="panel research-log"><div className="section-heading"><p className="eyebrow">EXPLORATION RECORD</p><h2>{english ? 'Research log' : '探索过程记录'}</h2></div><ol>{study.research_log.map((entry) => <li key={`${entry.date}-${entry.stage}`}><time>{entry.date}</time><div><strong>{english ? entry.stage_en : entry.stage}</strong><p>{english ? entry.note_en : entry.note}</p></div></li>)}</ol></section> : null}
 
+    {catalog && <StudyConnections study={study} catalog={catalog} />}
     {study.source_url && study.id !== 'rd-investment' && <p className="study-source"><a href={study.source_url} target="_blank" rel="noopener noreferrer">{english ? 'View public method and evidence notes ↗' : '查看已公开的原始方法与数据核对 ↗'}</a></p>}
   </main>
 }

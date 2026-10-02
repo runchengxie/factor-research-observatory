@@ -106,5 +106,30 @@
   "next_question": {
     "en-US": "After coverage audit, does a labor flow measure add predictive information beyond basic controls?",
     "zh-CN": "覆盖审计之后，劳动流量指标能否相对基本控制增加预测信息？"
-  }
+  },
+  "conclusion_changes": [
+    {
+      "id": "employee-compensation-1",
+      "kind": "definition",
+      "period": {
+        "en-US": "Definition review",
+        "zh-CN": "定义核对"
+      },
+      "before": {
+        "en-US": "Employee compensation payable might proxy current wages.",
+        "zh-CN": "应付职工薪酬可能被当作当期工资代理。"
+      },
+      "trigger": {
+        "en-US": "The field is a period-end liability balance.",
+        "zh-CN": "该字段为期末负债余额。"
+      },
+      "after": {
+        "en-US": "Require expense flows and workforce coverage before a predictive test.",
+        "zh-CN": "预测检验前须取得费用流量与员工人数覆盖。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ]
 }

@@ -91,11 +91,14 @@ export type Study = StudyCopy & {
   source_ref?: string;
   source_url?: string;
   research_log?: StudyLogEntry[];
+  evidence_summary?: { decision: string; scope: import("./studyExploration").BilingualText; baseline: import("./studyExploration").BilingualText; input_basis: import("./studyExploration").BilingualText; sample: import("./studyExploration").BilingualText };
+  related_studies?: { study_id: string; kind: string; rationale: import("./studyExploration").BilingualText }[];
+  source_review_status?: { status: string; checked_at: string };
   exploration_asset?: string;
   exploration_counts?: { steps: number; charts: number };
   translations?: Partial<Record<'en-US' | 'zh-CN', StudyCopy>>;
 }
-export type StudyCatalog = { schema_version: number; updated_at: string; series?: StudySeries[]; studies: Study[] }
+export type StudyCatalog = { schema_version: number; updated_at: string; series?: StudySeries[]; studies: Study[]; research_hub?: import("./researchHub").ResearchHub }
 export type RdAnnualPoint = {
   year: number
   cross_sections: number
