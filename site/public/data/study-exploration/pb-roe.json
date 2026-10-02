@@ -1,0 +1,233 @@
+{
+  "schema_version": "observatory.study_exploration.v1",
+  "study_id": "pb-roe",
+  "source_ref": "doc:quant-research.strategy.pb-roe-value-quality",
+  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+  "reviewed_at": "2026-10-02",
+  "evidence_stage": "retrospective_diagnostic",
+  "summary": {
+    "en-US": "A common-pool comparison separates changes in ranking from changes in eligibility.",
+    "zh-CN": "共同候选池对照将排序变化与入选条件变化分开。"
+  },
+  "sources": [
+    {
+      "id": "overview",
+      "source_ref": "doc:quant-research.strategy.pb-roe-value-quality",
+      "label": {
+        "en-US": "Authoritative study overview",
+        "zh-CN": "权威研究综述"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "pool",
+      "period": {
+        "en-US": "Historical comparison",
+        "zh-CN": "历史对照"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Fix the candidate pool",
+        "zh-CN": "固定候选池"
+      },
+      "question": {
+        "en-US": "Does ROE alter who is eligible?",
+        "zh-CN": "ROE 是否改变可入选股票？"
+      },
+      "finding": {
+        "en-US": "ROE availability and quality conditions can change the sample before ranking.",
+        "zh-CN": "ROE 可得性和质量条件可能在排序之前就改变样本。"
+      },
+      "decision": {
+        "en-US": "Keep strict pure PB separate from PB within a quality-filtered pool.",
+        "zh-CN": "严格纯 PB 与质量过滤候选池内的 PB 排序须分开比较。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "rank",
+      "period": {
+        "en-US": "Historical comparison",
+        "zh-CN": "历史对照"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Compare five rankings",
+        "zh-CN": "比较五种排序"
+      },
+      "question": {
+        "en-US": "Does static profitability improve the same pool?",
+        "zh-CN": "静态盈利能力是否改善同一候选池的排序？"
+      },
+      "finding": {
+        "en-US": "PB plus static ROE returned 9.06% annualized versus 12.05% for PB; information ratios were 0.42 versus 0.66.",
+        "zh-CN": "PB 加静态 ROE 年化 9.06%，PB 对照为 12.05%；信息比率分别为 0.42 与 0.66。"
+      },
+      "decision": {
+        "en-US": "Retain PB as the comparator; do not generalize this test into universal ROE ineffectiveness.",
+        "zh-CN": "保留 PB 对照，不能将本次检验外推成 ROE 普遍无效。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "risk",
+      "period": {
+        "en-US": "Current evidence boundary",
+        "zh-CN": "当前证据边界"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Review the increment and risk",
+        "zh-CN": "复核增量与风险"
+      },
+      "question": {
+        "en-US": "Are near-baseline variants independently better?",
+        "zh-CN": "接近基线的变体是否独立更好？"
+      },
+      "finding": {
+        "en-US": "Quality-adjusted PB has similar return and slightly higher IR, while drawdowns across the variants remain about 45–47%.",
+        "zh-CN": "质量调整 PB 收益接近基线、IR 略高，但各变体回撤仍约为 45%–47%。"
+      },
+      "decision": {
+        "en-US": "Require untouched observations and execution evidence before changing the baseline.",
+        "zh-CN": "变更基线前需要未触碰样本和交易执行证据。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "return",
+      "title": {
+        "en-US": "Annualized excess across rankings",
+        "zh-CN": "各排序年化超额对照"
+      },
+      "metric": {
+        "en-US": "Annualized excess return",
+        "zh-CN": "年化超额收益"
+      },
+      "context": {
+        "en-US": "Same published candidate-pool comparison; no new replay.",
+        "zh-CN": "同一已公开候选池对照；没有重新回放。"
+      },
+      "interpretation": {
+        "en-US": "Static ROE lowers excess in this sample; smaller differences need uncertainty controls.",
+        "zh-CN": "静态 ROE 在本样本降低超额；较小差异仍需不确定性检验。"
+      },
+      "categories": [
+        {
+          "en-US": "PB only",
+          "zh-CN": "仅用 PB"
+        },
+        {
+          "en-US": "PB + static ROE",
+          "zh-CN": "PB + 静态 ROE"
+        },
+        {
+          "en-US": "PB + change in ROE",
+          "zh-CN": "PB + ROE 变化"
+        },
+        {
+          "en-US": "Quality adjusted PB",
+          "zh-CN": "质量调整后的 PB"
+        },
+        {
+          "en-US": "Quality adjusted PB + change in ROE",
+          "zh-CN": "质量调整 PB + ROE 变化"
+        }
+      ],
+      "series": [
+        {
+          "id": "excess",
+          "label": {
+            "en-US": "Excess return",
+            "zh-CN": "超额收益"
+          },
+          "values": [
+            0.0725,
+            0.042699999999999995,
+            0.068,
+            0.0721,
+            0.0687
+          ]
+        }
+      ],
+      "source_ids": [
+        "overview"
+      ],
+      "unit": "percent"
+    },
+    {
+      "id": "ir",
+      "title": {
+        "en-US": "Risk-adjusted comparison",
+        "zh-CN": "风险调整对照"
+      },
+      "metric": {
+        "en-US": "Information ratio",
+        "zh-CN": "信息比率"
+      },
+      "context": {
+        "en-US": "Same historical comparison; information ratio is not strategy Sharpe.",
+        "zh-CN": "同一历史对照；信息比率不是策略夏普。"
+      },
+      "interpretation": {
+        "en-US": "Small IR differences do not establish a stable increment.",
+        "zh-CN": "微小 IR 差异不能确立稳定增量。"
+      },
+      "categories": [
+        {
+          "en-US": "PB only",
+          "zh-CN": "仅用 PB"
+        },
+        {
+          "en-US": "PB + static ROE",
+          "zh-CN": "PB + 静态 ROE"
+        },
+        {
+          "en-US": "PB + change in ROE",
+          "zh-CN": "PB + ROE 变化"
+        },
+        {
+          "en-US": "Quality adjusted PB",
+          "zh-CN": "质量调整后的 PB"
+        },
+        {
+          "en-US": "Quality adjusted PB + change in ROE",
+          "zh-CN": "质量调整 PB + ROE 变化"
+        }
+      ],
+      "series": [
+        {
+          "id": "ir",
+          "label": {
+            "en-US": "Information ratio",
+            "zh-CN": "信息比率"
+          },
+          "values": [
+            0.66,
+            0.42,
+            0.65,
+            0.67,
+            0.65
+          ]
+        }
+      ],
+      "source_ids": [
+        "overview"
+      ],
+      "unit": "number"
+    }
+  ],
+  "next_question": {
+    "en-US": "Can a preregistered ROE variant improve PB on the same eligible names after costs?",
+    "zh-CN": "预注册 ROE 变体能否在同一合格股票池中改善成本后 PB 对照？"
+  }
+}

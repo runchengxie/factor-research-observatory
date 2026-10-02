@@ -1,6 +1,8 @@
+import { lazy, Suspense } from 'react'
 import type { RdAnnualEvidence, Study, StudyCatalog, StudySeries } from '../types'
 import { useLocale } from '../i18n'
 import { RdAnnualEvidencePanel } from './RdAnnualEvidence'
+const StudyExploration = lazy(() => import('../components/StudyExploration'))
 const href = (id: string) => `${import.meta.env.BASE_URL}studies/${id}`
 const localizedStudy = (study: Study, locale: 'en-US' | 'zh-CN') => ({ ...study, ...(study.translations?.[locale] ?? {}) })
 const localizedSeries = (series: StudySeries, locale: 'en-US' | 'zh-CN') => ({ ...series, ...(series.translations[locale] ?? {}) })
@@ -34,6 +36,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
             <span className={`study-status study-status-${study.status}`}>{study.status_label}</span>
             <small>{study.family}</small><h2>{study.title}</h2><p>{study.summary}</p>
             <div className="study-taxonomy" aria-label={copy.studies.studyClassifications}>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div>
+            {study.exploration_counts && <p className="study-exploration-preview">{study.exploration_counts.steps} {copy.studyExploration.steps} · {study.exploration_counts.charts} {copy.studyExploration.charts}</p>}
             <span className="study-link">{english ? 'Read study →' : '阅读研究 →'}</span>
           </a>
         })}</section>
@@ -45,7 +48,8 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
         <span className={`study-status study-status-${study.status}`}>{study.status_label}</span>
         <small>{study.family}</small><h2>{study.title}</h2><p>{study.summary}</p>
         {study.method || study.market || study.evidence_stage ? <div className="study-taxonomy" aria-label={copy.studies.studyClassifications}>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div> : null}
-        <span className="study-link">{english ? 'Read study →' : '阅读研究 →'}</span>
+        {study.exploration_counts && <p className="study-exploration-preview">{study.exploration_counts.steps} {copy.studyExploration.steps} · {study.exploration_counts.charts} {copy.studyExploration.charts}</p>}
+            <span className="study-link">{english ? 'Read study →' : '阅读研究 →'}</span>
       </a> })}</div>
     </section>}
   </main>
@@ -61,6 +65,7 @@ export function StudyDetailPage({ study, updatedAt, rdAnnual }: { study: Study |
     <section className="detail-head"><p className="eyebrow">{content.family}</p><h1>{content.title}</h1><p className="lede">{content.summary}</p><div className="detail-tags"><span className={`study-status study-status-${study.status}`}>{content.status_label}</span><span className="tag">{copy.studies.updated} {updatedAt}</span>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div></section>
     <div className="study-columns"><section className="panel"><p className="eyebrow">{copy.studies.highlights}</p><h2>{copy.studies.whatCan}</h2><ul>{content.findings.map((item) => <li key={item}>{item}</li>)}</ul></section><section className="panel"><p className="eyebrow">{copy.studies.limitsLabel}</p><h2>{english ? 'What this evidence does not establish' : '还不能据此推断什么'}</h2><ul>{content.limits.map((item) => <li key={item}>{item}</li>)}</ul></section></div>
     <section className="study-brief"><article><p className="eyebrow">{copy.studies.question}</p><h2>{copy.studyQuestions[study.id] ?? content.title}</h2></article><article><p className="eyebrow">{copy.studies.design}</p><p>{content.source_note}</p><small>{copy.studies.interval}: {content.period}</small></article><article><p className="eyebrow">{copy.studies.openGap}</p><p>{content.limits[0] ?? (english ? 'No published evidence limits are available.' : '暂无已发布的证据边界。')}</p></article></section>
+    {study.exploration_asset && <Suspense fallback={<p className="panel">{copy.studyExploration.loading}</p>}><StudyExploration study={study} /></Suspense>}
     {content.rows.length > 0 && <section className="panel"><div className="section-heading"><p className="eyebrow">AGGREGATE EVIDENCE</p><h2>{english ? 'Historical comparison' : '历史对照'}</h2></div><div className="table-scroll"><table className="factor-table"><thead><tr>{content.columns.map((column) => <th key={column}>{column}</th>)}</tr></thead><tbody>{content.rows.map((row) => <tr key={row[0]}>{row.map((value, index) => <td key={content.columns[index]}>{value}</td>)}</tr>)}</tbody></table></div></section>}
     {study.id === 'rd-investment' && rdAnnual ? <RdAnnualEvidencePanel data={rdAnnual} /> : null}
     {study.id === 'rd-investment' && !rdAnnual ? <p className="panel rd-annual-unavailable">{copy.rdAnnual.annualUnavailable}</p> : null}

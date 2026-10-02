@@ -163,7 +163,7 @@ test('R&D yearly evidence is loaded only on its detail route', async ({ page }) 
   await page.goto('studies/rd-investment')
   await expect(page.getByRole('heading', { name: 'R&D Investment Relative to Valuation: Signal or Size Exposure?' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Annual replay by year' })).toBeVisible()
-  expect(requests).toEqual(['research-studies.json', 'rd-investment-annual.json'])
+  expect(requests.sort()).toEqual(['research-studies.json', 'rd-investment-annual.json', 'rd-investment.json'].sort())
 })
 
 test('R&D annual evidence controls and boundary notes are localized in Chinese', async ({ page }) => {
@@ -400,4 +400,59 @@ test('routes request only the public data snapshots they need', async ({ page })
       return Boolean(verdict.compareDocumentPosition(chart) & Node.DOCUMENT_POSITION_FOLLOWING)
     })).toBe(true)
   }
+})
+
+test('all fundamental studies show source-backed exploration and optional charts', async ({ page }) => {
+  const ids = ['pb-roe', 'rd-investment', 'fundamental-state-forecasting', 'fundamental-family-shadow', 'cashflow-indices', 'hk-fundamental-archive', 'employee-compensation', 'absolute-level-forecast']
+  for (const id of ids) {
+    await page.goto(`/studies/${id}`)
+    await expect(page.getByRole('heading', { name: 'How the evidence developed' })).toBeVisible()
+    await expect(page.locator('.study-exploration-steps > li')).toHaveCount(3)
+    if (['employee-compensation', 'fundamental-family-shadow'].includes(id)) {
+      await expect(page.locator('.study-exploration-svg')).toHaveCount(0)
+      await expect(page.getByText('No reviewed performance values', { exact: false })).toBeVisible()
+    } else {
+      await expect(page.locator('.study-exploration-svg')).toBeVisible()
+    }
+  }
+})
+
+test('study chart controls and exact values are localized with negative observations preserved', async ({ page }) => {
+  await page.goto('/studies/absolute-level-forecast')
+  await page.getByLabel('Comparison to view').selectOption('selection')
+  await page.getByText('Show exact aggregate values', { exact: true }).click()
+  await expect(page.locator('.study-values')).toContainText('-7.4%')
+  await page.getByRole('button', { name: '中文' }).click()
+  await expect(page.getByRole('heading', { name: '探索过程与中间结论' })).toBeVisible()
+  await expect(page.getByLabel('选择对照')).toHaveValue('selection')
+  await expect(page.locator('.study-values')).toContainText('-7.4%')
+  await expect(page.locator('.study-chart-context')).toContainText('无交易成本')
+  await page.setViewportSize({ width: 390, height: 844 })
+  await expect(page.locator('.study-exploration-svg')).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy()
+})
+
+test('exploration assets load only on the matching study route and failure supports retry', async ({ page }) => {
+  const assets: string[] = []
+  page.on('request', (request) => { if (request.url().includes('/study-exploration/')) assets.push(request.url()) })
+  await page.goto('/studies')
+  await expect(page.getByRole('heading', { name: 'Research studies', exact: true })).toBeVisible()
+  expect(assets).toHaveLength(0)
+  let fail = true
+  await page.route('**/study-exploration/pb-roe.json', (route) => fail ? route.abort() : route.continue())
+  await page.goto('/studies/pb-roe')
+  await expect(page.getByText('Additional exploration evidence is unavailable.', { exact: false })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'What we can say now' })).toBeVisible()
+  fail = false
+  await page.getByRole('button', { name: 'Retry', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'How the evidence developed' })).toBeVisible()
+  expect(assets.every((url) => url.endsWith('/pb-roe.json'))).toBeTruthy()
+})
+
+test('invalid exploration identity fails safely without changing published conclusions', async ({ page }) => {
+  await page.route('**/study-exploration/employee-compensation.json', (route) => route.fulfill({ json: { schema_version: 'observatory.study_exploration.v1', study_id: 'wrong-study' } }))
+  await page.goto('/studies/employee-compensation')
+  await expect(page.getByText('Additional exploration evidence is unavailable.', { exact: false })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'What we can say now' })).toBeVisible()
+  await expect(page.locator('.study-exploration-svg')).toHaveCount(0)
 })

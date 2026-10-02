@@ -1,0 +1,249 @@
+{
+  "schema_version": "observatory.study_exploration.v1",
+  "study_id": "hk-fundamental-archive",
+  "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928",
+  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+  "reviewed_at": "2026-10-02",
+  "evidence_stage": "historical_archive",
+  "summary": {
+    "en-US": "The archive preserves both weak full-window tests and conditional recent-period observations.",
+    "zh-CN": "归档同时保留完整窗口的弱结果与依赖近期市场阶段的观察。"
+  },
+  "sources": [
+    {
+      "id": "overview",
+      "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928",
+      "label": {
+        "en-US": "Authoritative study overview",
+        "zh-CN": "权威研究综述"
+      }
+    },
+    {
+      "id": "quarter",
+      "source_ref": "doc:quant-research.archive.hk-note.hk-quarterly-current-state-20260329",
+      "label": {
+        "en-US": "Quarterly archive evidence map",
+        "zh-CN": "季频归档证据地图"
+      }
+    },
+    {
+      "id": "monthly",
+      "source_ref": "doc:quant-research.archive.hk-note.hk-monthly-slowfund-five-line-wrap-up-20260413",
+      "label": {
+        "en-US": "Monthly five-line diagnostic, 2026-04-13",
+        "zh-CN": "2026-04-13 月频五线诊断"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "quarter",
+      "period": {
+        "en-US": "2026-03–2026-04",
+        "zh-CN": "2026-03–2026-04"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Retain the full-window quarterly result",
+        "zh-CN": "保留季频完整窗口结果"
+      },
+      "question": {
+        "en-US": "Can a recent final window outweigh the full record?",
+        "zh-CN": "最近最终窗口能否覆盖完整记录？"
+      },
+      "finding": {
+        "en-US": "All three pure-fundamental quarterly model lines were negative in the full test; none of six walk-forward windows had positive returns.",
+        "zh-CN": "三条季频纯基本面模型线完整测试段均为负，六个滚动前推窗口没有正收益。"
+      },
+      "decision": {
+        "en-US": "Keep recent-window improvements as regime observations, not a replacement for the full record.",
+        "zh-CN": "近期改善保留为市场阶段观察，不替换完整记录。"
+      },
+      "source_ids": [
+        "quarter"
+      ]
+    },
+    {
+      "id": "monthly",
+      "period": {
+        "en-US": "2026-04-13",
+        "zh-CN": "2026-04-13"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Separate signal and implementation",
+        "zh-CN": "区分信号与组合实现"
+      },
+      "question": {
+        "en-US": "Does higher IC imply higher active return?",
+        "zh-CN": "较高 IC 是否意味着较高主动收益？"
+      },
+      "finding": {
+        "en-US": "The accrual-quality variant has higher IC but does not beat the baseline active return; financial-only has the strongest active return but negative IC.",
+        "zh-CN": "应计质量变体 IC 较高却未超过基线主动收益；仅金融组主动收益最强，但 IC 为负。"
+      },
+      "decision": {
+        "en-US": "Retain sector attribution and concentration as competing explanations.",
+        "zh-CN": "保留行业归因与集中度作为竞争解释。"
+      },
+      "source_ids": [
+        "monthly"
+      ]
+    },
+    {
+      "id": "archive",
+      "period": {
+        "en-US": "2026-09-28",
+        "zh-CN": "2026-09-28"
+      },
+      "status": "archive",
+      "title": {
+        "en-US": "Recover and classify historical evidence",
+        "zh-CN": "恢复并分类历史证据"
+      },
+      "question": {
+        "en-US": "Does archive integrity mean the strategy was revalidated?",
+        "zh-CN": "归档完整性是否等于策略重新验证？"
+      },
+      "finding": {
+        "en-US": "Twenty-six notes connect to frozen run records; restoration verified content, not a new training or portfolio replay.",
+        "zh-CN": "26 篇笔记接入冻结运行记录；恢复验证的是内容完整性，没有重新训练或回放。"
+      },
+      "decision": {
+        "en-US": "Keep Hong Kong evidence historical and separate from A-share transfer claims.",
+        "zh-CN": "港股证据保留为历史归档，不外推为 A 股有效性。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "active",
+      "title": {
+        "en-US": "Monthly sector diagnostic: active return",
+        "zh-CN": "月频行业诊断：主动收益"
+      },
+      "metric": {
+        "en-US": "Active total return",
+        "zh-CN": "主动累计收益"
+      },
+      "context": {
+        "en-US": "Recorded 24m/full monthly comparison, 2026-04-13. Five distinct variants; not quarterly tests or annualized returns.",
+        "zh-CN": "2026-04-13 记录的月频 24m/full 对照。五个不同变体；不是季频测试或年化收益。"
+      },
+      "interpretation": {
+        "en-US": "Financial-only return can be high while cross-sectional IC is negative; sector regime and concentration matter.",
+        "zh-CN": "仅金融组收益高而截面 IC 为负，行业阶段与集中度值得检查。"
+      },
+      "categories": [
+        {
+          "en-US": "Baseline",
+          "zh-CN": "基线"
+        },
+        {
+          "en-US": "Aggressive",
+          "zh-CN": "激进对照"
+        },
+        {
+          "en-US": "Accrual quality",
+          "zh-CN": "应计质量"
+        },
+        {
+          "en-US": "Non-financial",
+          "zh-CN": "非金融"
+        },
+        {
+          "en-US": "Financial only",
+          "zh-CN": "仅金融"
+        }
+      ],
+      "series": [
+        {
+          "id": "active",
+          "label": {
+            "en-US": "Active total return",
+            "zh-CN": "主动累计收益"
+          },
+          "values": [
+            0.112,
+            0.102,
+            0.103,
+            -0.173,
+            0.252
+          ]
+        }
+      ],
+      "source_ids": [
+        "monthly"
+      ],
+      "unit": "percent"
+    },
+    {
+      "id": "ic",
+      "title": {
+        "en-US": "Monthly sector diagnostic: IC",
+        "zh-CN": "月频行业诊断：IC"
+      },
+      "metric": {
+        "en-US": "Reported mean IC",
+        "zh-CN": "记录的平均 IC"
+      },
+      "context": {
+        "en-US": "Same five-line archive table; these are reported IC values, not the A-share forecast Rank IC measure.",
+        "zh-CN": "同一归档五线表；为原文记录的 IC，不是 A 股财务预测 Rank IC。"
+      },
+      "interpretation": {
+        "en-US": "The signal and realized active return orderings differ.",
+        "zh-CN": "信号与实现主动收益的排序不同。"
+      },
+      "categories": [
+        {
+          "en-US": "Baseline",
+          "zh-CN": "基线"
+        },
+        {
+          "en-US": "Aggressive",
+          "zh-CN": "激进对照"
+        },
+        {
+          "en-US": "Accrual quality",
+          "zh-CN": "应计质量"
+        },
+        {
+          "en-US": "Non-financial",
+          "zh-CN": "非金融"
+        },
+        {
+          "en-US": "Financial only",
+          "zh-CN": "仅金融"
+        }
+      ],
+      "series": [
+        {
+          "id": "ic",
+          "label": {
+            "en-US": "Mean IC",
+            "zh-CN": "平均 IC"
+          },
+          "values": [
+            0.0605,
+            0.0581,
+            0.0715,
+            0.0294,
+            -0.08
+          ]
+        }
+      ],
+      "source_ids": [
+        "monthly"
+      ],
+      "unit": "percent"
+    }
+  ],
+  "next_question": {
+    "en-US": "Can any archived candidate survive a new market window with matched sector and execution controls?",
+    "zh-CN": "归档候选能否在新的市场窗口及匹配行业、执行控制下保留？"
+  }
+}

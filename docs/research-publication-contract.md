@@ -48,3 +48,13 @@ between source notes and the static site. Its release test rejects local paths,
 credentials, per-security fields, and private implementation references. A
 future publisher should generate this manifest and the public study snapshot in
 one reviewed operation.
+
+## Study exploration projection
+
+A study may declare an optional `exploration_asset` under `data/study-exploration/` and small `exploration_counts` for catalog navigation. Detail routes load only their own asset. The list route must not fetch every study's additional evidence. Older studies without these fields keep rendering.
+
+`observatory.study_exploration.v1` records the study identity, authority reference, owner source revision, projection review date, evidence stage, bilingual sources, selected exploration steps, aggregate charts and next research question. Each step records its question, intermediate finding and resulting decision. It is a curated evidence path, not a claim about independent experiment count or a complete chronology. Earlier positive, invalid, superseded or negative results retain their interpretation and must not be merged into later corrected metrics.
+
+Every chart declares its metric, unit, sample/protocol context, interpretation and source IDs. All series share the chart's category order; missing values are null, never zero. Different targets, forecast correlations, stock-return correlations, annualized returns and cumulative active returns must remain labeled and separate. Exact values remain available in a table. A hypothesis or protocol without reviewed results publishes no performance chart. Source notes may be private; expose stable identities and sanitized provenance, not inaccessible raw file links or private implementation.
+
+Optional evidence loading or schema failure must preserve the main study and provide a localized retry. Native SVG comparisons remain keyboard-readable through their controls and corresponding tables. New projections must update the publication manifest and pass bilingual, source, metric and public-release validation.

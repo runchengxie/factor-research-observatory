@@ -1,0 +1,198 @@
+{
+  "schema_version": "observatory.study_exploration.v1",
+  "study_id": "rd-investment",
+  "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+  "reviewed_at": "2026-10-02",
+  "evidence_stage": "exploratory",
+  "summary": {
+    "en-US": "The signal becomes weaker after style controls; scaling and accounting definitions matter.",
+    "zh-CN": "加入风格控制后信号减弱，尺度与会计口径会影响结论。"
+  },
+  "sources": [
+    {
+      "id": "overview",
+      "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+      "label": {
+        "en-US": "Authoritative study overview",
+        "zh-CN": "权威研究综述"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "definition",
+      "period": {
+        "en-US": "2026-09-28",
+        "zh-CN": "2026-09-28"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Test the valuation denominator",
+        "zh-CN": "检验估值分母"
+      },
+      "question": {
+        "en-US": "Does R&D intensity carry independent information?",
+        "zh-CN": "研发强度是否包含独立信息？"
+      },
+      "finding": {
+        "en-US": "The early raw ratio and small-cap comparator were both positive, while R&D/revenue was near zero.",
+        "zh-CN": "早期原始比例与小市值对照均为正，研发/收入接近零。"
+      },
+      "decision": {
+        "en-US": "Treat denominator exposure as a competing explanation, not pure innovation alpha.",
+        "zh-CN": "将分母暴露视为竞争解释，不直接称为纯创新 Alpha。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "correction",
+      "period": {
+        "en-US": "2026-09-30",
+        "zh-CN": "2026-09-30"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Correct and separate label horizons",
+        "zh-CN": "修正口径并分开期限"
+      },
+      "question": {
+        "en-US": "Do alternate R&D definitions agree?",
+        "zh-CN": "不同研发定义是否方向一致？"
+      },
+      "finding": {
+        "en-US": "The corrected run has 77 monthly sections at 20 sessions and 66 at 220; the full residual is weaker than market-cap-scaled variants.",
+        "zh-CN": "修正回放有 77 个 20 日截面和 66 个 220 日截面；完整残差弱于市值缩放变体。"
+      },
+      "decision": {
+        "en-US": "Use horizon-specific counts; do not splice the earlier annual extension into this replay.",
+        "zh-CN": "分别报告期限样本数，不将早期年度扩展拼入本次回放。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "holdout",
+      "period": {
+        "en-US": "2026-10-01–2026-10-02",
+        "zh-CN": "2026-10-01–2026-10-02"
+      },
+      "status": "pending",
+      "title": {
+        "en-US": "Audit costs and seal prospective evidence",
+        "zh-CN": "审计成本并封存前瞻证据"
+      },
+      "question": {
+        "en-US": "Can exploratory labels become executable evidence?",
+        "zh-CN": "探索性标签能否升级为可执行证据？"
+      },
+      "finding": {
+        "en-US": "Cost and denominator diagnostics exist; the historical correction chain and long-horizon label maturity remain open.",
+        "zh-CN": "已有成本与分母诊断；历史更正链和长期标签成熟仍未完成。"
+      },
+      "decision": {
+        "en-US": "Keep the October 2026–September 2027 holdout sealed until all labels mature and gates pass.",
+        "zh-CN": "2026 年 10 月至 2027 年 9 月留出需等全部标签成熟并通过门禁后解封。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "variants",
+      "title": {
+        "en-US": "Corrected R&D variant comparison",
+        "zh-CN": "修正后研发变体对照"
+      },
+      "metric": {
+        "en-US": "Mean monthly Rank IC",
+        "zh-CN": "月度平均 Rank IC"
+      },
+      "context": {
+        "en-US": "20-session: 77 sections; 220-session: 66 sections. Overlapping labels; no costed portfolio return.",
+        "zh-CN": "20 日 77 个截面，220 日 66 个截面。标签重叠；不是成本后组合收益。"
+      },
+      "interpretation": {
+        "en-US": "The market-cap denominator matters; stronger long-horizon IC does not prove independent tradable alpha.",
+        "zh-CN": "市值分母作用明显；长期 IC 较高并不能证明独立、可交易的 Alpha。"
+      },
+      "categories": [
+        {
+          "en-US": "R&D / market cap",
+          "zh-CN": "研发 / 市值"
+        },
+        {
+          "en-US": "R&D / EV proxy",
+          "zh-CN": "研发 / EV 代理"
+        },
+        {
+          "en-US": "Five-year decayed R&D stock / market cap",
+          "zh-CN": "五年衰减研发资本 / 市值"
+        },
+        {
+          "en-US": "Full style residual",
+          "zh-CN": "完整风格中性残差"
+        },
+        {
+          "en-US": "R&D / revenue",
+          "zh-CN": "研发 / 收入"
+        },
+        {
+          "en-US": "R&D / assets",
+          "zh-CN": "研发 / 资产"
+        },
+        {
+          "en-US": "R&D growth",
+          "zh-CN": "研发增长"
+        }
+      ],
+      "series": [
+        {
+          "id": "20",
+          "label": {
+            "en-US": "20 sessions",
+            "zh-CN": "20 交易日"
+          },
+          "values": [
+            0.048499999999999995,
+            0.0471,
+            0.05,
+            0.02,
+            0.0024,
+            0.0055000000000000005,
+            -0.0007000000000000001
+          ]
+        },
+        {
+          "id": "220",
+          "label": {
+            "en-US": "220 sessions",
+            "zh-CN": "220 交易日"
+          },
+          "values": [
+            0.1281,
+            0.12619999999999998,
+            0.1308,
+            0.0599,
+            0.005600000000000001,
+            0.0189,
+            -0.025699999999999997
+          ]
+        }
+      ],
+      "source_ids": [
+        "overview"
+      ],
+      "unit": "percent"
+    }
+  ],
+  "next_question": {
+    "en-US": "Does the residual survive a prospectively observed, mature and executable comparison?",
+    "zh-CN": "残差信号能否在前瞻观察、标签成熟且可执行的对照中保留？"
+  }
+}

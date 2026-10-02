@@ -1,0 +1,531 @@
+{
+  "schema_version": "observatory.study_exploration.v1",
+  "study_id": "fundamental-state-forecasting",
+  "source_ref": "doc:quant-research.research.long-term-fundamental-v2",
+  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+  "reviewed_at": "2026-10-02",
+  "evidence_stage": "retrospective_diagnostic",
+  "summary": {
+    "en-US": "A promising early target comparison did not become a stable same-fold model advantage.",
+    "zh-CN": "早期个别目标的亮点没有升级为同折对照中的稳定模型优势。"
+  },
+  "sources": [
+    {
+      "id": "overview",
+      "source_ref": "doc:quant-research.research.long-term-fundamental-v2",
+      "label": {
+        "en-US": "Authoritative study overview",
+        "zh-CN": "权威研究综述"
+      }
+    },
+    {
+      "id": "objectives",
+      "source_ref": "doc:quant-research.experiment.fundamental-objective-comparison-20260904",
+      "label": {
+        "en-US": "Corrected same-fold operating-state objective comparison, 2026-09-04",
+        "zh-CN": "2026-09-04 修正后的同折经营状态目标对照"
+      }
+    },
+    {
+      "id": "first",
+      "source_ref": "doc:quant-research.audit.fundamental-state-pit-results-20260902",
+      "label": {
+        "en-US": "First sealed annual forecast diagnostic, 2026-09-02",
+        "zh-CN": "2026-09-02 首次封存年度预测诊断"
+      }
+    },
+    {
+      "id": "growth-cash",
+      "source_ref": "doc:quant-research.experiment.growth-cash-objective-comparison-20260904",
+      "label": {
+        "en-US": "Same-fold growth and cash-conversion extension, 2026-09-04",
+        "zh-CN": "2026-09-04 同折增长与现金转化扩展"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "first",
+      "period": {
+        "en-US": "2026-09-02",
+        "zh-CN": "2026-09-02"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Find persistence and an early growth signal",
+        "zh-CN": "识别持续性与早期增长亮点"
+      },
+      "question": {
+        "en-US": "Which targets are forecastable?",
+        "zh-CN": "哪些财务目标较可预测？"
+      },
+      "finding": {
+        "en-US": "ROA and gross margin were persistent. Net-profit-growth Rank IC was 0.134 for XGBoost versus -0.065 for persistence in one panel.",
+        "zh-CN": "ROA、毛利率有持续性；一个面板中净利润增速 Rank IC 为 XGBoost 0.134、persistence -0.065。"
+      },
+      "decision": {
+        "en-US": "Retain the positive observation, but do not compare it directly with a different panel or treat it as stock-return alpha.",
+        "zh-CN": "保留正向观察，但不与不同面板直接比较，也不视为股票收益 Alpha。"
+      },
+      "source_ids": [
+        "first"
+      ]
+    },
+    {
+      "id": "correct",
+      "period": {
+        "en-US": "2026-09-04",
+        "zh-CN": "2026-09-04"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Correct the baseline and compare common folds",
+        "zh-CN": "修正基线并比较共同折"
+      },
+      "question": {
+        "en-US": "Do ranking objectives outperform current-state persistence?",
+        "zh-CN": "排序目标是否超过当期状态持续性基线？"
+      },
+      "finding": {
+        "en-US": "An invalid initial run let persistence read future labels. The corrected 30-cell comparison removes it and persistence leads ROA and gross margin at all horizons.",
+        "zh-CN": "最初无效运行让 persistence 读取未来标签；修正后的 30 单元对照剔除该结果，ROA、毛利率各期限均由 persistence 领先。"
+      },
+      "decision": {
+        "en-US": "Use only the corrected results; keep numeric, pairwise and listwise objectives under the same folds.",
+        "zh-CN": "仅使用修正结果，数值、成对与列表目标保持同折。"
+      },
+      "source_ids": [
+        "objectives"
+      ]
+    },
+    {
+      "id": "bridge",
+      "period": {
+        "en-US": "2026-09-04",
+        "zh-CN": "2026-09-04"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Separate forecast accuracy from stock selection",
+        "zh-CN": "分开预测准确度与选股"
+      },
+      "question": {
+        "en-US": "Does target predictability improve portfolios?",
+        "zh-CN": "目标可预测性是否改善组合？"
+      },
+      "finding": {
+        "en-US": "Common-date portfolio bridges and longer-horizon growth/cash-conversion diagnostics remain unstable.",
+        "zh-CN": "共同日期组合桥接及长期增长、现金转化诊断仍不稳定。"
+      },
+      "decision": {
+        "en-US": "Continue simple operating-state research; no model or portfolio promotion.",
+        "zh-CN": "继续简单经营状态研究，不提升模型或组合资格。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "roa",
+      "title": {
+        "en-US": "ROA forecast across horizons",
+        "zh-CN": "ROA 预测期限对照"
+      },
+      "metric": {
+        "en-US": "Within-formation Rank IC",
+        "zh-CN": "形成日内截面 Rank IC"
+      },
+      "context": {
+        "en-US": "Corrected same-fold comparison, 1/2/4 quarters; reconstructed announcement-time inputs, not stock-return IC.",
+        "zh-CN": "修正后的共同折对照，1/2/4 季度；输入为公告时点重建，不是股票收益 IC。"
+      },
+      "interpretation": {
+        "en-US": "Persistence remains strongest; more complex objectives have no consistent increment.",
+        "zh-CN": "Persistence 始终最强，更复杂目标无一致增量。"
+      },
+      "categories": [
+        {
+          "en-US": "1Q",
+          "zh-CN": "1 季度"
+        },
+        {
+          "en-US": "2Q",
+          "zh-CN": "2 季度"
+        },
+        {
+          "en-US": "4Q",
+          "zh-CN": "4 季度"
+        }
+      ],
+      "series": [
+        {
+          "id": "persistence",
+          "label": {
+            "en-US": "Persistence",
+            "zh-CN": "持续性"
+          },
+          "values": [
+            0.84,
+            0.767,
+            0.715
+          ]
+        },
+        {
+          "id": "ridge",
+          "label": {
+            "en-US": "Ridge",
+            "zh-CN": "Ridge"
+          },
+          "values": [
+            0.713,
+            0.45,
+            0.423
+          ]
+        },
+        {
+          "id": "xgb",
+          "label": {
+            "en-US": "Pointwise XGB",
+            "zh-CN": "数值 XGB"
+          },
+          "values": [
+            0.799,
+            0.685,
+            0.69
+          ]
+        },
+        {
+          "id": "pairwise",
+          "label": {
+            "en-US": "Pairwise XGB",
+            "zh-CN": "成对 XGB"
+          },
+          "values": [
+            0.819,
+            0.712,
+            0.646
+          ]
+        },
+        {
+          "id": "listwise",
+          "label": {
+            "en-US": "Listwise XGB",
+            "zh-CN": "列表 XGB"
+          },
+          "values": [
+            0.597,
+            0.335,
+            0.516
+          ]
+        }
+      ],
+      "source_ids": [
+        "objectives"
+      ],
+      "unit": "number"
+    },
+    {
+      "id": "margin",
+      "title": {
+        "en-US": "Gross-margin forecast across horizons",
+        "zh-CN": "毛利率预测期限对照"
+      },
+      "metric": {
+        "en-US": "Within-formation Rank IC",
+        "zh-CN": "形成日内截面 Rank IC"
+      },
+      "context": {
+        "en-US": "Same corrected 30-cell objective comparison; target-level persistence can be high without selection alpha.",
+        "zh-CN": "同一修正后的 30 单元目标对照；财务状态持续性高不代表选股 Alpha。"
+      },
+      "interpretation": {
+        "en-US": "The marginal forecast improvement is absent even where levels are very persistent.",
+        "zh-CN": "即便财务水平持续性很高，也没有额外预测改善。"
+      },
+      "categories": [
+        {
+          "en-US": "1Q",
+          "zh-CN": "1 季度"
+        },
+        {
+          "en-US": "2Q",
+          "zh-CN": "2 季度"
+        },
+        {
+          "en-US": "4Q",
+          "zh-CN": "4 季度"
+        }
+      ],
+      "series": [
+        {
+          "id": "persistence",
+          "label": {
+            "en-US": "Persistence",
+            "zh-CN": "持续性"
+          },
+          "values": [
+            0.957,
+            0.923,
+            0.89
+          ]
+        },
+        {
+          "id": "ridge",
+          "label": {
+            "en-US": "Ridge",
+            "zh-CN": "Ridge"
+          },
+          "values": [
+            0.954,
+            0.916,
+            0.889
+          ]
+        },
+        {
+          "id": "xgb",
+          "label": {
+            "en-US": "Pointwise XGB",
+            "zh-CN": "数值 XGB"
+          },
+          "values": [
+            0.946,
+            0.911,
+            0.878
+          ]
+        },
+        {
+          "id": "pairwise",
+          "label": {
+            "en-US": "Pairwise XGB",
+            "zh-CN": "成对 XGB"
+          },
+          "values": [
+            0.917,
+            0.873,
+            0.852
+          ]
+        },
+        {
+          "id": "listwise",
+          "label": {
+            "en-US": "Listwise XGB",
+            "zh-CN": "列表 XGB"
+          },
+          "values": [
+            0.717,
+            0.692,
+            0.697
+          ]
+        }
+      ],
+      "source_ids": [
+        "objectives"
+      ],
+      "unit": "number"
+    },
+    {
+      "id": "growth",
+      "title": {
+        "en-US": "Revenue-growth horizon comparison",
+        "zh-CN": "营收增长预测期限对照"
+      },
+      "metric": {
+        "en-US": "Within-formation Rank IC",
+        "zh-CN": "形成日内截面 Rank IC"
+      },
+      "context": {
+        "en-US": "Separate same-fold corrected extension; 41/26/51 completed folds for 1/2/4 quarters. Target forecasts, not stock-return predictions.",
+        "zh-CN": "单独的修正同折扩展；1/2/4 季度完成 41/26/51 个折。预测财务目标，不是股票收益。"
+      },
+      "interpretation": {
+        "en-US": "Growth persistence weakens by four quarters; no learned objective consistently beats it.",
+        "zh-CN": "增长持续性到四季度显著减弱，学习目标没有一致超过它。"
+      },
+      "categories": [
+        {
+          "en-US": "1Q",
+          "zh-CN": "1 季度"
+        },
+        {
+          "en-US": "2Q",
+          "zh-CN": "2 季度"
+        },
+        {
+          "en-US": "4Q",
+          "zh-CN": "4 季度"
+        }
+      ],
+      "series": [
+        {
+          "id": "persistence",
+          "label": {
+            "en-US": "Persistence",
+            "zh-CN": "持续性"
+          },
+          "values": [
+            0.705,
+            0.533,
+            0.121
+          ]
+        },
+        {
+          "id": "ridge",
+          "label": {
+            "en-US": "Ridge",
+            "zh-CN": "Ridge"
+          },
+          "values": [
+            0.301,
+            0.142,
+            0.015
+          ]
+        },
+        {
+          "id": "xgb",
+          "label": {
+            "en-US": "Pointwise XGB",
+            "zh-CN": "数值 XGB"
+          },
+          "values": [
+            0.197,
+            0.185,
+            0.01
+          ]
+        },
+        {
+          "id": "pairwise",
+          "label": {
+            "en-US": "Pairwise XGB",
+            "zh-CN": "成对 XGB"
+          },
+          "values": [
+            0.671,
+            0.443,
+            0.083
+          ]
+        },
+        {
+          "id": "listwise",
+          "label": {
+            "en-US": "Listwise XGB",
+            "zh-CN": "列表 XGB"
+          },
+          "values": [
+            0.423,
+            0.294,
+            0.062
+          ]
+        }
+      ],
+      "source_ids": [
+        "growth-cash"
+      ],
+      "unit": "number"
+    },
+    {
+      "id": "cash-conversion",
+      "title": {
+        "en-US": "Cash-conversion horizon comparison",
+        "zh-CN": "现金转化预测期限对照"
+      },
+      "metric": {
+        "en-US": "Within-formation Rank IC",
+        "zh-CN": "形成日内截面 Rank IC"
+      },
+      "context": {
+        "en-US": "Separate same-fold corrected extension; 41/26/51 completed folds for 1/2/4 quarters. Target forecasts, not stock-return predictions.",
+        "zh-CN": "单独的修正同折扩展；1/2/4 季度完成 41/26/51 个折。预测财务目标，不是股票收益。"
+      },
+      "interpretation": {
+        "en-US": "Pairwise leads at one quarter only; accounting extremes and varying horizons prevent a stable model conclusion.",
+        "zh-CN": "成对目标仅在一季度领先；会计极值与不同期限表现阻止稳定模型结论。"
+      },
+      "categories": [
+        {
+          "en-US": "1Q",
+          "zh-CN": "1 季度"
+        },
+        {
+          "en-US": "2Q",
+          "zh-CN": "2 季度"
+        },
+        {
+          "en-US": "4Q",
+          "zh-CN": "4 季度"
+        }
+      ],
+      "series": [
+        {
+          "id": "persistence",
+          "label": {
+            "en-US": "Persistence",
+            "zh-CN": "持续性"
+          },
+          "values": [
+            0.144,
+            0.188,
+            0.404
+          ]
+        },
+        {
+          "id": "ridge",
+          "label": {
+            "en-US": "Ridge",
+            "zh-CN": "Ridge"
+          },
+          "values": [
+            -0.061,
+            -0.095,
+            0.034
+          ]
+        },
+        {
+          "id": "xgb",
+          "label": {
+            "en-US": "Pointwise XGB",
+            "zh-CN": "数值 XGB"
+          },
+          "values": [
+            0.018,
+            -0.002,
+            -0.003
+          ]
+        },
+        {
+          "id": "pairwise",
+          "label": {
+            "en-US": "Pairwise XGB",
+            "zh-CN": "成对 XGB"
+          },
+          "values": [
+            0.194,
+            0.105,
+            0.359
+          ]
+        },
+        {
+          "id": "listwise",
+          "label": {
+            "en-US": "Listwise XGB",
+            "zh-CN": "列表 XGB"
+          },
+          "values": [
+            0.076,
+            0.122,
+            0.082
+          ]
+        }
+      ],
+      "source_ids": [
+        "growth-cash"
+      ],
+      "unit": "number"
+    }
+  ],
+  "next_question": {
+    "en-US": "Can forecast changes add selection value beyond current profitability and valuation on common dates?",
+    "zh-CN": "预测变化能否在共同日期上，相对当期盈利与估值增加选股价值？"
+  }
+}

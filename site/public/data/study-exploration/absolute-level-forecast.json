@@ -1,0 +1,336 @@
+{
+  "schema_version": "observatory.study_exploration.v1",
+  "study_id": "absolute-level-forecast",
+  "source_ref": "doc:quant-research.research.fundamental-state-forecasting",
+  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+  "reviewed_at": "2026-10-02",
+  "evidence_stage": "retrospective_diagnostic",
+  "summary": {
+    "en-US": "The forecast test and the selection test have different outcomes and should be read separately.",
+    "zh-CN": "预测检验与选股检验的结果不同，需要分开阅读。"
+  },
+  "sources": [
+    {
+      "id": "overview",
+      "source_ref": "doc:quant-research.research.fundamental-state-forecasting",
+      "label": {
+        "en-US": "Authoritative study overview",
+        "zh-CN": "权威研究综述"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "cohort",
+      "period": {
+        "en-US": "2026-10-02",
+        "zh-CN": "2026-10-02"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Freeze target semantics and common rows",
+        "zh-CN": "固定目标语义与共同样本"
+      },
+      "question": {
+        "en-US": "Are revenue and net income evaluated on the same folds?",
+        "zh-CN": "营收与净利润是否使用共同折评估？"
+      },
+      "finding": {
+        "en-US": "The retrospective pilot uses 32,339 common rows and three annual test windows; net income is consolidated, not parent-attributable.",
+        "zh-CN": "回溯试验使用 32,339 个共同样本、三个年度测试窗口；净利润为合并口径，不是归母口径。"
+      },
+      "decision": {
+        "en-US": "Interpret transformed errors within each target, not as currency-denominated MAE.",
+        "zh-CN": "各目标内解读变换误差，不把它当作货币单位 MAE。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "forecast",
+      "period": {
+        "en-US": "2023–2025 test years",
+        "zh-CN": "2023–2025 测试年"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Compare against persistence",
+        "zh-CN": "与持续性基线对照"
+      },
+      "question": {
+        "en-US": "Do learned models improve absolute forecasts?",
+        "zh-CN": "学习模型是否改善绝对值预测？"
+      },
+      "finding": {
+        "en-US": "Persistence wins transformed MAE in all six target-year cells. XGBoost adds only a small net-income Rank IC increment.",
+        "zh-CN": "Persistence 在六个目标年单元的变换 MAE 全部胜出；XGBoost 净利润 Rank IC 增量很小。"
+      },
+      "decision": {
+        "en-US": "High revenue-level Rank IC can reflect firm scale; no model promotion follows.",
+        "zh-CN": "营收水平 Rank IC 高可能反映公司规模，不据此提升模型资格。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "selection",
+      "period": {
+        "en-US": "2023–2025 test years",
+        "zh-CN": "2023–2025 测试年"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Check the valuation bridge",
+        "zh-CN": "检查估值桥接"
+      },
+      "question": {
+        "en-US": "Does better-looking forecast yield translate consistently?",
+        "zh-CN": "预测收益率指标的亮点是否一致兑现？"
+      },
+      "finding": {
+        "en-US": "Ridge forecast-yield excess is 16.4%, 41.8%, then -7.4%; annual selection outcomes disagree.",
+        "zh-CN": "Ridge 预测收益率组超额依次为 16.4%、41.8%、-7.4%，年度选股结论不一致。"
+      },
+      "decision": {
+        "en-US": "Keep the test retrospective; audit surviving-universe and later-revision biases separately.",
+        "zh-CN": "保留回溯试验状态，单独审计幸存股票池与后来修订偏差。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "revenue-error",
+      "title": {
+        "en-US": "Revenue forecast error",
+        "zh-CN": "营收预测误差"
+      },
+      "metric": {
+        "en-US": "Transformed MAE — lower is better",
+        "zh-CN": "变换 MAE：越低越好"
+      },
+      "context": {
+        "en-US": "Same common annual folds; target-specific transformed units, not currency units.",
+        "zh-CN": "同一年度共同折；目标特定的变换单位，不是货币单位。"
+      },
+      "interpretation": {
+        "en-US": "Persistence has the lowest error in each year.",
+        "zh-CN": "Persistence 每年误差最低。"
+      },
+      "categories": [
+        {
+          "en-US": "2023",
+          "zh-CN": "2023"
+        },
+        {
+          "en-US": "2024",
+          "zh-CN": "2024"
+        },
+        {
+          "en-US": "2025",
+          "zh-CN": "2025"
+        }
+      ],
+      "series": [
+        {
+          "id": "persistence",
+          "label": {
+            "en-US": "Persistence",
+            "zh-CN": "持续性"
+          },
+          "values": [
+            0.097,
+            0.091,
+            0.087
+          ]
+        },
+        {
+          "id": "ridge",
+          "label": {
+            "en-US": "Ridge",
+            "zh-CN": "Ridge"
+          },
+          "values": [
+            0.418,
+            0.407,
+            0.413
+          ]
+        },
+        {
+          "id": "xgb",
+          "label": {
+            "en-US": "XGBoost",
+            "zh-CN": "XGBoost"
+          },
+          "values": [
+            0.124,
+            0.112,
+            0.107
+          ]
+        }
+      ],
+      "source_ids": [
+        "overview"
+      ],
+      "unit": "number"
+    },
+    {
+      "id": "income-error",
+      "title": {
+        "en-US": "Consolidated net-income forecast error",
+        "zh-CN": "合并净利润预测误差"
+      },
+      "metric": {
+        "en-US": "Transformed MAE — lower is better",
+        "zh-CN": "变换 MAE：越低越好"
+      },
+      "context": {
+        "en-US": "Same annual folds; not directly comparable to revenue transformed MAE.",
+        "zh-CN": "同一年度折；不能与营收变换 MAE 直接比较。"
+      },
+      "interpretation": {
+        "en-US": "Small ranking gains do not compensate for worse absolute prediction error.",
+        "zh-CN": "微小排序增量不能替代绝对预测误差改善。"
+      },
+      "categories": [
+        {
+          "en-US": "2023",
+          "zh-CN": "2023"
+        },
+        {
+          "en-US": "2024",
+          "zh-CN": "2024"
+        },
+        {
+          "en-US": "2025",
+          "zh-CN": "2025"
+        }
+      ],
+      "series": [
+        {
+          "id": "persistence",
+          "label": {
+            "en-US": "Persistence",
+            "zh-CN": "持续性"
+          },
+          "values": [
+            0.573,
+            0.514,
+            0.451
+          ]
+        },
+        {
+          "id": "ridge",
+          "label": {
+            "en-US": "Ridge",
+            "zh-CN": "Ridge"
+          },
+          "values": [
+            0.814,
+            0.817,
+            0.77
+          ]
+        },
+        {
+          "id": "xgb",
+          "label": {
+            "en-US": "XGBoost",
+            "zh-CN": "XGBoost"
+          },
+          "values": [
+            0.594,
+            0.57,
+            0.529
+          ]
+        }
+      ],
+      "source_ids": [
+        "overview"
+      ],
+      "unit": "number"
+    },
+    {
+      "id": "selection",
+      "title": {
+        "en-US": "Top-decile annual excess diagnostic",
+        "zh-CN": "最高十分位年度超额诊断"
+      },
+      "metric": {
+        "en-US": "Top-decile excess vs common cohort",
+        "zh-CN": "最高十分位相对共同样本超额"
+      },
+      "context": {
+        "en-US": "Three annual price-label windows; no transaction costs, fillability or delisting-aware production proof.",
+        "zh-CN": "三个年度价格标签窗口；无交易成本、可成交性或退市感知生产证据。"
+      },
+      "interpretation": {
+        "en-US": "Forecast-yield rankings reverse; scale and valuation can dominate the bridge.",
+        "zh-CN": "预测收益率排序会反转；规模与估值可能主导桥接。"
+      },
+      "categories": [
+        {
+          "en-US": "2023",
+          "zh-CN": "2023"
+        },
+        {
+          "en-US": "2024",
+          "zh-CN": "2024"
+        },
+        {
+          "en-US": "2025",
+          "zh-CN": "2025"
+        }
+      ],
+      "series": [
+        {
+          "id": "current",
+          "label": {
+            "en-US": "Current financial yield",
+            "zh-CN": "当期财务收益率"
+          },
+          "values": [
+            0.089,
+            -0.347,
+            0.003
+          ]
+        },
+        {
+          "id": "ridge",
+          "label": {
+            "en-US": "Ridge forecast yield",
+            "zh-CN": "Ridge 预测收益率"
+          },
+          "values": [
+            0.164,
+            0.418,
+            -0.074
+          ]
+        },
+        {
+          "id": "xgb",
+          "label": {
+            "en-US": "XGBoost forecast yield",
+            "zh-CN": "XGBoost 预测收益率"
+          },
+          "values": [
+            0.133,
+            -0.25,
+            0.001
+          ]
+        }
+      ],
+      "source_ids": [
+        "overview"
+      ],
+      "unit": "percent"
+    }
+  ],
+  "next_question": {
+    "en-US": "Can a preregistered, observation-time cohort show a forecast increment and then costed selection value?",
+    "zh-CN": "预注册、受观察时间约束的样本能否先显示预测增量，再显示成本后选股价值？"
+  }
+}

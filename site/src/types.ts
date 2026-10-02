@@ -91,6 +91,8 @@ export type Study = StudyCopy & {
   source_ref?: string;
   source_url?: string;
   research_log?: StudyLogEntry[];
+  exploration_asset?: string;
+  exploration_counts?: { steps: number; charts: number };
   translations?: Partial<Record<'en-US' | 'zh-CN', StudyCopy>>;
 }
 export type StudyCatalog = { schema_version: number; updated_at: string; series?: StudySeries[]; studies: Study[] }

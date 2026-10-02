@@ -144,7 +144,12 @@
       ],
       "evidence_stage": "retrospective_diagnostic",
       "publication_id": "pb-roe",
-      "source_ref": "doc:quant-research.strategy.pb-roe-value-quality"
+      "source_ref": "doc:quant-research.strategy.pb-roe-value-quality",
+      "exploration_asset": "data/study-exploration/pb-roe.json",
+      "exploration_counts": {
+        "steps": 3,
+        "charts": 2
+      }
     },
     {
       "id": "rd-investment",
@@ -403,7 +408,12 @@
       ],
       "evidence_stage": "exploratory",
       "publication_id": "rd-investment",
-      "source_ref": "doc:quant-research.research.rd-investment-relative-valuation"
+      "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+      "exploration_asset": "data/study-exploration/rd-investment.json",
+      "exploration_counts": {
+        "steps": 3,
+        "charts": 1
+      }
     },
     {
       "id": "fundamental-state-forecasting",
@@ -465,6 +475,11 @@
             "These are retrospective diagnostics, not mature prospective evidence or production approval."
           ]
         }
+      },
+      "exploration_asset": "data/study-exploration/fundamental-state-forecasting.json",
+      "exploration_counts": {
+        "steps": 3,
+        "charts": 4
       }
     },
     {
@@ -524,6 +539,11 @@
             "The source README has no reviewed family-level verdict yet; evidence review remains open."
           ]
         }
+      },
+      "exploration_asset": "data/study-exploration/fundamental-family-shadow.json",
+      "exploration_counts": {
+        "steps": 3,
+        "charts": 0
       }
     },
     {
@@ -607,7 +627,12 @@
       ],
       "evidence_stage": "retrospective_diagnostic",
       "publication_id": "cashflow-indices",
-      "source_ref": "doc:quant-research.research.cashflow-indices-map"
+      "source_ref": "doc:quant-research.research.cashflow-indices-map",
+      "exploration_asset": "data/study-exploration/cashflow-indices.json",
+      "exploration_counts": {
+        "steps": 3,
+        "charts": 2
+      }
     },
     {
       "id": "hk-fundamental-archive",
@@ -667,6 +692,11 @@
             "Hong Kong findings describe historical Hong Kong research and do not establish transferability to A-shares."
           ]
         }
+      },
+      "exploration_asset": "data/study-exploration/hk-fundamental-archive.json",
+      "exploration_counts": {
+        "steps": 3,
+        "charts": 2
       }
     },
     {
@@ -718,7 +748,12 @@
       ],
       "evidence_stage": "hypothesis",
       "publication_id": "employee-compensation",
-      "source_ref": "doc:quant-research.research.fundamental-research-series"
+      "source_ref": "doc:quant-research.research.fundamental-research-series",
+      "exploration_asset": "data/study-exploration/employee-compensation.json",
+      "exploration_counts": {
+        "steps": 3,
+        "charts": 0
+      }
     },
     {
       "id": "absolute-level-forecast",
@@ -960,6 +995,11 @@
             "2026-10-02 输入审计补齐了原始与调整后报表，并实现受实际采集时间约束的版本留存。这些后来采集的数据不能证明严格历史 PIT。R&D 冻结窗口持续至 2027 年 9 月，需等全部长期标签成熟后才能解封，约在 2028 年。本次未读取冻结表现。"
           ]
         }
+      },
+      "exploration_asset": "data/study-exploration/absolute-level-forecast.json",
+      "exploration_counts": {
+        "steps": 3,
+        "charts": 3
       }
     }
   ],

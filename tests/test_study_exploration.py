@@ -1,0 +1,88 @@
+"""Source and metric contracts for optional study exploration projections."""
+import json
+import math
+import re
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).parents[1]
+DATA = ROOT / 'site/public/data'
+
+
+class StudyExplorationTests(unittest.TestCase):
+    def setUp(self):
+        self.catalog = json.loads((DATA / 'research-studies.json').read_text())
+        self.studies = {s['id']: s for s in self.catalog['studies']}
+        self.manifest = json.loads((DATA / 'research-publication-manifest.json').read_text())
+
+    def asset(self, study_id):
+        return json.loads((ROOT / 'site/public' / self.studies[study_id]['exploration_asset']).read_text())
+
+    def test_all_eight_studies_have_localized_source_backed_exploration(self):
+        projections = {p['public_id']: p for p in self.manifest['projections']}
+        for study_id, study in self.studies.items():
+            data = self.asset(study_id)
+            self.assertEqual(data['schema_version'], 'observatory.study_exploration.v1')
+            self.assertEqual(data['study_id'], study_id)
+            self.assertEqual(data['source_ref'], study['source_ref'])
+            self.assertEqual(data['evidence_stage'], study['evidence_stage'])
+            self.assertRegex(data['source_revision'], r'^[0-9a-f]{40}$')
+            self.assertEqual(projections[study_id]['exploration_asset'], study['exploration_asset'])
+            self.assertEqual(study['exploration_counts'], {'steps': len(data['steps']), 'charts': len(data['charts'])})
+            self.assertGreaterEqual(len(data['steps']), 3)
+            sources = {s['id'] for s in data['sources']}
+            self.assertEqual(len(sources), len(data['sources']))
+            for source in data['sources']:
+                self.assertRegex(source['source_ref'], r'^doc:quant-research\.')
+            for step in data['steps']:
+                self.assertTrue(set(step['source_ids']) <= sources)
+                for field in ('title', 'period', 'question', 'finding', 'decision'):
+                    self.assertEqual(set(step[field]), {'en-US', 'zh-CN'})
+                    self.assertTrue(all(step[field].values()))
+                    self.assertNotRegex(step[field]['en-US'], r'[\u4e00-\u9fff]')
+            for chart in data['charts']:
+                self.assertTrue(set(chart['source_ids']) <= sources)
+                self.assertIn(chart['unit'], {'number', 'percent'})
+                for field in ('title', 'metric', 'context', 'interpretation'):
+                    self.assertEqual(set(chart[field]), {'en-US', 'zh-CN'})
+                    self.assertNotRegex(chart[field]['en-US'], r'[\u4e00-\u9fff]')
+                for series in chart['series']:
+                    self.assertEqual(len(series['values']), len(chart['categories']))
+                    self.assertTrue(all(v is None or math.isfinite(v) for v in series['values']))
+            text = json.dumps(data)
+            self.assertNotRegex(text, re.compile(r'/home/|/Users/|(?:access|api|secret)[_-]?key', re.I))
+            for private_key in ('ticker', 'symbol', 'portfolio_weights', 'source_path', 'raw_path'):
+                self.assertNotIn(f'"{private_key}"', text)
+
+    def test_protocol_and_hypothesis_publish_no_performance_chart(self):
+        for study_id in ('fundamental-family-shadow', 'employee-compensation'):
+            self.assertEqual(self.asset(study_id)['charts'], [])
+
+    def test_pb_and_rd_charts_match_existing_reviewed_tables(self):
+        pb = self.studies['pb-roe']['translations']['en-US']['rows']
+        charts = self.asset('pb-roe')['charts']
+        self.assertEqual(charts[0]['series'][0]['values'], [float(r[2].strip('%')) / 100 for r in pb])
+        rd = self.studies['rd-investment']['translations']['en-US']['rows']
+        chart = self.asset('rd-investment')['charts'][0]
+        for index, column in enumerate((1, 2)):
+            self.assertEqual(chart['series'][index]['values'], [float(r[column].strip('%')) / 100 for r in rd])
+
+    def test_absolute_error_and_selection_are_different_units(self):
+        charts = self.asset('absolute-level-forecast')['charts']
+        self.assertEqual([c['unit'] for c in charts], ['number', 'number', 'percent'])
+        self.assertEqual(charts[0]['series'][0]['values'], [.097, .091, .087])
+        self.assertEqual(charts[2]['series'][1]['values'], [.164, .418, -.074])
+        self.assertIn('no transaction costs', charts[2]['context']['en-US'])
+
+    def test_hk_keeps_monthly_and_quarterly_evidence_separate(self):
+        data = self.asset('hk-fundamental-archive')
+        self.assertIn('six walk-forward', data['steps'][0]['finding']['en-US'])
+        self.assertIn('not quarterly', data['charts'][0]['context']['en-US'])
+        self.assertEqual(data['charts'][0]['series'][0]['values'][-1], .252)
+        self.assertEqual(data['charts'][1]['series'][0]['values'][-1], -.08)
+
+    def test_invalid_early_baseline_is_explicitly_excluded(self):
+        data = self.asset('fundamental-state-forecasting')
+        self.assertIn('invalid initial run', data['steps'][1]['finding']['en-US'])
+        self.assertEqual(data['charts'][0]['series'][0]['values'], [.840, .767, .715])
+        self.assertTrue(all('corrected' in c['context']['en-US'].lower() for c in data['charts']))

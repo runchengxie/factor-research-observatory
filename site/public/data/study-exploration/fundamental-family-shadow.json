@@ -1,0 +1,110 @@
+{
+  "schema_version": "observatory.study_exploration.v1",
+  "study_id": "fundamental-family-shadow",
+  "source_ref": "doc:quant-research.research.fundamental-family-shadow",
+  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+  "reviewed_at": "2026-10-02",
+  "evidence_stage": "retrospective_diagnostic",
+  "summary": {
+    "en-US": "This is a common-sample ablation design, with no reviewed family-level performance to chart.",
+    "zh-CN": "这是共同样本消融设计，目前没有已复核的家族绩效可绘图。"
+  },
+  "sources": [
+    {
+      "id": "overview",
+      "source_ref": "doc:quant-research.research.fundamental-family-shadow",
+      "label": {
+        "en-US": "Authoritative study overview",
+        "zh-CN": "权威研究综述"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "anchor",
+      "period": {
+        "en-US": "Protocol",
+        "zh-CN": "研究协议"
+      },
+      "status": "protocol",
+      "title": {
+        "en-US": "Define a shared anchor",
+        "zh-CN": "定义共同基线"
+      },
+      "question": {
+        "en-US": "Can value already present in the anchor contaminate the increment?",
+        "zh-CN": "基线已含价值信息会否混淆增量？"
+      },
+      "finding": {
+        "en-US": "The design distinguishes the existing anchor from a baseline that removes overlapping valuation features.",
+        "zh-CN": "设计区分现有锚点与去掉重复估值信息的共同基线。"
+      },
+      "decision": {
+        "en-US": "Test increments against that shared baseline.",
+        "zh-CN": "相对同一共同基线检验增量。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "families",
+      "period": {
+        "en-US": "Protocol",
+        "zh-CN": "研究协议"
+      },
+      "status": "protocol",
+      "title": {
+        "en-US": "Separate value, quality and growth",
+        "zh-CN": "拆开价值、质量与成长"
+      },
+      "question": {
+        "en-US": "Which family contributes beyond the others?",
+        "zh-CN": "哪个家族在其他家族之外有贡献？"
+      },
+      "finding": {
+        "en-US": "Single-family and combined arms are specified; common valid sample keys are retained.",
+        "zh-CN": "已规定单家族与组合臂，并保留共同有效样本键。"
+      },
+      "decision": {
+        "en-US": "Compare each ablation on identical eligible names and dates.",
+        "zh-CN": "各消融臂使用同一合格股票和日期。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "review",
+      "period": {
+        "en-US": "Pending results",
+        "zh-CN": "结果待复核"
+      },
+      "status": "pending",
+      "title": {
+        "en-US": "Wait for reviewed results",
+        "zh-CN": "等待结果复核"
+      },
+      "question": {
+        "en-US": "Is a completed protocol already evidence of performance?",
+        "zh-CN": "协议完成是否等于绩效证据？"
+      },
+      "finding": {
+        "en-US": "Configuration validation and immutable receipts exist, but no reviewed family-level conclusion is published here.",
+        "zh-CN": "已有配置校验与不可变凭证，本页尚无已复核家族结论。"
+      },
+      "decision": {
+        "en-US": "Keep the chart empty until comparable model and portfolio outputs are reviewed.",
+        "zh-CN": "在模型与组合可比产物复核前保留绩效图缺失。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    }
+  ],
+  "charts": [],
+  "next_question": {
+    "en-US": "Which family survives same-sample ablation after costs and exposure controls?",
+    "zh-CN": "哪个家族在同样本消融、成本与暴露控制后仍有效？"
+  }
+}
