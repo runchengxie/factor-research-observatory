@@ -11,6 +11,7 @@ const HermitePage = lazy(() => import('./pages/HermitePage'))
 const FundamentalsPage = lazy(() => import('./pages/FundamentalsPage'))
 const FactorExplorerPage = lazy(() => import('./pages/FactorExplorerPage'))
 const StudiesPage = lazy(() => import('./pages/StudiesPage').then((module) => ({ default: module.StudiesPage })))
+const ResearchEvidencePage = lazy(() => import('./pages/ResearchEvidencePage'))
 const StudyComparisonPage = lazy(() => import('./pages/StudyComparisonPage'))
 const StudyDetailPage = lazy(() => import('./pages/StudiesPage').then((module) => ({ default: module.StudyDetailPage })))
 const Alpha810OverviewPage = lazy(() => import('./pages/Alpha810OverviewPage'))
@@ -63,6 +64,7 @@ function pathView(path: string, data: RouteData, copy: Copy) {
   if (data.kind === 'fundamentals') return <FundamentalsPage catalog={data.fundamental.catalog} snapshot={data.fundamental.snapshot} />
   if (data.kind === 'studies') {
     if (path === 'studies') return <StudiesPage catalog={data.studies} />
+    if (path === 'studies/evidence') return <ResearchEvidencePage catalog={data.studies} />
     if (path === 'studies/compare') return <StudyComparisonPage catalog={data.studies} />
     return <StudyDetailPage catalog={data.studies} study={data.studies.studies.find((item) => item.id === path.slice(8))} updatedAt={data.studies.updated_at} rdAnnual={data.rdAnnual} />
   }

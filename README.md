@@ -84,3 +84,5 @@ quant-factor-observatory
 ```
 
 Historical commits may contain removed internal implementations. If historical visibility must change, create a clean public repository or perform an explicitly authorized history rewrite after preserving backups; an ordinary deletion does not remove Git history, forks, or existing clones.
+
+Research navigation keeps `/studies` focused on searchable topic cards. Each topic carries its evidence basis, experiments, interpretation changes and expandable source review record. `/studies/evidence` provides the cross-topic matrix, while `/studies/compare` retains the registered quantitative comparisons. Human-facing review times use the selected locale and Asia/Shanghai time; original timestamps remain in source details.
