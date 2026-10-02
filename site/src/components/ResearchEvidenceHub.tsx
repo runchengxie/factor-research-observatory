@@ -2,8 +2,8 @@ import { useState } from 'react'
 import type { Study, StudyCatalog } from '../types'
 import { useLocale } from '../i18n'
 const href = (id: string) => `${import.meta.env.BASE_URL}studies/${id}`
-export function filterStudies(studies: Study[], locale: 'en-US' | 'zh-CN', query: string, market: string, stage: string) {
-  return studies.filter(s => (!market || s.market === market) && (!stage || s.evidence_stage === stage) && [s.id, (s.translations?.[locale] ?? s).title, (s.translations?.[locale] ?? s).summary, (s.translations?.[locale] ?? s).family].join(' ').toLowerCase().includes(query.trim().toLowerCase()))
+export function filterStudies(studies: Study[], locale: 'en-US' | 'zh-CN', query: string, market: string, stage: string, briefs: Record<string, string>) {
+  return studies.filter(s => (!market || s.market === market) && (!stage || s.evidence_stage === stage) && [s.id, briefs[s.id] ?? '', (s.translations?.[locale] ?? s).title, (s.translations?.[locale] ?? s).summary, (s.translations?.[locale] ?? s).family].join(' ').toLowerCase().includes(query.trim().toLowerCase()))
 }
 
 type FilterProps = { studies: Study[]; query: string; market: string; stage: string; setQuery: (value: string) => void; setMarket: (value: string) => void; setStage: (value: string) => void }
@@ -23,6 +23,12 @@ function ReviewDate({ value }: { value: string }) {
   return <span>{copy.researchHub.checked} <time dateTime={value}>{new Intl.DateTimeFormat(locale, { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(date)}</time>{locale === 'zh-CN' ? '（北京时间）' : ' (Asia/Shanghai)'}</span>
 }
 
+export function SourceReviewWarning({ study }: { study: Study }) {
+  const { copy } = useLocale()
+  const status = study.source_review_status?.status
+  return status && status !== 'matched' ? <p className="research-boundary source-review-warning">{copy.researchHub[status] ?? status}</p> : null
+}
+
 export function StudyEvidenceSummary({ study }: { study: Study }) {
   const { locale, copy } = useLocale(), c = copy.researchHub
   const content = { ...study, ...study.translations?.[locale] }
@@ -33,7 +39,7 @@ export function StudyEvidenceSummary({ study }: { study: Study }) {
       <div><dt>{c.scope}</dt><dd>{study.evidence_summary.scope[locale]}</dd></div>
       <div><dt>{c.baseline}</dt><dd>{study.evidence_summary.baseline[locale]}</dd></div>
     </>}<div><dt>{c.gap}</dt><dd>{content.limits[0]}</dd></div></dl>
-    {study.source_review_status?.status !== 'matched' && study.source_review_status && <p className="research-boundary">{c[study.source_review_status.status] ?? study.source_review_status.status}</p>}
+    <SourceReviewWarning study={study} />
     <details className="study-source-record"><summary>{c.sourceDetails}</summary>
       {study.source_review_status && <><p>{c[study.source_review_status.status] ?? study.source_review_status.status}</p><p><ReviewDate value={study.source_review_status.checked_at} /></p><code>{study.source_review_status.checked_at}</code></>}
       <p>{content.source_note}</p><code>{study.source_ref}</code>
@@ -44,7 +50,7 @@ export function StudyEvidenceSummary({ study }: { study: Study }) {
 export function ResearchEvidenceHub({ catalog }: { catalog: StudyCatalog }) {
   const { locale, copy } = useLocale(), c = copy.researchHub
   const [query, setQuery] = useState(''), [market, setMarket] = useState(''), [stage, setStage] = useState('')
-  const studies = filterStudies(catalog.studies, locale, query, market, stage)
+  const studies = filterStudies(catalog.studies, locale, query, market, stage, copy.studyBriefs)
   if (!catalog.studies.some(s => s.evidence_summary)) return null
   return <section className="panel research-evidence-hub"><h1>{c.title}</h1>
     <StudyFilters studies={catalog.studies} query={query} market={market} stage={stage} setQuery={setQuery} setMarket={setMarket} setStage={setStage} />

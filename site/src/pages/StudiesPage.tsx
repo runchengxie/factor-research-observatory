@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState } from 'react'
-import { StudyConnections, StudyEvidenceSummary, StudyFilters, filterStudies } from '../components/ResearchEvidenceHub'
+import { StudyConnections, SourceReviewWarning, StudyEvidenceSummary, StudyFilters, filterStudies } from '../components/ResearchEvidenceHub'
 import type { RdAnnualEvidence, Study, StudyCatalog, StudySeries } from '../types'
 import { useLocale } from '../i18n'
 import { RdAnnualEvidencePanel } from './RdAnnualEvidence'
@@ -18,7 +18,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
   const { locale, copy } = useLocale()
   const english = locale === 'en-US'
   const [query, setQuery] = useState(''), [market, setMarket] = useState(''), [stage, setStage] = useState('')
-  const visible = filterStudies(catalog.studies, locale, query, market, stage)
+  const visible = filterStudies(catalog.studies, locale, query, market, stage, copy.studyBriefs)
   const groupedIds = new Set((catalog.series ?? []).flatMap((series) => series.study_ids))
   const ungroupedStudies = visible.filter((study) => !groupedIds.has(study.id))
   return <main className="page study-page">
@@ -42,7 +42,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
           const study = localizedStudy(rawStudy, locale)
           return <a className="study-card" href={href(study.id)} key={study.id}>
             <span className={`study-status study-status-${study.status}`}>{study.status_label}</span>
-            <small>{study.family}</small><h2>{study.title}</h2><p>{copy.studyBriefs[study.id] ?? study.summary}</p>
+            <small>{study.family}</small><h2>{study.title}</h2><p>{copy.studyBriefs[study.id] ?? study.summary}</p><SourceReviewWarning study={study} />
             <p className="study-card-scope">{study.evidence_summary?.sample[locale] ?? study.period}</p>
             <p className="study-card-gap">{copy.researchHub.gap}: {study.limits[0]}</p>
             <div className="study-taxonomy" aria-label={copy.studies.studyClassifications}>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div>
@@ -56,7 +56,7 @@ export function StudiesPage({ catalog }: { catalog: StudyCatalog }) {
       {catalog.series?.length ? <div className="section-heading"><h2>{copy.studies.otherStudies}</h2></div> : null}
       <div className="study-grid">{ungroupedStudies.map((rawStudy) => { const study = localizedStudy(rawStudy, locale); return <a className="study-card" href={href(study.id)} key={study.id}>
         <span className={`study-status study-status-${study.status}`}>{study.status_label}</span>
-        <small>{study.family}</small><h2>{study.title}</h2><p>{copy.studyBriefs[study.id] ?? study.summary}</p>
+        <small>{study.family}</small><h2>{study.title}</h2><p>{copy.studyBriefs[study.id] ?? study.summary}</p><SourceReviewWarning study={study} />
         <p className="study-card-scope">{study.evidence_summary?.sample[locale] ?? study.period}</p>
         <p className="study-card-gap">{copy.researchHub.gap}: {study.limits[0]}</p>
         {study.method || study.market || study.evidence_stage ? <div className="study-taxonomy" aria-label={copy.studies.studyClassifications}>{taxonomyLabels(study, copy.studyTaxonomy).map((label) => <span className="tag" key={label}>{label}</span>)}</div> : null}
