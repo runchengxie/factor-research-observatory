@@ -39,6 +39,7 @@ class PublicResearchContractTests(unittest.TestCase):
             "fundamental-series": "doc:quant-research.research.fundamental-research-series",
             "rd-investment": "doc:quant-research.research.rd-investment-relative-valuation",
             "fundamental-state-forecasting": "doc:quant-research.research.long-term-fundamental-v2",
+            "absolute-level-forecast": "doc:quant-research.research.fundamental-state-forecasting",
             "fundamental-family-shadow": "doc:quant-research.research.fundamental-family-shadow",
             "cashflow-indices": "doc:quant-research.research.cashflow-indices-map",
             "pb-roe": "doc:quant-research.strategy.pb-roe-value-quality",
@@ -134,7 +135,8 @@ class PublicResearchContractTests(unittest.TestCase):
         self.assertEqual(
             set(studies), {
                 "pb-roe", "rd-investment", "employee-compensation", "cashflow-indices",
-                "fundamental-state-forecasting", "fundamental-family-shadow", "hk-fundamental-archive",
+                "fundamental-state-forecasting", "absolute-level-forecast",
+                "fundamental-family-shadow", "hk-fundamental-archive",
             }
         )
         self.assertEqual(studies["pb-roe"]["status"], "historical-reviewed")

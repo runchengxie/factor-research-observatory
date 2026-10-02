@@ -92,11 +92,19 @@ test('fundamental research series shows source-backed A-share and historical Hon
   await expect(page.getByText(/23 fundamental and human-capital candidates/)).toBeVisible()
   await expect(page.getByRole('link', { name: /Browse factor definitions/ })).toHaveAttribute('href', /fundamentals$/)
   await expect(page.getByRole('heading', { name: 'Fundamental-state forecasting: from financial predictions to cross-sectional selection' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Absolute revenue and net-income forecasts: a selection pilot' })).toBeVisible()
+  await expect(page.getByText(/Persistence has lower transformed MAE than Ridge and XGBoost in all six comparisons/)).toBeVisible()
+  await expect(page.getByText(/XGBoost net-income RankIC gains are tiny/)).toBeVisible()
+  await page.goto('studies/absolute-level-forecast')
+  await expect(page.getByRole('heading', { name: 'What we can say now' })).toBeVisible()
+  await expect(page.getByRole('row', { name: /XGBoost forecast yield top-decile excess/ })).toContainText('-25.0%')
+  await page.goto('studies')
   await expect(page.getByRole('heading', { name: 'Hong Kong PIT fundamentals: archived monthly and quarterly studies' })).toBeVisible()
   await expect(page.getByText('Historical archive').first()).toBeVisible()
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
   await expect(page.getByRole('heading', { name: '跨因子与市场的基本面研究' })).toBeVisible()
   await expect(page.getByRole('heading', { name: '港股基本面 PIT 研究：月频与季频历史归档' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '营收与净利润绝对值预测：截面选股试验' })).toBeVisible()
   await expect(page.getByText('港股', { exact: true }).first()).toBeVisible()
 })
 
@@ -165,8 +173,8 @@ test('chart routes render without React runtime errors', async ({ page }) => {
   const runtimeErrors: string[] = []
   page.on('pageerror', (error) => runtimeErrors.push(error.message))
   const cases = [
-    { route: 'jumps', heading: 'Volatility is not one number.', chart: '.chart-panel .echarts-for-react, .chart-panel .chart-empty' },
-    { route: 'hermite', heading: 'Find the cracks in the distribution.', chart: '.chart-panel .echarts-for-react' },
+    { route: 'jumps', heading: 'Volatility is not one number.', chart: '.chart-panel svg.chart-svg, .chart-panel .chart-empty' },
+    { route: 'hermite', heading: 'Find the cracks in the distribution.', chart: '.chart-panel svg.chart-svg' },
   ]
   for (const { route, heading, chart } of cases) {
     await page.goto(route)
@@ -231,17 +239,17 @@ test('fundamentals catalog groups are keyboard-accessible disclosures on mobile'
   expect(widths.content).toBeLessThanOrEqual(widths.viewport)
 })
 
-test('fundamentals route defers chart code until a chart section approaches view', async ({ page }) => {
+test('fundamentals route defers native SVG chart code until a chart section approaches view', async ({ page }) => {
   const chartRequests: string[] = []
   page.on('request', (request) => {
-    if (new URL(request.url()).pathname.includes('echarts-')) chartRequests.push(request.url())
+    if (request.resourceType() === 'script') chartRequests.push(new URL(request.url()).pathname)
   })
   await page.goto('fundamentals')
   await expect(page.getByRole('heading', { name: 'Operating states, slowly becoming signals.' })).toBeVisible()
-  expect(chartRequests).toEqual([])
+  const beforeChart = new Set(chartRequests)
   await page.locator('.quantile-panel').scrollIntoViewIfNeeded()
-  await expect(page.locator('.quantile-panel .echarts-for-react')).toBeVisible()
-  await expect.poll(() => chartRequests.length).toBeGreaterThan(0)
+  await expect(page.locator('.quantile-panel svg.chart-svg')).toBeVisible()
+  await expect.poll(() => chartRequests.some((request) => !beforeChart.has(request))).toBe(true)
 })
 
 test('exploration pages localize new controls and evidence notes into Chinese', async ({ page }) => {
@@ -268,14 +276,14 @@ test('exploration pages localize new controls and evidence notes into Chinese', 
   await expect(page.getByText(/历史指数与行业生效时点也没有完全按点时核实/).first()).toBeVisible()
 })
 
-test('deferred charts do not blank the page on a mobile viewport', async ({ page }) => {
+test('deferred native charts do not blank the page on a mobile viewport', async ({ page }) => {
   const runtimeErrors: string[] = []
   page.on('pageerror', (error) => runtimeErrors.push(error.message))
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
   await expect(page.getByRole('heading', { name: 'Turn market data into readable structure.' })).toBeVisible()
   await page.getByRole('heading', { name: 'Factor map' }).scrollIntoViewIfNeeded()
-  await expect(page.locator('.research-chart .echarts-for-react')).toBeVisible()
+  await expect(page.locator('svg.chart-svg').first()).toBeVisible()
   expect(runtimeErrors).toEqual([])
   await expect(page.locator('main')).toBeVisible()
 })
@@ -315,7 +323,8 @@ test('routes request only the public data snapshots they need', async ({ page })
   expect(alphaNames).toEqual(['alpha810-snapshot.json'])
   expect(echartsRequested).toBe(false)
   await page.getByRole('heading', { name: 'Coverage by factor' }).scrollIntoViewIfNeeded()
-  await expect.poll(() => echartsRequested).toBe(true)
+  await expect(page.locator('.research-chart svg.chart-svg').first()).toBeVisible()
+  expect(echartsRequested).toBe(false)
 
   dataResponses.length = 0
   await page.goto('studies')
