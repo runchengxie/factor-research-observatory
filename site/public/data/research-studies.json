@@ -205,7 +205,7 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T16:45:31+00:00"
+        "checked_at": "2026-10-03T15:03:04+00:00"
       },
       "navigation_asset": "data/study-navigation/pb-roe.json",
       "navigation_summary": {
@@ -506,8 +506,8 @@
       "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
       "exploration_asset": "data/study-exploration/rd-investment.json",
       "exploration_counts": {
-        "steps": 6,
-        "charts": 4
+        "steps": 7,
+        "charts": 5
       },
       "evidence_summary": {
         "decision": "exploratory",
@@ -548,7 +548,7 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T16:45:31+00:00"
+        "checked_at": "2026-10-03T15:03:04+00:00"
       },
       "navigation_asset": "data/study-navigation/rd-investment.json",
       "navigation_summary": {
@@ -719,7 +719,7 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T16:45:31+00:00"
+        "checked_at": "2026-10-03T15:03:04+00:00"
       },
       "navigation_asset": "data/study-navigation/fundamental-state-forecasting.json",
       "navigation_summary": {
@@ -850,7 +850,7 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T16:45:31+00:00"
+        "checked_at": "2026-10-03T15:03:04+00:00"
       },
       "navigation_asset": "data/study-navigation/fundamental-family-shadow.json",
       "navigation_summary": {
@@ -1013,7 +1013,7 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T16:45:31+00:00"
+        "checked_at": "2026-10-03T15:03:04+00:00"
       },
       "navigation_asset": "data/study-navigation/cashflow-indices.json",
       "navigation_summary": {
@@ -1144,8 +1144,8 @@
         }
       ],
       "source_review_status": {
-        "status": "needs_review",
-        "checked_at": "2026-10-02T16:45:31+00:00"
+        "status": "matched",
+        "checked_at": "2026-10-03T15:03:04+00:00"
       },
       "navigation_asset": "data/study-navigation/hk-fundamental-archive.json",
       "navigation_summary": {
@@ -1226,7 +1226,7 @@
       "source_ref": "doc:quant-research.research.fundamental-research-series",
       "exploration_asset": "data/study-exploration/employee-compensation.json",
       "exploration_counts": {
-        "steps": 3,
+        "steps": 4,
         "charts": 0
       },
       "evidence_summary": {
@@ -1267,8 +1267,8 @@
         }
       ],
       "source_review_status": {
-        "status": "needs_review",
-        "checked_at": "2026-10-02T16:45:31+00:00"
+        "status": "matched",
+        "checked_at": "2026-10-03T15:03:04+00:00"
       },
       "navigation_asset": "data/study-navigation/employee-compensation.json",
       "navigation_summary": {
@@ -1582,7 +1582,7 @@
       ],
       "source_review_status": {
         "status": "matched",
-        "checked_at": "2026-10-02T16:45:31+00:00"
+        "checked_at": "2026-10-03T15:03:04+00:00"
       },
       "navigation_asset": "data/study-navigation/absolute-level-forecast.json",
       "navigation_summary": {

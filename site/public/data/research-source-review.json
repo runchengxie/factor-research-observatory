@@ -2,63 +2,82 @@
   "schema_version": "observatory.source_review.v1",
   "studies": [
     {
-      "navigation_sha256": "4a47f1615e0738e15418d01c9e51f8d91ae02c4e34573e2e48c81781186a0f9f",
+      "brief_sha256": "7c6b73aef2c52dbc64fd43f2b077fb46d64e0794bc069209fd99787ae203b9a4",
+      "navigation_sha256": "6bf144b0210e8b1b2e539e071a5dfc9ffaddc183e14e01646e39e20f65e0affa",
       "navigation_sources": [
         {
           "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
           "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        },
+        {
+          "source_ref": "doc:quant-research.strategy.pb-roe-value-quality",
+          "sha256": "b04fa68bc45e7d5ea226a6e8e713c84fe93c1af24ea39c65e3768ab8fef348a6"
         }
       ],
       "study_id": "pb-roe",
-      "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+      "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
       "catalog_sha256": "8dc85d75ff016043e52bfa0b8cd47d5f978f19f338ec12f2f41b9ad720e97b2e",
-      "exploration_sha256": "1d1d84321530487696e2814136e89f9a1a7b03167fd617be5ddac480ff855de6",
+      "exploration_sha256": "f0c43b67464bbb05e870aa3343d21675385af2298862ea4262ebf5b62f103195",
       "sources": [
         {
           "source_ref": "doc:quant-research.strategy.pb-roe-value-quality",
-          "sha256": "3df6182c7eec52034178aeb3be2f6436267100e408540fb161c3636bb5d22cd5"
+          "sha256": "b04fa68bc45e7d5ea226a6e8e713c84fe93c1af24ea39c65e3768ab8fef348a6"
         }
       ]
     },
     {
-      "navigation_sha256": "1bcfc9d23a29893018d4e8f9885936cf7c841301ff0f5e6ea10acd1501555d05",
+      "brief_sha256": "da99c9e617d146855a65e356b079eca17c717aeb9551ebb6f9144c8fb24ee9e7",
+      "navigation_sha256": "47ebaf3038b435e2bde7705b404107c0b69bae8dc246126465d6cde05e624f07",
       "navigation_sources": [
         {
           "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
           "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        },
+        {
+          "source_ref": "doc:quant-research.research.rd-execution-input-diagnostics-20261002",
+          "sha256": "bd226ed780349ff77bda10ea7aa7adfc52dd64d7c850e7957c6c79464ce6d0c9"
+        },
+        {
+          "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+          "sha256": "c7abcf20597f6893c40ddae4994233d96dc3541c9cc897eb73b294b05cd0d57b"
         }
       ],
       "study_id": "rd-investment",
-      "source_revision": "1de94d25fd5f4c06dadbfed751a8270121d91738",
-      "catalog_sha256": "2ead3ae3ad7f1d7319ed0d17d55f9386948b28bab6d47a6a1d34bc27f00027f6",
-      "exploration_sha256": "99b11ae4a126e1d63f310a6b3a73f663f6fafff6ff68b05939d5780c4e92ef6a",
+      "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
+      "catalog_sha256": "c09aff1bd5fd80c8cf94c22919861c01c28c85806e53fa865ab2e33ae5a4948c",
+      "exploration_sha256": "d82e9e14ef189d68ccf3b147d4eb5399810e581d5e167d4a6f4b547570e6bfd2",
       "sources": [
         {
           "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
           "sha256": "c7abcf20597f6893c40ddae4994233d96dc3541c9cc897eb73b294b05cd0d57b"
         },
         {
-          "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
-          "sha256": "c7abcf20597f6893c40ddae4994233d96dc3541c9cc897eb73b294b05cd0d57b"
+          "source_ref": "doc:quant-research.research.rd-execution-input-diagnostics-20261002",
+          "sha256": "bd226ed780349ff77bda10ea7aa7adfc52dd64d7c850e7957c6c79464ce6d0c9"
         }
       ]
     },
     {
-      "navigation_sha256": "6011f0c4970b30c7f6ded8307fcec05c7761e4c836e02f37b5cef8f885953445",
+      "brief_sha256": "86125704199130929808587aedc1f7bcf0dd7d3efbf04192c34f21a1587f148a",
+      "navigation_sha256": "d93066667e823d4463e4c1c72caf73b7d34e3c27954542428ded778410d69f7c",
       "navigation_sources": [
         {
           "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
           "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        },
+        {
+          "source_ref": "doc:quant-research.research.long-term-fundamental-v2",
+          "sha256": "fc7b26ea22aec8d236aadb4170b59048da25f67179e4be4a35e9a797724fd32d"
         }
       ],
       "study_id": "fundamental-state-forecasting",
-      "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+      "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
       "catalog_sha256": "f29441fc6fd92c653e4c6cf8f03d55c374d0e08cd5e53b34b4ca144d922d3434",
-      "exploration_sha256": "368bdf294ef393716f0a4915ff13ddc05bafd18ca8e9eff9dba05b544819beb3",
+      "exploration_sha256": "b660701d17839ac463992e245c1366d5c8d5867f4425cd7c102e1d12997558fb",
       "sources": [
         {
           "source_ref": "doc:quant-research.research.long-term-fundamental-v2",
-          "sha256": "970bfd3503bb18a9bc83f3abcfa1f741fbd589c76b2d0af608266ff567e8dd56"
+          "sha256": "fc7b26ea22aec8d236aadb4170b59048da25f67179e4be4a35e9a797724fd32d"
         },
         {
           "source_ref": "doc:quant-research.experiment.fundamental-objective-comparison-20260904",
@@ -75,11 +94,16 @@
       ]
     },
     {
+      "brief_sha256": "326e1ad11a2ffc217000451053de334b819312e691a8a9c202cbf529fb151082",
       "navigation_sha256": "b2e075e4b30ac4ec6b53f0ff71433b5d52670936fcda075a2a25762ee80aaf1e",
       "navigation_sources": [
         {
           "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
           "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        },
+        {
+          "source_ref": "doc:quant-research.research.fundamental-family-shadow",
+          "sha256": "7fb7ec8ddf7f4e9ad5399be064ab247bfde95415195176c8fe54fca0591439e9"
         }
       ],
       "study_id": "fundamental-family-shadow",
@@ -94,8 +118,13 @@
       ]
     },
     {
+      "brief_sha256": "ede2acc0e0a8a2578a2295bbb8b34a09f8ab1c9e8312879a441f434138175946",
       "navigation_sha256": "108990c89b2fac39991e334b0f768c9b33110166911416a241e456229cbb4da6",
       "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.research.cashflow-indices-map",
+          "sha256": "fe0a80ba7de2edd184d435c7ec930e2b153abfe228c8605641d3f76e92a44fed"
+        },
         {
           "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
           "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
@@ -121,21 +150,26 @@
       ]
     },
     {
-      "navigation_sha256": "4b8b29f37671a7bcf47664c5e9f5215dd2ac9d804873fb073bd84eb85db5d8e2",
+      "brief_sha256": "c27377afb57d202457ca296e8834a993e3cd21db2fce3a4c4b158293cb8d6b91",
+      "navigation_sha256": "f8f6902c4dc78bee92493064e9a9563b6982c1b92e3065cf4894e40baf8ff91c",
       "navigation_sources": [
+        {
+          "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928",
+          "sha256": "79f238f5f1f01d2f3a9ec0795bd7b008362e3537c4f4c75132f35e333bbb9897"
+        },
         {
           "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
           "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
         }
       ],
       "study_id": "hk-fundamental-archive",
-      "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
+      "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
       "catalog_sha256": "3ca99b5ea2feeb670bb5f97751aa7122139dc9f1d7b4bd9ce577f120ca695a04",
-      "exploration_sha256": "0921fbb4dceebf98c2e5132248be9bb857f905888b5681a6b2ce08abb61069b2",
+      "exploration_sha256": "9fdc25cf55cacc6abf5fd142baee1a5d41132e7830904e571012e5d8c2492108",
       "sources": [
         {
           "source_ref": "doc:quant-research.archive.hk-experiment-recovery-20260928",
-          "sha256": "6992549b356795902b3685e469f4b978c4356b957005a682cb7a6733f165eca9"
+          "sha256": "79f238f5f1f01d2f3a9ec0795bd7b008362e3537c4f4c75132f35e333bbb9897"
         },
         {
           "source_ref": "doc:quant-research.archive.hk-note.hk-quarterly-current-state-20260329",
@@ -148,30 +182,40 @@
       ]
     },
     {
-      "navigation_sha256": "c651c5f342a28732b4a7c2699e14382b0742db8daa979dc99079dff1b04e0904",
+      "brief_sha256": "93ed1e0f6c3b9f721f20b0408fed89fdff38e5da674d0250dc4951372f62f1a3",
+      "navigation_sha256": "17745d671ae868ec6de6a00e03574a62899095b7c2833d89defa18aa588f417a",
       "navigation_sources": [
         {
           "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
           "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        },
+        {
+          "source_ref": "doc:quant-research.research.fundamental-research-series",
+          "sha256": "a5577fd5bd34ad5eae6eb67c04dbb49b3e1174184d3f517b003ac5ce254a55b8"
         }
       ],
       "study_id": "employee-compensation",
-      "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-      "catalog_sha256": "6dbb41bd526b8ab09c192d1c75216f11e40954d1aea0ca39fbdc089411e5c102",
-      "exploration_sha256": "941bdd50f02d0f4fa3388d17c24798a3758947d2475ee6999263c7b59c1071b9",
+      "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
+      "catalog_sha256": "01f9a6165dad78c9c3b7c468dbd2c79daac5e214f93114ae331345b84b591a80",
+      "exploration_sha256": "e5794296394ff0e5d0cb695871ec194895766865eab1c0d05c7588fb0990c8d7",
       "sources": [
         {
           "source_ref": "doc:quant-research.research.fundamental-research-series",
-          "sha256": "ad4f6faaefa17aaab504998c4aada4b396ff3882ef11dfdf66b66d7cc0fab0fa"
+          "sha256": "a5577fd5bd34ad5eae6eb67c04dbb49b3e1174184d3f517b003ac5ce254a55b8"
         }
       ]
     },
     {
+      "brief_sha256": "7ecf6ad9aae424cbda1dc15a97b0bc96cdee3735a01a61de2e519f5df99f4196",
       "navigation_sha256": "f03c40ae1da962b992782357f3e84e9e79570148448fc843a43bfbaea5cad973",
       "navigation_sources": [
         {
           "source_ref": "doc:quant-research.research.fundamental-evidence-navigation",
           "sha256": "b7298209163a134ea9b688c8686bdbd5047027ccfd4d2e9ef6d002a6b279fb4a"
+        },
+        {
+          "source_ref": "doc:quant-research.research.fundamental-state-forecasting",
+          "sha256": "6967dae433890a4de5af37ce137213319d27b6278c12461728dc3a7fe6f1d232"
         }
       ],
       "study_id": "absolute-level-forecast",

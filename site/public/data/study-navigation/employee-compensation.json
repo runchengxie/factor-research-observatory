@@ -2,7 +2,7 @@
   "schema_version": "observatory.study_navigation.v1",
   "study_id": "employee-compensation",
   "source_ref": "doc:quant-research.research.fundamental-research-series",
-  "source_revision": "e1ddc637be13f6f62693f91c9b98b8e98bbfb5b4",
+  "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
   "reviewed_at": "2026-10-03",
   "authority_ref": "doc:quant-research.research.fundamental-evidence-navigation",
   "trust": [
@@ -108,6 +108,19 @@
       "acceptance": {
         "en-US": "Retain an immutable audit with the named evidence gap resolved; preserve the previous decision if the gate fails.",
         "zh-CN": "保留不可变审计并解决上述证据缺口；门槛未通过则保留原判断。"
+      }
+    },
+    {
+      "id": "employee-source-review",
+      "priority": "P1",
+      "status": "completed",
+      "action": {
+        "en-US": "Review the changed series overview and retain its hypothesis classification.",
+        "zh-CN": "复核变化的系列总览，保留研究假设分类。"
+      },
+      "acceptance": {
+        "en-US": "Content changes are navigation only; no new predictive results. Expense-flow and headcount qualification remains open.",
+        "zh-CN": "内容变化仅涉及导航，没有新增预测结果。费用流量与员工人数核验仍待完成。"
       }
     }
   ],

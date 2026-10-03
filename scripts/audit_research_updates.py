@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
@@ -31,7 +32,36 @@ def index_sources(owner, revision):
 def projection(study):
     return {k: v for k, v in study.items() if k != 'source_review_status'}
 
+def card_briefs():
+    # Locale catalogs are JSON objects on one line in the authoritative UI catalog.
+    text = (ROOT / 'site/src/i18n.ts').read_text()
+    catalogs = re.findall(r'^    studyBriefs: (\{.*\}),$', text, re.MULTILINE)
+    if len(catalogs) != 2:
+        raise ValueError('Expected English and Chinese study brief catalogs')
+    return dict(zip(('en-US', 'zh-CN'), (json.loads(c) for c in catalogs)))
+
+def brief_digest(briefs, study_id):
+    return digest({locale: entries.get(study_id) for locale, entries in briefs.items()})
+
+def navigation_refs(navigation):
+    refs = set()
+    def visit(value):
+        if isinstance(value, dict):
+            for key, item in value.items():
+                if key in ('source_ref', 'authority_ref'):
+                    refs.add(item)
+                elif key == 'source_refs':
+                    refs.update(item)
+                else:
+                    visit(item)
+        elif isinstance(value, list):
+            for item in value:
+                visit(item)
+    visit(navigation)
+    return sorted(refs)
+
 def capture(catalog, owner):
+    briefs = card_briefs()
     indexes = {}
     entries = []
     for study in catalog['studies']:
@@ -52,12 +82,15 @@ def capture(catalog, owner):
         if navigation:
             nav_revision = navigation['source_revision']
             nav_index = index_sources(owner, nav_revision)
-            ref = navigation['authority_ref']
-            navigation_sources.append({'source_ref': ref, 'sha256': digest(git(owner, 'show', nav_revision + ':' + nav_index[ref]))})
-        entries.append({'navigation_sha256': digest(navigation) if navigation else None, 'navigation_sources': navigation_sources, 'study_id': study['id'], 'source_revision': revision, 'catalog_sha256': digest(projection(study)), 'exploration_sha256': digest(data), 'sources': sources})
+            for ref in navigation_refs(navigation):
+                if ref not in nav_index:
+                    raise ValueError('Missing pinned navigation source: ' + ref)
+                navigation_sources.append({'source_ref': ref, 'sha256': digest(git(owner, 'show', nav_revision + ':' + nav_index[ref]))})
+        entries.append({'brief_sha256': brief_digest(briefs, study['id']), 'navigation_sha256': digest(navigation) if navigation else None, 'navigation_sources': navigation_sources, 'study_id': study['id'], 'source_revision': revision, 'catalog_sha256': digest(projection(study)), 'exploration_sha256': digest(data), 'sources': sources})
     return {'schema_version': 'observatory.source_review.v1', 'studies': entries, 'hub_sha256': digest(catalog.get('research_hub'))}
 
 def audit(catalog, baseline, owner=None):
+    briefs = card_briefs()
     entries = {s['study_id']: s for s in baseline['studies']}
     checks = []
     try:
@@ -69,7 +102,7 @@ def audit(catalog, baseline, owner=None):
         data = json.loads((ROOT / 'site/public' / study['exploration_asset']).read_text())
         navigation = json.loads((ROOT / 'site/public' / study['navigation_asset']).read_text()) if study.get('navigation_asset') else None
         navigation_changed = entry is not None and entry.get('navigation_sha256') != (digest(navigation) if navigation else None)
-        public_changed = navigation_changed or entry is None or entry['catalog_sha256'] != digest(projection(study)) or entry['exploration_sha256'] != digest(data)
+        public_changed = navigation_changed or entry is None or entry.get('brief_sha256') != brief_digest(briefs, study['id']) or entry['catalog_sha256'] != digest(projection(study)) or entry['exploration_sha256'] != digest(data)
         sources = []
         if owner and entry:
             for source in entry['sources'] + entry.get('navigation_sources', []):

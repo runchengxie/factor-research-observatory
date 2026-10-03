@@ -2,8 +2,8 @@
   "schema_version": "observatory.study_exploration.v1",
   "study_id": "employee-compensation",
   "source_ref": "doc:quant-research.research.fundamental-research-series",
-  "source_revision": "da977d8ab47857f9cf5b1c57c21291e30630e90f",
-  "reviewed_at": "2026-10-02",
+  "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
+  "reviewed_at": "2026-10-03",
   "evidence_stage": "hypothesis",
   "summary": {
     "en-US": "Accounting stocks and labor-cost flows must be separated before building a predictive test.",
@@ -96,6 +96,33 @@
       "decision": {
         "en-US": "Keep this page at hypothesis status with no performance chart.",
         "zh-CN": "本页保留假设状态，不绘制绩效图。"
+      },
+      "source_ids": [
+        "overview"
+      ]
+    },
+    {
+      "id": "source-review",
+      "period": {
+        "en-US": "2026-10-03",
+        "zh-CN": "2026-10-03"
+      },
+      "status": "hypothesis",
+      "title": {
+        "en-US": "Review changed source content",
+        "zh-CN": "复核变化的来源内容"
+      },
+      "question": {
+        "en-US": "Did the overview update add predictive evidence?",
+        "zh-CN": "总览更新是否带来新的预测证据？"
+      },
+      "finding": {
+        "en-US": "The changes add navigation and R&D follow-up links. Human-capital definitions and evidence status are unchanged; no predictive backtest was added.",
+        "zh-CN": "变化是新增导航和研发后续入口。人力资本定义与证据状态一致，没有新增预测回测。"
+      },
+      "decision": {
+        "en-US": "Retain hypothesis status and qualify expense flows and headcount before testing.",
+        "zh-CN": "保留研究假设状态，预测前核验费用流量与员工人数。"
       },
       "source_ids": [
         "overview"

@@ -67,5 +67,25 @@ class ResearchHubTests(unittest.TestCase):
         del self.catalog['studies'][0]['navigation_asset']
         self.assertTrue(review.audit(self.catalog, self.baseline)['studies'][0]['public_changed'])
 
+    def test_card_conclusion_changes_are_detected(self):
+        with patch.object(review, 'card_briefs', return_value={'en-US': {'pb-roe': 'Changed'}, 'zh-CN': {}}):
+            self.assertTrue(review.audit(self.catalog, self.baseline)['studies'][0]['public_changed'])
+
+    def test_navigation_refs_include_nested_evidence_dependencies(self):
+        refs = review.navigation_refs({'authority_ref': 'doc:authority', 'source_ref': 'doc:overview', 'trust': [{'source_refs': ['doc:input']}], 'reproduction': {'source_refs': ['doc:code', 'doc:overview']}})
+        self.assertEqual(refs, ['doc:authority', 'doc:code', 'doc:input', 'doc:overview'])
+
+    def test_nested_navigation_source_change_is_detected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            owner = Path(folder)
+            (owner / 'input.md').write_bytes(b'changed')
+            first = self.baseline['studies'][0]
+            first['sources'] = []
+            first['navigation_sources'] = [{'source_ref': 'doc:input', 'sha256': review.digest(b'original')}]
+            with patch.object(review, 'index_sources', return_value={'doc:input': 'input.md'}):
+                result = review.audit(self.catalog, self.baseline, owner)['studies'][0]
+                self.assertFalse(result['public_changed'])
+                self.assertEqual(result['status'], 'needs_review')
+
     def test_generated_output_cannot_be_written_in_repository(self):
         with self.assertRaises(ValueError): review.external(ROOT / 'reports')
