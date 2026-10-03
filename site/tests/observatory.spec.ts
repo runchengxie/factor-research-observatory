@@ -73,7 +73,7 @@ test('Published Alpha 810 snapshot shows full-period corrected evidence and cave
   await expect(page.getByText('806 / 810', { exact: true }).first()).toBeVisible()
   await expect(page.getByText('Available', { exact: true })).toBeVisible()
   await expect(page.getByText(/Historical input point-in-time availability/)).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'How many factors remain significant as dependence allowances increase?' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Do results hold when nearby dates are treated as related?' })).toBeVisible()
   await expect(page.getByText('778 / 810', { exact: true })).toBeVisible()
   await expect(page.getByText('784 / 806', { exact: true })).toBeVisible()
   await page.goto('alpha810/factors/alpha101_001')
@@ -218,8 +218,8 @@ test('chart routes render without React runtime errors', async ({ page }) => {
   const runtimeErrors: string[] = []
   page.on('pageerror', (error) => runtimeErrors.push(error.message))
   const cases = [
-    { route: 'jumps', heading: 'Volatility is not one number.', chart: '.chart-panel svg.chart-svg, .chart-panel .chart-empty' },
-    { route: 'hermite', heading: 'Find the cracks in the distribution.', chart: '.chart-panel svg.chart-svg' },
+    { route: 'jumps', heading: 'How much movement came from sudden jumps?', chart: '.chart-panel svg.chart-svg, .chart-panel .chart-empty' },
+    { route: 'hermite', heading: 'How lopsided are price movements?', chart: '.chart-panel svg.chart-svg' },
   ]
   for (const { route, heading, chart } of cases) {
     await page.goto(route)
@@ -235,8 +235,8 @@ test('Hermite explorer separates indicator scales and explains the demo window',
   await expect(page.getByLabel('Ticker')).toBeVisible()
   await expect(page.getByText('42 daily observations')).toBeVisible()
   await page.getByLabel('Hermite indicator').selectOption('h_daily_close60_ts_h3_60')
-  await expect(page.getByRole('heading', { name: /Third-order shape component/ })).toBeVisible()
-  await expect(page.getByText(/Do not interpret its sign as a standardized skewness value/i)).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Are price changes lopsided/ })).toBeVisible()
+  await expect(page.getByText(/its sign is not the same as a standardized skewness measure/i)).toBeVisible()
 })
 
 test('jump page lets readers compare additive components as shares', async ({ page }) => {
@@ -245,7 +245,7 @@ test('jump page lets readers compare additive components as shares', async ({ pa
   await expect(page.getByRole('heading', { name: 'Share of realized variance' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Composition of jump variance' })).toBeVisible()
   await expect(page.getByRole('columnheader', { name: 'Share of RJV' })).toBeVisible()
-  await expect(page.getByText('RV = IVhat + RJV', { exact: false })).toBeVisible()
+  await expect(page.getByText(/Realized variance \(RV\) is a measure of total squared price movement/)).toBeVisible()
   await expect(page.getByText('RJV = RLJV + RSJV', { exact: false })).toBeVisible()
   await expect(page.getByText('Decomposition check passed')).toBeVisible()
 })
@@ -290,7 +290,7 @@ test('fundamentals route defers native SVG chart code until a chart section appr
     if (request.resourceType() === 'script') chartRequests.push(new URL(request.url()).pathname)
   })
   await page.goto('fundamentals')
-  await expect(page.getByRole('heading', { name: 'Operating states, slowly becoming signals.' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'What companies reported, and when it became public' })).toBeVisible()
   const beforeChart = new Set(chartRequests)
   await page.locator('.quantile-panel').scrollIntoViewIfNeeded()
   await expect(page.locator('.quantile-panel svg.chart-svg')).toBeVisible()
@@ -300,18 +300,18 @@ test('fundamentals route defers native SVG chart code until a chart section appr
 test('exploration pages localize new controls and evidence notes into Chinese', async ({ page }) => {
   await page.goto('hermite')
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
-  await expect(page.getByRole('heading', { name: '寻找分布形状的变化。' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '价格涨跌分布是否偏向一边？' })).toBeVisible()
   await expect(page.getByLabel('Hermite 指标')).toBeVisible()
 
   await page.goto('jumps')
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
-  await expect(page.getByRole('heading', { name: '波动并不只有一个数字。' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '总波动中有多少来自突然跳动？' })).toBeVisible()
   await expect(page.getByText('分解恒等式核对通过')).toBeVisible()
 
   await page.goto('fundamentals')
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
   await expect(page.getByLabel('序列指标')).toBeVisible()
-  await expect(page.getByRole('heading', { name: '最新营业利润横截面' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '不同股票的营业利润数据有什么差异？' })).toBeVisible()
 
   await page.goto('studies/rd-investment')
   await page.getByRole('button', { name: 'Switch to 中文' }).click()
@@ -509,7 +509,7 @@ test('research hub filters evidence and preserves conclusion changes', async ({ 
 
 test('registered comparisons isolate horizons and show baseline differences', async ({ page }) => {
  await page.goto('/studies/compare')
- const chooser = page.getByLabel('Compare reviewed experiments', { exact: true })
+ const chooser = page.getByLabel('Choose a comparison', { exact: true })
  await expect(chooser).toBeVisible()
  await expect(page.locator('tbody tr')).toHaveCount(5)
  await expect(page.locator('tbody tr').first()).toContainText('0%')
