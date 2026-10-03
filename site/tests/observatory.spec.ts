@@ -365,7 +365,7 @@ test('routes request only the public data snapshots they need', async ({ page })
   captureBodies = false
   dataResponses.length = 0
   await page.goto('alpha810')
-  await expect(page.getByRole('heading', { name: /Classic factors/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Alpha 810: what do the historical checks show\?/ })).toBeVisible()
   const alphaNames = dataResponses.map((response) => response.name)
   expect(alphaNames).toEqual(['alpha810-snapshot.json'])
   expect(echartsRequested).toBe(false)
