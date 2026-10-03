@@ -28,7 +28,7 @@ function updateQuery(filters: ExplorerFilters, sort: ExplorerSort) {
 }
 
 export default function FactorExplorerPage({ records, context }: { records: FactorRecord[]; context: ResearchContext }) {
-  const { locale } = useLocale()
+  const { locale, copy } = useLocale()
   const english = locale === 'en-US'
   const localizedRecords = useMemo(() => records.map((record) => localizeFactorRecord(record, locale)), [records, locale])
   const [filters, setFilters] = useState<ExplorerFilters>(initialFilters)
@@ -58,7 +58,7 @@ export default function FactorExplorerPage({ records, context }: { records: Fact
 
   return <main className="page explorer-page">
     <a className="back" href={import.meta.env.BASE_URL}>← {english ? 'Factor overview' : '因子总览'}</a>
-    <section className="detail-head explorer-head"><p className="eyebrow">FACTOR EXPLORER</p><h1>{english ? 'Factor catalog' : '因子目录'}</h1><p className="lede">{english ? 'Browse market examples and fundamental research entries by definition, frequency and research status.' : '按定义、频率和研究状态浏览市场示例与基本面研究条目。'}</p><span className="badge">{english ? 'MARKET SAMPLE + FUNDAMENTAL PIT' : '市场示例 + 基本面 PIT'} · {localizedRecords.length} {english ? 'ENTRIES' : '个条目'}</span></section>
+    <section className="detail-head explorer-head"><p className="eyebrow">FACTOR EXPLORER</p><h1>{english ? 'Factor catalog' : '因子目录'}</h1><p className="lede">{copy.factor.catalogLede}</p><span className="badge">{copy.factor.catalogBadge} · {localizedRecords.length} {english ? 'ENTRIES' : '个条目'}</span></section>
     <ContextStrip items={[{ label: english ? 'Market data' : '市场数据', value: context.source }, { label: english ? 'Sample range' : '样本区间', value: context.snapshotRange }, { label: english ? 'Sample universe' : '样本股票池', value: context.universe }, { label: 'PIT', value: english ? context.pitStatus : '此市场示例未验证 PIT' }]} />
     <p className="context-note">{english ? 'This market sample is illustrative. Fundamental PIT evidence is a separate vintage; valid-value counts across the two datasets are not directly comparable.' : '市场示例仅用于演示；基本面 PIT 证据来自另一份独立快照，两类数据的有效值数量不可直接比较。'} <a href={`${import.meta.env.BASE_URL}fundamentals`}>{english ? 'View fundamental vintage →' : '查看基本面快照 →'}</a></p>
     <section className="panel explorer-panel">
