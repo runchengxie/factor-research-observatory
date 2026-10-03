@@ -407,7 +407,16 @@ test('all fundamental studies show source-backed exploration and optional charts
   for (const id of ids) {
     await page.goto(`/studies/${id}`)
     await expect(page.getByRole('heading', { name: 'How the evidence developed' })).toBeVisible()
-    await expect(page.locator('.study-exploration-steps > li')).toHaveCount(id === 'rd-investment' ? 6 : 3)
+    await expect(page.locator('.study-exploration-steps > li')).toHaveCount(id === 'rd-investment' ? 7 : id === 'employee-compensation' ? 4 : 3)
+    if (id === 'employee-compensation') {
+      await expect(page.locator('.study-evidence-summary')).toContainText('Source matches recorded baseline')
+    }
+    if (id === 'rd-investment') {
+      await page.getByLabel('Comparison to view').selectOption('replay-closure')
+      await expect(page.locator('.study-chart-context')).toContainText('89 formations')
+      await page.locator('.study-exploration').getByText('Show exact aggregate values', { exact: true }).click()
+      await expect(page.locator('.study-values')).toContainText('59')
+    }
     if (['employee-compensation', 'fundamental-family-shadow'].includes(id)) {
       await expect(page.locator('.study-exploration .study-exploration-svg')).toHaveCount(0)
       await expect(page.getByText('No reviewed performance values', { exact: false })).toBeVisible()
@@ -591,6 +600,13 @@ test('navigation failures preserve findings and retry on mobile in Chinese', asy
 })
 
 test('study index stays concise while each topic retains its evidence', async ({ page }) => {
+  await page.route('**/data/research-studies.json', async route => {
+    const response = await route.fetch()
+    const catalog = await response.json()
+    const study = catalog.studies.find((entry: { id: string }) => entry.id === 'employee-compensation')
+    study.source_review_status.status = 'needs_review'
+    await route.fulfill({ response, json: catalog })
+  })
   await page.goto('/studies')
   await expect(page.locator('.study-card')).toHaveCount(8)
   await expect(page.locator('.research-evidence-hub')).toHaveCount(0)
@@ -616,6 +632,13 @@ test('study index stays concise while each topic retains its evidence', async ({
 
 
 test('topic navigation and source details remain readable in Chinese on mobile', async ({ page }) => {
+  await page.route('**/data/research-studies.json', async route => {
+    const response = await route.fetch()
+    const catalog = await response.json()
+    const study = catalog.studies.find((entry: { id: string }) => entry.id === 'employee-compensation')
+    study.source_review_status.status = 'needs_review'
+    await route.fulfill({ response, json: catalog })
+  })
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/studies')
   await page.getByRole('button', { name: 'Switch to 中文', exact: true }).click()

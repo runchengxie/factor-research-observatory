@@ -2,7 +2,7 @@
   "schema_version": "observatory.study_navigation.v1",
   "study_id": "pb-roe",
   "source_ref": "doc:quant-research.strategy.pb-roe-value-quality",
-  "source_revision": "e1ddc637be13f6f62693f91c9b98b8e98bbfb5b4",
+  "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
   "reviewed_at": "2026-10-03",
   "authority_ref": "doc:quant-research.research.fundamental-evidence-navigation",
   "trust": [

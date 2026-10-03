@@ -2,8 +2,8 @@
   "schema_version": "observatory.study_exploration.v1",
   "study_id": "rd-investment",
   "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
-  "source_revision": "1de94d25fd5f4c06dadbfed751a8270121d91738",
-  "reviewed_at": "2026-10-02",
+  "source_revision": "ca346b2e35748a9c16bd06d9721e393f75dc0bdd",
+  "reviewed_at": "2026-10-03",
   "evidence_stage": "exploratory",
   "summary": {
     "en-US": "R&D remains a research candidate. Historical execution and input audits expose unresolved gaps; the corrected signal screen and older historical extension remain separate.",
@@ -20,7 +20,7 @@
     },
     {
       "id": "followup",
-      "source_ref": "doc:quant-research.research.rd-investment-relative-valuation",
+      "source_ref": "doc:quant-research.research.rd-execution-input-diagnostics-20261002",
       "label": {
         "en-US": "Historical execution, input and accounting follow-up",
         "zh-CN": "历史执行、输入与会计口径后续核验"
@@ -185,6 +185,33 @@
       "decision": {
         "en-US": "Keep conditional coverage separate from PIT qualification, and association separate from portfolio validation.",
         "zh-CN": "条件覆盖率与 PIT 资格分开，相关性与组合验证分开。"
+      },
+      "source_ids": [
+        "followup"
+      ]
+    },
+    {
+      "id": "event-identity-closure",
+      "period": {
+        "en-US": "2026-10-03",
+        "zh-CN": "2026-10-03"
+      },
+      "status": "diagnostic",
+      "title": {
+        "en-US": "Join historical halt codes and trace retained holdings",
+        "zh-CN": "对齐停牌代码并追踪实际持仓"
+      },
+      "question": {
+        "en-US": "Which missing marks have explicit event evidence?",
+        "zh-CN": "哪些缺价有明确的事件证据？"
+      },
+      "finding": {
+        "en-US": "The BSE code join completes one original monthly sequence and advances nine others. A separate 77-month common-start replay completes two sequences; all growth formations are available but ten growth replays still stop at price gaps. Eighteen filing references cover four issuers and six years, with sixteen total-investment matches.",
+        "zh-CN": "北交所代码对齐后，1 条原月频序列完成，另有 9 条推进。独立的 77 月共同起点回放有 2 条完成，研发增长具备全部建仓月份，十条增长回放仍因缺价停止。18 个年报样本覆盖 4 家公司、6 个报告年度，其中 16 个投入总额相符。"
+      },
+      "decision": {
+        "en-US": "Retain the original failures and a separately labeled common-start diagnostic. Formal portfolio validation remains blocked and the holdout remains sealed.",
+        "zh-CN": "保留原始失败记录，共同起点诊断单独标注。正式组合验证继续阻断，前瞻留出继续封存。"
       },
       "source_ids": [
         "followup"
@@ -596,11 +623,79 @@
       "source_ids": [
         "followup"
       ]
+    },
+    {
+      "id": "replay-closure",
+      "title": {
+        "en-US": "Monthly execution diagnostic progress",
+        "zh-CN": "月频执行诊断进展"
+      },
+      "metric": {
+        "en-US": "Factor/decile sequences",
+        "zh-CN": "因子与分组序列数量"
+      },
+      "unit": "number",
+      "context": {
+        "en-US": "Same 89 formations, seven variants and ten deciles, with 25 bp one-way cost. The earlier stage already includes explicit full-day halts. These are execution status counts, separate from the registered 20/220-session validation.",
+        "zh-CN": "同一组 89 个建仓月份、七个变体、十个分组，单边费用为 25 基点。前一阶段已加入明确全天停牌。图中为执行状态数量，与正式 20／220 交易日验证分开。"
+      },
+      "interpretation": {
+        "en-US": "One sequence completing does not resolve financial revisions, historical eligibility or terminal events. No performance promotion follows.",
+        "zh-CN": "完成一条序列后，财报修订、历史资格和终止事件仍有缺口，研究资格保持不变。"
+      },
+      "categories": [
+        {
+          "en-US": "Before code join",
+          "zh-CN": "代码对齐前"
+        },
+        {
+          "en-US": "After code join",
+          "zh-CN": "代码对齐后"
+        }
+      ],
+      "series": [
+        {
+          "id": "completed",
+          "label": {
+            "en-US": "Completed diagnostic",
+            "zh-CN": "诊断完成"
+          },
+          "values": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "price-gap",
+          "label": {
+            "en-US": "Unresolved mark",
+            "zh-CN": "价格缺口未解决"
+          },
+          "values": [
+            60,
+            59
+          ]
+        },
+        {
+          "id": "missing-formation",
+          "label": {
+            "en-US": "Incomplete formations",
+            "zh-CN": "建仓月份不足"
+          },
+          "values": [
+            10,
+            10
+          ]
+        }
+      ],
+      "source_ids": [
+        "followup"
+      ]
     }
   ],
   "next_question": {
-    "en-US": "Explicit full-day suspension evidence advances all 60 replay failure dates, but later unresolved marks remain; ten growth portfolios also have incomplete formations. Identity and terminal-event recovery, formal portfolio validation, and revision gates remain open.",
-    "zh-CN": "明确的全天停牌证据让 60 条回放的失败日期全部后移，但后续仍有未解释的价格缺口；另有十条研发增长组合建仓不完整。证券身份与退市事件恢复、正式组合验证及修订门槛仍未完成。"
+    "en-US": "Resolve the remaining held-price and terminal events, qualify historical eligibility and financial revisions, and retain growth calendar gaps. The prospective holdout stays sealed.",
+    "zh-CN": "继续核对持仓缺价和终止事件，核验历史资格与财报修订，保留研发增长的日历缺口。前瞻留出继续封存。"
   },
   "conclusion_changes": [
     {
