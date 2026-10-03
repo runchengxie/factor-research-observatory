@@ -38,7 +38,7 @@ export const explorationCopy: Record<Locale, ExplorationCopy> = {
       metric: 'Hermite indicator', ticker: 'Ticker', coverage: 'Observed window', observations: 'daily observations',
       series: 'Selected series', noSeries: 'No series is available for this selection.', demo: 'Illustrative demo snapshot',
       metrics: {
-        vol_rv_ts_closeness_60: { label: 'Closeness to a reference shape', title: 'How close is the shape to its reference?', description: 'This tracks changes in the shape of recent trading activity. In this demo, values closer to zero mean closer to the reference shape. The exact formula and scale are not published.' },
+        vol_rv_ts_closeness_60: { label: 'Closeness to a reference shape', title: 'How close is the shape to its reference?', description: 'This tracks changes in the shape of recent trading activity. In this demo, values closer to zero mean closer to the reference shape. The exact calculation method and scale are not published.' },
         h_daily_close60_ts_h3_60: { label: 'Asymmetry diagnostic (h3)', title: 'Are price changes lopsided? (h3)', description: 'This measure helps describe whether price changes lean more to one side. Its exact scale is not published, so its sign is not the same as a standardized skewness measure.' },
         h_daily_close60_ts_h4_60: { label: 'Large-move diagnostic (h4)', title: 'How heavy are the extremes? (h4)', description: 'This measure relates to how often unusually large moves appear. Its scale depends on the unpublished implementation and is not a formal kurtosis test.' },
       },
